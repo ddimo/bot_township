@@ -5,6 +5,9 @@ import xml.etree.ElementTree as xml
 
 gameInfo = gameInfoClass()
 
+gameBalanceXml = xml.parse('../township/base/GameBalance.xml', parser = CommentsParser())
+gameBalanceRoot = gameBalanceXml.getroot()
+
 attrs = vars(gameInfo)
 print ', '.join("%s: %s" % item for item in attrs.items())
 print ""
