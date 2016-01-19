@@ -19,3 +19,16 @@ class gameInfoClass:
         self.pick = 10
         self.axe = 10
         self.TNT = 10
+
+class buildingReq:
+    def __init__(self):
+        self.id = ""
+        self.Brick = 0
+        self.Plita = 0
+        self.Glass = 0
+        self.zooBuildingMaterial = 0
+        self.zooServiceMaterial1 = 0
+        self.zooServiceMaterial2 = 0
+        self.zooServiceMaterial3 = 0
+        self.price = 0
+        self.zooLevel = 0
