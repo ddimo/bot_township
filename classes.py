@@ -35,3 +35,13 @@ class buildingReq:
         self.zooServiceMaterial3 = 0
         self.price = 0
         self.zooLevel = 0
+
+class weightsList:
+    def __init__(self):
+        self.Brick = 0
+        self.Plita = 0
+        self.Glass = 0
+        self.zooBuildingMaterial = 0
+        self.zooServiceMaterial1 = 0
+        self.zooServiceMaterial2 = 0
+        self.zooServiceMaterial3 = 0

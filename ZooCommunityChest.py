@@ -54,7 +54,7 @@ for reqsElem in reqs.iter():
 # print zooBuildings
 # print zooBuildings['paddock_tiger']
 
-currentLevel = 3
+currentLevel = 6
 #gameInfo.paddocks['paddock_zebra'] = 1
 # gameInfo.communities['zoo_caffe'] = 1
 #
@@ -67,24 +67,33 @@ currentLevel = 3
 # else:
 #     print testBuildingId+" can NOT be built! :("
 
+# gameInfo.zooLevel = 1
+# gameInfo.paddocks['paddock_bear'] = 1
+
+gameInfo.zooLevel = 6
+
+# print currentZooMaterialReqs
+
+
 
 for x in range(0,10):
-    chestContent = GenerateZooCommunityChestContent(gameInfo)
+    chestContent = GenerateZooCommunityChestContent(gameInfo,zooBuildings)
     curvalue = getattr(gameInfo,chestContent)
     setattr(gameInfo,chestContent,curvalue+1)
-    # получили рандомный материал в дропе и увеличили его количество в сохранке
+    # получили рандомный материал в дропе и увеличили его количество в сохранк
     print "dropped", chestContent
+    print ""
     for key, value in zooBuildings.iteritems():
         if int(value.zooLevel) <= currentLevel:
             #print "    at level "+str(value.zooLevel)+" available "+str(value.id)
             if not CheckAlreadyBuilt(gameInfo,value.id):
-                print "    available and not yet built "+str(value.id)
+                #print "    available and not yet built "+str(value.id)
                 if CheckCanBuild(gameInfo,zooBuildings[value.id],value.id):
                     DoBuild(gameInfo,zooBuildings[value.id],value.id)
-                    print "     !!!!!!! enough materials to build "+value.id+", done!"
-                else: print "     -can not be built"
+                    print "!!!!!!! enough materials to build "+value.id+", done!"
+                #else: print "     -can not be built"
 
 
-attrs = vars(gameInfo)
-print ', '.join("%s: %s" % item for item in attrs.items())
-print ""
+# attrs = vars(gameInfo)
+# print ', '.join("%s: %s" % item for item in attrs.items())
+# print ""

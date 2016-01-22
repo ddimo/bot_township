@@ -1,4 +1,8 @@
+# coding=utf-8
+
 import random
+from classes import *
+from collections import Counter
 import xml.etree.ElementTree as xml
 from os.path import expanduser
 
@@ -12,7 +16,6 @@ class CommentsParser(xml.XMLTreeBuilder):
        self._target.start(xml.Comment, {})
        self._target.data(data)
        self._target.end(xml.Comment)
-
 
 def findElementByAttribute(parent, tagName, attributeName, attributeValue):
     for elem in parent.iter(tagName):
@@ -44,28 +47,70 @@ def GetRandomMaterialOrBrickDef(chestContent):
     rand = random.randint(0,chestContentLen-1)
     return chestContent[rand]
 
-def GenerateZooCommunityChestContent(gameInfo):
-    if gameInfo.countZooCommunityChest == 0:
-        curvalue = getattr(gameInfo,"countZooCommunityChest")
-        setattr(gameInfo,"countZooCommunityChest",curvalue+1)
-        return "zooBuildingMaterial"
-    elif gameInfo.countZooCommunityChest == 1:
-        curvalue = getattr(gameInfo,"countZooCommunityChest")
-        setattr(gameInfo,"countZooCommunityChest",curvalue+1)
-        return "zooServiceMaterial2"
-    elif gameInfo.countZooCommunityChest == 2:
-        curvalue = getattr(gameInfo,"countZooCommunityChest")
-        setattr(gameInfo,"countZooCommunityChest",curvalue+1)
-        return "zooBuildingMaterial"
-    elif gameInfo.countZooCommunityChest == 3:
-        curvalue = getattr(gameInfo,"countZooCommunityChest")
-        setattr(gameInfo,"countZooCommunityChest",curvalue+1)
-        return "pick"
+def FillCurrentOrdersOnlyZoo(gameInfo,buildingReq):
+    curReqs = []
+    for key, value in buildingReq.iteritems():
+        if int(value.zooLevel) <= gameInfo.zooLevel and gameInfo.paddocks.get(value.id) != 1:
+            # доступно по уровню и еще не построено
+            if value.Brick > 0: curReqs.append(["Brick", value.Brick])
+            if value.Plita > 0: curReqs.append(["Plita", value.Plita])
+            if value.Glass > 0: curReqs.append(["Glass", value.Glass])
+            if value.zooBuildingMaterial > 0: curReqs.append(["zooBuildingMaterial", value.zooBuildingMaterial])
+            if value.zooServiceMaterial1 > 0: curReqs.append(["zooServiceMaterial1", value.zooServiceMaterial1])
+            if value.zooServiceMaterial2 > 0: curReqs.append(["zooServiceMaterial2", value.zooServiceMaterial2])
+            if value.zooServiceMaterial3 > 0: curReqs.append(["zooServiceMaterial3", value.zooServiceMaterial3])
+
+    return curReqs
+
+
+def GenerateZooCommunityChestContent(gameInfo,buildingReqs):
+    # if gameInfo.countZooCommunityChest == 0:
+    #     curvalue = getattr(gameInfo,"countZooCommunityChest")
+    #     setattr(gameInfo,"countZooCommunityChest",curvalue+1)
+    #     return "zooBuildingMaterial"
+    # elif gameInfo.countZooCommunityChest == 1:
+    #     curvalue = getattr(gameInfo,"countZooCommunityChest")
+    #     setattr(gameInfo,"countZooCommunityChest",curvalue+1)
+    #     return "zooServiceMaterial2"
+    # elif gameInfo.countZooCommunityChest == 2:
+    #     curvalue = getattr(gameInfo,"countZooCommunityChest")
+    #     setattr(gameInfo,"countZooCommunityChest",curvalue+1)
+    #     return "zooBuildingMaterial"
+    # elif gameInfo.countZooCommunityChest == 3:
+    #     curvalue = getattr(gameInfo,"countZooCommunityChest")
+    #     setattr(gameInfo,"countZooCommunityChest",curvalue+1)
+    #     return "pick"
+
+    # заполняем список всех требущихся материалов в недостровенных зданиях
+    currentZooMaterialReqs = FillCurrentOrdersOnlyZoo(gameInfo,buildingReqs)
+
+    # Из каждого требования вычитаем колличество материалов имеющихся в амбаре
+    x = 0
+    for key,value in currentZooMaterialReqs:
+        currentZooMaterialReqs[x] = [key,value-getattr(gameInfo,key)]
+        if value-getattr(gameInfo,key) < 0: currentZooMaterialReqs[x] = [key,0]
+        x = x+1
+
+    _buildingMaterials = []
+    needBuildingMaterial = False
+
+    if currentZooMaterialReqs:
+        for key,value in currentZooMaterialReqs:
+            AddByWeight(_buildingMaterials,key,value+gameInfo.zooLevel)
+
+    if _buildingMaterials:
+        needBuildingMaterial = True
+        needBuildingMaterialId = GetRandomMaterialOrBrickDef(_buildingMaterials)
 
     chestContent = []
-    AddByWeight(chestContent,"Brick",155)
-    AddByWeight(chestContent,"Glass",155)
-    AddByWeight(chestContent,"Plita",155)
+
+    if needBuildingMaterial:
+        AddByWeight(chestContent,needBuildingMaterialId,80)
+        print "adding "+needBuildingMaterialId+" with weight 80"
+
+    AddByWeight(chestContent,"Brick",10)
+    AddByWeight(chestContent,"Glass",10)
+    AddByWeight(chestContent,"Plita",10)
     AddByWeight(chestContent,"zooBuildingMaterial",20)
     AddByWeight(chestContent,"zooServiceMaterial1",10)
     AddByWeight(chestContent,"zooServiceMaterial2",10)
@@ -79,22 +124,16 @@ def GenerateZooCommunityChestContent(gameInfo):
     AddByWeight(chestContent,"TNT",1)
 
     randomMat = GetRandomMaterialOrBrickDef(chestContent)
+    print Counter(chestContent)
 
     return randomMat
 
 def CheckAlreadyBuilt(gameInfo,buildingId):
-    if buildingId in gameInfo.paddocks:
-        if gameInfo.paddocks[buildingId] == 0:
-            return False
-        else:
-            return True
-    elif buildingId in gameInfo.communities:
-        if gameInfo.communities[buildingId] == 0:
-            return False
-        else:
-            return True
+    if gameInfo.paddocks.get(buildingId) == 1 or gameInfo.communities.get(buildingId) == 1:
+        return True
     else:
         return False
+
 
 def CheckCanBuild(gameInfo,buildingReq,buildingId):
     if gameInfo.Brick < buildingReq.Brick:
