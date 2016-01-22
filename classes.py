@@ -4,6 +4,7 @@ class gameInfoClass:
         self.chestWithoutLandDeed = 0
         self.playerLevel = 40
         self.zooLevel = 1
+        self.rating = 0
 
         self.Brick = 30
         self.Glass = 30
@@ -23,7 +24,7 @@ class gameInfoClass:
         self.paddocks = dict()
         self.communities = dict()
 
-class buildingReq:
+class buildingSettingsClass:
     def __init__(self):
         self.id = ""
         self.Brick = 0
@@ -35,6 +36,7 @@ class buildingReq:
         self.zooServiceMaterial3 = 0
         self.price = 0
         self.zooLevel = 0
+        self.bonusRating = 0
 
 class weightsList:
     def __init__(self):

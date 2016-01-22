@@ -15,7 +15,8 @@ BuildingRequirements = gameBalanceRoot.find('BuildingRequirements')
 buildingsLocksXml = xml.parse('../township/base/BuildingsLocks_v1.xml', parser=CommentsParser())
 buildingsLocksRoot = buildingsLocksXml.getroot()
 
-zooBuildings = dict()
+buildingSettings = dict()
+reqs = []
 
 # Заполним требования материалов на все комьюнити и загоны
 for elem in BuildingRequirements.iter():
@@ -26,7 +27,7 @@ for reqsElem in reqs.iter():
     if 'id' in reqsElem.attrib:
         cur_id = reqsElem.attrib['id']
         if ("zoo_" in cur_id or "paddock_" in cur_id):
-            zooBuilding = buildingReq()
+            zooBuilding = buildingSettingsClass()
             zooBuilding.id = reqsElem.attrib['id']
             if 'Brick' in reqsElem.attrib:
                 zooBuilding.Brick = int(reqsElem.attrib['Brick'])
@@ -49,47 +50,65 @@ for reqsElem in reqs.iter():
                 zooBuilding.zooLevel = int(params.attrib['zooLevel'])
                 zooBuilding.price = int(params.attrib['price'])
 
-            zooBuildings[cur_id] = zooBuilding
-
-# print zooBuildings
-# print zooBuildings['paddock_tiger']
-
-currentLevel = 6
-#gameInfo.paddocks['paddock_zebra'] = 1
-# gameInfo.communities['zoo_caffe'] = 1
-#
-# gameInfo.zooBuildingMaterial = 3
-#
-# testBuildingId = 'paddock_zebra'
-
-# if CheckCanBuild(gameInfo,zooBuildings[testBuildingId],testBuildingId):
-#     print testBuildingId+" can be built!"
-# else:
-#     print testBuildingId+" can NOT be built! :("
-
-# gameInfo.zooLevel = 1
-# gameInfo.paddocks['paddock_bear'] = 1
-
-gameInfo.zooLevel = 6
-
-# print currentZooMaterialReqs
+            buildingSettings[cur_id] = zooBuilding
 
 
+# далее нужно в buildingSettings добавить информацию о бонусном рейтинге при их постройке
+paddocksXml = xml.parse('../township/base/All_AnimalPaddocks.xml', parser=CommentsParser())
+paddocksSettings = paddocksXml.find('AnimalPaddocks')
+for paddockElem in paddocksSettings:
+    elemId = paddockElem.attrib['type']
+    elemRating = int(paddockElem.attrib['rating'])
+    buildingSettings[elemId].bonusRating = elemRating
 
-for x in range(0,10):
-    chestContent = GenerateZooCommunityChestContent(gameInfo,zooBuildings)
+
+# также добавим инфу о бонусном рейтинге за комьюнити
+buildingsZooXml = xml.parse('../township/base/buildings_zoo.xml', parser=CommentsParser())
+zooCommunitySettings = buildingsZooXml.find('zoo_community')
+for zooCommunityElem in zooCommunitySettings:
+    elemId = zooCommunityElem.attrib['buildingId']
+    elemRating = int(zooCommunityElem.attrib['rating'])
+    buildingSettings[elemId].bonusRating = elemRating
+
+
+# теперь соберем инфу о левелапах в зоопарке
+levelupInfoXml = xml.parse('../township/base/LevelupInfo_v1.xml', parser=CommentsParser())
+levelupInfoRoot = levelupInfoXml.getroot()
+zooLevelups = levelupInfoRoot.find('zooLevels')
+ratingToLevelup = dict()
+ratingForChest = dict()
+for levelupElem in zooLevelups:
+    elemLevel = int(levelupElem.attrib['level'])
+    elemRatingForChest = int(levelupElem.attrib['ratingForChest'])
+    elemExp = int(levelupElem.attrib['experience'])
+    ratingForChest[elemLevel] = elemRatingForChest
+    ratingToLevelup[elemLevel] = elemExp
+
+
+
+for x in range(0,15):
+    chestContent = GenerateZooCommunityChestContent(gameInfo,buildingSettings)
     curvalue = getattr(gameInfo,chestContent)
     setattr(gameInfo,chestContent,curvalue+1)
     # получили рандомный материал в дропе и увеличили его количество в сохранк
     print "dropped", chestContent
     print ""
-    for key, value in zooBuildings.iteritems():
-        if int(value.zooLevel) <= currentLevel:
+
+    # добавим рейтинг подарка и проверим, возможно надо левелапнуть
+    gameInfo.rating = gameInfo.rating + ratingForChest[gameInfo.zooLevel]
+    print "current sum rating is "+str(gameInfo.rating)
+    if gameInfo.rating > ratingToLevelup[gameInfo.zooLevel+1]:
+        gameInfo.zooLevel = gameInfo.zooLevel + 1
+
+    print "current level is "+str(gameInfo.zooLevel)
+
+    for key, value in buildingSettings.iteritems():
+        if int(value.zooLevel) <= gameInfo.zooLevel:
             #print "    at level "+str(value.zooLevel)+" available "+str(value.id)
             if not CheckAlreadyBuilt(gameInfo,value.id):
                 #print "    available and not yet built "+str(value.id)
-                if CheckCanBuild(gameInfo,zooBuildings[value.id],value.id):
-                    DoBuild(gameInfo,zooBuildings[value.id],value.id)
+                if CheckCanBuild(gameInfo,buildingSettings[value.id],value.id):
+                    DoBuild(gameInfo,buildingSettings[value.id],value.id)
                     print "!!!!!!! enough materials to build "+value.id+", done!"
                 #else: print "     -can not be built"
 

@@ -47,9 +47,9 @@ def GetRandomMaterialOrBrickDef(chestContent):
     rand = random.randint(0,chestContentLen-1)
     return chestContent[rand]
 
-def FillCurrentOrdersOnlyZoo(gameInfo,buildingReq):
+def FillCurrentOrdersOnlyZoo(gameInfo,buildingSettings):
     curReqs = []
-    for key, value in buildingReq.iteritems():
+    for key, value in buildingSettings.iteritems():
         if int(value.zooLevel) <= gameInfo.zooLevel and gameInfo.paddocks.get(value.id) != 1:
             # доступно по уровню и еще не построено
             if value.Brick > 0: curReqs.append(["Brick", value.Brick])
@@ -63,26 +63,26 @@ def FillCurrentOrdersOnlyZoo(gameInfo,buildingReq):
     return curReqs
 
 
-def GenerateZooCommunityChestContent(gameInfo,buildingReqs):
-    # if gameInfo.countZooCommunityChest == 0:
-    #     curvalue = getattr(gameInfo,"countZooCommunityChest")
-    #     setattr(gameInfo,"countZooCommunityChest",curvalue+1)
-    #     return "zooBuildingMaterial"
-    # elif gameInfo.countZooCommunityChest == 1:
-    #     curvalue = getattr(gameInfo,"countZooCommunityChest")
-    #     setattr(gameInfo,"countZooCommunityChest",curvalue+1)
-    #     return "zooServiceMaterial2"
-    # elif gameInfo.countZooCommunityChest == 2:
-    #     curvalue = getattr(gameInfo,"countZooCommunityChest")
-    #     setattr(gameInfo,"countZooCommunityChest",curvalue+1)
-    #     return "zooBuildingMaterial"
-    # elif gameInfo.countZooCommunityChest == 3:
-    #     curvalue = getattr(gameInfo,"countZooCommunityChest")
-    #     setattr(gameInfo,"countZooCommunityChest",curvalue+1)
-    #     return "pick"
+def GenerateZooCommunityChestContent(gameInfo,buildingSettings):
+    if gameInfo.countZooCommunityChest == 0:
+        curvalue = getattr(gameInfo,"countZooCommunityChest")
+        setattr(gameInfo,"countZooCommunityChest",curvalue+1)
+        return "zooBuildingMaterial"
+    elif gameInfo.countZooCommunityChest == 1:
+        curvalue = getattr(gameInfo,"countZooCommunityChest")
+        setattr(gameInfo,"countZooCommunityChest",curvalue+1)
+        return "zooServiceMaterial2"
+    elif gameInfo.countZooCommunityChest == 2:
+        curvalue = getattr(gameInfo,"countZooCommunityChest")
+        setattr(gameInfo,"countZooCommunityChest",curvalue+1)
+        return "zooBuildingMaterial"
+    elif gameInfo.countZooCommunityChest == 3:
+        curvalue = getattr(gameInfo,"countZooCommunityChest")
+        setattr(gameInfo,"countZooCommunityChest",curvalue+1)
+        return "pick"
 
     # заполняем список всех требущихся материалов в недостровенных зданиях
-    currentZooMaterialReqs = FillCurrentOrdersOnlyZoo(gameInfo,buildingReqs)
+    currentZooMaterialReqs = FillCurrentOrdersOnlyZoo(gameInfo,buildingSettings)
 
     # Из каждого требования вычитаем колличество материалов имеющихся в амбаре
     x = 0
@@ -91,22 +91,25 @@ def GenerateZooCommunityChestContent(gameInfo,buildingReqs):
         if value-getattr(gameInfo,key) < 0: currentZooMaterialReqs[x] = [key,0]
         x = x+1
 
-    _buildingMaterials = []
+    # Проверяем нужныли в зоопарке обычные материалы для строящихся или не завершенных зданий
     needBuildingMaterial = False
-
+    needBuildingMaterialId = "zooBuildingMaterial"
+    _buildingMaterials = []
     if currentZooMaterialReqs:
         for key,value in currentZooMaterialReqs:
             AddByWeight(_buildingMaterials,key,value+gameInfo.zooLevel)
-
     if _buildingMaterials:
         needBuildingMaterial = True
         needBuildingMaterialId = GetRandomMaterialOrBrickDef(_buildingMaterials)
+
+
+
 
     chestContent = []
 
     if needBuildingMaterial:
         AddByWeight(chestContent,needBuildingMaterialId,80)
-        print "adding "+needBuildingMaterialId+" with weight 80"
+        # print "adding "+needBuildingMaterialId+" with weight 80"
 
     AddByWeight(chestContent,"Brick",10)
     AddByWeight(chestContent,"Glass",10)
@@ -124,9 +127,10 @@ def GenerateZooCommunityChestContent(gameInfo,buildingReqs):
     AddByWeight(chestContent,"TNT",1)
 
     randomMat = GetRandomMaterialOrBrickDef(chestContent)
-    print Counter(chestContent)
+    # print Counter(chestContent)
 
     return randomMat
+
 
 def CheckAlreadyBuilt(gameInfo,buildingId):
     if gameInfo.paddocks.get(buildingId) == 1 or gameInfo.communities.get(buildingId) == 1:
@@ -135,50 +139,52 @@ def CheckAlreadyBuilt(gameInfo,buildingId):
         return False
 
 
-def CheckCanBuild(gameInfo,buildingReq,buildingId):
-    if gameInfo.Brick < buildingReq.Brick:
-        #print "not enough Brick to build "+buildingId+": need "+str(buildingReq.Brick)+", have "+str(gameInfo.Brick)
+def CheckCanBuild(gameInfo,buildingSettings,buildingId):
+    if gameInfo.Brick < buildingSettings.Brick:
+        #print "not enough Brick to build "+buildingId+": need "+str(buildingSettings.Brick)+", have "+str(gameInfo.Brick)
         return False
-    elif gameInfo.Plita < buildingReq.Plita:
-        #print "not enough Plita to build "+buildingId+": need "+str(buildingReq.Plita)+", have "+str(gameInfo.Plita)
+    elif gameInfo.Plita < buildingSettings.Plita:
+        #print "not enough Plita to build "+buildingId+": need "+str(buildingSettings.Plita)+", have "+str(gameInfo.Plita)
         return False
-    elif gameInfo.Glass < buildingReq.Glass:
-        #print "not enough Glass to build "+buildingId+": need "+str(buildingReq.Glass)+", have "+str(gameInfo.Glass)
+    elif gameInfo.Glass < buildingSettings.Glass:
+        #print "not enough Glass to build "+buildingId+": need "+str(buildingSettings.Glass)+", have "+str(gameInfo.Glass)
         return False
-    elif gameInfo.zooBuildingMaterial < buildingReq.zooBuildingMaterial:
-        #print "not enough zooBuildingMaterial to build "+buildingId+": need "+str(buildingReq.zooBuildingMaterial)+", have "+str(gameInfo.zooBuildingMaterial)
+    elif gameInfo.zooBuildingMaterial < buildingSettings.zooBuildingMaterial:
+        #print "not enough zooBuildingMaterial to build "+buildingId+": need "+str(buildingSettings.zooBuildingMaterial)+", have "+str(gameInfo.zooBuildingMaterial)
         return False
-    elif gameInfo.zooServiceMaterial1 < buildingReq.zooServiceMaterial1:
-        #print "not enough zooServiceMaterial1 to build "+buildingId+": need "+str(buildingReq.zooServiceMaterial1)+", have "+str(gameInfo.zooServiceMaterial1)
+    elif gameInfo.zooServiceMaterial1 < buildingSettings.zooServiceMaterial1:
+        #print "not enough zooServiceMaterial1 to build "+buildingId+": need "+str(buildingSettings.zooServiceMaterial1)+", have "+str(gameInfo.zooServiceMaterial1)
         return False
-    elif gameInfo.zooServiceMaterial2 < buildingReq.zooServiceMaterial2:
-        #print "not enough zooServiceMaterial2 to build "+buildingId+": need "+str(buildingReq.zooServiceMaterial2)+", have "+str(gameInfo.zooServiceMaterial2)
+    elif gameInfo.zooServiceMaterial2 < buildingSettings.zooServiceMaterial2:
+        #print "not enough zooServiceMaterial2 to build "+buildingId+": need "+str(buildingSettings.zooServiceMaterial2)+", have "+str(gameInfo.zooServiceMaterial2)
         return False
-    elif gameInfo.zooServiceMaterial3 < buildingReq.zooServiceMaterial3:
-        #print "not enough zooServiceMaterial3 to build "+buildingId+": need "+str(buildingReq.zooServiceMaterial3)+", have "+str(gameInfo.zooServiceMaterial3)
+    elif gameInfo.zooServiceMaterial3 < buildingSettings.zooServiceMaterial3:
+        #print "not enough zooServiceMaterial3 to build "+buildingId+": need "+str(buildingSettings.zooServiceMaterial3)+", have "+str(gameInfo.zooServiceMaterial3)
         return False
     else:
         return True
 
 
-def DoBuild(gameInfo,buildingReq,buildingId):
+def DoBuild(gameInfo,buildingSettings,buildingId):
     if "paddock_" in buildingId:
         gameInfo.paddocks[buildingId] = 1
     elif "zoo_" in buildingId:
         gameInfo.communities[buildingId] = 1
 
-    if buildingReq.Brick>0:
-        gameInfo.Brick = gameInfo.Brick-buildingReq.Brick
-    if buildingReq.Plita>0:
-        gameInfo.Plita = gameInfo.Plita-buildingReq.Plita
-    if buildingReq.Glass>0:
-        gameInfo.Glass = gameInfo.Glass-buildingReq.Glass
-    if buildingReq.zooBuildingMaterial>0:
-        gameInfo.zooBuildingMaterial = gameInfo.zooBuildingMaterial-buildingReq.zooBuildingMaterial
-    if buildingReq.zooServiceMaterial1>0:
-        gameInfo.zooServiceMaterial1 = gameInfo.zooServiceMaterial1-buildingReq.zooServiceMaterial1
-    if buildingReq.zooServiceMaterial2>0:
-        gameInfo.zooServiceMaterial2 = gameInfo.zooServiceMaterial2-buildingReq.zooServiceMaterial2
-    if buildingReq.zooServiceMaterial3>0:
-        gameInfo.zooServiceMaterial3 = gameInfo.zooServiceMaterial3-buildingReq.zooServiceMaterial3
+    gameInfo.rating = gameInfo.rating + buildingSettings.bonusRating
+
+    if buildingSettings.Brick>0:
+        gameInfo.Brick = gameInfo.Brick-buildingSettings.Brick
+    if buildingSettings.Plita>0:
+        gameInfo.Plita = gameInfo.Plita-buildingSettings.Plita
+    if buildingSettings.Glass>0:
+        gameInfo.Glass = gameInfo.Glass-buildingSettings.Glass
+    if buildingSettings.zooBuildingMaterial>0:
+        gameInfo.zooBuildingMaterial = gameInfo.zooBuildingMaterial-buildingSettings.zooBuildingMaterial
+    if buildingSettings.zooServiceMaterial1>0:
+        gameInfo.zooServiceMaterial1 = gameInfo.zooServiceMaterial1-buildingSettings.zooServiceMaterial1
+    if buildingSettings.zooServiceMaterial2>0:
+        gameInfo.zooServiceMaterial2 = gameInfo.zooServiceMaterial2-buildingSettings.zooServiceMaterial2
+    if buildingSettings.zooServiceMaterial3>0:
+        gameInfo.zooServiceMaterial3 = gameInfo.zooServiceMaterial3-buildingSettings.zooServiceMaterial3
 
