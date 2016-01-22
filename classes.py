@@ -20,6 +20,9 @@ class gameInfoClass:
         self.axe = 10
         self.TNT = 10
 
+        self.paddocks = dict()
+        self.communities = dict()
+
 class buildingReq:
     def __init__(self):
         self.id = ""

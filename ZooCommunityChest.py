@@ -15,59 +15,76 @@ BuildingRequirements = gameBalanceRoot.find('BuildingRequirements')
 buildingsLocksXml = xml.parse('../township/base/BuildingsLocks_v1.xml', parser=CommentsParser())
 buildingsLocksRoot = buildingsLocksXml.getroot()
 
-zooBuildings = []
+zooBuildings = dict()
 
+# Заполним требования материалов на все комьюнити и загоны
 for elem in BuildingRequirements.iter():
     if (elem.tag == "reqs" and elem.attrib['ver'] == "2"):
         reqs = elem
 
-# Заполним требования материалов на все комьюнити и загоны
 for reqsElem in reqs.iter():
     if 'id' in reqsElem.attrib:
-        if ("zoo_" in reqsElem.attrib['id'] or "paddock_" in reqsElem.attrib['id']):
+        cur_id = reqsElem.attrib['id']
+        if ("zoo_" in cur_id or "paddock_" in cur_id):
             zooBuilding = buildingReq()
             zooBuilding.id = reqsElem.attrib['id']
             if 'Brick' in reqsElem.attrib:
-                zooBuilding.Brick = reqsElem.attrib['Brick']
+                zooBuilding.Brick = int(reqsElem.attrib['Brick'])
             if 'Plita' in reqsElem.attrib:
-                zooBuilding.Plita = reqsElem.attrib['Plita']
+                zooBuilding.Plita = int(reqsElem.attrib['Plita'])
             if 'Glass' in reqsElem.attrib:
-                zooBuilding.Glass = reqsElem.attrib['Glass']
+                zooBuilding.Glass = int(reqsElem.attrib['Glass'])
             if 'zooBuildingMaterial' in reqsElem.attrib:
-                zooBuilding.zooBuildingMaterial = reqsElem.attrib['zooBuildingMaterial']
+                zooBuilding.zooBuildingMaterial = int(reqsElem.attrib['zooBuildingMaterial'])
             if 'zooServiceMaterial1' in reqsElem.attrib:
-                zooBuilding.zooServiceMaterial1 = reqsElem.attrib['zooServiceMaterial1']
+                zooBuilding.zooServiceMaterial1 = int(reqsElem.attrib['zooServiceMaterial1'])
             if 'zooServiceMaterial2' in reqsElem.attrib:
-                zooBuilding.zooServiceMaterial2 = reqsElem.attrib['zooServiceMaterial2']
+                zooBuilding.zooServiceMaterial2 = int(reqsElem.attrib['zooServiceMaterial2'])
             if 'zooServiceMaterial3' in reqsElem.attrib:
-                zooBuilding.zooServiceMaterial3 = reqsElem.attrib['zooServiceMaterial3']
+                zooBuilding.zooServiceMaterial3 = int(reqsElem.attrib['zooServiceMaterial3'])
 
             # добавим также информацию об уровне и цене из файла BuildingLocks
             for target in buildingsLocksRoot.findall("./building[@buildingId='"+zooBuilding.id+"']"):
                 params = target.find('params')
-                zooBuilding.zooLevel = params.attrib['zooLevel']
-                zooBuilding.price = params.attrib['price']
+                zooBuilding.zooLevel = int(params.attrib['zooLevel'])
+                zooBuilding.price = int(params.attrib['price'])
 
-            zooBuildings.append(zooBuilding)
+            zooBuildings[cur_id] = zooBuilding
 
+# print zooBuildings
+# print zooBuildings['paddock_tiger']
 
-currentLevel = 1
+currentLevel = 3
+#gameInfo.paddocks['paddock_zebra'] = 1
+# gameInfo.communities['zoo_caffe'] = 1
+#
+# gameInfo.zooBuildingMaterial = 3
+#
+# testBuildingId = 'paddock_zebra'
 
-for x in zooBuildings:
-    if int(x.zooLevel) <= currentLevel:
-        print "at level "+x.zooLevel+" available "+x.id
+# if CheckCanBuild(gameInfo,zooBuildings[testBuildingId],testBuildingId):
+#     print testBuildingId+" can be built!"
+# else:
+#     print testBuildingId+" can NOT be built! :("
 
-
-attrs = vars(gameInfo)
-#print ', '.join("%s: %s" % item for item in attrs.items())
-#print ""
 
 for x in range(0,10):
-    randomMat = GenerateZooCommunityChestContent(gameInfo)
-    curvalue = getattr(gameInfo,randomMat)
-    setattr(gameInfo,randomMat,curvalue+1)
-    #print "random value is:", randomMat
+    chestContent = GenerateZooCommunityChestContent(gameInfo)
+    curvalue = getattr(gameInfo,chestContent)
+    setattr(gameInfo,chestContent,curvalue+1)
+    # получили рандомный материал в дропе и увеличили его количество в сохранке
+    print "dropped", chestContent
+    for key, value in zooBuildings.iteritems():
+        if int(value.zooLevel) <= currentLevel:
+            #print "    at level "+str(value.zooLevel)+" available "+str(value.id)
+            if not CheckAlreadyBuilt(gameInfo,value.id):
+                print "    available and not yet built "+str(value.id)
+                if CheckCanBuild(gameInfo,zooBuildings[value.id],value.id):
+                    DoBuild(gameInfo,zooBuildings[value.id],value.id)
+                    print "     !!!!!!! enough materials to build "+value.id+", done!"
+                else: print "     -can not be built"
+
 
 attrs = vars(gameInfo)
-#print ""
-#print ', '.join("%s: %s" % item for item in attrs.items())
+print ', '.join("%s: %s" % item for item in attrs.items())
+print ""
