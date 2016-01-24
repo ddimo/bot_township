@@ -21,7 +21,13 @@ class gameInfoClass:
         self.axe = 10
         self.TNT = 10
 
+        self.gem1 = 0
+        self.gem2 = 0
+        self.gem3 = 0
+        self.gem4 = 0
+
         self.paddocks = dict()
+        self.paddocksTotalAnimals = dict()
         self.communities = dict()
 
 class buildingSettingsClass:
@@ -37,6 +43,15 @@ class buildingSettingsClass:
         self.price = 0
         self.zooLevel = 0
         self.bonusRating = 0
+
+
+class animalReqsClass:
+    def __init__(self):
+        self.gem1 = 0
+        self.gem2 = 0
+        self.gem3 = 0
+        self.gem4 = 0
+
 
 class weightsList:
     def __init__(self):

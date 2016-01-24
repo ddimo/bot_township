@@ -53,6 +53,8 @@ for reqsElem in reqs.iter():
             buildingSettings[cur_id] = zooBuilding
 
 
+animalsReqs = dict()
+
 # далее нужно в buildingSettings добавить информацию о бонусном рейтинге при их постройке
 paddocksXml = xml.parse('../township/base/All_AnimalPaddocks.xml', parser=CommentsParser())
 paddocksSettings = paddocksXml.find('AnimalPaddocks')
@@ -60,6 +62,20 @@ for paddockElem in paddocksSettings:
     elemId = paddockElem.attrib['type']
     elemRating = int(paddockElem.attrib['rating'])
     buildingSettings[elemId].bonusRating = elemRating
+    animalNumber = 1
+    animalsReqs[elemId] = [0,0,0,0,0]
+    for childPaddockElem in paddockElem:
+        if childPaddockElem.tag == "animal":
+            curAnimalReqs = animalReqsClass()
+            if 'gem1' in childPaddockElem.attrib: curAnimalReqs.gem1 = int(childPaddockElem.attrib['gem1'])
+            if 'gem2' in childPaddockElem.attrib: curAnimalReqs.gem2 = int(childPaddockElem.attrib['gem2'])
+            if 'gem3' in childPaddockElem.attrib: curAnimalReqs.gem3 = int(childPaddockElem.attrib['gem3'])
+            if 'gem4' in childPaddockElem.attrib: curAnimalReqs.gem4 = int(childPaddockElem.attrib['gem4'])
+            animalsReqs[elemId][animalNumber] = curAnimalReqs
+            animalNumber = animalNumber+1
+
+#print vars(animalsReqs['paddock_turtle'][1])
+#exit()
 
 
 # также добавим инфу о бонусном рейтинге за комьюнити
@@ -84,33 +100,70 @@ for levelupElem in zooLevelups:
     ratingForChest[elemLevel] = elemRatingForChest
     ratingToLevelup[elemLevel] = elemExp
 
+gameInfo.zooLevel = 4
 
+gameInfo.paddocks['paddock_bear'] = 1
+gameInfo.paddocks['paddock_flamingo'] = 1
+gameInfo.paddocks['paddock_zebra'] = 1
+gameInfo.paddocks['paddock_penguin'] = 1
+gameInfo.paddocksTotalAnimals['paddock_bear'] = 4
+gameInfo.paddocksTotalAnimals['paddock_flamingo'] = 3
+gameInfo.paddocksTotalAnimals['paddock_zebra'] = 4
+gameInfo.paddocksTotalAnimals['paddock_penguin'] = 0
 
-for x in range(0,15):
+gameInfo.gem1 = 5
+gameInfo.gem2 = 2
+gameInfo.gem3 = 1
+gameInfo.gem4 = 0
+
+needGemId = "gem1"
+
+needGemId = GenerateZooCommunityChestGemManipulation(gameInfo,buildingSettings,animalsReqs,needGemId)
+print ""
+print needGemId
+exit()
+
+# ЗАПУСКАЕМ ПОСЛЕДОВАТЕЛЬНОЕ ОТКРЫВАНИЕ ПОДАРКОВ
+for x in range(0,5):
+
+    # получили рандомный материал в дропе и увеличили его количество в сохранке
     chestContent = GenerateZooCommunityChestContent(gameInfo,buildingSettings)
     curvalue = getattr(gameInfo,chestContent)
     setattr(gameInfo,chestContent,curvalue+1)
-    # получили рандомный материал в дропе и увеличили его количество в сохранк
     print "dropped", chestContent
     print ""
 
-    # добавим рейтинг подарка и проверим, возможно надо левелапнуть
+    # добавим рейтинг подарка
     gameInfo.rating = gameInfo.rating + ratingForChest[gameInfo.zooLevel]
     print "current sum rating is "+str(gameInfo.rating)
+
+    # проверим, возможно надо левелапнуть
     if gameInfo.rating > ratingToLevelup[gameInfo.zooLevel+1]:
         gameInfo.zooLevel = gameInfo.zooLevel + 1
-
     print "current level is "+str(gameInfo.zooLevel)
 
+    # пробежимся по всем зданиям и проверим, нельзя ли построить доступное
     for key, value in buildingSettings.iteritems():
         if int(value.zooLevel) <= gameInfo.zooLevel:
-            #print "    at level "+str(value.zooLevel)+" available "+str(value.id)
             if not CheckAlreadyBuilt(gameInfo,value.id):
-                #print "    available and not yet built "+str(value.id)
                 if CheckCanBuild(gameInfo,buildingSettings[value.id],value.id):
                     DoBuild(gameInfo,buildingSettings[value.id],value.id)
                     print "!!!!!!! enough materials to build "+value.id+", done!"
-                #else: print "     -can not be built"
+
+    # пробежимся по доступным загонам и проверим, можно ли купить животное
+    lowestPaddock = FindOldestNotFullPaddock(gameInfo,buildingSettings)
+    if lowestPaddock[1] != 666:
+        paddockName = lowestPaddock[0]
+        if gameInfo.paddocksTotalAnimals[paddockName] < 4:
+            nextAnimalNumber = gameInfo.paddocksTotalAnimals[paddockName]+1
+            print "next animal number is "+str(nextAnimalNumber)
+            print "reqs for "+paddockName+ " animal # "+str(nextAnimalNumber)
+            print vars(animalsReqs[paddockName][nextAnimalNumber])
+            print "now have gems:"
+            print gameInfo.gem1, gameInfo.gem2, gameInfo.gem3, gameInfo.gem4
+
+
+
 
 
 # attrs = vars(gameInfo)
