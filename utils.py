@@ -102,6 +102,19 @@ def GenerateZooCommunityChestContent(gameInfo,buildingSettings):
         needBuildingMaterial = True
         needBuildingMaterialId = GetRandomMaterialOrBrickDef(_buildingMaterials)
 
+
+    # needGem = False
+    # needGemId = "gem1"
+    # needGemResult = GenerateZooCommunityChestGemManipulation(gameInfo,buildingSettings,animalsReqs,needGemId,needGem)
+    # needGemId = needGemResult[0]
+    # needGem = needGemResult[1]
+    # print ""
+    # if needGem:
+    #     print "gem needed: "+needGemId
+    # else:
+    #     print "gem NOT needed"
+
+
     chestContent = []
 
     if needBuildingMaterial:
