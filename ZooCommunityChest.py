@@ -100,27 +100,43 @@ for levelupElem in zooLevelups:
     ratingForChest[elemLevel] = elemRatingForChest
     ratingToLevelup[elemLevel] = elemExp
 
-gameInfo.zooLevel = 4
+gameInfo.zooLevel = 6
 
 gameInfo.paddocks['paddock_bear'] = 1
 gameInfo.paddocks['paddock_flamingo'] = 1
 gameInfo.paddocks['paddock_zebra'] = 1
 gameInfo.paddocks['paddock_penguin'] = 1
+gameInfo.paddocks['paddock_monkey'] = 0
+gameInfo.paddocks['paddock_lion'] = 0
+gameInfo.paddocks['paddock_hippo'] = 0
+gameInfo.paddocks['paddock_girrafe'] = 0
+gameInfo.paddocks['paddock_polar_bear'] = 0
 gameInfo.paddocksTotalAnimals['paddock_bear'] = 4
-gameInfo.paddocksTotalAnimals['paddock_flamingo'] = 3
-gameInfo.paddocksTotalAnimals['paddock_zebra'] = 4
+gameInfo.paddocksTotalAnimals['paddock_flamingo'] = 0
+gameInfo.paddocksTotalAnimals['paddock_zebra'] = 0
 gameInfo.paddocksTotalAnimals['paddock_penguin'] = 0
+gameInfo.paddocksTotalAnimals['paddock_monkey'] = 0
+gameInfo.paddocksTotalAnimals['paddock_lion'] = 0
+gameInfo.paddocksTotalAnimals['paddock_hippo'] = 0
+gameInfo.paddocksTotalAnimals['paddock_girrafe'] = 0
+gameInfo.paddocksTotalAnimals['paddock_polar_bear'] = 0
 
-gameInfo.gem1 = 5
-gameInfo.gem2 = 2
-gameInfo.gem3 = 1
+gameInfo.gem1 = 0
+gameInfo.gem2 = 0
+gameInfo.gem3 = 0
 gameInfo.gem4 = 0
 
+needGem = False
 needGemId = "gem1"
 
-needGemId = GenerateZooCommunityChestGemManipulation(gameInfo,buildingSettings,animalsReqs,needGemId)
+needGemResult = GenerateZooCommunityChestGemManipulation(gameInfo,buildingSettings,animalsReqs,needGemId,needGem)
+needGemId = needGemResult[0]
+needGem = needGemResult[1]
 print ""
-print needGemId
+if needGem:
+    print "gem needed: "+needGemId
+else:
+    print "gem NOT needed"
 exit()
 
 # ЗАПУСКАЕМ ПОСЛЕДОВАТЕЛЬНОЕ ОТКРЫВАНИЕ ПОДАРКОВ

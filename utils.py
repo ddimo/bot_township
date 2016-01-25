@@ -141,68 +141,67 @@ def AnyFamilyReady(gameInfo):
 
 
 
-def GenerateZooCommunityChestGemManipulation(gameInfo,buildingSettings,animalsReqs,needGemId):
+def GenerateZooCommunityChestGemManipulation(gameInfo,buildingSettings,animalsReqs,needGemId,needGem):
     ANY_FAMILY_READY = AnyFamilyReady(gameInfo)
     # Бежим по всем готовым загонам к заселению
     for curReadyPaddock in gameInfo.paddocks:
-        print ""
-        print "starting "+curReadyPaddock
-        # Требуемый уровень для постройки
-        levelNeed = buildingSettings[curReadyPaddock].zooLevel
-        # Максимальный уровень для подыгрвания
-        MAX_LEVEL_FOR_GEM_MANIPULATION = 3
-        # Будем ли подыгрывать, если уже есть хотябы один завершенный
-        if random.randint(0,99) < 50:
-            MANIPULATION = True
-            print "MANIPULATION is true"
-        else:
-            MANIPULATION = False
-            print "MANIPULATION is false"
-        # Минимальная разница между уровнем зоопарка и уровнем загона, с которого начинаем подыгрывать
-        LEVEL_DIFF = 3
-        if levelNeed > MAX_LEVEL_FOR_GEM_MANIPULATION:
-            # Переходим на следующий цикл итерации если требуемый уровень больше MAX_LEVEL_FOR_GEM_MANIPULATION
-            print curReadyPaddock+" levelNeed is "+str(levelNeed)+" which is greater than "+str(MAX_LEVEL_FOR_GEM_MANIPULATION)
-            continue
-        else:
-            paddock = curReadyPaddock
-            ANIMALS_COUNT = gameInfo.paddocksTotalAnimals[paddock]
-            print "ANIMALS_COUNT for "+paddock+" (levelNeed = "+str(levelNeed)+ ") is "+str(ANIMALS_COUNT)
-            if ANIMALS_COUNT < 4:
-                print "  ANIMALS_COUNT less than 4"
-                if levelNeed == 1 and not ANY_FAMILY_READY:
-                    print "  levelNeed is 1 and not ANY_FAMILY_READY"
-                    differenceGems = GetDiffrenceGemsForNextPaddockAnimal(gameInfo,buildingSettings,animalsReqs,paddock)
-                    if differenceGems:
-                        print "  returned differenceGems is not empty: "+str(differenceGems)
-                        INDX = random.randint(0,len(differenceGems)-1)
-                        needGemId = differenceGems[INDX]
-                        print "  randomised gem id is: "+needGemId
-                        return needGemId
-                    else:
-                        print "  returned differenceGems is empty, continue"
-                        continue
-                elif (gameInfo.zooLevel-levelNeed >= LEVEL_DIFF and MANIPULATION):
-                    print "  "+str(gameInfo.zooLevel)+"-"+str(levelNeed)+" >= LEVEL_DIFF ("+str(LEVEL_DIFF)+") and also MANIPULATION is True"
-                    differenceGems = GetDiffrenceGemsForNextPaddockAnimal(gameInfo,buildingSettings,animalsReqs,paddock)
-                    if differenceGems:
-                        print "  returned differenceGems is not empty: "+str(differenceGems)
-                        INDX = random.randint(0,len(differenceGems)-1)
-                        needGemId = differenceGems[INDX]
-                        print "  randomised gem id is: "+needGemId
-                        return needGemId
-                    else:
-                        print "  returned differenceGems is empty, continue"
-                        continue
-                elif not MANIPULATION:
-                    print "  manipulation failed"
-                    return needGemId
-                else:
-                    print "  no ifs worked (levelneed>1 or familyready) or (zoolevel-needlevel < 3 or not manipulation) or (manipulation)"
-                    return needGemId
+        if gameInfo.paddocks[curReadyPaddock] == 1:
+            print ""
+            print "starting "+curReadyPaddock
+            levelNeed = buildingSettings[curReadyPaddock].zooLevel
+            MAX_LEVEL_FOR_GEM_MANIPULATION = 3
+            if random.randint(0,99) < 50:
+                MANIPULATION = True
+                print "MANIPULATION is true"
             else:
-                print "  ANIMALS_COUNT more than 4"
-                return needGemId
+                MANIPULATION = False
+                print "MANIPULATION is false"
+            LEVEL_DIFF = 3
+            if levelNeed > MAX_LEVEL_FOR_GEM_MANIPULATION:
+                print curReadyPaddock+" levelNeed is "+str(levelNeed)+" which is greater than "+str(MAX_LEVEL_FOR_GEM_MANIPULATION)+", continue"
+                continue
+            else:
+                paddock = curReadyPaddock
+                ANIMALS_COUNT = gameInfo.paddocksTotalAnimals[paddock]
+                print "ANIMALS_COUNT for "+paddock+" (levelNeed = "+str(levelNeed)+ ") is "+str(ANIMALS_COUNT)
+                if ANIMALS_COUNT < 4:
+                    print "  ANIMALS_COUNT less than 4"
+                    if levelNeed == 1 and not ANY_FAMILY_READY:
+                        print "  levelNeed is 1 and not ANY_FAMILY_READY"
+                        differenceGems = GetDiffrenceGemsForNextPaddockAnimal(gameInfo,buildingSettings,animalsReqs,paddock)
+                        if differenceGems:
+                            print "  returned differenceGems is not empty: "+str(differenceGems)
+                            INDX = random.randint(0,len(differenceGems)-1)
+                            needGemId = differenceGems[INDX]
+                            print "  randomised gem id is: "+needGemId
+                            needGem = True
+                            return needGemId,needGem
+                        else:
+                            print "  returned differenceGems is empty, continue"
+                            continue
+                    elif (gameInfo.zooLevel-levelNeed >= LEVEL_DIFF and MANIPULATION):
+                        print "  "+str(gameInfo.zooLevel)+"-"+str(levelNeed)+" >= LEVEL_DIFF ("+str(LEVEL_DIFF)+") and also MANIPULATION is True"
+                        differenceGems = GetDiffrenceGemsForNextPaddockAnimal(gameInfo,buildingSettings,animalsReqs,paddock)
+                        if differenceGems:
+                            print "  returned differenceGems is not empty: "+str(differenceGems)
+                            INDX = random.randint(0,len(differenceGems)-1)
+                            needGemId = differenceGems[INDX]
+                            print "  randomised gem id is: "+needGemId
+                            needGem = True
+                            return needGemId,needGem
+                        else:
+                            print "  returned differenceGems is empty, continue"
+                            continue
+                    elif not MANIPULATION:
+                        print "  manipulation failed due to random"
+                        return needGemId,needGem
+                    else:
+                        print "  no ifs worked (levelneed>1 or familyready) or (zoolevel-needlevel < 3 or not manipulation) or (manipulation)"
+                        return needGemId,needGem
+                else:
+                    print "  ANIMALS_COUNT more than 4, no need to manipulate for this one"
+
+    return needGemId,needGem
 
 
 
