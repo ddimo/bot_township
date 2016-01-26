@@ -52,10 +52,16 @@ for reqsElem in reqs.iter():
 
             buildingSettings[cur_id] = zooBuilding
 
+# итого buildingSettings[building_id] = элемент класса buildingSettingsClass
+# например:
+# buildingSettings["paddock_zebra"].zooBuildingMaterial - количество требуемого материала
+# buildingSettings["zoo_caffe"].zooLevel - требуемый уровень
+# buildingSettings["zoo_caffe"].price - сколько дает рейтинга за постройку
 
+
+
+# теперь соберем инфу сколько рейтинга дает постройка загона, а также какие требования на животных из All_AnimalPaddocks
 animalsReqs = dict()
-
-# далее нужно в buildingSettings добавить информацию о бонусном рейтинге при их постройке
 paddocksXml = xml.parse('../township/base/All_AnimalPaddocks.xml', parser=CommentsParser())
 paddocksSettings = paddocksXml.find('AnimalPaddocks')
 for paddockElem in paddocksSettings:
@@ -74,6 +80,12 @@ for paddockElem in paddocksSettings:
             animalsReqs[elemId][animalNumber] = curAnimalReqs
             animalNumber = animalNumber+1
 
+# инфа о бонусном рейтинге положена в buildingSettings: buildingSettings["zoo_caffe"].bonusRating
+# требования камней на животных - в animalsReqs:
+# animalsReqs['paddock_turtle'][1] - dict по идентификаторам загона, внутри list с номером животного,
+# каждый элемент которого - класс animalReqsClass
+# пример: animalsReqs['paddock_turtle'][1].gem2 = требования gem2 на первое животное из загона черепах
+
 #print vars(animalsReqs['paddock_turtle'][1])
 #exit()
 
@@ -85,6 +97,7 @@ for zooCommunityElem in zooCommunitySettings:
     elemId = zooCommunityElem.attrib['buildingId']
     elemRating = int(zooCommunityElem.attrib['rating'])
     buildingSettings[elemId].bonusRating = elemRating
+# инфу по бонусному рейтингу положили в buildingSettings[building_id].bonusRating
 
 
 # теперь соберем инфу о левелапах в зоопарке
@@ -99,6 +112,9 @@ for levelupElem in zooLevelups:
     elemExp = int(levelupElem.attrib['experience'])
     ratingForChest[elemLevel] = elemRatingForChest
     ratingToLevelup[elemLevel] = elemExp
+
+# ratingForChest[level] - сколько рейтинга нужно на подарок во время уровня level
+# ratingToLevelup[level] - сколько требуется рейтинга суммарно для перехода на уровень level
 
 
 
