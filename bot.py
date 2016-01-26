@@ -2,7 +2,7 @@
 
 import random
 from classes import *
-from utils import *
+from functions import *
 import xml.etree.ElementTree as xml
 import os.path
 
