@@ -63,7 +63,7 @@ def FillCurrentOrdersOnlyZoo(gameInfo,buildingSettings):
     return curReqs
 
 
-def GenerateZooCommunityChestContent(gameInfo,buildingSettings):
+def GenerateZooCommunityChestContent(gameInfo,buildingSettings,animalsReqs):
     if gameInfo.countZooCommunityChest == 0:
         curvalue = getattr(gameInfo,"countZooCommunityChest")
         setattr(gameInfo,"countZooCommunityChest",curvalue+1)
@@ -80,6 +80,8 @@ def GenerateZooCommunityChestContent(gameInfo,buildingSettings):
         curvalue = getattr(gameInfo,"countZooCommunityChest")
         setattr(gameInfo,"countZooCommunityChest",curvalue+1)
         return "pick"
+
+    chestContent = []
 
     # заполняем список всех требущихся материалов в недостровенных зданиях
     currentZooMaterialReqs = FillCurrentOrdersOnlyZoo(gameInfo,buildingSettings)
@@ -103,38 +105,68 @@ def GenerateZooCommunityChestContent(gameInfo,buildingSettings):
         needBuildingMaterialId = GetRandomMaterialOrBrickDef(_buildingMaterials)
 
 
-    # needGem = False
-    # needGemId = "gem1"
-    # needGemResult = GenerateZooCommunityChestGemManipulation(gameInfo,buildingSettings,animalsReqs,needGemId,needGem)
-    # needGemId = needGemResult[0]
-    # needGem = needGemResult[1]
-    # print ""
-    # if needGem:
-    #     print "gem needed: "+needGemId
-    # else:
-    #     print "gem NOT needed"
+    # Заполняет вектор из всех требующихся материалов для улучшения комьюнити в зоопарке
+    # Проверяем нужныли в зоопарке материалы для улучшения зданий
+
+    # Проверяем нужны ли материалы на апгрейд амбара (уровень амбара меньше ожидаемого)
+
+    # Проверяем нужны ли материалы на расширения в зоопарке
+    # Если в зоопарке уже нужны материалы для расширени
 
 
-    chestContent = []
+    # Проверяем нужно ли подыграть по камням
+    needGem = False
+    needGemId = "gem1"
+    needGemResult = GenerateZooCommunityChestGemManipulation(gameInfo,buildingSettings,animalsReqs,needGemId,needGem)
+    needGemId = needGemResult[0]
+    needGem = needGemResult[1]
+    # если нужно то возвращаем какой камень будет подыгрывать (needGem)
 
+
+
+    # Материалы для зданий
     if needBuildingMaterial:
         AddByWeight(chestContent,needBuildingMaterialId,80)
-        # print "adding "+needBuildingMaterialId+" with weight 80"
+        print "adding "+needBuildingMaterialId+" with weight 80"
+    else:
+        AddByWeight(chestContent,"Brick",10)
+        AddByWeight(chestContent,"Glass",10)
+        AddByWeight(chestContent,"Plita",10)
+        AddByWeight(chestContent,"zooBuildingMaterial",20)
+        AddByWeight(chestContent,"zooServiceMaterial1",10)
+        if gameInfo.zooLevel >= 2:
+            AddByWeight(chestContent,"zooServiceMaterial2",10)
+        if gameInfo.zooLevel >= 4:
+            AddByWeight(chestContent,"zooServiceMaterial3",10)
 
-    AddByWeight(chestContent,"Brick",10)
-    AddByWeight(chestContent,"Glass",10)
-    AddByWeight(chestContent,"Plita",10)
-    AddByWeight(chestContent,"zooBuildingMaterial",20)
-    AddByWeight(chestContent,"zooServiceMaterial1",10)
-    AddByWeight(chestContent,"zooServiceMaterial2",10)
-    AddByWeight(chestContent,"zooServiceMaterial3",10)
+    # Материалы для апгрейдов
+
+    # Материалы для амбара
     AddByWeight(chestContent,"hammerMat",3)
     AddByWeight(chestContent,"nailMat",3)
     AddByWeight(chestContent,"paintRedMat",3)
+
+    # Материалы для расширений
     AddByWeight(chestContent,"zooLandDeed",2)
     AddByWeight(chestContent,"pick",2)
     AddByWeight(chestContent,"axe",2)
     AddByWeight(chestContent,"TNT",1)
+
+    # Камни
+    if needGem:
+        AddByWeight(chestContent,needGemId,65)
+        print "!!!!!!!!!!!!!!!!!!! adding "+needGemId+" with weight 65"
+    else:
+        # добавить условие с GetNextGem!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        chestGemContent = []
+        AddByWeight(chestGemContent,"gem1",45)
+        AddByWeight(chestGemContent,"gem2",21)
+        AddByWeight(chestGemContent,"gem3",17)
+        AddByWeight(chestGemContent,"gem4",17)
+        randomGem = GetRandomMaterialOrBrickDef(chestGemContent)
+        AddByWeight(chestGemContent,randomGem,65) # <<<<<<<<<<<<<<<<<<<<<<<<,, все равно нехило подыгрывает на камни
+        print "adding "+randomGem+" with weight 65 without helping"
+
 
     randomMat = GetRandomMaterialOrBrickDef(chestContent)
     # print Counter(chestContent)
@@ -172,6 +204,7 @@ def GenerateZooCommunityChestGemManipulation(gameInfo,buildingSettings,animalsRe
                             INDX = random.randint(0,len(differenceGems)-1)
                             needGemId = differenceGems[INDX]
                             needGem = True
+                            print "gem manipulation worked for #"+str(ANIMALS_COUNT+1)+" animal in "+paddock+" ))))))))))))))))))))))))))))))))))))))))"
                             return needGemId,needGem
                         else:
                             continue
@@ -181,12 +214,15 @@ def GenerateZooCommunityChestGemManipulation(gameInfo,buildingSettings,animalsRe
                             INDX = random.randint(0,len(differenceGems)-1)
                             needGemId = differenceGems[INDX]
                             needGem = True
+                            print "gem manipulation worked for "+str(ANIMALS_COUNT+1)+"animal in "+paddock+" ))))))))))))))))))))))))))))))))))))))))"
                             return needGemId,needGem
                         else:
                             continue
                     elif not MANIPULATION:
+                        print "gem manipulation failed due to random (((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((("
                         return needGemId,needGem
                     else:
+                        print "gem manipulation just failed ((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((99999999"
                         return needGemId,needGem
 
     return needGemId,needGem
@@ -270,7 +306,7 @@ def FindOldestNotFullPaddock(gameInfo,buildingSettings):
     lowestLevel = 666
     lowestLevelId = "n/a"
     for key, value in gameInfo.paddocks.items():
-        print key,value
+        # print key,value
         if value == 1: # на всякий случай
             if gameInfo.paddocksTotalAnimals[key] < 4: # животных меньше 4
                 if buildingSettings[key].zooLevel < lowestLevel:
@@ -278,3 +314,40 @@ def FindOldestNotFullPaddock(gameInfo,buildingSettings):
                     lowestLevelId = key
 
     return [lowestLevelId,lowestLevel]
+
+
+def TryBuild (gameInfo,buildingSettings):
+    print "<<< lets try to build something"
+    for key, value in buildingSettings.iteritems():
+        if int(value.zooLevel) <= gameInfo.zooLevel:
+            if not CheckAlreadyBuilt(gameInfo,value.id):
+                if CheckCanBuild(gameInfo,buildingSettings[value.id],value.id):
+                    DoBuild(gameInfo,buildingSettings[value.id],value.id)
+                    print ">>> !!!!!!! enough materials to build "+value.id+", done!"
+                    return True
+    print ">>> try building completed"
+    return False
+
+
+def TryBuyNewAnimal(gameInfo,buildingSettings,animalsReqs):
+    print "[[[[[[ lets try to buy new animal"
+    lowestPaddock = FindOldestNotFullPaddock(gameInfo,buildingSettings)
+    if lowestPaddock[1] != 666:
+        paddockName = lowestPaddock[0]
+        if gameInfo.paddocksTotalAnimals[paddockName] < 4:
+            nextAnimalNumber = gameInfo.paddocksTotalAnimals[paddockName]+1
+            # print "next animal number is "+str(nextAnimalNumber)
+            print "reqs for "+paddockName+ " animal # "+str(nextAnimalNumber)
+            print vars(animalsReqs[paddockName][nextAnimalNumber])
+            print "now have gems:"
+            print gameInfo.gem1, gameInfo.gem2, gameInfo.gem3, gameInfo.gem4
+            if (animalsReqs[paddockName][nextAnimalNumber].gem1 <= gameInfo.gem1) and (animalsReqs[paddockName][nextAnimalNumber].gem2 <= gameInfo.gem2) and (animalsReqs[paddockName][nextAnimalNumber].gem3 <= gameInfo.gem3) and (animalsReqs[paddockName][nextAnimalNumber].gem4 <= gameInfo.gem4):
+                gameInfo.paddocksTotalAnimals[paddockName] = gameInfo.paddocksTotalAnimals[paddockName]+1
+                gameInfo.gem1 = gameInfo.gem1 - animalsReqs[paddockName][nextAnimalNumber].gem1
+                gameInfo.gem2 = gameInfo.gem2 - animalsReqs[paddockName][nextAnimalNumber].gem2
+                gameInfo.gem3 = gameInfo.gem3 - animalsReqs[paddockName][nextAnimalNumber].gem3
+                gameInfo.gem4 = gameInfo.gem4 - animalsReqs[paddockName][nextAnimalNumber].gem4
+                print "bought new animal <--------------------------------------------------------------------------"
+                return True
+    print "]]]]]] Try buying animal completed"
+    return False

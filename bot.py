@@ -119,14 +119,19 @@ for levelupElem in zooLevelups:
 
 
 # ЗАПУСКАЕМ ПОСЛЕДОВАТЕЛЬНОЕ ОТКРЫВАНИЕ ПОДАРКОВ
-for x in range(0,5):
+#for x in range(0,35):
+x = 0
+while gameInfo.zooLevel<6:
+    x = x+1
 
+    print ""
+    print str(x)+")"
     # получили рандомный материал в дропе и увеличили его количество в сохранке
-    chestContent = GenerateZooCommunityChestContent(gameInfo,buildingSettings)
+    chestContent = GenerateZooCommunityChestContent(gameInfo,buildingSettings,animalsReqs)
     curvalue = getattr(gameInfo,chestContent)
     setattr(gameInfo,chestContent,curvalue+1)
+
     print "dropped", chestContent
-    print ""
 
     # добавим рейтинг подарка
     gameInfo.rating = gameInfo.rating + ratingForChest[gameInfo.zooLevel]
@@ -135,27 +140,16 @@ for x in range(0,5):
     # проверим, возможно надо левелапнуть
     if gameInfo.rating > ratingToLevelup[gameInfo.zooLevel+1]:
         gameInfo.zooLevel = gameInfo.zooLevel + 1
+        print "<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><> LEVELUP!!!!!!!"
     print "current level is "+str(gameInfo.zooLevel)
 
     # пробежимся по всем зданиям и проверим, нельзя ли построить доступное
-    for key, value in buildingSettings.iteritems():
-        if int(value.zooLevel) <= gameInfo.zooLevel:
-            if not CheckAlreadyBuilt(gameInfo,value.id):
-                if CheckCanBuild(gameInfo,buildingSettings[value.id],value.id):
-                    DoBuild(gameInfo,buildingSettings[value.id],value.id)
-                    print "!!!!!!! enough materials to build "+value.id+", done!"
+    while TryBuild (gameInfo,buildingSettings):
+        print "try building more"
 
     # пробежимся по доступным загонам и проверим, можно ли купить животное
-    lowestPaddock = FindOldestNotFullPaddock(gameInfo,buildingSettings)
-    if lowestPaddock[1] != 666:
-        paddockName = lowestPaddock[0]
-        if gameInfo.paddocksTotalAnimals[paddockName] < 4:
-            nextAnimalNumber = gameInfo.paddocksTotalAnimals[paddockName]+1
-            print "next animal number is "+str(nextAnimalNumber)
-            print "reqs for "+paddockName+ " animal # "+str(nextAnimalNumber)
-            print vars(animalsReqs[paddockName][nextAnimalNumber])
-            print "now have gems:"
-            print gameInfo.gem1, gameInfo.gem2, gameInfo.gem3, gameInfo.gem4
+    while TryBuyNewAnimal(gameInfo,buildingSettings,animalsReqs):
+        print "try to buy another animal"
 
 
 
