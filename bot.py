@@ -116,7 +116,12 @@ for levelupElem in zooLevelups:
 # ratingForChest[level] - сколько рейтинга нужно на подарок во время уровня level
 # ratingToLevelup[level] - сколько требуется рейтинга суммарно для перехода на уровень level
 
+f = open ("result.html","w")
+writeHtmlHead(f)
+f.write ("<div class='lightgreen'>hello</div>")
+f.close()
 
+exit()
 
 # ЗАПУСКАЕМ ПОСЛЕДОВАТЕЛЬНОЕ ОТКРЫВАНИЕ ПОДАРКОВ
 #for x in range(0,35):

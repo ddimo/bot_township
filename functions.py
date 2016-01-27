@@ -6,6 +6,14 @@ from collections import Counter
 import xml.etree.ElementTree as xml
 from os.path import expanduser
 
+def writeHtmlHead(f):
+    f.write("<html><head><title>Township Bot</title><style type='text/css'>")
+    f.write("p { font-family: Verdana; font-size: 12px; } ")
+    f.write("div.normal { font-family:Verdana; font-size:14pt; } ")
+    f.write("div.lightgreen { background-color: #E5FFCC; font-family:Verdana; font-size:14pt;  padding-top:5px; "
+            "padding-bottom:5px; padding-left:5px; margin-top:5px; margin-bottom:5px; } ")
+    f.write("</style></head>")
+
 class CommentsParser(xml.XMLTreeBuilder):
 
    def __init__(self):
