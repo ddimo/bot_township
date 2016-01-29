@@ -118,10 +118,24 @@ for levelupElem in zooLevelups:
 
 f = open ("result.html","w")
 writeHtmlHead(f)
-f.write ("<div class='lightgreen'>hello</div>")
-f.close()
+# f.write("<div class='lightgreen'>lightgreen</div>")
+# f.write("<div class='darkblue'>darkblue</div>")
+# f.write("<div class='lightblue'>lightblue</div>")
+# f.write("<div class='newispy'>newispy</div>")
+# f.write("<div class='SpendStars'>SpendStars</div>")
+# f.write("<div class='expansionResume'>expansionResume</div>")
+# f.write("<div class='dayResume'>dayResume</div>")
+# f.write("<div class='matQuestInfoStyle'>matQuestInfoStyle</div>")
 
-exit()
+
+# в начале строим туториальный загон для медведя, покупаем медведя и строим кафе
+f.write("<div class='pink'>building <b>paddock_bear</b> (tutorial</div>")
+gameInfo.paddocks["paddock_bear"] = 1
+f.write("<div class='orange'>buying new animal for <b>paddock_bear</b> (tutorial)</div>")
+gameInfo.paddocksTotalAnimals["paddock_bear"] = 1
+f.write("<div class='lime'>building <b>zoo_caffe</b> (tutorial</div>")
+gameInfo.communities["zoo_caffe"] = 1
+
 
 # ЗАПУСКАЕМ ПОСЛЕДОВАТЕЛЬНОЕ ОТКРЫВАНИЕ ПОДАРКОВ
 #for x in range(0,35):
@@ -130,36 +144,48 @@ while gameInfo.zooLevel<6:
     x = x+1
 
     print ""
+    f.write("<div class='normal'>&nbsp;<br>&nbsp;</div>")
     print str(x)+")"
     # получили рандомный материал в дропе и увеличили его количество в сохранке
-    chestContent = GenerateZooCommunityChestContent(gameInfo,buildingSettings,animalsReqs)
+    chestContentTuple = GenerateZooCommunityChestContent(f,gameInfo,buildingSettings,animalsReqs)
+    chestContent = chestContentTuple[0]
     curvalue = getattr(gameInfo,chestContent)
     setattr(gameInfo,chestContent,curvalue+1)
+
+    if chestContentTuple[1] == "buildingmat":
+        f.write("<div class='normalBig'>#"+str(x)+" &mdash; <font color='red'><b>"+chestContent+"</b></font></div>")
+    elif chestContentTuple[1] == "needgem":
+        f.write("<div class='normalBig'>#"+str(x)+" &mdash; <font color='blue'><b>"+chestContent+"</b></font> <font size='2'>(from needGem)</font></div>")
+    elif chestContentTuple[1] == "randomgem":
+        f.write("<div class='normalBig'>#"+str(x)+" &mdash; <font color='lightblue'><b>"+chestContent+"</b></font> <font size='2'>(from randomGem)</font></div>")
+    else:
+        f.write("<div class='normalBig'>#"+str(x)+" &mdash; "+chestContent+"</div>")
 
     print "dropped", chestContent
 
     # добавим рейтинг подарка
     gameInfo.rating = gameInfo.rating + ratingForChest[gameInfo.zooLevel]
-    print "current sum rating is "+str(gameInfo.rating)
+    #print "current sum rating is "+str(gameInfo.rating)
+    f.write("<div class='normal'>current sum rating is "+str(gameInfo.rating)+"</div>")
 
     # проверим, возможно надо левелапнуть
     if gameInfo.rating > ratingToLevelup[gameInfo.zooLevel+1]:
         gameInfo.zooLevel = gameInfo.zooLevel + 1
-        print "<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><> LEVELUP!!!!!!!"
-    print "current level is "+str(gameInfo.zooLevel)
+        # print "<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><> LEVELUP!!!!!!!"
+        f.write("<div class='darkblue'><b>LEVELUP! now on level "+str(gameInfo.zooLevel)+"</b></div>")
+    #print "current level is "+str(gameInfo.zooLevel)
 
     # пробежимся по всем зданиям и проверим, нельзя ли построить доступное
-    while TryBuild (gameInfo,buildingSettings):
-        print "try building more"
+    while TryBuild (f,gameInfo,buildingSettings):
+        #print "try building more"
+        f.write("<div class='normal'>try building more</div>")
 
     # пробежимся по доступным загонам и проверим, можно ли купить животное
-    while TryBuyNewAnimal(gameInfo,buildingSettings,animalsReqs):
-        print "try to buy another animal"
+    while TryBuyNewAnimal(f,gameInfo,buildingSettings,animalsReqs):
+        #print "try to buy another animal"
+        f.write("<div class='normal'>try to buy another animal</div>")
 
 
+writeHtmlFoot(f)
+f.close()
 
-
-
-# attrs = vars(gameInfo)
-# print ', '.join("%s: %s" % item for item in attrs.items())
-# print ""

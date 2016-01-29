@@ -7,12 +7,12 @@ import xml.etree.ElementTree as xml
 from os.path import expanduser
 
 def writeHtmlHead(f):
-    f.write("<html><head><title>Township Bot</title><style type='text/css'>")
-    f.write("p { font-family: Verdana; font-size: 12px; } ")
-    f.write("div.normal { font-family:Verdana; font-size:14pt; } ")
-    f.write("div.lightgreen { background-color: #E5FFCC; font-family:Verdana; font-size:14pt;  padding-top:5px; "
-            "padding-bottom:5px; padding-left:5px; margin-top:5px; margin-bottom:5px; } ")
-    f.write("</style></head>")
+    with open("_htmlhead") as fp:
+        for line in fp:
+            f.write(line)
+
+def writeHtmlFoot(f):
+    f.write("</body></html>")
 
 class CommentsParser(xml.XMLTreeBuilder):
 
@@ -71,23 +71,27 @@ def FillCurrentOrdersOnlyZoo(gameInfo,buildingSettings):
     return curReqs
 
 
-def GenerateZooCommunityChestContent(gameInfo,buildingSettings,animalsReqs):
+def GenerateZooCommunityChestContent(f,gameInfo,buildingSettings,animalsReqs):
+
+    helped = {}
+    wasHelped = "no"
+
     if gameInfo.countZooCommunityChest == 0:
         curvalue = getattr(gameInfo,"countZooCommunityChest")
         setattr(gameInfo,"countZooCommunityChest",curvalue+1)
-        return "zooBuildingMaterial"
+        return "zooBuildingMaterial", "firstDrops"
     elif gameInfo.countZooCommunityChest == 1:
         curvalue = getattr(gameInfo,"countZooCommunityChest")
         setattr(gameInfo,"countZooCommunityChest",curvalue+1)
-        return "zooServiceMaterial2"
+        return "zooServiceMaterial2", "firstDrops"
     elif gameInfo.countZooCommunityChest == 2:
         curvalue = getattr(gameInfo,"countZooCommunityChest")
         setattr(gameInfo,"countZooCommunityChest",curvalue+1)
-        return "zooBuildingMaterial"
+        return "zooBuildingMaterial", "firstDrops"
     elif gameInfo.countZooCommunityChest == 3:
         curvalue = getattr(gameInfo,"countZooCommunityChest")
         setattr(gameInfo,"countZooCommunityChest",curvalue+1)
-        return "pick"
+        return "pick", "firstDrops"
 
     chestContent = []
 
@@ -125,7 +129,7 @@ def GenerateZooCommunityChestContent(gameInfo,buildingSettings,animalsReqs):
     # Проверяем нужно ли подыграть по камням
     needGem = False
     needGemId = "gem1"
-    needGemResult = GenerateZooCommunityChestGemManipulation(gameInfo,buildingSettings,animalsReqs,needGemId,needGem)
+    needGemResult = GenerateZooCommunityChestGemManipulation(f,gameInfo,buildingSettings,animalsReqs,needGemId,needGem)
     needGemId = needGemResult[0]
     needGem = needGemResult[1]
     # если нужно то возвращаем какой камень будет подыгрывать (needGem)
@@ -136,6 +140,8 @@ def GenerateZooCommunityChestContent(gameInfo,buildingSettings,animalsReqs):
     if needBuildingMaterial:
         AddByWeight(chestContent,needBuildingMaterialId,80)
         print "adding "+needBuildingMaterialId+" with weight 80"
+        helped[needBuildingMaterialId] = "buildingmat"
+        f.write("<div class='normalSmall'><i>helping with "+needBuildingMaterialId+" (weight 80)</i></div>")
     else:
         AddByWeight(chestContent,"Brick",10)
         AddByWeight(chestContent,"Glass",10)
@@ -163,7 +169,9 @@ def GenerateZooCommunityChestContent(gameInfo,buildingSettings,animalsReqs):
     # Камни
     if needGem:
         AddByWeight(chestContent,needGemId,65)
+        helped[needGemId] = "needgem"
         print "!!!!!!!!!!!!!!!!!!! adding "+needGemId+" with weight 65"
+        f.write("<div class='normalSmall'><i>helping with "+needGemId+" (weight 65, from needGem)</i></div>")
     else:
         # добавить условие с GetNextGem!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         chestGemContent = []
@@ -173,13 +181,18 @@ def GenerateZooCommunityChestContent(gameInfo,buildingSettings,animalsReqs):
         AddByWeight(chestGemContent,"gem4",17)
         randomGem = GetRandomMaterialOrBrickDef(chestGemContent)
         AddByWeight(chestGemContent,randomGem,65) # <<<<<<<<<<<<<<<<<<<<<<<<,, все равно нехило подыгрывает на камни
+        helped[randomGem] = "randomgem"
         print "adding "+randomGem+" with weight 65 without helping"
+        f.write("<div class='normalSmall'><i>helping with "+randomGem+" (weight 65, from randomGem)</i></div>")
 
 
     randomMat = GetRandomMaterialOrBrickDef(chestContent)
+    if randomMat in helped:
+        wasHelped = helped.get(randomMat)
+
     # print Counter(chestContent)
 
-    return randomMat
+    return randomMat, wasHelped
 
 
 def AnyFamilyReady(gameInfo):
@@ -190,7 +203,7 @@ def AnyFamilyReady(gameInfo):
 
 
 
-def GenerateZooCommunityChestGemManipulation(gameInfo,buildingSettings,animalsReqs,needGemId,needGem):
+def GenerateZooCommunityChestGemManipulation(f,gameInfo,buildingSettings,animalsReqs,needGemId,needGem):
     ANY_FAMILY_READY = AnyFamilyReady(gameInfo)
     # Бежим по всем готовым загонам к заселению
     for curReadyPaddock in gameInfo.paddocks:
@@ -212,7 +225,8 @@ def GenerateZooCommunityChestGemManipulation(gameInfo,buildingSettings,animalsRe
                             INDX = random.randint(0,len(differenceGems)-1)
                             needGemId = differenceGems[INDX]
                             needGem = True
-                            print "gem manipulation worked for #"+str(ANIMALS_COUNT+1)+" animal in "+paddock+" ))))))))))))))))))))))))))))))))))))))))"
+                            print "gem manipulation worked for #"+str(ANIMALS_COUNT+1)+" animal in "+paddock
+                            f.write("<div class='smallOrange'>need <b>"+needGemId+"</b> for animal #"+str(ANIMALS_COUNT+1)+" in <b>"+paddock+"</b></div>")
                             return needGemId,needGem
                         else:
                             continue
@@ -222,15 +236,18 @@ def GenerateZooCommunityChestGemManipulation(gameInfo,buildingSettings,animalsRe
                             INDX = random.randint(0,len(differenceGems)-1)
                             needGemId = differenceGems[INDX]
                             needGem = True
-                            print "gem manipulation worked for "+str(ANIMALS_COUNT+1)+"animal in "+paddock+" ))))))))))))))))))))))))))))))))))))))))"
+                            print "gem manipulation worked for "+str(ANIMALS_COUNT+1)+"animal in "+paddock
+                            f.write("<div class='smallOrange'>need <b>"+needGemId+"</b> for animal #"+str(ANIMALS_COUNT+1)+" in <b>"+paddock+"</b></div>")
                             return needGemId,needGem
                         else:
                             continue
                     elif not MANIPULATION:
-                        print "gem manipulation failed due to random (((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((("
+                        print "gem manipulation failed due to random"
+                        f.write("<div class='normalSmall'>not manipulating gems (random)</div>")
                         return needGemId,needGem
                     else:
-                        print "gem manipulation just failed ((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((99999999"
+                        print "gem manipulation just failed"
+                        f.write("<div class='normalSmall'>no need to manipulate gems</div>")
                         return needGemId,needGem
 
     return needGemId,needGem
@@ -324,7 +341,7 @@ def FindOldestNotFullPaddock(gameInfo,buildingSettings):
     return [lowestLevelId,lowestLevel]
 
 
-def TryBuild (gameInfo,buildingSettings):
+def TryBuild (f,gameInfo,buildingSettings):
     print "<<< lets try to build something"
     for key, value in buildingSettings.iteritems():
         if int(value.zooLevel) <= gameInfo.zooLevel:
@@ -332,12 +349,16 @@ def TryBuild (gameInfo,buildingSettings):
                 if CheckCanBuild(gameInfo,buildingSettings[value.id],value.id):
                     DoBuild(gameInfo,buildingSettings[value.id],value.id)
                     print ">>> !!!!!!! enough materials to build "+value.id+", done!"
+                    if "paddock_" in value.id:
+                        f.write("<div class='pink'>building <b>"+value.id+"</b></div>")
+                    else:
+                        f.write("<div class='lime'>building <b>"+value.id+"</b></div>")
                     return True
     print ">>> try building completed"
     return False
 
 
-def TryBuyNewAnimal(gameInfo,buildingSettings,animalsReqs):
+def TryBuyNewAnimal(f,gameInfo,buildingSettings,animalsReqs):
     print "[[[[[[ lets try to buy new animal"
     lowestPaddock = FindOldestNotFullPaddock(gameInfo,buildingSettings)
     if lowestPaddock[1] != 666:
@@ -356,6 +377,7 @@ def TryBuyNewAnimal(gameInfo,buildingSettings,animalsReqs):
                 gameInfo.gem3 = gameInfo.gem3 - animalsReqs[paddockName][nextAnimalNumber].gem3
                 gameInfo.gem4 = gameInfo.gem4 - animalsReqs[paddockName][nextAnimalNumber].gem4
                 print "bought new animal <--------------------------------------------------------------------------"
+                f.write("<div class='orange'>buying new animal for <b>"+paddockName+"</b></div>")
                 return True
     print "]]]]]] Try buying animal completed"
     return False

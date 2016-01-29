@@ -1,0 +1,117 @@
+<html>
+<head><title>Township Bot</title>
+<style type="text/css">
+
+p {
+	font-family: Verdana;
+	font-size: 12px;
+} 
+
+div.normalBig {
+	font-family:Verdana; 
+	font-size:14pt;
+}
+
+div.normal {
+	font-family:Verdana; 
+	font-size:12pt;
+}
+
+div.normalSmall {
+	font-family:Verdana; 
+	font-size:10pt;
+}
+
+div.lightgreen {
+	background-color: #E5FFCC; 
+	font-family:Verdana; 
+	font-size:12pt; 
+	padding-top:5px; 
+	padding-bottom:5px; 
+	padding-left:5px;
+	margin-top:5px;
+	margin-bottom:5px;
+}
+
+div.darkblue {
+	background-color: #99CCFF; 
+	font-family:Verdana;  
+	text-align: right;
+	font-size:12pt; 
+	padding-top:5px; 
+	padding-bottom:5px; 
+	padding-right:10px;
+	margin-top:5px;
+	margin-bottom:5px;
+}
+
+div.lightblue {
+	background-color: #CCE5FF; 
+	font-family:Verdana; 
+	font-size:12pt; 
+	padding-top:5px; 
+	padding-bottom:5px; 
+	padding-left:5px; 
+	margin-top:5px;
+	margin-bottom:5px;
+	width:400px;
+}
+
+div.lime {
+	background-color: #EAFA3E; 
+	font-family:Verdana; 
+	font-size:12pt; 
+	padding-top:5px; 
+	padding-bottom:5px; 
+	padding-left:5px; 
+	margin-top:5px;
+	margin-bottom:5px;
+}
+
+div.smallOrange {
+	background-color: #F5CCB0; 
+	font-family:Verdana; 
+	font-size:10pt; 
+	padding-top:2px; 
+	padding-bottom:2px; 
+	padding-left:5px; 
+	margin-top:2px;
+	margin-bottom:2px;
+	width:500px;
+}
+
+div.orange {
+	background-color: #F5CCB0; 
+	padding: 5px; 
+	margin-bottom: 3px; 
+	margin-top: 3px; 
+	font-family:Verdana; 
+	font-size:12pt;
+}
+
+div.expansionResume {
+	background-color: #A8383B; 
+	font-family: Lucida Console; 
+	font-size:12pt; 
+	color: #EEAEB0;
+}
+
+div.dayResume {
+	background-color: #AA6E39; 
+	font-family: Lucida Console; 
+	font-size:12pt; 
+	color: #F0CEB0;
+}
+
+div.pink {
+	background-color: #E0B1DD; 
+	padding: 5px; 
+	margin-bottom: 3px; 
+	margin-top: 3px; 
+	font-family:Verdana; 
+	font-size:12pt;
+}
+
+</style>
+</head>
+<body>
