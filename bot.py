@@ -129,22 +129,23 @@ writeHtmlHead(f)
 
 
 # в начале строим туториальный загон для медведя, покупаем медведя и строим кафе
-f.write("<div class='pink'>building <b>paddock_bear</b> (tutorial</div>")
+f.write("<div class='pink'>building <b>paddock_bear</b> (tutorial)</div>")
 gameInfo.paddocks["paddock_bear"] = 1
 f.write("<div class='orange'>buying new animal for <b>paddock_bear</b> (tutorial)</div>")
 gameInfo.paddocksTotalAnimals["paddock_bear"] = 1
-f.write("<div class='lime'>building <b>zoo_caffe</b> (tutorial</div>")
+f.write("<div class='lime'>building <b>zoo_caffe</b> (tutorial)</div>")
 gameInfo.communities["zoo_caffe"] = 1
 
 
 # ЗАПУСКАЕМ ПОСЛЕДОВАТЕЛЬНОЕ ОТКРЫВАНИЕ ПОДАРКОВ
 #for x in range(0,35):
 x = 0
-while gameInfo.zooLevel<6:
+gameInfo.paddocksTotalAnimals['paddock_flamingo'] = 0
+while gameInfo.paddocksTotalAnimals['paddock_flamingo']<4:
     x = x+1
 
     print ""
-    f.write("<div class='normal'>&nbsp;<br>&nbsp;</div>")
+    f.write("<div class='normal'>&nbsp;<br>&nbsp;<br>&nbsp;<br>&nbsp;<br>&nbsp;</div>")
     print str(x)+")"
     # получили рандомный материал в дропе и увеличили его количество в сохранке
     chestContentTuple = GenerateZooCommunityChestContent(f,gameInfo,buildingSettings,animalsReqs)
@@ -153,20 +154,20 @@ while gameInfo.zooLevel<6:
     setattr(gameInfo,chestContent,curvalue+1)
 
     if chestContentTuple[1] == "buildingmat":
-        f.write("<div class='normalBig'>#"+str(x)+" &mdash; <font color='red'><b>"+chestContent+"</b></font></div>")
+        f.write("<div class='normalBig'>#"+str(x)+" &mdash; <img src='img/"+chestContent+".png' valign='middle'> <font color='red'><b>"+chestContent+"</b></font></div>")
     elif chestContentTuple[1] == "needgem":
-        f.write("<div class='normalBig'>#"+str(x)+" &mdash; <font color='blue'><b>"+chestContent+"</b></font> <font size='2'>(from needGem)</font></div>")
+        f.write("<div class='normalBig'>#"+str(x)+" &mdash; <img src='img/"+chestContent+".png' valign='middle'> <font color='blue'><b>"+chestContent+"</b></font> <font size='2'>(from needGem)</font></div>")
     elif chestContentTuple[1] == "randomgem":
-        f.write("<div class='normalBig'>#"+str(x)+" &mdash; <font color='lightblue'><b>"+chestContent+"</b></font> <font size='2'>(from randomGem)</font></div>")
+        f.write("<div class='normalBig'>#"+str(x)+" &mdash; <img src='img/"+chestContent+".png' valign='middle'> <font color='lightblue'><b>"+chestContent+"</b></font> <font size='2'>(from randomGem)</font></div>")
     else:
-        f.write("<div class='normalBig'>#"+str(x)+" &mdash; "+chestContent+"</div>")
+        f.write("<div class='normalBig'>#"+str(x)+" &mdash; <img src='img/"+chestContent+".png' valign='middle'> "+chestContent+"</div>")
 
     print "dropped", chestContent
 
     # добавим рейтинг подарка
     gameInfo.rating = gameInfo.rating + ratingForChest[gameInfo.zooLevel]
     #print "current sum rating is "+str(gameInfo.rating)
-    f.write("<div class='normal'>current sum rating is "+str(gameInfo.rating)+"</div>")
+    #f.write("<div class='normal'>current sum rating is "+str(gameInfo.rating)+"</div>")
 
     # проверим, возможно надо левелапнуть
     if gameInfo.rating > ratingToLevelup[gameInfo.zooLevel+1]:
@@ -177,13 +178,36 @@ while gameInfo.zooLevel<6:
 
     # пробежимся по всем зданиям и проверим, нельзя ли построить доступное
     while TryBuild (f,gameInfo,buildingSettings):
-        #print "try building more"
-        f.write("<div class='normal'>try building more</div>")
+        print "try building more"
+        #f.write("<div class='normal'>try building more</div>")
 
     # пробежимся по доступным загонам и проверим, можно ли купить животное
     while TryBuyNewAnimal(f,gameInfo,buildingSettings,animalsReqs):
-        #print "try to buy another animal"
-        f.write("<div class='normal'>try to buy another animal</div>")
+        print "try to buy another animal"
+        #f.write("<div class='normalSmall'>try to buy another animal</div>")
+
+    f.write("<div class='normalSmallOrange'>")
+    f.write(str(gameInfo.gem1)+" <img src='img/gem1.png' valign='middle'> &nbsp; ")
+    f.write(str(gameInfo.gem2)+" <img src='img/gem2.png' valign='middle'> &nbsp; ")
+    f.write(str(gameInfo.gem3)+" <img src='img/gem3.png' valign='middle'> &nbsp; ")
+    f.write(str(gameInfo.gem4)+" <img src='img/gem4.png' valign='middle'> ")
+    f.write("</div>")
+
+    f.write("<div class='normalSmallGreen'>")
+    f.write(str(gameInfo.zooLandDeed)+" <img src='img/zooLandDeed.png' valign='middle'> &nbsp; ")
+    f.write(str(gameInfo.zooBuildingMaterial)+" <img src='img/zooBuildingMaterial.png' valign='middle'> &nbsp; ")
+    f.write(str(gameInfo.zooServiceMaterial1)+" <img src='img/zooServiceMaterial1.png' valign='middle'> &nbsp; ")
+    f.write(str(gameInfo.zooServiceMaterial2)+" <img src='img/zooServiceMaterial2.png' valign='middle'> &nbsp; ")
+    f.write(str(gameInfo.zooServiceMaterial3)+" <img src='img/zooServiceMaterial3.png' valign='middle'>")
+    f.write("</div>")
+
+    f.write("<div class='normalSmallBlue'>")
+    f.write(str(gameInfo.Brick)+" <img src='img/Brick.png' valign='middle'> &nbsp; ")
+    f.write(str(gameInfo.Plita)+" <img src='img/Plita.png' valign='middle'> &nbsp; ")
+    f.write(str(gameInfo.Glass)+" <img src='img/Glass.png' valign='middle'>")
+    f.write("</div>")
+
+
 
 
 writeHtmlFoot(f)

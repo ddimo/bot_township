@@ -22,6 +22,39 @@ div.normalSmall {
 	font-size:10pt;
 }
 
+div.normalSmallGreen {
+	font-family:Verdana; 
+	background-color: #E5FFCC; 
+	font-size:10pt;
+	padding:0pt;
+	padding-left:5pt;
+	padding-right:5pt;
+	margin:0pt;
+	float: left;
+}
+
+div.normalSmallOrange {
+	font-family:Verdana; 
+	background-color: #F5CCB0; 
+	font-size:10pt;
+	padding:0pt;
+	padding-left:5pt;
+	padding-right:5pt;
+	margin:0pt;
+	float: left;
+}
+
+div.normalSmallBlue {
+	font-family:Verdana; 
+	background-color: #CCE5FF; 
+	font-size:10pt;
+	padding:0pt;
+	padding-left:5pt;
+	padding-right:5pt;
+	margin:0pt;
+	float: left;
+}
+
 div.lightgreen {
 	background-color: #E5FFCC; 
 	font-family:Verdana; 
@@ -68,8 +101,8 @@ div.lime {
 	margin-bottom:5px;
 }
 
-div.smallOrange {
-	background-color: #F5CCB0; 
+div.smallGrey {
+	background-color: #E0E0E0; 
 	font-family:Verdana; 
 	font-size:10pt; 
 	padding-top:2px; 
