@@ -26,6 +26,8 @@ class gameInfoClass:
         self.gem3 = 0
         self.gem4 = 0
 
+        self.wasnot = {'gem1':0, 'gem2':0, 'gem3':0, 'gem4':0}
+
         self.paddocks = dict()
         self.paddocksTotalAnimals = dict()
         self.communities = dict()
@@ -51,6 +53,9 @@ class animalReqsClass:
         self.gem2 = 0
         self.gem3 = 0
         self.gem4 = 0
+
+
+
 
 
 class weightsList:

@@ -140,8 +140,8 @@ gameInfo.communities["zoo_caffe"] = 1
 # ЗАПУСКАЕМ ПОСЛЕДОВАТЕЛЬНОЕ ОТКРЫВАНИЕ ПОДАРКОВ
 #for x in range(0,35):
 x = 0
-gameInfo.paddocksTotalAnimals['paddock_flamingo'] = 0
-while gameInfo.paddocksTotalAnimals['paddock_flamingo']<4:
+gameInfo.paddocksTotalAnimals['paddock_zebra'] = 0
+while gameInfo.paddocksTotalAnimals['paddock_zebra']<4:
     x = x+1
 
     print ""
@@ -152,6 +152,8 @@ while gameInfo.paddocksTotalAnimals['paddock_flamingo']<4:
     chestContent = chestContentTuple[0]
     curvalue = getattr(gameInfo,chestContent)
     setattr(gameInfo,chestContent,curvalue+1)
+    if "gem" in chestContent:
+        AddGems(f,gameInfo,chestContent)
 
     if chestContentTuple[1] == "buildingmat":
         f.write("<div class='normalBig'>#"+str(x)+" &mdash; <img src='img/"+chestContent+".png' valign='middle'> <font color='red'><b>"+chestContent+"</b></font></div>")
@@ -159,6 +161,8 @@ while gameInfo.paddocksTotalAnimals['paddock_flamingo']<4:
         f.write("<div class='normalBig'>#"+str(x)+" &mdash; <img src='img/"+chestContent+".png' valign='middle'> <font color='blue'><b>"+chestContent+"</b></font> <font size='2'>(from needGem)</font></div>")
     elif chestContentTuple[1] == "randomgem":
         f.write("<div class='normalBig'>#"+str(x)+" &mdash; <img src='img/"+chestContent+".png' valign='middle'> <font color='lightblue'><b>"+chestContent+"</b></font> <font size='2'>(from randomGem)</font></div>")
+    elif chestContentTuple[1] == "getnextgem":
+        f.write("<div class='normalBig'>#"+str(x)+" &mdash; <img src='img/"+chestContent+".png' valign='middle'> <font color='lightblue'><b>"+chestContent+"</b></font> <font size='2'>(from GetNextGem)</font></div>")
     else:
         f.write("<div class='normalBig'>#"+str(x)+" &mdash; <img src='img/"+chestContent+".png' valign='middle'> "+chestContent+"</div>")
 

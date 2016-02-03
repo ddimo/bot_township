@@ -185,19 +185,25 @@ def GenerateZooCommunityChestContent(f,gameInfo,buildingSettings,animalsReqs):
         AddByWeight(chestContent,needGemId,65)
         helped[needGemId] = "needgem"
         print "!!!!!!!!!!!!!!!!!!! adding "+needGemId+" with weight 65"
-        f.write("<div class='normalSmall'><i>helping with <u>"+needGemId+"</u> (weight 65, from needGem)</i></div>")
+        f.write("<div class='normalSmall'><i>helping with <u>"+needGemId+"</u> (weight <b>65</b>, from needGem)</i></div>")
     else:
-        # добавить условие с GetNextGem!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         chestGemContent = []
-        AddByWeight(chestGemContent,"gem1",45)
-        AddByWeight(chestGemContent,"gem2",21)
-        AddByWeight(chestGemContent,"gem3",17)
-        AddByWeight(chestGemContent,"gem4",17)
-        randomGem = GetRandomMaterialOrBrickDef(f,chestGemContent)
-        AddByWeight(chestGemContent,randomGem,65) # <<<<<<<<<<<<<<<<<<<<<<<<,, все равно нехило подыгрывает на камни
-        helped[randomGem] = "randomgem"
-        print "adding "+randomGem+" with weight 65 without helping"
-        f.write("<div class='normalSmall'><i>helping with "+randomGem+" (weight 65, from randomGem)</i></div>")
+        gemId = GetNextGem(f,gameInfo,animalsReqs)
+        if gemId:
+            AddByWeight(chestContent,gemId,65)
+            helped[gemId] = "getnextgem"
+            print "adding "+gemId+" with weight 65 from GetNextGem"
+            f.write("<div class='normalSmall'><i>helping with <u>"+gemId+"</u> (weight <b>65</b>, from GetNextGem)</i></div>")
+        else:
+            AddByWeight(chestGemContent,"gem1",45)
+            AddByWeight(chestGemContent,"gem2",21)
+            AddByWeight(chestGemContent,"gem3",17)
+            AddByWeight(chestGemContent,"gem4",17)
+            randomGem = GetRandomMaterialOrBrickDef(f,chestGemContent)
+            AddByWeight(chestContent,randomGem,65) # <<<<<<<<<<<<<<<<<<<<<<<<,, все равно нехило подыгрывает на камни
+            helped[randomGem] = "randomgem"
+            print "adding "+randomGem+" with weight 65 without helping"
+            f.write("<div class='normalSmall'><i>helping with <u>"+randomGem+"</u> (weight <b>65</b>, from randomGem)</i></div>")
 
 
     randomMat = GetRandomMaterialOrBrickDef(f,chestContent)
@@ -267,7 +273,43 @@ def GenerateZooCommunityChestGemManipulation(f,gameInfo,buildingSettings,animals
     return needGemId,needGem
 
 
+def GetNextGem(f,gameInfo,animalsReqs):
+    gems = [gameInfo.gem1,gameInfo.gem2,gameInfo.gem3,gameInfo.gem4]
+    foundId = ""
+    foundWeight = 0
+    defProb = {'gem1':48, 'gem2':27, 'gem3':13, 'gem4':12}
+    maxGems = 4
+    i = 1
+    # f.write("<div class='normalSmall'><br>GetNextGem:<br>")
 
+    while i <= maxGems:
+        wasnot = gameInfo.wasnot['gem'+str(i)]
+        # f.write("gem"+str(i)+" wasnot = "+str(wasnot)+"<br>")
+        should = 100/defProb['gem'+str(i)]
+        if wasnot > should:
+            if not foundId or (wasnot/should > foundWeight):
+                foundId = "gem"+str(i)
+                foundWeight = wasnot/should
+        i = i+1
+
+    # f.write("<br></div>")
+    return foundId
+
+
+def AddGems(f,gameInfo,gemId):
+    maxGems = 4
+    i = 1
+    # f.write("<div class='normalSmall'><br>AddGems with "+gemId+":<br>")
+    while i <= maxGems:
+        var = "wasnot_gem"+str(i)
+        if gemId == "gem"+str(i):
+            gameInfo.wasnot[gemId] = 0
+            # f.write("gem"+str(i)+" wasnot set to 0<br>")
+        else:
+            gameInfo.wasnot["gem"+str(i)]+=1
+            # f.write("gem"+str(i)+" wasnot incremented - new is "+str(gameInfo.wasnot['gem'+str(i)])+"<br>")
+        i = i+1
+    # f.write("<br></div>")
 
 def GetDiffrenceGemsForNextPaddockAnimal(gameInfo,buildingSettings,animalsReqs,paddock):
     nextAnimalNumber = gameInfo.paddocksTotalAnimals[paddock]+1
@@ -396,9 +438,8 @@ def TryBuyNewAnimal(f,gameInfo,buildingSettings,animalsReqs):
     lowestPaddock = FindOldestNotFullPaddock(gameInfo,buildingSettings)
     if lowestPaddock[1] != 666:
         paddockName = lowestPaddock[0]
-        if gameInfo.paddocksTotalAnimals[paddockName] < 4:
+        if gameInfo.paddocksTotalAnimals[paddockName] < 4: # избыточная проверка
             nextAnimalNumber = gameInfo.paddocksTotalAnimals[paddockName]+1
-            # print "next animal number is "+str(nextAnimalNumber)
             print "reqs for "+paddockName+ " animal # "+str(nextAnimalNumber)
             print vars(animalsReqs[paddockName][nextAnimalNumber])
             print "now have gems:"
@@ -410,7 +451,7 @@ def TryBuyNewAnimal(f,gameInfo,buildingSettings,animalsReqs):
                 gameInfo.gem3 = gameInfo.gem3 - animalsReqs[paddockName][nextAnimalNumber].gem3
                 gameInfo.gem4 = gameInfo.gem4 - animalsReqs[paddockName][nextAnimalNumber].gem4
                 print "bought new animal <--------------------------------------------------------------------------"
-                f.write("<div class='orange'>buying new animal for <b>"+paddockName+"</b> &mdash; <small>")
+                f.write("<div class='orange'>buying new animal for <b>"+paddockName+"</b> (#"+str(nextAnimalNumber)+") &mdash; <small>")
                 if animalsReqs[paddockName][nextAnimalNumber].gem1:
                     f.write(str(animalsReqs[paddockName][nextAnimalNumber].gem1)+" <img src='img/gem1.png' valign='middle'>&nbsp;")
                 if animalsReqs[paddockName][nextAnimalNumber].gem2:
@@ -420,6 +461,32 @@ def TryBuyNewAnimal(f,gameInfo,buildingSettings,animalsReqs):
                 if animalsReqs[paddockName][nextAnimalNumber].gem4:
                     f.write(str(animalsReqs[paddockName][nextAnimalNumber].gem4)+" <img src='img/gem4.png' valign='middle'>&nbsp;")
                 f.write("</small></div>")
-                return True
+                return True # купили животное в самом старом неполном загоне
+
+    # если до этого не купили, то попробуем купить в любом загоне из неполных
+    for key,value in gameInfo.paddocksTotalAnimals.iteritems():
+        if key in gameInfo.paddocks:
+            if value < 4 and gameInfo.paddocks[key] == 1: # загон еще не полный и он точно построен
+                nextAnimalNumber = value+1
+                paddockName = key
+                if (animalsReqs[paddockName][nextAnimalNumber].gem1 <= gameInfo.gem1) and (animalsReqs[paddockName][nextAnimalNumber].gem2 <= gameInfo.gem2) and (animalsReqs[paddockName][nextAnimalNumber].gem3 <= gameInfo.gem3) and (animalsReqs[paddockName][nextAnimalNumber].gem4 <= gameInfo.gem4):
+                    gameInfo.paddocksTotalAnimals[paddockName] = gameInfo.paddocksTotalAnimals[paddockName]+1
+                    gameInfo.gem1 = gameInfo.gem1 - animalsReqs[paddockName][nextAnimalNumber].gem1
+                    gameInfo.gem2 = gameInfo.gem2 - animalsReqs[paddockName][nextAnimalNumber].gem2
+                    gameInfo.gem3 = gameInfo.gem3 - animalsReqs[paddockName][nextAnimalNumber].gem3
+                    gameInfo.gem4 = gameInfo.gem4 - animalsReqs[paddockName][nextAnimalNumber].gem4
+                    print "bought new animal <--------------------------------------------------------------------------"
+                    f.write("<div class='orange'>buying new animal for <b>"+paddockName+"</b> (#"+str(nextAnimalNumber)+") &mdash; <small>")
+                    if animalsReqs[paddockName][nextAnimalNumber].gem1:
+                        f.write(str(animalsReqs[paddockName][nextAnimalNumber].gem1)+" <img src='img/gem1.png' valign='middle'>&nbsp;")
+                    if animalsReqs[paddockName][nextAnimalNumber].gem2:
+                        f.write(str(animalsReqs[paddockName][nextAnimalNumber].gem2)+" <img src='img/gem2.png' valign='middle'>&nbsp;")
+                    if animalsReqs[paddockName][nextAnimalNumber].gem3:
+                        f.write(str(animalsReqs[paddockName][nextAnimalNumber].gem3)+" <img src='img/gem3.png' valign='middle'>&nbsp;")
+                    if animalsReqs[paddockName][nextAnimalNumber].gem4:
+                        f.write(str(animalsReqs[paddockName][nextAnimalNumber].gem4)+" <img src='img/gem4.png' valign='middle'>&nbsp;")
+                    f.write("</small></div>")
+                    return True
+
     print "]]]]]] Try buying animal completed"
     return False
