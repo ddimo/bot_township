@@ -1,11 +1,7 @@
 # coding=utf-8
 
-import random
-from classes import *
-from globalvars import *
 from functions import *
 import xml.etree.ElementTree as xml
-import os.path
 
 
 MAX_WAIT_FOR_UPGRADE = 20 # сколько шагов максимум ждем прежде чем купим апгрейд даже если копим на здание

@@ -2,10 +2,8 @@
 
 import random
 from globalvars import *
-from classes import *
 from collections import Counter
 import xml.etree.ElementTree as xml
-from os.path import expanduser
 
 def writeHtmlHead():
     with open("_htmlhead") as fp:
