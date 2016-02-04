@@ -8,6 +8,8 @@ import os.path
 
 gameInfo = gameInfoClass()
 
+MAX_WAIT_FOR_UPGRADE = 20 # сколько шагов максимум ждем прежде чем купим апгрейд даже если копим на здание
+
 gameBalanceXml = xml.parse('../township/base/GameBalance.xml', parser=CommentsParser())
 gameBalanceRoot = gameBalanceXml.getroot()
 BuildingRequirements = gameBalanceRoot.find('BuildingRequirements')
@@ -20,13 +22,13 @@ reqs = []
 
 # Заполним требования материалов на все комьюнити и загоны
 for elem in BuildingRequirements.iter():
-    if (elem.tag == "reqs" and elem.attrib['ver'] == "2"):
+    if elem.tag == "reqs" and elem.attrib['ver'] == "2":
         reqs = elem
 
 for reqsElem in reqs.iter():
     if 'id' in reqsElem.attrib:
         cur_id = reqsElem.attrib['id']
-        if ("zoo_" in cur_id or "paddock_" in cur_id):
+        if "zoo_" in cur_id or "paddock_" in cur_id:
             zooBuilding = buildingSettingsClass()
             zooBuilding.id = reqsElem.attrib['id']
             if 'Brick' in reqsElem.attrib:
@@ -92,7 +94,7 @@ for upgradeBuildingElem in UpgradesSettingsXml:
                 if 'zooServiceMaterial3' in upgradeElem.attrib: curUpgradeReqs.zooServiceMaterial3 = int(upgradeElem.attrib['zooServiceMaterial3'])
                 if 'animalsCount' in upgradeElem.attrib: curUpgradeReqs.animalsCount = int(upgradeElem.attrib['animalsCount'])
                 upgradesReqs[buildingId].append(curUpgradeReqs)
-                x = x+1
+                x += 1
 
 # upgradesReqs['zoo_caffe'][1] = class with reqs for upgrade #1 (Brick,Plita .. animalsCount)
 
@@ -116,7 +118,7 @@ for paddockElem in paddocksSettings:
             if 'gem3' in childPaddockElem.attrib: curAnimalReqs.gem3 = int(childPaddockElem.attrib['gem3'])
             if 'gem4' in childPaddockElem.attrib: curAnimalReqs.gem4 = int(childPaddockElem.attrib['gem4'])
             animalsReqs[elemId][animalNumber] = curAnimalReqs
-            animalNumber = animalNumber+1
+            animalNumber += 1
 
 # инфа о бонусном рейтинге положена в buildingSettings: buildingSettings["zoo_caffe"].bonusRating
 # требования камней на животных - в animalsReqs:
@@ -173,8 +175,7 @@ gameInfo.communitiesUpgrades['zoo_eatery'] = 2
 x = 0
 # gameInfo.paddocksTotalAnimals['paddock_zebra'] = 0
 while gameInfo.paddocksTotalAnimals['paddock_zebra']<4:
-    x = x+1
-
+    x += 1
     print ""
     f.write("<div class='normal'>&nbsp;<br>&nbsp;<br>&nbsp;<br>&nbsp;<br>&nbsp;</div>")
     print str(x)+")"
@@ -206,7 +207,7 @@ while gameInfo.paddocksTotalAnimals['paddock_zebra']<4:
 
     # проверим, возможно надо левелапнуть
     if gameInfo.rating > ratingToLevelup[gameInfo.zooLevel+1]:
-        gameInfo.zooLevel = gameInfo.zooLevel + 1
+        gameInfo.zooLevel += 1
         # print "<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><> LEVELUP!!!!!!!"
         f.write("<div class='darkblue'><b>LEVELUP! now on level "+str(gameInfo.zooLevel)+"</b></div>")
     #print "current level is "+str(gameInfo.zooLevel)
@@ -216,10 +217,34 @@ while gameInfo.paddocksTotalAnimals['paddock_zebra']<4:
         print "try building more"
         #f.write("<div class='normal'>try building more</div>")
 
+    # пробежимся по доступным апгрейдам и проверим, нельзя ли проапгрейдить комьюнити
+    availableUpgrade = FindUpdateToBuy(f,gameInfo,upgradesReqs)
+    if availableUpgrade:
+        print "found upgrade to buy"
+        ubid = availableUpgrade[0] # идентификатор здания
+        un = availableUpgrade[1] # номер апгрейда
+        f.write("<div class='normalSmall'>")
+        line = GetBuildingReqsLine("upgrade",gameInfo,buildingSettings,upgradesReqs,ubid,un)
+        f.write("<i>enough materials for upgrade #"+str(un)+" in "+str(ubid)+" (needed: "+line+")</div>")
+        availableToBuild = FindAvailableNotBuilt(gameInfo,buildingSettings)
+        if not availableToBuild or gameInfo.upgradeWait >= MAX_WAIT_FOR_UPGRADE:
+            DoUpgrade(f,gameInfo,upgradesReqs,ubid,un)
+            f.write("<div class='normalSmall'><font color='red'>bought upgrade</font></div>")
+            gameInfo.upgradeWait = 0
+        else:
+            # не будем покупать апгрейд пока копим на строительство доступного загона/комьюнити
+            if gameInfo.upgradeWait < MAX_WAIT_FOR_UPGRADE:
+                line = GetBuildingReqsLine("build",gameInfo,buildingSettings,upgradesReqs,availableToBuild,0)
+                f.write("<div class='normalSmall'>not upgrading, saving ("+str(gameInfo.upgradeWait)+" times already) for "+availableToBuild+" (needed: "+line+")</div>")
+                gameInfo.upgradeWait += 1
+
+
     # пробежимся по доступным загонам и проверим, можно ли купить животное
     while TryBuyNewAnimal(f,gameInfo,buildingSettings,animalsReqs):
         print "try to buy another animal"
         #f.write("<div class='normalSmall'>try to buy another animal</div>")
+
+    f.write("<div class='normalSmall'>&nbsp;</div>")
 
     f.write("<div class='normalSmallOrange'>")
     f.write(str(gameInfo.gem1)+" <img src='img/gem1.png' valign='middle'> &nbsp; ")
@@ -242,9 +267,9 @@ while gameInfo.paddocksTotalAnimals['paddock_zebra']<4:
     f.write(str(gameInfo.Glass)+" <img src='img/Glass.png' valign='middle'>")
     f.write("</div>")
 
-
+    print ""
+    print "total "+str(x)+" steps"
 
 
 writeHtmlFoot(f)
 f.close()
-

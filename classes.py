@@ -33,6 +33,8 @@ class gameInfoClass:
         self.communities = dict()
         self.communitiesUpgrades = dict()
 
+        self.upgradeWait = 0
+
 class buildingSettingsClass:
     def __init__(self):
         self.id = ""

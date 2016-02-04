@@ -54,10 +54,10 @@ def GetRandomMaterialOrBrickDef(f,chestContent):
     chestContentLen = len(chestContent)
     rand = random.randint(0,chestContentLen-1)
     counter = Counter(chestContent)
-    f.write("<div class='normalSmall'><i>current helping weights: ")
+    f.write("<div class='normalSmall'><i>random from weights: ")
     for key, value in counter.iteritems():
-        f.write(key+"="+str(value)+", ")
-    f.write("</i> --- result: <u>"+chestContent[rand]+"</u></div>")
+        f.write(key+" &mdash; "+str(value)+", ")
+    f.write("</i> ---> result: <u>"+chestContent[rand]+"</u></div>")
     return chestContent[rand]
 
 def FillCurrentOrdersOnlyZoo(gameInfo,buildingSettings):
@@ -99,8 +99,23 @@ def FillCurrentZooUpgradePrices(f,gameInfo,upgradesReqs):
 
     return curReqs
 
-            # nextUpgrade = curBuildingUpgrade+1
-            # upgradesReqs[key][nextUpgrade].animalsCount
+    # nextUpgrade = curBuildingUpgrade+1
+    # upgradesReqs[key][nextUpgrade].animalsCount
+
+
+def FindUpdateToBuy(f,gameInfo,upgradesReqs):
+    totalAnimals = sum(gameInfo.paddocksTotalAnimals.itervalues())
+    for key, value in gameInfo.communities.iteritems():
+        if value == 1:                                                      # если комьюнити построено
+            curBuildingUpgrade = int(gameInfo.communitiesUpgrades[key])     # количество его текущих апгрейдов
+            for upNum, upSettings in enumerate(upgradesReqs[key]):          # пробежимся по всем апгрейдам данного здания
+                if upSettings:
+                    if upNum <= curBuildingUpgrade: continue                # апгрейд уже есть - пропускаем
+                    elif upSettings.animalsCount > totalAnimals: break      # требуемое количество животных больше чем текущее - ушли далеко
+                    else:                                                   # а вот это уже подходящий апгрейд
+                        if upSettings.Brick <= gameInfo.Brick and upSettings.Plita <= gameInfo.Plita and upSettings.Glass <= gameInfo.Glass and upSettings.zooBuildingMaterial <= gameInfo.zooBuildingMaterial and upSettings.zooServiceMaterial1 <= gameInfo.zooServiceMaterial1 and upSettings.zooServiceMaterial2 <= gameInfo.zooServiceMaterial2 and upSettings.zooServiceMaterial3 <= gameInfo.zooServiceMaterial3:
+                            # материалов хватает для строительства
+                            return key, upNum
 
 
 
@@ -197,7 +212,7 @@ def GenerateZooCommunityChestContent(f,gameInfo,buildingSettings,upgradesReqs,an
     needGem = needGemResult[1]
     # если нужно то возвращаем какой камень будет подыгрывать (needGem)
 
-
+    f.write("<div class='normalSmall'>--------------------------------------------------------------------------------------------------------------------</div>")
 
     # Материалы для зданий
     if needBuildingMaterial:
@@ -229,7 +244,6 @@ def GenerateZooCommunityChestContent(f,gameInfo,buildingSettings,upgradesReqs,an
     AddByWeight(chestContent,"hammerMat",3)
     AddByWeight(chestContent,"nailMat",3)
     AddByWeight(chestContent,"paintRedMat",3)
-
 
     # Материалы для расширений
     AddByWeight(chestContent,"zooLandDeed",2)
@@ -268,7 +282,6 @@ def GenerateZooCommunityChestContent(f,gameInfo,buildingSettings,upgradesReqs,an
         wasHelped = helped.get(randomMat)
 
     # print Counter(chestContent)
-
     return randomMat, wasHelped
 
 
@@ -368,6 +381,7 @@ def AddGems(f,gameInfo,gemId):
         i = i+1
     # f.write("<br></div>")
 
+
 def GetDiffrenceGemsForNextPaddockAnimal(gameInfo,buildingSettings,animalsReqs,paddock):
     nextAnimalNumber = gameInfo.paddocksTotalAnimals[paddock]+1
     price = animalsReqs[paddock][nextAnimalNumber]
@@ -440,6 +454,75 @@ def DoBuild(gameInfo,buildingSettings,buildingId):
     if buildingSettings.zooServiceMaterial3>0:
         gameInfo.zooServiceMaterial3 = gameInfo.zooServiceMaterial3-buildingSettings.zooServiceMaterial3
 
+
+def FindAvailableNotBuilt(gameInfo,buildingSettings):
+    for key, value in gameInfo.paddocks.items():
+        if value == 0:                                                  # еще не построено
+            if buildingSettings[key].zooLevel <= gameInfo.zooLevel:     # доступно по уровню
+                return key
+    for key, value in gameInfo.communities.items():
+        if value == 0:                                                  # еще не построено
+            if buildingSettings[key].zooLevel <= gameInfo.zooLevel:     # доступно по уровню
+                return key
+    return False
+
+
+def GetBuildingReqsLine(ttype,gameInfo,buildingSettings,upgradesReqs,bid,uid):
+    reqs = {}
+    line = ""
+    if ttype == "build":
+        if buildingSettings[bid].Brick > 0: reqs['Brick'] = buildingSettings[bid].Brick
+        if buildingSettings[bid].Glass > 0: reqs['Glass'] = buildingSettings[bid].Glass
+        if buildingSettings[bid].Plita > 0: reqs['Plita'] = buildingSettings[bid].Plita
+        if buildingSettings[bid].zooBuildingMaterial > 0: reqs['zooBuildingMaterial'] = buildingSettings[bid].zooBuildingMaterial
+        if buildingSettings[bid].zooServiceMaterial1 > 0: reqs['zooServiceMaterial1'] = buildingSettings[bid].zooServiceMaterial1
+        if buildingSettings[bid].zooServiceMaterial2 > 0: reqs['zooServiceMaterial2'] = buildingSettings[bid].zooServiceMaterial2
+        if buildingSettings[bid].zooServiceMaterial3 > 0: reqs['zooServiceMaterial3'] = buildingSettings[bid].zooServiceMaterial3
+    elif ttype == "upgrade":
+        if upgradesReqs[bid][uid].Brick > 0: reqs['Brick'] = upgradesReqs[bid][uid].Brick
+        if upgradesReqs[bid][uid].Glass > 0: reqs['Glass'] = upgradesReqs[bid][uid].Glass
+        if upgradesReqs[bid][uid].Plita > 0: reqs['Plita'] = upgradesReqs[bid][uid].Plita
+        if upgradesReqs[bid][uid].zooBuildingMaterial > 0: reqs['zooBuildingMaterial'] = upgradesReqs[bid][uid].zooBuildingMaterial
+        if upgradesReqs[bid][uid].zooServiceMaterial1 > 0: reqs['zooServiceMaterial1'] = upgradesReqs[bid][uid].zooServiceMaterial1
+        if upgradesReqs[bid][uid].zooServiceMaterial2 > 0: reqs['zooServiceMaterial2'] = upgradesReqs[bid][uid].zooServiceMaterial2
+        if upgradesReqs[bid][uid].zooServiceMaterial3 > 0: reqs['zooServiceMaterial3'] = upgradesReqs[bid][uid].zooServiceMaterial3
+
+    i = 0
+    for key,value in reqs.iteritems():
+        if 0 < i < len(reqs):
+            line += ", "
+        line = line+key+" "
+        if getattr(gameInfo,key) < value:
+            line += "<b>"
+        line += str(value)
+        if getattr(gameInfo,key) < value:
+            line += "</b>"
+        i += 1
+    return line
+
+
+def DoUpgrade(f,gameInfo,upgradesReqs,buildingId,upgradeNum):
+    curUpgrade = gameInfo.communitiesUpgrades[buildingId]
+    if upgradeNum - curUpgrade == 1: # все ок, это апгрейд на 1
+        gameInfo.communitiesUpgrades[buildingId] = upgradeNum
+        if upgradesReqs[buildingId][upgradeNum].Brick>0:
+            gameInfo.Brick = gameInfo.Brick-upgradesReqs[buildingId][upgradeNum].Brick
+        if upgradesReqs[buildingId][upgradeNum].Plita>0:
+            gameInfo.Plita = gameInfo.Plita-upgradesReqs[buildingId][upgradeNum].Plita
+        if upgradesReqs[buildingId][upgradeNum].Glass>0:
+            gameInfo.Glass = gameInfo.Glass-upgradesReqs[buildingId][upgradeNum].Glass
+        if upgradesReqs[buildingId][upgradeNum].zooBuildingMaterial>0:
+            gameInfo.zooBuildingMaterial = gameInfo.zooBuildingMaterial-upgradesReqs[buildingId][upgradeNum].zooBuildingMaterial
+        if upgradesReqs[buildingId][upgradeNum].zooServiceMaterial1>0:
+            gameInfo.zooServiceMaterial1 = gameInfo.zooServiceMaterial1-upgradesReqs[buildingId][upgradeNum].zooServiceMaterial1
+        if upgradesReqs[buildingId][upgradeNum].zooServiceMaterial2>0:
+            gameInfo.zooServiceMaterial2 = gameInfo.zooServiceMaterial2-upgradesReqs[buildingId][upgradeNum].zooServiceMaterial2
+        if upgradesReqs[buildingId][upgradeNum].zooServiceMaterial3>0:
+            gameInfo.zooServiceMaterial3 = gameInfo.zooServiceMaterial3-upgradesReqs[buildingId][upgradeNum].zooServiceMaterial3
+    else:
+        f.write("<div class='lightgreen'><font size='+3'>ERROR UPGRADING!</font></div>")
+
+
 def FindOldestNotFullPaddock(gameInfo,buildingSettings):
     lowestLevel = 666
     lowestLevelId = "n/a"
@@ -452,6 +535,7 @@ def FindOldestNotFullPaddock(gameInfo,buildingSettings):
                     lowestLevelId = key
 
     return [lowestLevelId,lowestLevel]
+
 
 
 def TryBuild (f,gameInfo,buildingSettings):
