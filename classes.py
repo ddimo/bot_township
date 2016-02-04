@@ -31,6 +31,7 @@ class gameInfoClass:
         self.paddocks = dict()
         self.paddocksTotalAnimals = dict()
         self.communities = dict()
+        self.communitiesUpgrades = dict()
 
 class buildingSettingsClass:
     def __init__(self):
@@ -45,6 +46,18 @@ class buildingSettingsClass:
         self.price = 0
         self.zooLevel = 0
         self.bonusRating = 0
+
+
+class buildingUpgradesSettingsClass:
+    def __init__(self):
+        self.Brick = 0
+        self.Plita = 0
+        self.Glass = 0
+        self.zooBuildingMaterial = 0
+        self.zooServiceMaterial1 = 0
+        self.zooServiceMaterial2 = 0
+        self.zooServiceMaterial3 = 0
+        self.animalsCount = 0
 
 
 class animalReqsClass:

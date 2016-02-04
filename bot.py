@@ -51,12 +51,50 @@ for reqsElem in reqs.iter():
                 zooBuilding.price = int(params.attrib['price'])
 
             buildingSettings[cur_id] = zooBuilding
+            if "paddock_" in cur_id:
+                gameInfo.paddocks[cur_id] = 0
+                gameInfo.paddocksTotalAnimals[cur_id] = 0
+            elif "zoo_" in cur_id:
+                gameInfo.communities[cur_id] = 0
+                gameInfo.communitiesUpgrades[cur_id] = 0
 
 # итого buildingSettings[building_id] = элемент класса buildingSettingsClass
 # например:
 # buildingSettings["paddock_zebra"].zooBuildingMaterial - количество требуемого материала
 # buildingSettings["zoo_caffe"].zooLevel - требуемый уровень
 # buildingSettings["zoo_caffe"].price - сколько дает рейтинга за постройку
+
+
+
+# сбор инфы об апгрейдах
+upgradesReqs = dict()
+upgradesXml = xml.parse('../township/base/ZooUpgrade.xml', parser=CommentsParser())
+upgradesRoot = upgradesXml.getroot()
+UpgradesSettingsXml = upgradesRoot.find('Community')
+for upgradeBuildingElem in UpgradesSettingsXml:
+    if upgradeBuildingElem.tag == "Building":
+        buildingId = upgradeBuildingElem.attrib['id']
+        upgradesReqs[buildingId] = ['']
+        upgradesReqs[buildingId][0] = ''
+        x = 1
+        for upgradeElem in upgradeBuildingElem:
+           if upgradeElem.tag == "upgrade":
+                curUpgradeReqs = buildingUpgradesSettingsClass()
+                if 'Brick' not in upgradeElem.attrib and 'Plita' not in upgradeElem.attrib and 'Glass' not in upgradeElem.attrib and 'zooBuildingMaterial' not in upgradeElem.attrib and 'zooServiceMaterial1' not in upgradeElem.attrib and 'zooServiceMaterial2' not in upgradeElem.attrib and 'zooServiceMaterial3' not in upgradeElem.attrib:
+                    # не указано ни одного требования на материалы
+                    continue
+                if 'Brick' in upgradeElem.attrib: curUpgradeReqs.Brick = int(upgradeElem.attrib['Brick'])
+                if 'Plita' in upgradeElem.attrib: curUpgradeReqs.Plita = int(upgradeElem.attrib['Plita'])
+                if 'Glass' in upgradeElem.attrib: curUpgradeReqs.Glass = int(upgradeElem.attrib['Glass'])
+                if 'zooBuildingMaterial' in upgradeElem.attrib: curUpgradeReqs.zooBuildingMaterial = int(upgradeElem.attrib['zooBuildingMaterial'])
+                if 'zooServiceMaterial1' in upgradeElem.attrib: curUpgradeReqs.zooServiceMaterial1 = int(upgradeElem.attrib['zooServiceMaterial1'])
+                if 'zooServiceMaterial2' in upgradeElem.attrib: curUpgradeReqs.zooServiceMaterial2 = int(upgradeElem.attrib['zooServiceMaterial2'])
+                if 'zooServiceMaterial3' in upgradeElem.attrib: curUpgradeReqs.zooServiceMaterial3 = int(upgradeElem.attrib['zooServiceMaterial3'])
+                if 'animalsCount' in upgradeElem.attrib: curUpgradeReqs.animalsCount = int(upgradeElem.attrib['animalsCount'])
+                upgradesReqs[buildingId].append(curUpgradeReqs)
+                x = x+1
+
+# upgradesReqs['zoo_caffe'][1] = class with reqs for upgrade #1 (Brick,Plita .. animalsCount)
 
 
 
@@ -118,14 +156,6 @@ for levelupElem in zooLevelups:
 
 f = open ("result.html","w")
 writeHtmlHead(f)
-# f.write("<div class='lightgreen'>lightgreen</div>")
-# f.write("<div class='darkblue'>darkblue</div>")
-# f.write("<div class='lightblue'>lightblue</div>")
-# f.write("<div class='newispy'>newispy</div>")
-# f.write("<div class='SpendStars'>SpendStars</div>")
-# f.write("<div class='expansionResume'>expansionResume</div>")
-# f.write("<div class='dayResume'>dayResume</div>")
-# f.write("<div class='matQuestInfoStyle'>matQuestInfoStyle</div>")
 
 
 # в начале строим туториальный загон для медведя, покупаем медведя и строим кафе
@@ -136,11 +166,12 @@ gameInfo.paddocksTotalAnimals["paddock_bear"] = 1
 f.write("<div class='lime'>building <b>zoo_caffe</b> (tutorial)</div>")
 gameInfo.communities["zoo_caffe"] = 1
 
+gameInfo.communitiesUpgrades['zoo_eatery'] = 2
 
 # ЗАПУСКАЕМ ПОСЛЕДОВАТЕЛЬНОЕ ОТКРЫВАНИЕ ПОДАРКОВ
 #for x in range(0,35):
 x = 0
-gameInfo.paddocksTotalAnimals['paddock_zebra'] = 0
+# gameInfo.paddocksTotalAnimals['paddock_zebra'] = 0
 while gameInfo.paddocksTotalAnimals['paddock_zebra']<4:
     x = x+1
 
@@ -148,14 +179,14 @@ while gameInfo.paddocksTotalAnimals['paddock_zebra']<4:
     f.write("<div class='normal'>&nbsp;<br>&nbsp;<br>&nbsp;<br>&nbsp;<br>&nbsp;</div>")
     print str(x)+")"
     # получили рандомный материал в дропе и увеличили его количество в сохранке
-    chestContentTuple = GenerateZooCommunityChestContent(f,gameInfo,buildingSettings,animalsReqs)
+    chestContentTuple = GenerateZooCommunityChestContent(f,gameInfo,buildingSettings,upgradesReqs,animalsReqs)
     chestContent = chestContentTuple[0]
     curvalue = getattr(gameInfo,chestContent)
     setattr(gameInfo,chestContent,curvalue+1)
     if "gem" in chestContent:
         AddGems(f,gameInfo,chestContent)
 
-    if chestContentTuple[1] == "buildingmat":
+    if chestContentTuple[1] == "buildingmat" or chestContentTuple[1] == "upgrademat":
         f.write("<div class='normalBig'>#"+str(x)+" &mdash; <img src='img/"+chestContent+".png' valign='middle'> <font color='red'><b>"+chestContent+"</b></font></div>")
     elif chestContentTuple[1] == "needgem":
         f.write("<div class='normalBig'>#"+str(x)+" &mdash; <img src='img/"+chestContent+".png' valign='middle'> <font color='blue'><b>"+chestContent+"</b></font> <font size='2'>(from needGem)</font></div>")

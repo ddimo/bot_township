@@ -56,7 +56,7 @@ def GetRandomMaterialOrBrickDef(f,chestContent):
     counter = Counter(chestContent)
     f.write("<div class='normalSmall'><i>current helping weights: ")
     for key, value in counter.iteritems():
-        f.write(key+": "+str(value)+", ")
+        f.write(key+"="+str(value)+", ")
     f.write("</i> --- result: <u>"+chestContent[rand]+"</u></div>")
     return chestContent[rand]
 
@@ -76,7 +76,35 @@ def FillCurrentOrdersOnlyZoo(gameInfo,buildingSettings):
     return curReqs
 
 
-def GenerateZooCommunityChestContent(f,gameInfo,buildingSettings,animalsReqs):
+def FillCurrentZooUpgradePrices(f,gameInfo,upgradesReqs):
+    curReqs = []
+    totalAnimals = sum(gameInfo.paddocksTotalAnimals.itervalues())
+    for key, value in gameInfo.communities.iteritems():
+        if value == 1: # если комьюнити построено
+            curBuildingUpgrade = int(gameInfo.communitiesUpgrades[key]) # количество его текущих апгрейдов
+            # upgradesReqs[key][nextUpgrade].animalsCount
+            for upNum, upSettings in enumerate(upgradesReqs[key]):
+                if upSettings:
+                    if upNum <= curBuildingUpgrade: continue
+                    elif upSettings.animalsCount > totalAnimals: break
+                    else:
+                        if upSettings.Brick > 0: curReqs.append(["Brick", upSettings.Brick])
+                        if upSettings.Plita > 0: curReqs.append(["Plita", upSettings.Plita])
+                        if upSettings.Glass > 0: curReqs.append(["Glass", upSettings.Glass])
+                        if upSettings.zooBuildingMaterial > 0: curReqs.append(["zooBuildingMaterial", upSettings.zooBuildingMaterial])
+                        if upSettings.zooServiceMaterial1 > 0: curReqs.append(["zooServiceMaterial1", upSettings.zooServiceMaterial1])
+                        if upSettings.zooServiceMaterial2 > 0: curReqs.append(["zooServiceMaterial2", upSettings.zooServiceMaterial2])
+                        if upSettings.zooServiceMaterial3 > 0: curReqs.append(["zooServiceMaterial3", upSettings.zooServiceMaterial3])
+                        f.write("<div class='normalSmall'><i>upgrade #"+str(upNum)+" is available for "+key+" because totalAnimals = "+str(totalAnimals)+"</div> ")
+
+    return curReqs
+
+            # nextUpgrade = curBuildingUpgrade+1
+            # upgradesReqs[key][nextUpgrade].animalsCount
+
+
+
+def GenerateZooCommunityChestContent(f,gameInfo,buildingSettings,upgradesReqs,animalsReqs):
 
     helped = {}
     wasHelped = "no"
@@ -118,6 +146,7 @@ def GenerateZooCommunityChestContent(f,gameInfo,buildingSettings,animalsReqs):
     #     f.write(key+": "+str(value)+", ")
     # f.write("<br><br></div>")
 
+
     # Проверяем нужныли в зоопарке обычные материалы для строящихся или не завершенных зданий
     needBuildingMaterial = False
     needBuildingMaterialId = "zooBuildingMaterial"
@@ -132,7 +161,27 @@ def GenerateZooCommunityChestContent(f,gameInfo,buildingSettings,animalsReqs):
 
 
     # Заполняет вектор из всех требующихся материалов для улучшения комьюнити в зоопарке
+    currentZooUpgradeMaterialsReqs = FillCurrentZooUpgradePrices(f,gameInfo,upgradesReqs)
+
+    # Из каждого требования вычитаем колличество материалов имеющихся в амбаре
+    x = 0
+    for key,value in currentZooUpgradeMaterialsReqs:
+        currentZooUpgradeMaterialsReqs[x] = [key,value-getattr(gameInfo,key)]
+        if value-getattr(gameInfo,key) < 0: currentZooUpgradeMaterialsReqs[x] = [key,0]
+        x = x+1
+
     # Проверяем нужныли в зоопарке материалы для улучшения зданий
+    needUpgradeBuildingMaterial = False
+    needUpgradeBuildingMaterialId = "zooBuildingMaterial"
+    _buildingUpgradeMaterials = []
+    if currentZooUpgradeMaterialsReqs:
+        for key,value in currentZooUpgradeMaterialsReqs:
+            AddByWeight(_buildingUpgradeMaterials,key,value+gameInfo.zooLevel)
+    if _buildingUpgradeMaterials:
+        # f.write("<div class='normalSmall'><i>finding mat to help for update</i></div>")
+        needUpgradeBuildingMaterial = True
+        needUpgradeBuildingMaterialId = GetRandomMaterialOrBrickDef(f,_buildingUpgradeMaterials)
+
 
     # Проверяем нужны ли материалы на апгрейд амбара (уровень амбара меньше ожидаемого)
 
@@ -155,7 +204,7 @@ def GenerateZooCommunityChestContent(f,gameInfo,buildingSettings,animalsReqs):
         AddByWeight(chestContent,needBuildingMaterialId,80)
         print "adding "+needBuildingMaterialId+" with weight 80"
         helped[needBuildingMaterialId] = "buildingmat"
-        f.write("<div class='normalSmall'><i>helping with <u>"+needBuildingMaterialId+"</u> (weight 80)</i></div>")
+        f.write("<div class='normalSmall'><i>helping with <u>"+needBuildingMaterialId+"</u> for build (weight 80)</i></div>")
     else:
         AddByWeight(chestContent,"Brick",10)
         AddByWeight(chestContent,"Glass",10)
@@ -167,12 +216,20 @@ def GenerateZooCommunityChestContent(f,gameInfo,buildingSettings,animalsReqs):
         if gameInfo.zooLevel >= 4:
             AddByWeight(chestContent,"zooServiceMaterial3",10)
 
+
     # Материалы для апгрейдов
+    if needUpgradeBuildingMaterial:
+        AddByWeight(chestContent,needUpgradeBuildingMaterialId,80)
+        print "adding "+needUpgradeBuildingMaterialId+" with weight 80"
+        helped[needUpgradeBuildingMaterialId] = "upgrademat"
+        f.write("<div class='normalSmall'><i>helping with <u>"+needUpgradeBuildingMaterialId+"</u> for upgrade (weight 80)</i></div>")
+
 
     # Материалы для амбара
     AddByWeight(chestContent,"hammerMat",3)
     AddByWeight(chestContent,"nailMat",3)
     AddByWeight(chestContent,"paintRedMat",3)
+
 
     # Материалы для расширений
     AddByWeight(chestContent,"zooLandDeed",2)
