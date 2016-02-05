@@ -161,7 +161,6 @@ def GenerateZooCommunityChestContent():
     #     f.write(key+": "+str(value)+", ")
     # f.write("<br><br></div>")
 
-
     # Проверяем нужныли в зоопарке обычные материалы для строящихся или не завершенных зданий
     needBuildingMaterial = False
     needBuildingMaterialId = "zooBuildingMaterial"
@@ -198,6 +197,17 @@ def GenerateZooCommunityChestContent():
 
 
     # Проверяем нужны ли материалы на апгрейд амбара (уровень амбара меньше ожидаемого)
+    needWarehauseMaterial = False
+    needWarehauseMaterialId = "hammerMat"
+    if random.randint(1,100) < 20:
+        _upgradeMaterials = []
+        AddByWeight(_upgradeMaterials,"hammerMat",45)
+        AddByWeight(_upgradeMaterials,"nailMat",45)
+        AddByWeight(_upgradeMaterials,"paintRedMat",45)
+
+        needWarehauseMaterial = True
+        needWarehauseMaterialId = GetRandomMaterialOrBrickDef(_upgradeMaterials)
+
 
     # Проверяем нужны ли материалы на расширения в зоопарке
     # Если в зоопарке уже нужны материалы для расширени
@@ -240,9 +250,16 @@ def GenerateZooCommunityChestContent():
 
 
     # Материалы для амбара
-    AddByWeight(chestContent,"hammerMat",3)
-    AddByWeight(chestContent,"nailMat",3)
-    AddByWeight(chestContent,"paintRedMat",3)
+    if needWarehauseMaterial:
+        AddByWeight(chestContent,needWarehauseMaterialId,20)
+        print "adding "+needWarehauseMaterialId+" with weight 20"
+        helped[needWarehauseMaterialId] = "warehousemat"
+        writeLog("normalSmall","<i>helping with <u>"+needWarehauseMaterialId+"</u> for warehouse upgrade (weight 20)</i>")
+    else:
+        AddByWeight(chestContent,"hammerMat",3)
+        AddByWeight(chestContent,"nailMat",3)
+        AddByWeight(chestContent,"paintRedMat",3)
+
 
     # Материалы для расширений
     AddByWeight(chestContent,"zooLandDeed",2)
