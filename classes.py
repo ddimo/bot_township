@@ -4,6 +4,7 @@ class gameInfoClass:
         self.chestWithoutLandDeed = 0
         self.playerLevel = 40
         self.zooLevel = 1
+        self.zooExpandLevel = 0
         self.rating = 0
 
         self.Brick = 30
@@ -34,6 +35,7 @@ class gameInfoClass:
         self.communitiesUpgrades = dict()
 
         self.upgradeWait = 0
+        self.chestWithoutLandDeed = 0
 
 class buildingSettingsClass:
     def __init__(self):
@@ -70,6 +72,14 @@ class animalReqsClass:
         self.gem4 = 0
 
 
+
+class zooExpansionClass:
+    def __init__(self):
+        self.animals = 0
+        self.zooLandDeed = 0
+        self.pick = 0
+        self.axe = 0
+        self.TNT = 0
 
 
 

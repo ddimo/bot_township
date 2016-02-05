@@ -210,7 +210,54 @@ def GenerateZooCommunityChestContent():
 
 
     # Проверяем нужны ли материалы на расширения в зоопарке
+    needZooExpandMaterial = False
+    needZooExpandMaterialId = "zooLandDeed"
+
+    zoocurrentExpand = gameInfo.zooExpandLevel
+    nextExp = zoocurrentExpand+1
+
     # Если в зоопарке уже нужны материалы для расширени
+    if expandReqs[nextExp].zooLandDeed > 0:
+        zooLandDeedCount = gameInfo.zooLandDeed
+        pickCount = gameInfo.pick
+        axeCount = gameInfo.axe
+        tntCount = gameInfo.TNT
+
+        zooLandDeedNeeded = expandReqs[nextExp].zooLandDeed - zooLandDeedCount
+        pickNeeded = expandReqs[nextExp].pick - pickCount
+        axeNeeded = expandReqs[nextExp].axe - axeCount
+        tntNeeded = expandReqs[nextExp].TNT - tntCount
+
+        alreadyHelped = False
+
+        if zooLandDeedNeeded > 0 and gameInfo.chestWithoutLandDeed >= 10:
+            gameInfo.chestWithoutLandDeed = 0
+            return "zooLandDeed", "chestWithoutLandDeed"
+
+        if zooLandDeedNeeded > 1 or (zooLandDeedNeeded == 1 and random.randint(0,100) < 80):
+            needZooExpandMaterialId = "zooLandDeed"
+            alreadyHelped = True
+
+        if not alreadyHelped or (pickNeeded > 0 and random.randint(0,100) < 50):
+            if pickNeeded > 1 or (pickNeeded == 1 and random.randint(0,100) < 70):
+                needZooExpandMaterialId = "pick"
+                alreadyHelped = True
+
+        if not alreadyHelped and random.randint(0,100) < 90:
+            if axeNeeded > 1 or (axeNeeded == 1 and random.randint(0,100) < 70):
+                needZooExpandMaterialId = "axe"
+                alreadyHelped = True
+
+        if not alreadyHelped and random.randint(0,100) < 80:
+            if tntNeeded > 1 or (tntNeeded == 1 and random.randint(0,100) < 70):
+                needZooExpandMaterialId = "TNT"
+                alreadyHelped = True
+
+        if alreadyHelped: needZooExpandMaterial = True
+
+
+
+
 
 
     # Проверяем нужно ли подыграть по камням
@@ -262,10 +309,20 @@ def GenerateZooCommunityChestContent():
 
 
     # Материалы для расширений
-    AddByWeight(chestContent,"zooLandDeed",2)
-    AddByWeight(chestContent,"pick",2)
-    AddByWeight(chestContent,"axe",2)
-    AddByWeight(chestContent,"TNT",1)
+    if needZooExpandMaterial:
+        AddByWeight(chestContent,needZooExpandMaterialId,45)
+        print "adding "+needZooExpandMaterialId+" with weight 45"
+        helped[needZooExpandMaterialId] = "expandmat"
+        writeLog("normalSmall","<i>helping with <u>"+needZooExpandMaterialId+"</u> for expand (weight 45)</i>")
+    else:
+        if expandReqs[nextExp].zooLandDeed > 0:
+            AddByWeight(chestContent,"zooLandDeed",2)
+        if expandReqs[nextExp].pick > 0:
+            AddByWeight(chestContent,"pick",2)
+        if expandReqs[nextExp].axe > 0:
+            AddByWeight(chestContent,"axe",2)
+        if expandReqs[nextExp].TNT > 0:
+            AddByWeight(chestContent,"TNT",1)
 
     # Камни
     if needGem:
@@ -544,6 +601,23 @@ def FindOldestNotFullPaddock():
                     lowestLevelId = key
 
     return [lowestLevelId,lowestLevel]
+
+
+def TryExpand():
+    print "<<< lets try to expand"
+    curExpand = gameInfo.zooExpandLevel
+    totalAnimals = sum(gameInfo.paddocksTotalAnimals.itervalues())
+    for key, value in enumerate(expandReqs):
+        if key <= curExpand: continue
+        if value.animals > totalAnimals: break
+        if value.zooLandDeed <= gameInfo.zooLandDeed and value.axe <= gameInfo.axe and value.pick <= gameInfo.pick and value.TNT <= gameInfo.TNT:
+            # хватает материалов на расширение
+            writeLog("normal","<font color='red'>expanding #"+str(key)+" because enough materials and totalAnimals = "+str(totalAnimals)+"</font>")
+            gameInfo.zooExpandLevel += 1
+            gameInfo.zooLandDeed -= value.zooLandDeed
+            gameInfo.axe -= value.axe
+            gameInfo.pick -= value.pick
+            gameInfo.TNT -= value.TNT
 
 
 

@@ -146,6 +146,23 @@ for levelupElem in zooLevelups:
 # ratingForChest[level] - сколько рейтинга нужно на подарок во время уровня level
 # ratingToLevelup[level] - сколько требуется рейтинга суммарно для перехода на уровень level
 
+
+# соберем инфу о расширениях в зоопарке
+expandXml = xml.parse('../township/base/expand_zoo.xml', parser=CommentsParser())
+expandXmlRoot = expandXml.getroot()
+for expandElem in expandXmlRoot:
+    curExpand = zooExpansionClass()
+    if 'animals' in expandElem.attrib: curExpand.animals = int(expandElem.attrib['animals'])
+    if 'zooLandDeed' in expandElem.attrib: curExpand.zooLandDeed = int(expandElem.attrib['zooLandDeed'])
+    if 'pick' in expandElem.attrib: curExpand.pick = int(expandElem.attrib['pick'])
+    if 'axe' in expandElem.attrib: curExpand.axe = int(expandElem.attrib['axe'])
+    if 'TNT' in expandElem.attrib: curExpand.TNT = int(expandElem.attrib['TNT'])
+    expandReqs.append(curExpand)
+
+# expandReqs[number] = class (animals,zooLandDeed, pick, axe, TNT)
+
+
+
 writeHtmlHead()
 
 # в начале строим туториальный загон для медведя, покупаем медведя и строим кафе
@@ -226,6 +243,10 @@ while gameInfo.paddocksTotalAnimals['paddock_zebra']<4:
     # пробежимся по доступным загонам и проверим, можно ли купить животное
     while TryBuyNewAnimal():
         print "try to buy another animal"
+
+    # попробуем купить расширение
+    while TryExpand():
+        print "try to expand"
 
     f.write("<div class='normalSmall'>&nbsp;</div>")
 
