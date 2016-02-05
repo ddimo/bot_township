@@ -4,7 +4,7 @@ from functions import *
 import xml.etree.ElementTree as xml
 
 
-MAX_WAIT_FOR_UPGRADE = 20 # сколько шагов максимум ждем прежде чем купим апгрейд даже если копим на здание
+MAX_WAIT_FOR_UPGRADE = 100 # сколько шагов максимум ждем прежде чем купим апгрейд даже если копим на здание
 
 gameBalanceXml = xml.parse('../township/base/GameBalance.xml', parser=CommentsParser())
 gameBalanceRoot = gameBalanceXml.getroot()
@@ -179,7 +179,8 @@ gameInfo.communitiesUpgrades['zoo_eatery'] = 2
 #for x in range(0,35):
 x = 0
 # gameInfo.paddocksTotalAnimals['paddock_zebra'] = 0
-while gameInfo.paddocksTotalAnimals['paddock_zebra']<4:
+# while gameInfo.paddocksTotalAnimals['paddock_zebra']<4:
+while gameInfo.zooLevel<11:
     x += 1
     print ""
     writeLog("normal","&nbsp;<br>&nbsp;<br>&nbsp;<br>&nbsp;<br>&nbsp;")
@@ -212,8 +213,25 @@ while gameInfo.paddocksTotalAnimals['paddock_zebra']<4:
     # проверим, возможно надо левелапнуть
     if gameInfo.rating > ratingToLevelup[gameInfo.zooLevel+1]:
         gameInfo.zooLevel += 1
-        # print "<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><> LEVELUP!!!!!!!"
-        writeLog("darkblue", "<b>LEVELUP! now on level "+str(gameInfo.zooLevel)+"</b>")
+        line = "<b>LEVELUP! now on level "+str(gameInfo.zooLevel)+"</b>"
+        line += "<br>new buildings available: "
+        # buildingSettings["zoo_caffe"].zooLevel - требуемый уровень
+        for key, value in buildingSettings.iteritems():
+            if value.zooLevel == gameInfo.zooLevel:
+                line += "<b>"+key+"</b>, "
+        line += "<br>not yet built: "
+        for key, value in buildingSettings.iteritems():
+            if value.zooLevel < gameInfo.zooLevel:
+                if ("paddock_" in key and gameInfo.paddocks[key] == 0) or ("zoo_" in key and gameInfo.communities[key] == 0):
+                    line += "<font color='darkred'><b>"+key+"</b></font> (L"+str(value.zooLevel)+"), "
+        line += "<br>expansion level: <b>"+str(gameInfo.zooExpandLevel)+"</b> "
+        totalAnimals = sum(gameInfo.paddocksTotalAnimals.itervalues())
+        for key, value in enumerate(expandReqs):
+            if key > 0:
+                if value.animals <= totalAnimals: maxExpand = key
+        line += " (out of "+str(maxExpand)+" possible)"
+        writeLog("darkblue", line)
+        writeShortLog("darkblue", line)
 
     # пробежимся по всем зданиям и проверим, нельзя ли построить доступное
     while TryBuild():
@@ -237,7 +255,8 @@ while gameInfo.paddocksTotalAnimals['paddock_zebra']<4:
             if gameInfo.upgradeWait < MAX_WAIT_FOR_UPGRADE:
                 line = GetBuildingReqsLine("build",availableToBuild,0)
                 writeLog("normalSmall","not upgrading, saving ("+str(gameInfo.upgradeWait)+" times already) for "+availableToBuild+" (needed: "+line+")")
-                gameInfo.upgradeWait += 1
+                if gameInfo.communities['zoo_eatery'] == 1: # пока не построили zoo_eatery - не будем апгрейдить вообще
+                    gameInfo.upgradeWait += 1
 
 
     # пробежимся по доступным загонам и проверим, можно ли купить животное
@@ -268,7 +287,10 @@ while gameInfo.paddocksTotalAnimals['paddock_zebra']<4:
     f.write("<div class='normalSmallBlue'>")
     f.write(str(gameInfo.Brick)+" <img src='img/Brick.png' valign='middle'> &nbsp; ")
     f.write(str(gameInfo.Plita)+" <img src='img/Plita.png' valign='middle'> &nbsp; ")
-    f.write(str(gameInfo.Glass)+" <img src='img/Glass.png' valign='middle'>")
+    f.write(str(gameInfo.Glass)+" <img src='img/Glass.png' valign='middle'> &nbsp; ")
+    f.write(str(gameInfo.pick)+" <img src='img/pick.png' valign='middle'> &nbsp; ")
+    f.write(str(gameInfo.axe)+" <img src='img/axe.png' valign='middle'> &nbsp; ")
+    f.write(str(gameInfo.TNT)+" <img src='img/TNT.png' valign='middle'> &nbsp; ")
     f.write("</div>")
 
     print ""

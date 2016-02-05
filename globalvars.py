@@ -9,3 +9,4 @@ ratingToLevelup = dict()
 ratingForChest = dict()
 
 f = open ("result.html","w")
+fshort = open ("short_result.html","w")

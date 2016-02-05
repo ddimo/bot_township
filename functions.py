@@ -8,13 +8,18 @@ import xml.etree.ElementTree as xml
 def writeLog(divclass,text):
     f.write("<div class='"+divclass+"'>"+text+"</div>")
 
+def writeShortLog(divclass,text):
+    fshort.write("<div class='"+divclass+"'>"+text+"</div>")
+
 def writeHtmlHead():
     with open("_htmlhead") as fp:
         for line in fp:
             f.write(line)
+            fshort.write(line)
 
 def writeHtmlFoot():
     f.write("<br><br></body></html>")
+    fshort.write("<br><br></body></html>")
 
 class CommentsParser(xml.XMLTreeBuilder):
 
@@ -142,6 +147,7 @@ def GenerateZooCommunityChestContent():
         return "pick", "firstDrops"
 
     chestContent = []
+    chestWithoutLandDeed = gameInfo.chestWithoutLandDeed
 
     # заполняем список всех требущихся материалов в недостровенных зданиях
     currentZooMaterialReqs = FillCurrentOrdersOnlyZoo()
@@ -230,7 +236,7 @@ def GenerateZooCommunityChestContent():
 
         alreadyHelped = False
 
-        if zooLandDeedNeeded > 0 and gameInfo.chestWithoutLandDeed >= 10:
+        if zooLandDeedNeeded > 0 and chestWithoutLandDeed >= 10:
             gameInfo.chestWithoutLandDeed = 0
             return "zooLandDeed", "chestWithoutLandDeed"
 
@@ -256,10 +262,6 @@ def GenerateZooCommunityChestContent():
         if alreadyHelped: needZooExpandMaterial = True
 
 
-
-
-
-
     # Проверяем нужно ли подыграть по камням
     needGem = False
     needGemId = "gem1"
@@ -267,6 +269,9 @@ def GenerateZooCommunityChestContent():
     needGemId = needGemResult[0]
     needGem = needGemResult[1]
     # если нужно то возвращаем какой камень будет подыгрывать (needGem)
+
+
+
 
     writeLog("normalSmall","--------------------------------------------------------------------------------------------------------------------")
 
@@ -277,9 +282,10 @@ def GenerateZooCommunityChestContent():
         helped[needBuildingMaterialId] = "buildingmat"
         writeLog("normalSmall","<i>helping with <u>"+needBuildingMaterialId+"</u> for build (weight 80)</i>")
     else:
-        AddByWeight(chestContent,"Brick",10)
-        AddByWeight(chestContent,"Glass",10)
-        AddByWeight(chestContent,"Plita",10)
+        if gameInfo.zooLevel < 10: # в коде условие по playerLevel<50
+            AddByWeight(chestContent,"Brick",10)
+            AddByWeight(chestContent,"Glass",10)
+            AddByWeight(chestContent,"Plita",10)
         AddByWeight(chestContent,"zooBuildingMaterial",20)
         AddByWeight(chestContent,"zooServiceMaterial1",10)
         if gameInfo.zooLevel >= 2:
@@ -328,10 +334,10 @@ def GenerateZooCommunityChestContent():
     if needGem:
         AddByWeight(chestContent,needGemId,65)
         helped[needGemId] = "needgem"
-        print "!!!!!!!!!!!!!!!!!!! adding "+needGemId+" with weight 65"
+        print "adding "+needGemId+" with weight 65"
         f.write("<div class='normalSmall'><i>helping with <u>"+needGemId+"</u> (weight <b>65</b>, from needGem)</i></div>")
     else:
-        chestGemContent = []
+        _gems = []
         gemId = GetNextGem()
         if gemId:
             AddByWeight(chestContent,gemId,65)
@@ -339,11 +345,11 @@ def GenerateZooCommunityChestContent():
             print "adding "+gemId+" with weight 65 from GetNextGem"
             f.write("<div class='normalSmall'><i>helping with <u>"+gemId+"</u> (weight <b>65</b>, from GetNextGem)</i></div>")
         else:
-            AddByWeight(chestGemContent,"gem1",45)
-            AddByWeight(chestGemContent,"gem2",21)
-            AddByWeight(chestGemContent,"gem3",17)
-            AddByWeight(chestGemContent,"gem4",17)
-            randomGem = GetRandomMaterialOrBrickDef(chestGemContent)
+            AddByWeight(_gems,"gem1",45)
+            AddByWeight(_gems,"gem2",21)
+            AddByWeight(_gems,"gem3",17)
+            AddByWeight(_gems,"gem4",17)
+            randomGem = GetRandomMaterialOrBrickDef(_gems)
             AddByWeight(chestContent,randomGem,65) # <<<<<<<<<<<<<<<<<<<<<<<<,, все равно нехило подыгрывает на камни
             helped[randomGem] = "randomgem"
             print "adding "+randomGem+" with weight 65 without helping"
@@ -351,6 +357,16 @@ def GenerateZooCommunityChestContent():
 
 
     randomMat = GetRandomMaterialOrBrickDef(chestContent)
+    if randomMat == "zooLandDeed":
+        gameInfo.chestWithoutLandDeed = 0
+    else:
+        zooLandDeedCount = gameInfo.zooLandDeed
+        zooLandDeedNeeded = expandReqs[nextExp].zooLandDeed - zooLandDeedCount
+        if zooLandDeedNeeded > 0:
+            gameInfo.chestWithoutLandDeed += 1
+        elif chestWithoutLandDeed > 0:
+            gameInfo.chestWithoutLandDeed = 0
+
     if randomMat in helped:
         wasHelped = helped.get(randomMat)
 

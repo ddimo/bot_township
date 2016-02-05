@@ -69,11 +69,11 @@ div.lightgreen {
 div.darkblue {
 	background-color: #99CCFF; 
 	font-family:Verdana;  
-	text-align: right;
+	text-align: left;
 	font-size:12pt; 
 	padding-top:5px; 
 	padding-bottom:5px; 
-	padding-right:10px;
+	padding-left:10px;
 	margin-top:5px;
 	margin-bottom:5px;
 }
