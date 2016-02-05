@@ -149,11 +149,11 @@ for levelupElem in zooLevelups:
 writeHtmlHead()
 
 # в начале строим туториальный загон для медведя, покупаем медведя и строим кафе
-f.write("<div class='pink'>building <b>paddock_bear</b> (tutorial)</div>")
+writeLog("pink","building <b>paddock_bear</b> (tutorial)")
 gameInfo.paddocks["paddock_bear"] = 1
-f.write("<div class='orange'>buying new animal for <b>paddock_bear</b> (tutorial)</div>")
+writeLog("orange","buying new animal for <b>paddock_bear</b> (tutorial)")
 gameInfo.paddocksTotalAnimals["paddock_bear"] = 1
-f.write("<div class='lime'>building <b>zoo_caffe</b> (tutorial)</div>")
+writeLog("lime","building <b>zoo_caffe</b> (tutorial)")
 gameInfo.communities["zoo_caffe"] = 1
 
 gameInfo.communitiesUpgrades['zoo_eatery'] = 2
@@ -165,7 +165,7 @@ x = 0
 while gameInfo.paddocksTotalAnimals['paddock_zebra']<4:
     x += 1
     print ""
-    f.write("<div class='normal'>&nbsp;<br>&nbsp;<br>&nbsp;<br>&nbsp;<br>&nbsp;</div>")
+    writeLog("normal","&nbsp;<br>&nbsp;<br>&nbsp;<br>&nbsp;<br>&nbsp;")
     print str(x)+")"
     # получили рандомный материал в дропе и увеличили его количество в сохранке
     chestContentTuple = GenerateZooCommunityChestContent()
@@ -176,34 +176,31 @@ while gameInfo.paddocksTotalAnimals['paddock_zebra']<4:
         AddGems(chestContent)
 
     if chestContentTuple[1] == "buildingmat" or chestContentTuple[1] == "upgrademat":
-        f.write("<div class='normalBig'>#"+str(x)+" &mdash; <img src='img/"+chestContent+".png' valign='middle'> <font color='red'><b>"+chestContent+"</b></font></div>")
+        writeLog("normalBig","#"+str(x)+" &mdash; <img src='img/"+chestContent+".png' valign='middle'> <font color='red'><b>"+chestContent+"</b></font>")
     elif chestContentTuple[1] == "needgem":
-        f.write("<div class='normalBig'>#"+str(x)+" &mdash; <img src='img/"+chestContent+".png' valign='middle'> <font color='blue'><b>"+chestContent+"</b></font> <font size='2'>(from needGem)</font></div>")
+        writeLog("normalBig","#"+str(x)+" &mdash; <img src='img/"+chestContent+".png' valign='middle'> <font color='blue'><b>"+chestContent+"</b></font> <font size='2'>(from needGem)</font>")
     elif chestContentTuple[1] == "randomgem":
-        f.write("<div class='normalBig'>#"+str(x)+" &mdash; <img src='img/"+chestContent+".png' valign='middle'> <font color='lightblue'><b>"+chestContent+"</b></font> <font size='2'>(from randomGem)</font></div>")
+        writeLog("normalBig","#"+str(x)+" &mdash; <img src='img/"+chestContent+".png' valign='middle'> <font color='green'><b>"+chestContent+"</b></font> <font size='2'>(from randomGem)</font>")
     elif chestContentTuple[1] == "getnextgem":
-        f.write("<div class='normalBig'>#"+str(x)+" &mdash; <img src='img/"+chestContent+".png' valign='middle'> <font color='lightblue'><b>"+chestContent+"</b></font> <font size='2'>(from GetNextGem)</font></div>")
+        writeLog("normalBig","#"+str(x)+" &mdash; <img src='img/"+chestContent+".png' valign='middle'> <font color='green'><b>"+chestContent+"</b></font> <font size='2'>(from GetNextGem)</font>")
     else:
-        f.write("<div class='normalBig'>#"+str(x)+" &mdash; <img src='img/"+chestContent+".png' valign='middle'> "+chestContent+"</div>")
+        writeLog("normalBig","#"+str(x)+" &mdash; <img src='img/"+chestContent+".png' valign='middle'> "+chestContent+" ")
 
     print "dropped", chestContent
 
     # добавим рейтинг подарка
     gameInfo.rating = gameInfo.rating + ratingForChest[gameInfo.zooLevel]
     #print "current sum rating is "+str(gameInfo.rating)
-    #f.write("<div class='normal'>current sum rating is "+str(gameInfo.rating)+"</div>")
 
     # проверим, возможно надо левелапнуть
     if gameInfo.rating > ratingToLevelup[gameInfo.zooLevel+1]:
         gameInfo.zooLevel += 1
         # print "<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><> LEVELUP!!!!!!!"
-        f.write("<div class='darkblue'><b>LEVELUP! now on level "+str(gameInfo.zooLevel)+"</b></div>")
-    #print "current level is "+str(gameInfo.zooLevel)
+        writeLog("darkblue", "<b>LEVELUP! now on level "+str(gameInfo.zooLevel)+"</b>")
 
     # пробежимся по всем зданиям и проверим, нельзя ли построить доступное
     while TryBuild():
         print "try building more"
-        #f.write("<div class='normal'>try building more</div>")
 
     # пробежимся по доступным апгрейдам и проверим, нельзя ли проапгрейдить комьюнити
     availableUpgrade = FindUpdateToBuy()
@@ -211,26 +208,24 @@ while gameInfo.paddocksTotalAnimals['paddock_zebra']<4:
         print "found upgrade to buy"
         ubid = availableUpgrade[0] # идентификатор здания
         un = availableUpgrade[1] # номер апгрейда
-        f.write("<div class='normalSmall'>")
         line = GetBuildingReqsLine("upgrade",ubid,un)
-        f.write("<i>enough materials for upgrade #"+str(un)+" in "+str(ubid)+" (needed: "+line+")</div>")
+        writeLog("normalSmall","<i>enough materials for upgrade #"+str(un)+" in "+str(ubid)+" (needed: "+line+")")
         availableToBuild = FindAvailableNotBuilt()
         if not availableToBuild or gameInfo.upgradeWait >= MAX_WAIT_FOR_UPGRADE:
             DoUpgrade(ubid,un)
-            f.write("<div class='normalSmall'><font color='red'>bought upgrade</font></div>")
+            writeLog("normalSmall", "<font color='red'>bought upgrade</font>")
             gameInfo.upgradeWait = 0
         else:
             # не будем покупать апгрейд пока копим на строительство доступного загона/комьюнити
             if gameInfo.upgradeWait < MAX_WAIT_FOR_UPGRADE:
                 line = GetBuildingReqsLine("build",availableToBuild,0)
-                f.write("<div class='normalSmall'>not upgrading, saving ("+str(gameInfo.upgradeWait)+" times already) for "+availableToBuild+" (needed: "+line+")</div>")
+                writeLog("normalSmall","not upgrading, saving ("+str(gameInfo.upgradeWait)+" times already) for "+availableToBuild+" (needed: "+line+")")
                 gameInfo.upgradeWait += 1
 
 
     # пробежимся по доступным загонам и проверим, можно ли купить животное
     while TryBuyNewAnimal():
         print "try to buy another animal"
-        #f.write("<div class='normalSmall'>try to buy another animal</div>")
 
     f.write("<div class='normalSmall'>&nbsp;</div>")
 

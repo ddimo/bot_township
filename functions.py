@@ -5,6 +5,9 @@ from globalvars import *
 from collections import Counter
 import xml.etree.ElementTree as xml
 
+def writeLog(divclass,text):
+    f.write("<div class='"+divclass+"'>"+text+"</div>")
+
 def writeHtmlHead():
     with open("_htmlhead") as fp:
         for line in fp:
@@ -53,10 +56,11 @@ def GetRandomMaterialOrBrickDef(chestContent):
     chestContentLen = len(chestContent)
     rand = random.randint(0,chestContentLen-1)
     counter = Counter(chestContent)
-    f.write("<div class='normalSmall'><i>random from weights: ")
+    lineToWrite = "<i>random from weights: "
     for key, value in counter.iteritems():
-        f.write(key+" &mdash; "+str(value)+", ")
-    f.write("</i> ---> result: <u>"+chestContent[rand]+"</u></div>")
+        lineToWrite = lineToWrite+key+" &mdash; "+str(value)+", "
+    lineToWrite += "</i> ---> result: <u>"+chestContent[rand]+"</u>"
+    writeLog("normalSmall",lineToWrite)
     return chestContent[rand]
 
 def FillCurrentOrdersOnlyZoo():
@@ -93,7 +97,7 @@ def FillCurrentZooUpgradePrices():
                         if upSettings.zooServiceMaterial1 > 0: curReqs.append(["zooServiceMaterial1", upSettings.zooServiceMaterial1])
                         if upSettings.zooServiceMaterial2 > 0: curReqs.append(["zooServiceMaterial2", upSettings.zooServiceMaterial2])
                         if upSettings.zooServiceMaterial3 > 0: curReqs.append(["zooServiceMaterial3", upSettings.zooServiceMaterial3])
-                        f.write("<div class='normalSmall'><i>upgrade #"+str(upNum)+" is available for "+key+" because totalAnimals = "+str(totalAnimals)+"</div> ")
+                        writeLog("normalSmall","<i>upgrade #"+str(upNum)+" is available for "+key+" because totalAnimals = "+str(totalAnimals))
 
     return curReqs
 
@@ -189,7 +193,6 @@ def GenerateZooCommunityChestContent():
         for key,value in currentZooUpgradeMaterialsReqs:
             AddByWeight(_buildingUpgradeMaterials,key,value+gameInfo.zooLevel)
     if _buildingUpgradeMaterials:
-        # f.write("<div class='normalSmall'><i>finding mat to help for update</i></div>")
         needUpgradeBuildingMaterial = True
         needUpgradeBuildingMaterialId = GetRandomMaterialOrBrickDef(_buildingUpgradeMaterials)
 
@@ -208,14 +211,14 @@ def GenerateZooCommunityChestContent():
     needGem = needGemResult[1]
     # если нужно то возвращаем какой камень будет подыгрывать (needGem)
 
-    f.write("<div class='normalSmall'>--------------------------------------------------------------------------------------------------------------------</div>")
+    writeLog("normalSmall","--------------------------------------------------------------------------------------------------------------------")
 
     # Материалы для зданий
     if needBuildingMaterial:
         AddByWeight(chestContent,needBuildingMaterialId,80)
         print "adding "+needBuildingMaterialId+" with weight 80"
         helped[needBuildingMaterialId] = "buildingmat"
-        f.write("<div class='normalSmall'><i>helping with <u>"+needBuildingMaterialId+"</u> for build (weight 80)</i></div>")
+        writeLog("normalSmall","<i>helping with <u>"+needBuildingMaterialId+"</u> for build (weight 80)</i>")
     else:
         AddByWeight(chestContent,"Brick",10)
         AddByWeight(chestContent,"Glass",10)
@@ -233,7 +236,7 @@ def GenerateZooCommunityChestContent():
         AddByWeight(chestContent,needUpgradeBuildingMaterialId,80)
         print "adding "+needUpgradeBuildingMaterialId+" with weight 80"
         helped[needUpgradeBuildingMaterialId] = "upgrademat"
-        f.write("<div class='normalSmall'><i>helping with <u>"+needUpgradeBuildingMaterialId+"</u> for upgrade (weight 80)</i></div>")
+        writeLog("normalSmall","<i>helping with <u>"+needUpgradeBuildingMaterialId+"</u> for upgrade (weight 80)</i>")
 
 
     # Материалы для амбара
