@@ -237,8 +237,6 @@ while gameInfo.zooLevel<11:
 
     # добавим рейтинг подарка
     gameInfo.rating = gameInfo.rating + ratingForChest[gameInfo.zooLevel]
-    #print "current sum rating is "+str(gameInfo.rating)
-
 
     # обрабатываем момент LEVELUP
     if gameInfo.rating > ratingToLevelup[gameInfo.zooLevel+1]:
@@ -260,14 +258,16 @@ while gameInfo.zooLevel<11:
         for key, value in buildingSettings.iteritems():
             if value.zooLevel < gameInfo.zooLevel:
                 if "paddock_" in key and gameInfo.paddocks[key] == 1 and gameInfo.paddocksTotalAnimals[key] < 4:
-                    line += "<font color='darkgreen'><b>"+key+"</b></font> (L"+str(value.zooLevel)+", "+str(gameInfo.paddocksTotalAnimals[key])+" animals), "
+                    line += "<font color='darkgreen'><b>"+key+"</b></font> (L"+str(value.zooLevel)+", "+str(gameInfo.paddocksTotalAnimals[key])+"/4 animals), "
 
-        line += "<br>expansion level: <b>"+str(gameInfo.zooExpandLevel)+"</b> "
+        line += "<br>expansion level: <b>"+str(gameInfo.zooExpandLevel)+"</b>"
         totalAnimals = sum(gameInfo.paddocksTotalAnimals.itervalues())
+        maxExpand = 0
         for key, value in enumerate(expandReqs):
             if key > 0:
-                if value.animals <= totalAnimals: maxExpand = key
-        line += " (out of "+str(maxExpand)+" possible)"
+                if value.animals <= totalAnimals:
+                    maxExpand = key
+        line += "/"+str(maxExpand)
 
         line += "<br><b>droped "+str(sum(gameInfo.levelDrop.itervalues()))+" total</b>: <Br> <small>"
         for key, value in sorted(gameInfo.levelDrop.iteritems()):
@@ -290,10 +290,9 @@ while gameInfo.zooLevel<11:
     # пробежимся по доступным апгрейдам и проверим, нельзя ли проапгрейдить комьюнити
     availableUpgrade = FindUpdateToBuy()
     if availableUpgrade:
-        print "found upgrade to buy"
         ubid = availableUpgrade[0] # идентификатор здания
         un = availableUpgrade[1] # номер апгрейда
-        line = GetBuildingReqsLine("upgrade",ubid,un)
+        line = GetBuildingReqsLine("upgrade", ubid, un)
         writeLog("normalSmall","<i>enough materials for upgrade #"+str(un)+" in "+str(ubid)+" (needed: "+line+")")
         availableToBuild = FindAvailableNotBuilt()
         if not availableToBuild or gameInfo.upgradeWait >= MAX_WAIT_FOR_UPGRADE:

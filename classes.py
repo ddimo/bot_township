@@ -22,9 +22,9 @@ class gameInfoClass:
         self.axe = 10
         self.TNT = 10
 
-        self.gem1 = 0
-        self.gem2 = 0
-        self.gem3 = 0
+        self.gem1 = 10
+        self.gem2 = 8
+        self.gem3 = 6
         self.gem4 = 0
 
         self.wasnot = {'gem1':0, 'gem2':0, 'gem3':0, 'gem4':0}

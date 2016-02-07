@@ -73,13 +73,9 @@ def FillCurrentOrdersOnlyZoo():
     for key, value in buildingSettings.iteritems():
         if int(value.zooLevel) <= gameInfo.zooLevel and gameInfo.paddocks.get(value.id) != 1:
             # доступно по уровню и еще не построено
-            if value.Brick > 0: curReqs.append(["Brick", value.Brick])
-            if value.Plita > 0: curReqs.append(["Plita", value.Plita])
-            if value.Glass > 0: curReqs.append(["Glass", value.Glass])
-            if value.zooBuildingMaterial > 0: curReqs.append(["zooBuildingMaterial", value.zooBuildingMaterial])
-            if value.zooServiceMaterial1 > 0: curReqs.append(["zooServiceMaterial1", value.zooServiceMaterial1])
-            if value.zooServiceMaterial2 > 0: curReqs.append(["zooServiceMaterial2", value.zooServiceMaterial2])
-            if value.zooServiceMaterial3 > 0: curReqs.append(["zooServiceMaterial3", value.zooServiceMaterial3])
+            for mat in buildingMatList:
+                if getattr(value, mat) > 0:
+                    curReqs.append([mat, getattr(value, mat)])
 
     return curReqs
 
@@ -95,31 +91,32 @@ def FillCurrentZooUpgradePrices():
                     if upNum <= curBuildingUpgrade: continue
                     elif upSettings.animalsCount > totalAnimals: break
                     else:
-                        if upSettings.Brick > 0: curReqs.append(["Brick", upSettings.Brick])
-                        if upSettings.Plita > 0: curReqs.append(["Plita", upSettings.Plita])
-                        if upSettings.Glass > 0: curReqs.append(["Glass", upSettings.Glass])
-                        if upSettings.zooBuildingMaterial > 0: curReqs.append(["zooBuildingMaterial", upSettings.zooBuildingMaterial])
-                        if upSettings.zooServiceMaterial1 > 0: curReqs.append(["zooServiceMaterial1", upSettings.zooServiceMaterial1])
-                        if upSettings.zooServiceMaterial2 > 0: curReqs.append(["zooServiceMaterial2", upSettings.zooServiceMaterial2])
-                        if upSettings.zooServiceMaterial3 > 0: curReqs.append(["zooServiceMaterial3", upSettings.zooServiceMaterial3])
-                        writeLog("normalSmall","<i>upgrade #"+str(upNum)+" is available for "+key+" because totalAnimals = "+str(totalAnimals))
+                        for mat in buildingMatList:
+                            if getattr(upSettings, mat) > 0:
+                                curReqs.append([mat, getattr(upSettings, mat)])
+                        writeLog("normalSmall","<i>upgrade #"+str(upNum)+
+                                    "is available for "+key+" because totalAnimals = "+str(totalAnimals))
 
     return curReqs
 
-    # nextUpgrade = curBuildingUpgrade+1
-    # upgradesReqs[key][nextUpgrade].animalsCount
 
 def FindUpdateToBuy():
     totalAnimals = sum(gameInfo.paddocksTotalAnimals.itervalues())
     for key, value in gameInfo.communities.iteritems():
-        if value == 1:                                                      # если комьюнити построено
-            curBuildingUpgrade = int(gameInfo.communitiesUpgrades[key])     # количество его текущих апгрейдов
-            for upNum, upSettings in enumerate(upgradesReqs[key]):          # пробежимся по всем апгрейдам данного здания
+        if value == 1: # если комьюнити построено
+            curBuildingUpgrade = int(gameInfo.communitiesUpgrades[key]) # количество его текущих апгрейдов
+            for upNum, upSettings in enumerate(upgradesReqs[key]): # пробежимся по всем апгрейдам данного здания
                 if upSettings:
-                    if upNum <= curBuildingUpgrade: continue                # апгрейд уже есть - пропускаем
-                    elif upSettings.animalsCount > totalAnimals: break      # требуемое количество животных больше чем текущее - ушли далеко
-                    else:                                                   # а вот это уже подходящий апгрейд
-                        if upSettings.Brick <= gameInfo.Brick and upSettings.Plita <= gameInfo.Plita and upSettings.Glass <= gameInfo.Glass and upSettings.zooBuildingMaterial <= gameInfo.zooBuildingMaterial and upSettings.zooServiceMaterial1 <= gameInfo.zooServiceMaterial1 and upSettings.zooServiceMaterial2 <= gameInfo.zooServiceMaterial2 and upSettings.zooServiceMaterial3 <= gameInfo.zooServiceMaterial3:
+                    if upNum <= curBuildingUpgrade: continue # апгрейд уже есть - пропускаем
+                    elif upSettings.animalsCount > totalAnimals: break # ушли далеко, прекращаем
+                    else: # а вот это уже подходящий апгрейд
+                        if upSettings.Brick <= gameInfo.Brick and \
+                                        upSettings.Plita <= gameInfo.Plita and \
+                                        upSettings.Glass <= gameInfo.Glass and \
+                                        upSettings.zooBuildingMaterial <= gameInfo.zooBuildingMaterial and \
+                                        upSettings.zooServiceMaterial1 <= gameInfo.zooServiceMaterial1 and \
+                                        upSettings.zooServiceMaterial2 <= gameInfo.zooServiceMaterial2 and \
+                                        upSettings.zooServiceMaterial3 <= gameInfo.zooServiceMaterial3:
                             # материалов хватает для строительства
                             return key, upNum
 
@@ -188,7 +185,7 @@ def GenerateZooCommunityChestContent():
     for key,value in currentZooUpgradeMaterialsReqs:
         currentZooUpgradeMaterialsReqs[x] = [key,value-getattr(gameInfo,key)]
         if value-getattr(gameInfo,key) < 0: currentZooUpgradeMaterialsReqs[x] = [key,0]
-        x = x+1
+        x += 1
 
     # Проверяем нужныли в зоопарке материалы для улучшения зданий
     needUpgradeBuildingMaterial = False
@@ -273,12 +270,10 @@ def GenerateZooCommunityChestContent():
 
 
 
-    writeLog("normalSmall","--------------------------------------------------------------------------------------------------------------------")
+    writeLog("normalSmall","-----------------------------------------------------------------------------------------")
 
     # Материалы для зданий
     if needBuildingMaterial:
-        AddByWeight(chestContent,needBuildingMaterialId,80)
-        print "adding "+needBuildingMaterialId+" with weight 80"
         helped[needBuildingMaterialId] = "buildingmat"
         writeLog("normalSmall","<i>helping with <u>"+needBuildingMaterialId+"</u> for build (weight 80)</i>")
     else:
@@ -297,17 +292,17 @@ def GenerateZooCommunityChestContent():
     # Материалы для апгрейдов
     if needUpgradeBuildingMaterial:
         AddByWeight(chestContent,needUpgradeBuildingMaterialId,80)
-        print "adding "+needUpgradeBuildingMaterialId+" with weight 80"
         helped[needUpgradeBuildingMaterialId] = "upgrademat"
-        writeLog("normalSmall","<i>helping with <u>"+needUpgradeBuildingMaterialId+"</u> for upgrade (weight 80)</i>")
+        writeLog("normalSmall","<i>helping with <u>"+needUpgradeBuildingMaterialId+"</u> "
+                 "for upgrade (weight 80)</i>")
 
 
     # Материалы для амбара
     if needWarehauseMaterial:
         AddByWeight(chestContent,needWarehauseMaterialId,20)
-        print "adding "+needWarehauseMaterialId+" with weight 20"
         helped[needWarehauseMaterialId] = "warehousemat"
-        writeLog("normalSmall","<i>helping with <u>"+needWarehauseMaterialId+"</u> for warehouse upgrade (weight 20)</i>")
+        writeLog("normalSmall","<i>helping with <u>"+needWarehauseMaterialId+"</u> "
+                 "for warehouse upgrade (weight 20)</i>")
     else:
         AddByWeight(chestContent,"hammerMat",3)
         AddByWeight(chestContent,"nailMat",3)
@@ -317,9 +312,9 @@ def GenerateZooCommunityChestContent():
     # Материалы для расширений
     if needZooExpandMaterial:
         AddByWeight(chestContent,needZooExpandMaterialId,45)
-        print "adding "+needZooExpandMaterialId+" with weight 45"
         helped[needZooExpandMaterialId] = "expandmat"
-        writeLog("normalSmall","<i>helping with <u>"+needZooExpandMaterialId+"</u> for expand (weight 45)</i>")
+        writeLog("normalSmall","<i>helping with <u>"+needZooExpandMaterialId+"</u> "
+                 "for expand (weight 45)</i>")
     else:
         if expandReqs[nextExp].zooLandDeed > 0:
             AddByWeight(chestContent,"zooLandDeed",2)
@@ -334,26 +329,25 @@ def GenerateZooCommunityChestContent():
     if needGem:
         AddByWeight(chestContent,needGemId,65)
         helped[needGemId] = "needgem"
-        print "adding "+needGemId+" with weight 65"
-        f.write("<div class='normalSmall'><i>helping with <u>"+needGemId+"</u> (weight <b>65</b>, from needGem)</i></div>")
+        writeLog("normalSmall","<i>helping with <u>"+needGemId+"</u> (weight <b>65</b>, from needGem)</i>")
     else:
         _gems = []
         gemId = GetNextGem()
         if gemId:
             AddByWeight(chestContent,gemId,65)
             helped[gemId] = "getnextgem"
-            print "adding "+gemId+" with weight 65 from GetNextGem"
-            f.write("<div class='normalSmall'><i>helping with <u>"+gemId+"</u> (weight <b>65</b>, from GetNextGem)</i></div>")
+            writeLog("normalSmall","<div class='normalSmall'><i>helping with <u>"+gemId+"</u> "
+                     "(weight <b>65</b>, from GetNextGem)</i>")
         else:
             AddByWeight(_gems,"gem1",45)
             AddByWeight(_gems,"gem2",21)
             AddByWeight(_gems,"gem3",17)
             AddByWeight(_gems,"gem4",17)
             randomGem = GetRandomMaterialOrBrickDef(_gems)
-            AddByWeight(chestContent,randomGem,65) # <<<<<<<<<<<<<<<<<<<<<<<<,, все равно нехило подыгрывает на камни
+            AddByWeight(chestContent,randomGem,65) # <<<<<<<<<<<<<<<<<<<<<<<< все равно нехило подыгрывает на камни
             helped[randomGem] = "randomgem"
-            print "adding "+randomGem+" with weight 65 without helping"
-            f.write("<div class='normalSmall'><i>helping with <u>"+randomGem+"</u> (weight <b>65</b>, from randomGem)</i></div>")
+            writeLog("normalSmall","<div class='normalSmall'><i>helping with <u>"+randomGem+"</u> "
+                     "(weight <b>65</b>, from randomGem)</i>")
 
 
     randomMat = GetRandomMaterialOrBrickDef(chestContent)
@@ -404,8 +398,8 @@ def GenerateZooCommunityChestGemManipulation(needGemId,needGem):
                             INDX = random.randint(0,len(differenceGems)-1)
                             needGemId = differenceGems[INDX]
                             needGem = True
-                            print "gem manipulation worked for #"+str(ANIMALS_COUNT+1)+" animal in "+paddock
-                            f.write("<div class='smallGrey'>need <b>"+needGemId+"</b> for animal #"+str(ANIMALS_COUNT+1)+" in <b>"+paddock+"</b></div>")
+                            writeLog("smallGrey","need <b>"+needGemId+"</b> for animal #"+str(ANIMALS_COUNT+1)+" "
+                                     "in <b>"+paddock+"</b>")
                             return needGemId,needGem
                         else:
                             continue
@@ -415,60 +409,47 @@ def GenerateZooCommunityChestGemManipulation(needGemId,needGem):
                             INDX = random.randint(0,len(differenceGems)-1)
                             needGemId = differenceGems[INDX]
                             needGem = True
-                            print "gem manipulation worked for "+str(ANIMALS_COUNT+1)+"animal in "+paddock
-                            f.write("<div class='smallGrey'>need <b>"+needGemId+"</b> for animal #"+str(ANIMALS_COUNT+1)+" in <b>"+paddock+"</b></div>")
+                            writeLog("smallGrey","need <b>"+needGemId+"</b> for animal #"+str(ANIMALS_COUNT+1)+" "
+                                     "in <b>"+paddock+"</b>")
                             return needGemId,needGem
                         else:
                             continue
                     elif not MANIPULATION:
-                        print "gem manipulation failed due to random"
-                        f.write("<div class='normalSmall'>not manipulating gems (random)</div>")
+                        writeLog("normalSmall","not manipulating gems (random)")
                         return needGemId,needGem
                     else:
-                        print "gem manipulation just failed"
-                        f.write("<div class='normalSmall'>no need to manipulate gems</div>")
+                        writeLog("normalSmall","no need to manipulate gems")
                         return needGemId,needGem
 
     return needGemId,needGem
 
 
 def GetNextGem():
-    gems = [gameInfo.gem1,gameInfo.gem2,gameInfo.gem3,gameInfo.gem4]
     foundId = ""
     foundWeight = 0
     defProb = {'gem1':48, 'gem2':27, 'gem3':13, 'gem4':12}
     maxGems = 4
     i = 1
-    # f.write("<div class='normalSmall'><br>GetNextGem:<br>")
-
     while i <= maxGems:
         wasnot = gameInfo.wasnot['gem'+str(i)]
-        # f.write("gem"+str(i)+" wasnot = "+str(wasnot)+"<br>")
         should = 100/defProb['gem'+str(i)]
         if wasnot > should:
             if not foundId or (wasnot/should > foundWeight):
                 foundId = "gem"+str(i)
                 foundWeight = wasnot/should
-        i = i+1
-
-    # f.write("<br></div>")
+        i += 1
     return foundId
 
 
 def AddGems(gemId):
     maxGems = 4
     i = 1
-    # f.write("<div class='normalSmall'><br>AddGems with "+gemId+":<br>")
     while i <= maxGems:
-        var = "wasnot_gem"+str(i)
         if gemId == "gem"+str(i):
             gameInfo.wasnot[gemId] = 0
-            # f.write("gem"+str(i)+" wasnot set to 0<br>")
         else:
             gameInfo.wasnot["gem"+str(i)]+=1
-            # f.write("gem"+str(i)+" wasnot incremented - new is "+str(gameInfo.wasnot['gem'+str(i)])+"<br>")
-        i = i+1
-    # f.write("<br></div>")
+        i += 1
 
 
 def GetDiffrenceGemsForNextPaddockAnimal(paddock):
@@ -494,22 +475,10 @@ def CheckAlreadyBuilt(buildingId):
 
 
 def CheckCanBuild(bsettings):
-    if gameInfo.Brick < bsettings.Brick:
-        return False
-    elif gameInfo.Plita < bsettings.Plita:
-        return False
-    elif gameInfo.Glass < bsettings.Glass:
-        return False
-    elif gameInfo.zooBuildingMaterial < bsettings.zooBuildingMaterial:
-        return False
-    elif gameInfo.zooServiceMaterial1 < bsettings.zooServiceMaterial1:
-        return False
-    elif gameInfo.zooServiceMaterial2 < bsettings.zooServiceMaterial2:
-        return False
-    elif gameInfo.zooServiceMaterial3 < bsettings.zooServiceMaterial3:
-        return False
-    else:
-        return True
+    for mat in buildingMatList:
+        if getattr(gameInfo,mat) < getattr(bsettings,mat):
+            return False
+    return True
 
 
 def DoBuild(bsettings,buildingId):
@@ -518,23 +487,10 @@ def DoBuild(bsettings,buildingId):
         gameInfo.paddocksTotalAnimals[buildingId] = 0
     elif "zoo_" in buildingId:
         gameInfo.communities[buildingId] = 1
-
-    gameInfo.rating = gameInfo.rating + bsettings.bonusRating
-
-    if bsettings.Brick>0:
-        gameInfo.Brick = gameInfo.Brick-bsettings.Brick
-    if bsettings.Plita>0:
-        gameInfo.Plita = gameInfo.Plita-bsettings.Plita
-    if bsettings.Glass>0:
-        gameInfo.Glass = gameInfo.Glass-bsettings.Glass
-    if bsettings.zooBuildingMaterial>0:
-        gameInfo.zooBuildingMaterial = gameInfo.zooBuildingMaterial-bsettings.zooBuildingMaterial
-    if bsettings.zooServiceMaterial1>0:
-        gameInfo.zooServiceMaterial1 = gameInfo.zooServiceMaterial1-bsettings.zooServiceMaterial1
-    if bsettings.zooServiceMaterial2>0:
-        gameInfo.zooServiceMaterial2 = gameInfo.zooServiceMaterial2-bsettings.zooServiceMaterial2
-    if bsettings.zooServiceMaterial3>0:
-        gameInfo.zooServiceMaterial3 = gameInfo.zooServiceMaterial3-bsettings.zooServiceMaterial3
+    gameInfo.rating += bsettings.bonusRating
+    for mat in buildingMatList:
+        if getattr(bsettings,mat) > 0:
+            setattr(gameInfo, mat, getattr(gameInfo,mat)-getattr(bsettings,mat))
 
 
 def FindAvailableNotBuilt():
@@ -553,22 +509,13 @@ def GetBuildingReqsLine(ttype,bid,uid):
     reqs = {}
     line = ""
     if ttype == "build":
-        if buildingSettings[bid].Brick > 0: reqs['Brick'] = buildingSettings[bid].Brick
-        if buildingSettings[bid].Glass > 0: reqs['Glass'] = buildingSettings[bid].Glass
-        if buildingSettings[bid].Plita > 0: reqs['Plita'] = buildingSettings[bid].Plita
-        if buildingSettings[bid].zooBuildingMaterial > 0: reqs['zooBuildingMaterial'] = buildingSettings[bid].zooBuildingMaterial
-        if buildingSettings[bid].zooServiceMaterial1 > 0: reqs['zooServiceMaterial1'] = buildingSettings[bid].zooServiceMaterial1
-        if buildingSettings[bid].zooServiceMaterial2 > 0: reqs['zooServiceMaterial2'] = buildingSettings[bid].zooServiceMaterial2
-        if buildingSettings[bid].zooServiceMaterial3 > 0: reqs['zooServiceMaterial3'] = buildingSettings[bid].zooServiceMaterial3
+        for mat in buildingMatList:
+            if getattr(buildingSettings[bid], mat) > 0:
+                reqs[mat] = getattr(buildingSettings[bid], mat)
     elif ttype == "upgrade":
-        if upgradesReqs[bid][uid].Brick > 0: reqs['Brick'] = upgradesReqs[bid][uid].Brick
-        if upgradesReqs[bid][uid].Glass > 0: reqs['Glass'] = upgradesReqs[bid][uid].Glass
-        if upgradesReqs[bid][uid].Plita > 0: reqs['Plita'] = upgradesReqs[bid][uid].Plita
-        if upgradesReqs[bid][uid].zooBuildingMaterial > 0: reqs['zooBuildingMaterial'] = upgradesReqs[bid][uid].zooBuildingMaterial
-        if upgradesReqs[bid][uid].zooServiceMaterial1 > 0: reqs['zooServiceMaterial1'] = upgradesReqs[bid][uid].zooServiceMaterial1
-        if upgradesReqs[bid][uid].zooServiceMaterial2 > 0: reqs['zooServiceMaterial2'] = upgradesReqs[bid][uid].zooServiceMaterial2
-        if upgradesReqs[bid][uid].zooServiceMaterial3 > 0: reqs['zooServiceMaterial3'] = upgradesReqs[bid][uid].zooServiceMaterial3
-
+        for mat in buildingMatList:
+            if getattr(upgradesReqs[bid][uid], mat) > 0:
+                reqs[mat] = getattr(upgradesReqs[bid][uid], mat)
     i = 0
     for key,value in reqs.iteritems():
         if 0 < i < len(reqs):
@@ -587,40 +534,26 @@ def DoUpgrade(buildingId,upgradeNum):
     curUpgrade = gameInfo.communitiesUpgrades[buildingId]
     if upgradeNum - curUpgrade == 1: # все ок, это апгрейд на 1
         gameInfo.communitiesUpgrades[buildingId] = upgradeNum
-        if upgradesReqs[buildingId][upgradeNum].Brick>0:
-            gameInfo.Brick = gameInfo.Brick-upgradesReqs[buildingId][upgradeNum].Brick
-        if upgradesReqs[buildingId][upgradeNum].Plita>0:
-            gameInfo.Plita = gameInfo.Plita-upgradesReqs[buildingId][upgradeNum].Plita
-        if upgradesReqs[buildingId][upgradeNum].Glass>0:
-            gameInfo.Glass = gameInfo.Glass-upgradesReqs[buildingId][upgradeNum].Glass
-        if upgradesReqs[buildingId][upgradeNum].zooBuildingMaterial>0:
-            gameInfo.zooBuildingMaterial = gameInfo.zooBuildingMaterial-upgradesReqs[buildingId][upgradeNum].zooBuildingMaterial
-        if upgradesReqs[buildingId][upgradeNum].zooServiceMaterial1>0:
-            gameInfo.zooServiceMaterial1 = gameInfo.zooServiceMaterial1-upgradesReqs[buildingId][upgradeNum].zooServiceMaterial1
-        if upgradesReqs[buildingId][upgradeNum].zooServiceMaterial2>0:
-            gameInfo.zooServiceMaterial2 = gameInfo.zooServiceMaterial2-upgradesReqs[buildingId][upgradeNum].zooServiceMaterial2
-        if upgradesReqs[buildingId][upgradeNum].zooServiceMaterial3>0:
-            gameInfo.zooServiceMaterial3 = gameInfo.zooServiceMaterial3-upgradesReqs[buildingId][upgradeNum].zooServiceMaterial3
+        for mat in buildingMatList:
+            if getattr(upgradesReqs[buildingId][upgradeNum], mat) > 0:
+                setattr(gameInfo, mat, getattr(gameInfo,mat)-getattr(upgradesReqs[buildingId][upgradeNum],mat))
     else:
-        f.write("<div class='lightgreen'><font size='+3'>ERROR UPGRADING!</font></div>")
+        writeLog("lightgree","<font size='+3'>ERROR UPGRADING!</font>")
 
 
 def FindOldestNotFullPaddock():
     lowestLevel = 666
     lowestLevelId = "n/a"
     for key, value in gameInfo.paddocks.items():
-        # print key,value
         if value == 1: # на всякий случай
             if gameInfo.paddocksTotalAnimals[key] < 4: # животных меньше 4
                 if buildingSettings[key].zooLevel < lowestLevel:
                     lowestLevel = buildingSettings[key].zooLevel
                     lowestLevelId = key
-
     return [lowestLevelId,lowestLevel]
 
 
 def TryExpand():
-    print "<<< lets try to expand"
     curExpand = gameInfo.zooExpandLevel
     totalAnimals = sum(gameInfo.paddocksTotalAnimals.itervalues())
     for key, value in enumerate(expandReqs):
@@ -628,7 +561,7 @@ def TryExpand():
         if value.animals > totalAnimals: break
         if value.zooLandDeed <= gameInfo.zooLandDeed and value.axe <= gameInfo.axe and value.pick <= gameInfo.pick and value.TNT <= gameInfo.TNT:
             # хватает материалов на расширение
-            writeLog("normal","<font color='red'>expanding #"+str(key)+" because enough materials and totalAnimals = "+str(totalAnimals)+"</font>")
+            writeLog("normal","<font color='red'>expanding #"+str(key)+" (totalAnimals = "+str(totalAnimals)+")</font>")
             gameInfo.zooExpandLevel += 1
             gameInfo.zooLandDeed -= value.zooLandDeed
             gameInfo.axe -= value.axe
@@ -638,70 +571,41 @@ def TryExpand():
 
 
 def TryBuild():
-    print "<<< lets try to build something"
     for key, value in buildingSettings.iteritems():
         if int(value.zooLevel) <= gameInfo.zooLevel:
             if not CheckAlreadyBuilt(value.id):
                 if CheckCanBuild(buildingSettings[value.id]):
                     DoBuild(buildingSettings[value.id],value.id)
-                    print ">>> !!!!!!! enough materials to build "+value.id+", done!"
-
-                    f.write("<div class='lightgreen'>")
-                    f.write("building <b>"+value.id+"</b> &mdash; <small>")
-
-                    if buildingSettings[value.id].Brick:
-                        f.write(str(buildingSettings[value.id].Brick)+" <img src='img/Brick.png' valign='middle'>&nbsp;")
-                    if buildingSettings[value.id].Plita:
-                        f.write(str(buildingSettings[value.id].Plita)+" <img src='img/Plita.png' valign='middle'>&nbsp;")
-                    if buildingSettings[value.id].Glass:
-                        f.write(str(buildingSettings[value.id].Glass)+" <img src='img/Glass.png' valign='middle'>&nbsp;")
-
-                    if buildingSettings[value.id].zooBuildingMaterial:
-                        f.write(str(buildingSettings[value.id].zooBuildingMaterial)+" <img src='img/zooBuildingMaterial.png' valign='middle'>&nbsp;")
-                    if buildingSettings[value.id].zooServiceMaterial1:
-                        f.write(str(buildingSettings[value.id].zooServiceMaterial1)+" <img src='img/zooServiceMaterial1.png' valign='middle'>&nbsp;")
-                    if buildingSettings[value.id].zooServiceMaterial2:
-                        f.write(str(buildingSettings[value.id].zooServiceMaterial2)+" <img src='img/zooServiceMaterial2.png' valign='middle'>&nbsp;")
-                    if buildingSettings[value.id].zooServiceMaterial3:
-                        f.write(str(buildingSettings[value.id].zooServiceMaterial3)+" <img src='img/zooServiceMaterial3.png' valign='middle'>&nbsp;")
-
-                    f.write("</small></div>")
-
-
+                    line = "building <b>"+value.id+"</b> &mdash; <small>"
+                    for mat in buildingMatList:
+                        if getattr(buildingSettings[value.id], mat):
+                            line += str(getattr(buildingSettings[value.id],mat))+" <img src='img/"+mat+".png' valign='middle'>&nbsp;"
+                    line += "</small>"
+                    writeLog("lightgreen",line)
                     return True
-    print ">>> try building completed"
     return False
 
 
 def TryBuyNewAnimal():
-    print "[[[[[[ lets try to buy new animal"
     lowestPaddock = FindOldestNotFullPaddock()
     if lowestPaddock[1] != 666:
         paddockName = lowestPaddock[0]
-        if gameInfo.paddocksTotalAnimals[paddockName] < 4: # избыточная проверка
-            nextAnimalNumber = gameInfo.paddocksTotalAnimals[paddockName]+1
-            print "reqs for "+paddockName+ " animal # "+str(nextAnimalNumber)
-            print vars(animalsReqs[paddockName][nextAnimalNumber])
-            print "now have gems:"
-            print gameInfo.gem1, gameInfo.gem2, gameInfo.gem3, gameInfo.gem4
-            if (animalsReqs[paddockName][nextAnimalNumber].gem1 <= gameInfo.gem1) and (animalsReqs[paddockName][nextAnimalNumber].gem2 <= gameInfo.gem2) and (animalsReqs[paddockName][nextAnimalNumber].gem3 <= gameInfo.gem3) and (animalsReqs[paddockName][nextAnimalNumber].gem4 <= gameInfo.gem4):
-                gameInfo.paddocksTotalAnimals[paddockName] += 1
-                gameInfo.gem1 = gameInfo.gem1 - animalsReqs[paddockName][nextAnimalNumber].gem1
-                gameInfo.gem2 = gameInfo.gem2 - animalsReqs[paddockName][nextAnimalNumber].gem2
-                gameInfo.gem3 = gameInfo.gem3 - animalsReqs[paddockName][nextAnimalNumber].gem3
-                gameInfo.gem4 = gameInfo.gem4 - animalsReqs[paddockName][nextAnimalNumber].gem4
-                print "bought new animal <--------------------------------------------------------------------------"
-                f.write("<div class='orange'>buying new animal for <b>"+paddockName+"</b> (#"+str(nextAnimalNumber)+") &mdash; <small>")
-                if animalsReqs[paddockName][nextAnimalNumber].gem1:
-                    f.write(str(animalsReqs[paddockName][nextAnimalNumber].gem1)+" <img src='img/gem1.png' valign='middle'>&nbsp;")
-                if animalsReqs[paddockName][nextAnimalNumber].gem2:
-                    f.write(str(animalsReqs[paddockName][nextAnimalNumber].gem2)+" <img src='img/gem2.png' valign='middle'>&nbsp;")
-                if animalsReqs[paddockName][nextAnimalNumber].gem3:
-                    f.write(str(animalsReqs[paddockName][nextAnimalNumber].gem3)+" <img src='img/gem3.png' valign='middle'>&nbsp;")
-                if animalsReqs[paddockName][nextAnimalNumber].gem4:
-                    f.write(str(animalsReqs[paddockName][nextAnimalNumber].gem4)+" <img src='img/gem4.png' valign='middle'>&nbsp;")
-                f.write("</small></div>")
-                return True # купили животное в самом старом неполном загоне
+        nextAnimalNumber = gameInfo.paddocksTotalAnimals[paddockName]+1
+        if (animalsReqs[paddockName][nextAnimalNumber].gem1 <= gameInfo.gem1) and \
+                (animalsReqs[paddockName][nextAnimalNumber].gem2 <= gameInfo.gem2) and \
+                (animalsReqs[paddockName][nextAnimalNumber].gem3 <= gameInfo.gem3) and \
+                (animalsReqs[paddockName][nextAnimalNumber].gem4 <= gameInfo.gem4):
+            gameInfo.paddocksTotalAnimals[paddockName] += 1
+            for g in gemsList:
+                setattr(gameInfo, g, getattr(gameInfo,g)-getattr(animalsReqs[paddockName][nextAnimalNumber],g))
+            line = "buying new animal for <b>"+paddockName+"</b> (#"+str(nextAnimalNumber)+") &mdash; <small>"
+            for g in gemsList:
+                if getattr(animalsReqs[paddockName][nextAnimalNumber], g):
+                    line += str(getattr(animalsReqs[paddockName][nextAnimalNumber], g))+" <img src='img/"+g+".png' " \
+                            "valign='middle'>&nbsp;"
+            line += "</small>"
+            writeLog("orange", line)
+            return True # купили животное в самом старом неполном загоне
 
     # если до этого не купили, то попробуем купить в любом загоне из неполных
     for key,value in gameInfo.paddocksTotalAnimals.iteritems():
@@ -709,24 +613,20 @@ def TryBuyNewAnimal():
             if value < 4 and gameInfo.paddocks[key] == 1: # загон еще не полный и он точно построен
                 nextAnimalNumber = value+1
                 paddockName = key
-                if (animalsReqs[paddockName][nextAnimalNumber].gem1 <= gameInfo.gem1) and (animalsReqs[paddockName][nextAnimalNumber].gem2 <= gameInfo.gem2) and (animalsReqs[paddockName][nextAnimalNumber].gem3 <= gameInfo.gem3) and (animalsReqs[paddockName][nextAnimalNumber].gem4 <= gameInfo.gem4):
-                    gameInfo.paddocksTotalAnimals[paddockName] = gameInfo.paddocksTotalAnimals[paddockName]+1
-                    gameInfo.gem1 = gameInfo.gem1 - animalsReqs[paddockName][nextAnimalNumber].gem1
-                    gameInfo.gem2 = gameInfo.gem2 - animalsReqs[paddockName][nextAnimalNumber].gem2
-                    gameInfo.gem3 = gameInfo.gem3 - animalsReqs[paddockName][nextAnimalNumber].gem3
-                    gameInfo.gem4 = gameInfo.gem4 - animalsReqs[paddockName][nextAnimalNumber].gem4
-                    print "bought new animal <--------------------------------------------------------------------------"
-                    f.write("<div class='orange'>buying new animal for <b>"+paddockName+"</b> (#"+str(nextAnimalNumber)+") &mdash; <small>")
-                    if animalsReqs[paddockName][nextAnimalNumber].gem1:
-                        f.write(str(animalsReqs[paddockName][nextAnimalNumber].gem1)+" <img src='img/gem1.png' valign='middle'>&nbsp;")
-                    if animalsReqs[paddockName][nextAnimalNumber].gem2:
-                        f.write(str(animalsReqs[paddockName][nextAnimalNumber].gem2)+" <img src='img/gem2.png' valign='middle'>&nbsp;")
-                    if animalsReqs[paddockName][nextAnimalNumber].gem3:
-                        f.write(str(animalsReqs[paddockName][nextAnimalNumber].gem3)+" <img src='img/gem3.png' valign='middle'>&nbsp;")
-                    if animalsReqs[paddockName][nextAnimalNumber].gem4:
-                        f.write(str(animalsReqs[paddockName][nextAnimalNumber].gem4)+" <img src='img/gem4.png' valign='middle'>&nbsp;")
-                    f.write("</small></div>")
-                    return True
+                if (animalsReqs[paddockName][nextAnimalNumber].gem1 <= gameInfo.gem1) and \
+                        (animalsReqs[paddockName][nextAnimalNumber].gem2 <= gameInfo.gem2) and \
+                        (animalsReqs[paddockName][nextAnimalNumber].gem3 <= gameInfo.gem3) and \
+                        (animalsReqs[paddockName][nextAnimalNumber].gem4 <= gameInfo.gem4):
+                    gameInfo.paddocksTotalAnimals[paddockName] += 1
+                    for g in gemsList:
+                        setattr(gameInfo, g, getattr(gameInfo,g)-getattr(animalsReqs[paddockName][nextAnimalNumber],g))
 
-    print "]]]]]] Try buying animal completed"
+                    line = "buying new animal for <b>"+paddockName+"</b> (#"+str(nextAnimalNumber)+") &mdash; <small>"
+                    for g in gemsList:
+                        if getattr(animalsReqs[paddockName][nextAnimalNumber], g):
+                            line += str(getattr(animalsReqs[paddockName][nextAnimalNumber], g))+ \
+                                    "<img src='img/"+g+".png' valign='middle'>&nbsp;"
+                    line += "</small>"
+                    writeLog("orange", line)
+                    return True
     return False
