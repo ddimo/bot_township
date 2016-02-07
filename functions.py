@@ -110,15 +110,16 @@ def FindUpdateToBuy():
                     if upNum <= curBuildingUpgrade: continue # апгрейд уже есть - пропускаем
                     elif upSettings.animalsCount > totalAnimals: break # ушли далеко, прекращаем
                     else: # а вот это уже подходящий апгрейд
-                        if upSettings.Brick <= gameInfo.Brick and \
-                                        upSettings.Plita <= gameInfo.Plita and \
-                                        upSettings.Glass <= gameInfo.Glass and \
-                                        upSettings.zooBuildingMaterial <= gameInfo.zooBuildingMaterial and \
-                                        upSettings.zooServiceMaterial1 <= gameInfo.zooServiceMaterial1 and \
-                                        upSettings.zooServiceMaterial2 <= gameInfo.zooServiceMaterial2 and \
-                                        upSettings.zooServiceMaterial3 <= gameInfo.zooServiceMaterial3:
-                            # материалов хватает для строительства
+                        # хватит ли нам на него материалов?
+                        canDo = True
+                        for mat in buildingMatList:
+                            if getattr(upSettings,mat) > getattr(gameInfo,mat):
+                                canDo = False
+                                break
+                        if canDo:
                             return key, upNum
+                        else:
+                            return False
 
 
 def GenerateZooCommunityChestContent():
@@ -151,18 +152,11 @@ def GenerateZooCommunityChestContent():
 
     # Из каждого требования вычитаем колличество материалов имеющихся в амбаре
 
-    # f.write("<div class='normalSmall'>currentZooMaterialReqs before decrementing:<br> ")
-    # for key,value in currentZooMaterialReqs:
-    #     f.write(key+": "+str(value)+", ")
     x = 0
     for key,value in currentZooMaterialReqs:
         currentZooMaterialReqs[x] = [key,value-getattr(gameInfo,key)]
         if value-getattr(gameInfo,key) < 0: currentZooMaterialReqs[x] = [key,0]
         x += 1
-    # f.write("<br>after:<br>")
-    # for key,value in currentZooMaterialReqs:
-    #     f.write(key+": "+str(value)+", ")
-    # f.write("<br><br></div>")
 
     # Проверяем нужныли в зоопарке обычные материалы для строящихся или не завершенных зданий
     needBuildingMaterial = False
@@ -202,7 +196,7 @@ def GenerateZooCommunityChestContent():
     # Проверяем нужны ли материалы на апгрейд амбара (уровень амбара меньше ожидаемого)
     needWarehauseMaterial = False
     needWarehauseMaterialId = "hammerMat"
-    if random.randint(1,100) < 20:
+    if random.randint(1,100) < 20: # имитация проверки - обычный рандом
         _upgradeMaterials = []
         AddByWeight(_upgradeMaterials,"hammerMat",45)
         AddByWeight(_upgradeMaterials,"nailMat",45)
@@ -277,7 +271,7 @@ def GenerateZooCommunityChestContent():
         helped[needBuildingMaterialId] = "buildingmat"
         writeLog("normalSmall","<i>helping with <u>"+needBuildingMaterialId+"</u> for build (weight 80)</i>")
     else:
-        if gameInfo.zooLevel < 10: # в коде условие по playerLevel<50
+        if gameInfo.zooLevel < 7: # в коде условие по playerLevel<50
             AddByWeight(chestContent,"Brick",10)
             AddByWeight(chestContent,"Glass",10)
             AddByWeight(chestContent,"Plita",10)

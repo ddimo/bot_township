@@ -15,3 +15,6 @@ buildingMatList = ["Brick", "Plita", "Glass", "zooBuildingMaterial", "zooService
 gemsList = ["gem1", "gem2", "gem3", "gem4"]
 expansionMatList = ["axe", "TNT", "pick", "zooLandDeed"]
 warehouseMatList = ["nailMat", "paintRedMat", "hammerMat"]
+
+# enough materials for upgrade #1 in zoo_caffe (needed: zooBuildingMaterial 1, Plita 2, zooServiceMaterial2 1)
+# not upgrading, saving (0 times already) for zoo_eatery (needed: Glass 3, Brick 3, zooServiceMaterial1 1)
