@@ -188,19 +188,48 @@ while gameInfo.zooLevel<11:
     # получили рандомный материал в дропе и увеличили его количество в сохранке
     chestContentTuple = GenerateZooCommunityChestContent()
     chestContent = chestContentTuple[0]
+
+    if chestContent not in gameInfo.levelDrop:
+        gameInfo.levelDrop[chestContent] = 1
+    else:
+        gameInfo.levelDrop[chestContent] += 1
+
     curvalue = getattr(gameInfo,chestContent)
     setattr(gameInfo,chestContent,curvalue+1)
     if "gem" in chestContent:
         AddGems(chestContent)
 
-    if chestContentTuple[1] == "buildingmat" or chestContentTuple[1] == "upgrademat":
+
+    if (chestContentTuple[1] == "buildingmat" or chestContentTuple[1] == "upgrademat") and (chestContent in buildingMatList):
+        if chestContent not in gameInfo.levelDropHelped: gameInfo.levelDropHelped[chestContent] = 1
+        else: gameInfo.levelDropHelped[chestContent] += 1
         writeLog("normalBig","#"+str(x)+" &mdash; <img src='img/"+chestContent+".png' valign='middle'> <font color='red'><b>"+chestContent+"</b></font>")
-    elif chestContentTuple[1] == "needgem":
+
+    elif (chestContentTuple[1] == "needgem") and (chestContent in gemsList):
+        if chestContent not in gameInfo.levelDropHelped: gameInfo.levelDropHelped[chestContent] = 1
+        else: gameInfo.levelDropHelped[chestContent] += 1
         writeLog("normalBig","#"+str(x)+" &mdash; <img src='img/"+chestContent+".png' valign='middle'> <font color='blue'><b>"+chestContent+"</b></font> <font size='2'>(from needGem)</font>")
-    elif chestContentTuple[1] == "randomgem":
+
+    elif (chestContentTuple[1] == "randomgem") and (chestContent in gemsList):
+        if chestContent not in gameInfo.levelDropHelped: gameInfo.levelDropHelped[chestContent] = 1
+        else: gameInfo.levelDropHelped[chestContent] += 1
         writeLog("normalBig","#"+str(x)+" &mdash; <img src='img/"+chestContent+".png' valign='middle'> <font color='green'><b>"+chestContent+"</b></font> <font size='2'>(from randomGem)</font>")
-    elif chestContentTuple[1] == "getnextgem":
+
+    elif (chestContentTuple[1] == "getnextgem") and (chestContent in gemsList):
+        if chestContent not in gameInfo.levelDropHelped: gameInfo.levelDropHelped[chestContent] = 1
+        else: gameInfo.levelDropHelped[chestContent] += 1
         writeLog("normalBig","#"+str(x)+" &mdash; <img src='img/"+chestContent+".png' valign='middle'> <font color='green'><b>"+chestContent+"</b></font> <font size='2'>(from GetNextGem)</font>")
+
+    elif (chestContentTuple[1] == "warehousemat") and (chestContent in warehouseMatList):
+        if chestContent not in gameInfo.levelDropHelped: gameInfo.levelDropHelped[chestContent] = 1
+        else: gameInfo.levelDropHelped[chestContent] += 1
+        writeLog("normalBig","#"+str(x)+" &mdash; <img src='img/"+chestContent+".png' valign='middle'> <font color='orange'><b>"+chestContent+"</b></font> <font size='2'></font>")
+
+    elif (chestContentTuple[1] == "expandmat") and (chestContent in expansionMatList):
+        if chestContent not in gameInfo.levelDropHelped: gameInfo.levelDropHelped[chestContent] = 1
+        else: gameInfo.levelDropHelped[chestContent] += 1
+        writeLog("normalBig","#"+str(x)+" &mdash; <img src='img/"+chestContent+".png' valign='middle'> <font color='pink'><b>"+chestContent+"</b></font> <font size='2'></font>")
+
     else:
         writeLog("normalBig","#"+str(x)+" &mdash; <img src='img/"+chestContent+".png' valign='middle'> "+chestContent+" ")
 
@@ -210,26 +239,47 @@ while gameInfo.zooLevel<11:
     gameInfo.rating = gameInfo.rating + ratingForChest[gameInfo.zooLevel]
     #print "current sum rating is "+str(gameInfo.rating)
 
-    # проверим, возможно надо левелапнуть
+
+    # обрабатываем момент LEVELUP
     if gameInfo.rating > ratingToLevelup[gameInfo.zooLevel+1]:
         gameInfo.zooLevel += 1
-        line = "<b>LEVELUP! now on level "+str(gameInfo.zooLevel)+"</b>"
+        line = "<b>LEVELUP "+str(gameInfo.zooLevel)+"!</b>"
+
         line += "<br>new buildings available: "
-        # buildingSettings["zoo_caffe"].zooLevel - требуемый уровень
         for key, value in buildingSettings.iteritems():
             if value.zooLevel == gameInfo.zooLevel:
                 line += "<b>"+key+"</b>, "
+
         line += "<br>not yet built: "
         for key, value in buildingSettings.iteritems():
             if value.zooLevel < gameInfo.zooLevel:
                 if ("paddock_" in key and gameInfo.paddocks[key] == 0) or ("zoo_" in key and gameInfo.communities[key] == 0):
                     line += "<font color='darkred'><b>"+key+"</b></font> (L"+str(value.zooLevel)+"), "
+
+        line += "<br>not full paddocks: "
+        for key, value in buildingSettings.iteritems():
+            if value.zooLevel < gameInfo.zooLevel:
+                if "paddock_" in key and gameInfo.paddocks[key] == 1 and gameInfo.paddocksTotalAnimals[key] < 4:
+                    line += "<font color='darkgreen'><b>"+key+"</b></font> (L"+str(value.zooLevel)+", "+str(gameInfo.paddocksTotalAnimals[key])+" animals), "
+
         line += "<br>expansion level: <b>"+str(gameInfo.zooExpandLevel)+"</b> "
         totalAnimals = sum(gameInfo.paddocksTotalAnimals.itervalues())
         for key, value in enumerate(expandReqs):
             if key > 0:
                 if value.animals <= totalAnimals: maxExpand = key
         line += " (out of "+str(maxExpand)+" possible)"
+
+        line += "<br><b>droped "+str(sum(gameInfo.levelDrop.itervalues()))+" total</b>: <Br> <small>"
+        for key, value in sorted(gameInfo.levelDrop.iteritems()):
+            line += "&nbsp; "+key+" = <b>"+str(value)+"</b>"
+            if key in gameInfo.levelDropHelped:
+                line += " <i>("+str(gameInfo.levelDropHelped[key])+" helped)</i>"
+            else:
+                line += " <i>(0 helped)</i>"
+            line += "<br>"
+        line += "</small>"
+        gameInfo.levelDrop.clear()
+        gameInfo.levelDropHelped.clear()
         writeLog("darkblue", line)
         writeShortLog("darkblue", line)
 

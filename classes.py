@@ -37,6 +37,9 @@ class gameInfoClass:
         self.upgradeWait = 0
         self.chestWithoutLandDeed = 0
 
+        self.levelDrop = dict()
+        self.levelDropHelped = dict()
+
 class buildingSettingsClass:
     def __init__(self):
         self.id = ""
