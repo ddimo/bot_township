@@ -86,11 +86,16 @@ def CompareForZooMats(buildId, upgradeId, upgradeNum):
     for mat in zooBuildingMatList:
         if getattr(buildingSettings[buildId],mat):
             if getattr(upgradesReqs[upgradeId][upgradeNum],mat):
-                line = GetBuildingReqsLine("build",buildId,0)
-                writeLog("normalSmall","upgrade has same requirements for zoo mats as pending construction of "+buildId+" ("+line+") - lets wait then")
-                return True
-    return False
+                # отсечем случаи, когда совпадающий материал по количеству требуется намного больше - в таких случаях не будем ждать
+                matUp = getattr(upgradesReqs[upgradeId][upgradeNum],mat)
+                matBuild = getattr(buildingSettings[buildId],mat)
+                if matBuild/matUp < 4:
+                    line = GetBuildingReqsLine("build",buildId,0)
+                    writeLog("normalSmall","upgrade has same requirements for zoo mats as pending construction of "+buildId+" ("+line+") - lets wait then")
+                    return True
     writeLog("normalSmall","upgrade has different reqs, can update")
+    return False
+
 
 def FillCurrentZooUpgradePrices():
     curReqs = []
@@ -107,8 +112,9 @@ def FillCurrentZooUpgradePrices():
                         for mat in zooBuildingMatList:
                             if getattr(upSettings, mat) > 0:
                                 curReqs.append([mat, getattr(upSettings, mat)])
+                        reqsLine = GetBuildingReqsLine("upgrade",key,upNum)
                         writeLog("normalSmall","<i>upgrade #"+str(upNum)+
-                                    " is available for "+key+" because totalAnimals = "+str(totalAnimals))
+                                    " is available for "+key+" ("+reqsLine+")")
 
     return curReqs
 

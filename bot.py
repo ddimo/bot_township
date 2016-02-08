@@ -1,6 +1,7 @@
 # coding=utf-8
 
 from functions import *
+import time
 import xml.etree.ElementTree as xml
 
 
@@ -170,7 +171,7 @@ justLeveluped = 0
 #for x in range(0,35):
 x = 0
 # while gameInfo.paddocksTotalAnimals['paddock_zebra']<4:
-while gameInfo.zooLevel<15:
+while gameInfo.zooLevel<12:
     x += 1
     print ""
     writeLog("normal","&nbsp;<br>&nbsp;<br>&nbsp;<br>&nbsp;<br>&nbsp;")
@@ -295,6 +296,8 @@ while gameInfo.zooLevel<15:
         gameInfo.levelDropHelped.clear()
         writeLog("darkblue", line)
         writeShortLog("darkblue", line)
+        print "levelup "+str(gameInfo.zooLevel)
+        time.sleep(0.3)
 
     # пробежимся по всем зданиям и проверим, нельзя ли построить доступное
     while TryBuild():
@@ -319,6 +322,18 @@ while gameInfo.zooLevel<15:
                 writeLog("normalSmall","not upgrading, saving ("+str(gameInfo.upgradeWait)+" times already) for "+availableToBuild+" (needed: "+line+")")
                 if gameInfo.communities['zoo_eatery'] == 1: # пока не построили zoo_eatery - не будем апгрейдить вообще
                     gameInfo.upgradeWait += 1
+
+    # выведем список зданий, которые еще не построены, но уже доступны - со списком требований
+    for key, value in gameInfo.paddocks.items():
+        if value == 0:                                                  # еще не построено
+            if buildingSettings[key].zooLevel <= gameInfo.zooLevel:     # доступно по уровню
+                line = GetBuildingReqsLine("build",key,0)
+                writeLog("normalSmall","not yet built <b>"+key+"</b> ("+line+")")
+    for key, value in gameInfo.communities.items():
+        if value == 0:                                                  # еще не построено
+            if buildingSettings[key].zooLevel <= gameInfo.zooLevel:     # доступно по уровню
+                line = GetBuildingReqsLine("build",key,0)
+                writeLog("normalSmall","not yet built <b>"+key+"</b> ("+line+")")
 
 
     # пробежимся по доступным загонам и проверим, можно ли купить животное
