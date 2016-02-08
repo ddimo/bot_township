@@ -1,0 +1,124 @@
+<?xml version='1.0' encoding='utf-8'?>
+<expand>
+    <expandBuy animals="1" exp="80" id="1" money="250" time="18000" />
+    <expandBuy animals="1" exp="82" id="2" money="300" time="21600" />
+    <expandBuy animals="2" exp="84" id="3" money="350" time="25200" />
+    <expandBuy animals="3" exp="86" id="4" money="400" time="28800" zooLandDeed="1" />
+    <expandBuy animals="4" exp="88" id="5" money="450" time="29400" zooLandDeed="1" />
+    <expandBuy animals="5" exp="90" id="6" money="500" time="30000" zooLandDeed="1" />
+    <expandBuy animals="6" exp="92" id="7" money="550" time="30600" zooLandDeed="1" />
+    <expandBuy animals="7" exp="94" id="8" money="600" time="31200" zooLandDeed="1" />
+    <expandBuy animals="8" exp="96" id="9" money="650" pick="1" time="31800" zooLandDeed="1" />
+    <expandBuy animals="9" exp="98" id="10" money="700" pick="1" time="32400" zooLandDeed="1" />
+    <expandBuy animals="10" exp="100" id="11" money="750" pick="1" time="33000" zooLandDeed="1" />
+    <expandBuy animals="11" exp="102" id="12" money="800" pick="1" time="33600" zooLandDeed="1" />
+    <expandBuy animals="12" exp="104" id="13" money="850" pick="1" time="34200" zooLandDeed="1" />
+    <expandBuy animals="13" exp="106" id="14" money="900" pick="1" time="34800" zooLandDeed="1" />
+    <expandBuy animals="14" exp="108" id="15" money="950" pick="1" time="35400" zooLandDeed="1" />
+    <expandBuy animals="15" exp="110" id="16" money="1000" pick="1" time="36000" zooLandDeed="1" />
+    <expandBuy animals="16" exp="112" id="17" money="1050" pick="1" time="36600" zooLandDeed="1" />
+    <expandBuy animals="17" exp="114" id="18" money="1100" pick="1" time="37200" zooLandDeed="1" />
+    <expandBuy animals="18" axe="1" exp="116" id="19" money="1150" pick="1" time="37800" zooLandDeed="2" />
+    <expandBuy animals="19" axe="1" exp="118" id="20" money="1200" pick="1" time="38400" zooLandDeed="2" />
+    <expandBuy animals="20" axe="1" exp="120" id="21" money="1250" pick="1" time="39000" zooLandDeed="2" />
+    <expandBuy animals="21" axe="1" exp="122" id="22" money="1300" pick="2" time="39600" zooLandDeed="2" />
+    <expandBuy animals="22" axe="1" exp="124" id="23" money="1350" pick="2" time="40200" zooLandDeed="2" />
+    <expandBuy animals="23" axe="1" exp="126" id="24" money="1400" pick="2" time="40800" zooLandDeed="2" />
+    <expandBuy animals="24" axe="1" exp="128" id="25" money="1450" pick="2" time="41400" zooLandDeed="2" />
+    <expandBuy animals="25" axe="1" exp="130" id="26" money="1500" pick="2" time="42000" zooLandDeed="2" />
+    <expandBuy animals="26" axe="1" exp="132" id="27" money="1550" pick="2" time="42600" zooLandDeed="2" />
+    <expandBuy animals="27" axe="1" exp="134" id="28" money="1600" pick="2" time="43200" zooLandDeed="2" />
+    <expandBuy animals="28" axe="2" exp="136" id="29" money="1650" pick="2" time="43800" zooLandDeed="2" />
+    <expandBuy animals="29" axe="2" exp="138" id="30" money="1700" pick="2" time="44400" zooLandDeed="2" />
+    <expandBuy animals="30" axe="2" exp="140" id="31" money="1750" pick="2" time="45000" zooLandDeed="2" />
+    <expandBuy animals="31" axe="2" exp="142" id="32" money="1800" pick="2" time="45600" zooLandDeed="2" />
+    <expandBuy animals="32" axe="2" exp="144" id="33" money="1850" pick="3" time="46200" zooLandDeed="2" />
+    <expandBuy animals="33" axe="2" exp="146" id="34" money="1900" pick="3" time="46800" zooLandDeed="2" />
+    <expandBuy animals="34" axe="2" exp="148" id="35" money="1950" pick="3" time="47400" zooLandDeed="2" />
+    <expandBuy animals="35" axe="2" exp="150" id="36" money="2000" pick="3" time="48000" zooLandDeed="2" />
+    <expandBuy animals="36" axe="2" exp="152" id="37" money="2050" pick="3" time="48600" zooLandDeed="2" />
+    <expandBuy TNT="1" animals="37" exp="154" id="38" money="2100" pick="3" time="49200" zooLandDeed="2" />
+    <expandBuy TNT="1" animals="38" axe="2" exp="156" id="39" money="2150" time="49800" zooLandDeed="3" />
+    <expandBuy animals="39" axe="2" exp="158" id="40" money="2200" pick="3" time="50400" zooLandDeed="3" />
+    <expandBuy TNT="1" animals="40" exp="160" id="41" money="2300" pick="3" time="51000" zooLandDeed="3" />
+    <expandBuy TNT="1" animals="41" axe="2" exp="162" id="42" money="2400" time="51600" zooLandDeed="3" />
+    <expandBuy animals="42" axe="2" exp="164" id="43" money="2500" pick="3" time="52200" zooLandDeed="3" />
+    <expandBuy TNT="1" animals="43" exp="166" id="44" money="2600" pick="3" time="52800" zooLandDeed="3" />
+    <expandBuy TNT="1" animals="44" axe="2" exp="168" id="45" money="2700" time="53400" zooLandDeed="3" />
+    <expandBuy animals="45" axe="2" exp="170" id="46" money="2800" pick="4" time="54000" zooLandDeed="3" />
+    <expandBuy TNT="1" animals="46" exp="172" id="47" money="2900" pick="4" time="54600" zooLandDeed="3" />
+    <expandBuy TNT="1" animals="47" axe="3" exp="174" id="48" money="3000" time="55200" zooLandDeed="3" />
+    <expandBuy animals="48" axe="3" exp="176" id="49" money="3100" pick="4" time="55800" zooLandDeed="3" />
+    <expandBuy TNT="2" animals="49" exp="178" id="50" money="3200" pick="4" time="56400" zooLandDeed="3" />
+    <expandBuy TNT="2" animals="50" axe="3" exp="180" id="51" money="3300" time="57000" zooLandDeed="3" />
+    <expandBuy animals="51" axe="3" exp="182" id="52" money="3400" pick="4" time="57600" zooLandDeed="3" />
+    <expandBuy TNT="2" animals="52" exp="184" id="53" money="3500" pick="4" time="58200" zooLandDeed="3" />
+    <expandBuy TNT="2" animals="53" axe="3" exp="186" id="54" money="3700" time="58800" zooLandDeed="3" />
+    <expandBuy animals="54" axe="3" exp="188" id="55" money="3900" pick="4" time="59400" zooLandDeed="3" />
+    <expandBuy TNT="2" animals="55" exp="190" id="56" money="4100" pick="4" time="60000" zooLandDeed="3" />
+    <expandBuy TNT="2" animals="56" axe="3" exp="192" id="57" money="4300" time="60600" zooLandDeed="3" />
+    <expandBuy animals="57" axe="3" exp="194" id="58" money="4500" pick="4" time="61200" zooLandDeed="3" />
+    <expandBuy TNT="2" animals="58" exp="196" id="59" money="4700" pick="4" time="61800" zooLandDeed="3" />
+    <expandBuy TNT="2" animals="59" axe="3" exp="198" id="60" money="4900" time="62400" zooLandDeed="3" />
+    <expandBuy animals="60" axe="3" exp="200" id="61" money="5100" pick="4" time="63000" zooLandDeed="3" />
+    <expandBuy TNT="2" animals="61" exp="202" id="62" money="5500" pick="4" time="63600" zooLandDeed="4" />
+    <expandBuy TNT="2" animals="62" axe="3" exp="204" id="63" money="5900" time="64200" zooLandDeed="4" />
+    <expandBuy animals="63" axe="3" exp="206" id="64" money="6300" pick="4" time="64800" zooLandDeed="4" />
+    <expandBuy TNT="2" animals="64" exp="208" id="65" money="6700" pick="4" time="65400" zooLandDeed="4" />
+    <expandBuy TNT="2" animals="65" axe="3" exp="210" id="66" money="7100" time="66000" zooLandDeed="4" />
+    <expandBuy animals="66" axe="3" exp="212" id="67" money="7500" pick="4" time="66600" zooLandDeed="4" />
+    <expandBuy TNT="2" animals="67" exp="214" id="68" money="8000" pick="4" time="67200" zooLandDeed="4" />
+    <expandBuy TNT="2" animals="68" axe="3" exp="216" id="69" money="8500" time="67800" zooLandDeed="4" />
+    <expandBuy animals="69" axe="3" exp="218" id="70" money="9000" pick="4" time="68400" zooLandDeed="4" />
+    <expandBuy TNT="2" animals="70" exp="220" id="71" money="9500" pick="4" time="69000" zooLandDeed="4" />
+    <expandBuy TNT="2" animals="71" axe="3" exp="222" id="72" money="10000" time="69600" zooLandDeed="5" />
+    <expandBuy animals="72" axe="3" exp="224" id="73" money="11000" pick="5" time="70200" zooLandDeed="5" />
+    <expandBuy TNT="2" animals="73" exp="226" id="74" money="12000" pick="5" time="70800" zooLandDeed="5" />
+    <expandBuy TNT="3" animals="74" axe="3" exp="228" id="75" money="13000" time="71400" zooLandDeed="5" />
+    <expandBuy animals="75" axe="3" exp="230" id="76" money="14000" pick="5" time="72000" zooLandDeed="5" />
+    <expandBuy TNT="3" animals="76" exp="232" id="77" money="15000" pick="5" time="72600" zooLandDeed="5" />
+    <expandBuy TNT="3" animals="77" axe="3" exp="234" id="78" money="16000" time="73200" zooLandDeed="5" />
+    <expandBuy animals="78" axe="3" exp="236" id="79" money="17000" pick="5" time="73800" zooLandDeed="5" />
+    <expandBuy TNT="3" animals="79" exp="238" id="80" money="18000" pick="5" time="74400" zooLandDeed="5" />
+    <expandBuy TNT="3" animals="80" axe="3" exp="240" id="81" money="20000" time="75000" zooLandDeed="6" />
+    <expandBuy animals="81" axe="3" exp="242" id="82" money="22000" pick="6" time="75600" zooLandDeed="6" />
+    <expandBuy TNT="3" animals="82" exp="244" id="83" money="24000" pick="6" time="76200" zooLandDeed="6" />
+    <expandBuy TNT="3" animals="83" axe="4" exp="246" id="84" money="26000" time="76800" zooLandDeed="6" />
+    <expandBuy animals="84" axe="4" exp="248" id="85" money="28000" pick="6" time="77400" zooLandDeed="6" />
+    <expandBuy TNT="4" animals="85" exp="250" id="86" money="30000" pick="6" time="78000" zooLandDeed="6" />
+    <expandBuy TNT="4" animals="86" axe="4" exp="252" id="87" money="32000" time="78600" zooLandDeed="6" />
+    <expandBuy animals="87" axe="4" exp="254" id="88" money="34000" pick="6" time="79200" zooLandDeed="6" />
+    <expandBuy TNT="4" animals="88" exp="256" id="89" money="36000" pick="6" time="79800" zooLandDeed="6" />
+    <expandBuy TNT="4" animals="89" axe="4" exp="258" id="90" money="38000" time="80400" zooLandDeed="6" />
+    <expandBuy animals="90" axe="4" exp="260" id="91" money="40000" pick="6" time="81000" zooLandDeed="6" />
+    <expandBuy TNT="4" animals="91" exp="262" id="92" money="42000" pick="6" time="81600" zooLandDeed="6" />
+    <expandBuy TNT="4" animals="92" axe="5" exp="264" id="93" money="44000" time="82200" zooLandDeed="6" />
+    <expandBuy animals="93" axe="5" exp="266" id="94" money="46000" pick="7" time="82800" zooLandDeed="7" />
+    <expandBuy TNT="4" animals="94" exp="268" id="95" money="48000" pick="7" time="83400" zooLandDeed="7" />
+    <expandBuy TNT="5" animals="95" axe="5" exp="270" id="96" money="50000" time="84000" zooLandDeed="7" />
+    <expandBuy animals="96" axe="5" exp="272" id="97" money="52000" pick="7" time="84600" zooLandDeed="7" />
+    <expandBuy TNT="5" animals="97" exp="274" id="98" money="54000" pick="7" time="85200" zooLandDeed="7" />
+    <expandBuy TNT="5" animals="98" axe="5" exp="276" id="99" money="56000" time="85800" zooLandDeed="7" />
+    <expandBuy animals="99" axe="5" exp="278" id="100" money="58000" pick="7" time="86400" zooLandDeed="7" />
+    <expandBuy TNT="5" animals="100" exp="280" id="101" money="60000" pick="7" time="87000" zooLandDeed="7" />
+    <expandBuy TNT="5" animals="101" axe="5" exp="282" id="102" money="62000" time="87600" zooLandDeed="7" />
+    <expandBuy animals="102" axe="6" exp="284" id="103" money="64000" pick="7" time="88200" zooLandDeed="7" />
+    <expandBuy TNT="5" animals="103" exp="286" id="104" money="66000" pick="7" time="88800" zooLandDeed="7" />
+    <expandBuy TNT="6" animals="104" axe="6" exp="288" id="105" money="68000" time="89400" zooLandDeed="7" />
+    <expandBuy animals="105" axe="6" exp="290" id="106" money="70000" pick="7" time="90000" zooLandDeed="7" />
+    <expandBuy TNT="6" animals="106" exp="292" id="107" money="72000" pick="7" time="90600" zooLandDeed="7" />
+    <expandBuy TNT="6" animals="107" axe="6" exp="294" id="108" money="74000" time="91200" zooLandDeed="7" />
+    <expandBuy animals="108" axe="6" exp="296" id="109" money="76000" pick="7" time="91800" zooLandDeed="8" />
+    <expandBuy TNT="6" animals="109" exp="298" id="110" money="78000" pick="8" time="92400" zooLandDeed="8" />
+    <expandBuy TNT="6" animals="110" axe="6" exp="300" id="111" money="80000" time="93000" zooLandDeed="8" />
+    <expandBuy animals="111" axe="6" exp="302" id="112" money="82000" pick="8" time="93600" zooLandDeed="8" />
+    <expandBuy TNT="6" animals="112" exp="304" id="113" money="84000" pick="8" time="94200" zooLandDeed="8" />
+    <expandBuy TNT="6" animals="113" axe="6" exp="306" id="114" money="86000" time="94800" zooLandDeed="8" />
+    <expandBuy animals="114" axe="6" exp="308" id="115" money="88000" pick="8" time="95400" zooLandDeed="8" />
+    <expandBuy TNT="6" animals="115" exp="310" id="116" money="90000" pick="8" time="96000" zooLandDeed="8" />
+    <expandBuy TNT="6" animals="116" axe="7" exp="312" id="117" money="92000" time="96600" zooLandDeed="8" />
+    <expandBuy animals="117" axe="7" exp="314" id="118" money="94000" pick="8" time="97200" zooLandDeed="8" />
+    <expandBuy TNT="7" animals="118" exp="316" id="119" money="96000" pick="8" time="97800" zooLandDeed="8" />
+    <expandBuy TNT="7" animals="119" axe="7" exp="318" id="120" money="98000" time="98400" zooLandDeed="8" />
+    <expandBuy animals="120" axe="7" exp="320" id="121" money="100000" pick="8" time="99000" zooLandDeed="8" />
+</expand>

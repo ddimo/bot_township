@@ -1,0 +1,481 @@
+<?xml version='1.0' encoding='utf-8'?>
+<root>
+    <AnimalPaddocks>
+        <paddock animalDescId="ZooBearDesc" animalNameId="ZooBear" breedingTime="720m" familyNameId="BearFamily" fon_tex="animal_forest" iconId="bearChild" paddockNameId="BearPaddock" rating="5" recommendedGems="4" reward="5" type="paddock_bear">
+            <marker pos_x="4" pos_y="69" />;
+            <marker pos_x="8" pos_y="70" />;
+            <marker pos_x="21" pos_y="62" />;
+            <marker pos_x="16" pos_y="65" />;
+            <marker pos_x="29" pos_y="68" />;
+            <marker pos_x="74" pos_y="68" />;
+            <marker pos_x="84" pos_y="64" />;
+            <marker pos_x="94" pos_y="68" />;
+            <marker pos_x="105" pos_y="68" />;
+            <marker pos_x="110" pos_y="66" />;
+            <marker pos_x="115" pos_y="71" />;
+            <marker pos_x="122" pos_y="66" />;
+            <marker pos_x="136" pos_y="69" />;
+            <marker pos_x="145" pos_y="68" />;
+            <marker pos_x="107" pos_y="54" />;
+            <marker pos_x="135" pos_y="55" />;
+            
+            <animal gem1="1" pos_cont_x="63" pos_cont_y="111" pos_x="56" pos_y="110" sex="male" tex="animal_bear_dad" tex_cont="animal_bear_dad_c" />;
+            <animal gem1="1" pos_cont_x="174" pos_cont_y="115" pos_x="166" pos_y="112" sex="female" tex="animal_bear_mom" tex_cont="animal_bear_mom_c" />;
+            <animal gem1="1" pos_cont_x="164" pos_cont_y="81" pos_x="163" pos_y="80" sex="male" tex="animal_bear_kind1" tex_cont="animal_bear_kind1_c" />;
+            <animal gem4="1" pos_cont_x="123" pos_cont_y="79" pos_x="125" pos_y="79" sex="female" tex="animal_bear_kind2" tex_cont="animal_bear_kind2_c" />;
+            
+        </paddock>
+        <paddock animalDescId="ZooFlamingoDesc" animalNameId="ZooFlamingo" breedingTime="780m" familyNameId="flamingoFamily" fon_tex="animal_swamp" iconId="flamingoChild" paddockNameId="flamingoPaddock" rating="10" recommendedGems="5" reward="5" type="paddock_flamingo">
+            <marker pos_x="62" pos_y="42" />;
+            <marker pos_x="65" pos_y="51" />;
+            <marker pos_x="84" pos_y="46" />;
+            <marker pos_x="82" pos_y="35" />;
+            <marker pos_x="76" pos_y="20" />;
+            <marker pos_x="80" pos_y="20" />;
+            <marker pos_x="105" pos_y="45" />;
+            <marker pos_x="101" pos_y="50" />;
+            <marker pos_x="89" pos_y="52" />;
+            <marker pos_x="88" pos_y="56" />;
+            <marker pos_x="95" pos_y="60" />;
+            <marker pos_x="39" pos_y="45" />;
+            <marker pos_x="31" pos_y="45" />;
+            <marker pos_x="42" pos_y="39" />;
+            <marker pos_x="42" pos_y="23" />;
+            
+            <animal gem1="1" pos_cont_x="69" pos_cont_y="100" pos_x="70" pos_y="78" sex="male" tex="animal_flamingo_dad" tex_cont="animal_flamingo_dad_c" />;
+            <animal gem1="1" pos_cont_x="176" pos_cont_y="106" pos_x="177" pos_y="78" sex="female" tex="animal_flamingo_mom" tex_cont="animal_flamingo_mom_c" />;
+            <animal gem1="1" gem2="1" pos_cont_x="159" pos_cont_y="89" pos_x="160" pos_y="86" sex="male" tex="animal_flamingo_kind1" tex_cont="animal_flamingo_kind1_c" />;
+            <animal gem4="1" pos_cont_x="131" pos_cont_y="81" pos_x="123" pos_y="78" sex="female" tex="animal_flamingo_kind2" tex_cont="animal_flamingo_kind2_c" />;
+            
+        </paddock>
+        <paddock animalDescId="ZooZebraDesc" animalNameId="ZooZebra" breedingTime="840m" familyNameId="zebraFamily" fon_tex="animal_savanna" iconId="zebraChild" paddockNameId="zebraPaddock" rating="20" recommendedGems="6" reward="6" type="paddock_zebra">
+            <marker pos_x="78" pos_y="19" />;
+            <marker pos_x="74" pos_y="25" />;
+            <marker pos_x="84" pos_y="40" />;
+            <marker pos_x="83" pos_y="33" />;
+            <marker pos_x="82" pos_y="24" />;
+            <marker pos_x="80" pos_y="33" />;
+            
+            <animal gem2="1" pos_cont_x="59" pos_cont_y="100" pos_x="60" pos_y="100" sex="male" tex="animal_zebra_dad" tex_cont="animal_zebra_dad_c" />;
+            <animal gem1="2" pos_cont_x="185" pos_cont_y="98" pos_x="186" pos_y="98" sex="female" tex="animal_zebra_mom" tex_cont="animal_zebra_mom_c" />;
+            <animal gem4="1" pos_cont_x="112" pos_cont_y="67" pos_x="113" pos_y="67" sex="male" tex="animal_zebra_kind1" tex_cont="animal_zebra_kind1_c" />;
+            <animal gem1="1" gem4="1" pos_cont_x="155" pos_cont_y="64" pos_x="157" pos_y="66" sex="female" tex="animal_zebra_kind2" tex_cont="animal_zebra_kind2_c" />;
+            
+        </paddock>
+        <paddock animalDescId="ZooPenguinDesc" animalNameId="ZooPenguin" breedingTime="900m" familyNameId="penguinFamily" fon_tex="animal_ice" iconId="penguinChild" paddockNameId="penguinPaddock" rating="50" recommendedGems="7" reward="6" type="paddock_penguin">
+            <marker pos_x="50" pos_y="7" />;
+            <marker pos_x="43" pos_y="3" />;
+            <marker pos_x="63" pos_y="4" />;
+            <marker pos_x="71" pos_y="6" />;
+            <marker pos_x="86" pos_y="8" />;
+            <marker pos_x="100" pos_y="8" />;
+            <marker pos_x="112" pos_y="5" />;
+            <marker pos_x="41" pos_y="9" />;
+            <marker pos_x="41" pos_y="22" />;
+            <marker pos_x="122" pos_y="17" />;
+            <marker pos_x="142" pos_y="15" />;
+            
+            <animal gem1="1" gem2="1" pos_cont_x="87" pos_cont_y="108" pos_x="73" pos_y="108" sex="male" tex="animal_penguin_dad" tex_cont="animal_penguin_dad_c" />;
+            <animal gem1="1" gem3="1" pos_cont_x="171" pos_cont_y="110" pos_x="172" pos_y="108" sex="female" tex="animal_penguin_mom" tex_cont="animal_penguin_mom_c" />;
+            <animal gem4="1" pos_cont_x="114" pos_cont_y="67" pos_x="114" pos_y="69" sex="male" tex="animal_penguin_kind1" tex_cont="animal_penguin_kind1_c" />;
+            <animal gem2="1" gem4="1" pos_cont_x="161" pos_cont_y="72" pos_x="161" pos_y="73" sex="female" tex="animal_penguin_kind2" tex_cont="animal_penguin_kind2_c" />;
+            
+        </paddock>
+        <paddock animalDescId="ZooMonkeyDesc" animalNameId="ZooMonkey" breedingTime="960m" familyNameId="monkeyFamily" fon_tex="animal_jungle" iconId="monkeyChild" paddockNameId="monkeyPaddock" rating="75" recommendedGems="8" reward="7" type="paddock_monkey">
+            <marker pos_x="64" pos_y="42" />;
+            <marker pos_x="70" pos_y="41" />;
+            <marker pos_x="67" pos_y="40" />;
+            <marker pos_x="73" pos_y="35" />;
+            <marker pos_x="76" pos_y="40" />;
+            <marker pos_x="78" pos_y="36" />;
+            <marker pos_x="81" pos_y="40" />;
+            <marker pos_x="80" pos_y="32" />;
+            <marker pos_x="81" pos_y="42" />;
+            
+            <animal gem1="1" gem2="1" pos_cont_x="81" pos_cont_y="119" pos_x="82" pos_y="120" sex="male" tex="animal_monkey_dad" tex_cont="animal_monkey_dad_c" />;
+            <animal gem1="1" gem2="1" pos_cont_x="169" pos_cont_y="111" pos_x="170" pos_y="111" sex="female" tex="animal_monkey_mom" tex_cont="animal_monkey_mom_c" />;
+            <animal gem2="1" gem4="1" pos_cont_x="116" pos_cont_y="65" pos_x="117" pos_y="67" sex="male" tex="animal_monkey_kind1" tex_cont="animal_monkey_kind1_c" />;
+            <animal gem2="1" gem4="1" pos_cont_x="160" pos_cont_y="67" pos_x="161" pos_y="69" sex="female" tex="animal_monkey_kind2" tex_cont="animal_monkey_kind2_c" />;
+            
+        </paddock>
+        <paddock animalDescId="ZooLionDesc" animalNameId="ZooLion" breedingTime="1020m" familyNameId="LionFamily" fon_tex="animal_forest" iconId="lionChild" paddockNameId="LionPaddock" rating="100" recommendedGems="8" reward="7" type="paddock_lion">
+            <marker pos_x="63" pos_y="44" />;
+            <marker pos_x="70" pos_y="41" />;
+            <marker pos_x="78" pos_y="39" />;
+            <marker pos_x="79" pos_y="37" />;
+            <marker pos_x="80" pos_y="38" />;
+            <marker pos_x="85" pos_y="30" />;
+            <marker pos_x="80" pos_y="28" />;
+            <marker pos_x="77" pos_y="25" />;
+            <marker pos_x="75" pos_y="24" />;
+            <marker pos_x="101" pos_y="46" />;
+            
+            <animal gem2="1" gem3="1" pos_cont_x="50" pos_cont_y="119" pos_x="51" pos_y="118" sex="male" tex="animal_lion_dad" tex_cont="animal_lion_dad_c" />;
+            <animal gem2="1" gem3="1" pos_cont_x="163" pos_cont_y="117" pos_x="161" pos_y="117" sex="female" tex="animal_lion_mom" tex_cont="animal_lion_mom_c" />;
+            <animal gem3="2" pos_cont_x="172" pos_cont_y="74" pos_x="170" pos_y="74" sex="male" tex="animal_lion_kind1" tex_cont="animal_lion_kind1_c" />;
+            <animal gem3="1" gem4="1" pos_cont_x="124" pos_cont_y="76" pos_x="123" pos_y="76" sex="female" tex="animal_lion_kind2" tex_cont="animal_lion_kind2_c" />;
+        </paddock>
+        <paddock animalDescId="ZooHippopotamusDesc" animalNameId="ZooHippopotamus" breedingTime="1080m" familyNameId="hippoFamily" fon_tex="animal_swamp" iconId="hippoChild" paddockNameId="hippoPaddock" rating="125" recommendedGems="9" reward="8" type="paddock_hippo">
+            <marker pos_x="82" pos_y="30" />;
+            <marker pos_x="83" pos_y="27" />;
+            <marker pos_x="79" pos_y="28" />;
+            <marker pos_x="84" pos_y="38" />;
+            <marker pos_x="80" pos_y="43" />;
+            <marker pos_x="73" pos_y="37" />;
+            <marker pos_x="66" pos_y="41" />;
+            
+            <animal gem1="2" gem2="1" pos_cont_x="61" pos_cont_y="118" pos_x="60" pos_y="102" sex="male" tex="animal_hippo_dad" tex_cont="animal_hippo_dad_c" />;
+            <animal gem2="1" gem3="1" pos_cont_x="186" pos_cont_y="111" pos_x="182" pos_y="103" sex="female" tex="animal_hippo_mom" tex_cont="animal_hippo_mom_c" />;
+            <animal gem1="1" gem4="1" pos_cont_x="117" pos_cont_y="81" pos_x="113" pos_y="74" sex="male" tex="animal_hippo_kind1" tex_cont="animal_hippo_kind1_c" />;
+            <animal gem2="1" gem4="1" pos_cont_x="153" pos_cont_y="82" pos_x="154" pos_y="79" sex="female" tex="animal_hippo_kind2" tex_cont="animal_hippo_kind2_c" />;
+            
+        </paddock>
+        <paddock animalDescId="ZooGiraffeDesc" animalNameId="ZooGiraffe" breedingTime="1140m" familyNameId="GiraffeFamily" fon_tex="animal_savanna" iconId="giraffeChild" paddockNameId="GiraffePaddock" rating="150" recommendedGems="10" reward="8" type="paddock_girrafe">
+            <marker pos_x="82" pos_y="44" />;
+            <marker pos_x="86" pos_y="40" />;
+            <marker pos_x="88" pos_y="37" />;
+            <marker pos_x="81" pos_y="41" />;
+            <marker pos_x="84" pos_y="36" />;
+            <marker pos_x="81" pos_y="28" />;
+			<marker pos_x="77" pos_y="27" />;
+			<marker pos_x="82" pos_y="25" />;
+			<marker pos_x="83" pos_y="23" />;
+            
+            <animal gem1="1" gem2="1" pos_cont_x="60" pos_cont_y="97" pos_x="60" pos_y="97" sex="male" tex="animal_giraffe_dad" tex_cont="animal_giraffe_dad_c" />;
+            <animal gem1="2" gem2="1" pos_cont_x="174" pos_cont_y="97" pos_x="174" pos_y="97" sex="female" tex="animal_giraffe_mom" tex_cont="animal_giraffe_mom_c" />;
+            <animal gem3="2" pos_cont_x="112" pos_cont_y="64" pos_x="112" pos_y="64" sex="female" tex="animal_giraffe_kind2" tex_cont="animal_giraffe_kind2_c" />;
+            <animal gem1="1" gem3="1" gem4="1" pos_cont_x="157" pos_cont_y="64" pos_x="157" pos_y="64" sex="male" tex="animal_giraffe_kind1" tex_cont="animal_giraffe_kind1_c" />;
+            
+        </paddock>
+        <paddock animalDescId="ZooWhitebearDesc" animalNameId="ZooWhitebear" breedingTime="1200m" familyNameId="polar_bearFamily" fon_tex="animal_ice" iconId="whiteBearChild" paddockNameId="polar_bearPaddock" rating="175" recommendedGems="10" reward="10" type="paddock_polar_bear">
+            <marker pos_x="50" pos_y="72" />;
+            <marker pos_x="46" pos_y="63" />;
+            <marker pos_x="56" pos_y="73" />;
+            <marker pos_x="52" pos_y="68" />;
+            <marker pos_x="52" pos_y="73" />;
+            <marker pos_x="32" pos_y="71" />;
+            <marker pos_x="38" pos_y="67" />;
+            <marker pos_x="9" pos_y="70" />;
+            <marker pos_x="103" pos_y="74" />;
+            <marker pos_x="115" pos_y="76" />;
+            <marker pos_x="141" pos_y="71" />;
+            
+            <animal gem1="1" gem2="1" pos_cont_x="66" pos_cont_y="112" pos_x="66" pos_y="113" sex="male" tex="animal_polar_bear_dad" tex_cont="animal_polar_bear_dad_c" />;
+            <animal gem1="1" gem3="1" pos_cont_x="184" pos_cont_y="105" pos_x="185" pos_y="105" sex="female" tex="animal_polar_bear_mom" tex_cont="animal_polar_bear_mom_c" />;
+            <animal gem2="3" pos_cont_x="139" pos_cont_y="70" pos_x="141" pos_y="71" sex="male" tex="animal_polar_bear_kind1" tex_cont="animal_polar_bear_kind1_c" />;
+            <animal gem3="2" gem4="1" pos_cont_x="174" pos_cont_y="73" pos_x="172" pos_y="75" sex="female" tex="animal_polar_bear_kind2" tex_cont="animal_polar_bear_kind2_c" />;
+            
+        </paddock>
+        <paddock animalDescId="ZooKoalaDesc" animalNameId="ZooKoala" breedingTime="1260m" familyNameId="koalaFamily" fon_tex="animal_jungle" iconId="koalaChild" paddockNameId="koalaPaddock" rating="200" recommendedGems="11" reward="10" type="paddock_koala">
+            <marker pos_x="132" pos_y="27" />;
+            <marker pos_x="131" pos_y="24" />;
+            <marker pos_x="134" pos_y="21" />;
+            <marker pos_x="134" pos_y="25" />;
+            <marker pos_x="137" pos_y="19" />;
+            <marker pos_x="134" pos_y="16" />;
+            <marker pos_x="130" pos_y="18" />;
+            
+            <animal gem1="2" pos_cont_x="82" pos_cont_y="117" pos_x="83" pos_y="116" sex="male" tex="animal_koala_dad" tex_cont="animal_koala_dad_c" />;
+            <animal gem1="2" gem2="1" pos_cont_x="179" pos_cont_y="116" pos_x="169" pos_y="118" sex="female" tex="animal_koala_mom" tex_cont="animal_koala_mom_c" />;
+            <animal gem1="2" gem2="1" pos_cont_x="112" pos_cont_y="74" pos_x="113" pos_y="74" sex="male" tex="animal_koala_kind1" tex_cont="animal_koala_kind1_c" />;
+            <animal gem1="1" gem4="2" pos_cont_x="168" pos_cont_y="72" pos_x="169" pos_y="73" sex="female" tex="animal_koala_kind2" tex_cont="animal_koala_kind2_c" />;
+            
+        </paddock>		
+        <paddock animalDescId="ZooElephantDesc" animalNameId="ZooElephant" breedingTime="1320m" familyNameId="ElephantFamily" fon_tex="animal_forest" iconId="elephantChild" paddockNameId="ElephantPaddock" rating="225" recommendedGems="12" reward="12" type="paddock_elephant">
+            <marker pos_x="104" pos_y="43" />;
+            <marker pos_x="107" pos_y="46" />;
+            <marker pos_x="113" pos_y="46" />;
+            <marker pos_x="108" pos_y="51" />;
+            <marker pos_x="79" pos_y="37" />;
+            <marker pos_x="82" pos_y="33" />;
+            <marker pos_x="77" pos_y="30" />;
+            <marker pos_x="80" pos_y="20" />;
+            <marker pos_x="76" pos_y="27" />;
+            <marker pos_x="64" pos_y="40" />;
+            <marker pos_x="117" pos_y="42" />;
+            
+            <animal gem1="3" pos_cont_x="58" pos_cont_y="119" pos_x="59" pos_y="112" sex="male" tex="animal_elephant_dad" tex_cont="animal_elephant_dad_c" />;
+            <animal gem1="3" pos_cont_x="165" pos_cont_y="116" pos_x="164" pos_y="113" sex="female" tex="animal_elephant_mom" tex_cont="animal_elephant_mom_c" />;
+            <animal gem1="3" pos_cont_x="122" pos_cont_y="80" pos_x="121" pos_y="80" sex="male" tex="animal_elephant_kind1" tex_cont="animal_elephant_kind1_c" />;
+            <animal gem1="2" gem4="1" pos_cont_x="159" pos_cont_y="82" pos_x="161" pos_y="82" sex="female" tex="animal_elephant_kind2" tex_cont="animal_elephant_kind2_c" />;
+            
+        </paddock>
+        <paddock animalDescId="ZooCrocodileDesc" animalNameId="ZooCrocodile" breedingTime="1380m" familyNameId="crocodileFamily" fon_tex="animal_swamp" iconId="crocodileChild" paddockNameId="crocodilePaddock" rating="250" recommendedGems="12" reward="12" type="paddock_crocodile">
+            <marker pos_x="26" pos_y="49" />;
+            <marker pos_x="21" pos_y="52" />;
+            <marker pos_x="26" pos_y="45" />;
+            <marker pos_x="33" pos_y="42" />;
+            <marker pos_x="39" pos_y="45" />;
+            <marker pos_x="36" pos_y="32" />;
+            <marker pos_x="121" pos_y="36" />;
+            <marker pos_x="126" pos_y="41" />;
+            <marker pos_x="134" pos_y="32" />;
+            <marker pos_x="82" pos_y="48" />;
+            <marker pos_x="83" pos_y="43" />;
+            <marker pos_x="71" pos_y="42" />;
+            <marker pos_x="78" pos_y="36" />;
+            <marker pos_x="74" pos_y="31" />;
+            <marker pos_x="81" pos_y="25" />;
+            <marker pos_x="101" pos_y="51" />;
+            <marker pos_x="104" pos_y="44" />;
+            <marker pos_x="112" pos_y="43" />;
+            <marker pos_x="116" pos_y="43" />;
+            <marker pos_x="115" pos_y="34" />;
+            <marker pos_x="130" pos_y="26" />;
+            
+            <animal gem1="2" gem2="1" pos_cont_x="65" pos_cont_y="88" pos_x="65" pos_y="93" sex="male" tex="animal_crocodile_dad" tex_cont="animal_crocodile_dad_c" />;
+            <animal gem1="2" gem3="1" pos_cont_x="171" pos_cont_y="101" pos_x="172" pos_y="97" sex="female" tex="animal_crocodile_mom" tex_cont="animal_crocodile_mom_c" />;
+            <animal gem2="1" gem3="2" pos_cont_x="141" pos_cont_y="82" pos_x="141" pos_y="82" sex="male" tex="animal_crocodile_kind1" tex_cont="animal_crocodile_kind1_c" />;
+            <animal gem1="1" gem3="1" gem4="1" pos_cont_x="173" pos_cont_y="81" pos_x="173" pos_y="81" sex="female" tex="animal_crocodile_kind2" tex_cont="animal_crocodile_kind2_c" />;
+            
+        </paddock>
+        <paddock animalDescId="ZooKangarooDesc" animalNameId="ZooKangaroo" breedingTime="1440m" familyNameId="KangarooFamily" fon_tex="animal_savanna" iconId="kangarooChild" paddockNameId="KangarooPaddock" rating="275" recommendedGems="12" reward="14" type="paddock_kangaroo">
+            <marker pos_x="130" pos_y="26" />;
+            <marker pos_x="127" pos_y="25" />;
+            <marker pos_x="134" pos_y="21" />;
+            <marker pos_x="131" pos_y="22" />;
+            <marker pos_x="128" pos_y="20" />;
+            <marker pos_x="129" pos_y="24" />;
+			<marker pos_x="125" pos_y="22" />;
+			<marker pos_x="123" pos_y="19" />;
+			<marker pos_x="121" pos_y="23" />;
+			<marker pos_x="133" pos_y="24" />;
+            
+            <animal gem1="3" pos_cont_x="45" pos_cont_y="100" pos_x="45" pos_y="100" sex="male" tex="animal_kangaroo_dad" tex_cont="animal_kangaroo_dad_c" />;
+            <animal gem1="2" gem3="1" pos_cont_x="176" pos_cont_y="100" pos_x="176" pos_y="100" sex="female" tex="animal_kangaroo_mom" tex_cont="animal_kangaroo_mom_c" />;
+            <animal gem1="1" gem3="2" pos_cont_x="106" pos_cont_y="70" pos_x="106" pos_y="70" sex="male" tex="animal_kangaroo_kind1" tex_cont="animal_kangaroo_kind1_c" />;
+            <animal gem3="2" gem4="1" pos_cont_x="169" pos_cont_y="73" pos_x="169" pos_y="73" sex="female" tex="animal_kangaroo_kind2" tex_cont="animal_kangaroo_kind2_c" />;
+            
+        </paddock>
+        <paddock animalDescId="ZooSealDesc" animalNameId="ZooSeal" breedingTime="1500m" familyNameId="sealFamily" fon_tex="animal_ice" iconId="seadogChild" paddockNameId="sealPaddock" rating="300" recommendedGems="14" reward="14" type="paddock_seal">
+            <marker pos_x="41" pos_y="19" />;
+            <marker pos_x="41" pos_y="9" />;
+            <marker pos_x="47" pos_y="17" />;
+            <marker pos_x="122" pos_y="17" />;
+            <marker pos_x="129" pos_y="19" />;
+            <marker pos_x="142" pos_y="15" />;
+            <marker pos_x="13" pos_y="51" />;
+            <marker pos_x="150" pos_y="71" />;
+            <marker pos_x="137" pos_y="62" />;
+            <marker pos_x="147" pos_y="66" />;
+            
+            <animal gem1="3" gem2="1" pos_cont_x="69" pos_cont_y="103" pos_x="71" pos_y="103" sex="male" tex="animal_seal_dad" tex_cont="animal_seal_dad_c" />;
+            <animal gem1="1" gem3="2" pos_cont_x="163" pos_cont_y="102" pos_x="163" pos_y="102" sex="female" tex="animal_seal_mom" tex_cont="animal_seal_mom_c" />;
+            <animal gem1="1" gem2="1" gem4="1" pos_cont_x="162" pos_cont_y="68" pos_x="163" pos_y="70" sex="male" tex="animal_seal_kind2" tex_cont="animal_seal_kind2_c" />;
+            <animal gem1="1" gem3="2" gem4="1" pos_cont_x="120" pos_cont_y="70" pos_x="120" pos_y="74" sex="female" tex="animal_seal_kind1" tex_cont="animal_seal_kind1_c" />;
+            
+        </paddock>
+        <paddock animalDescId="ZooGorillaDesc" animalNameId="ZooGorilla" breedingTime="1560m" familyNameId="GorillaFamily" fon_tex="animal_jungle" iconId="gorillaChild" paddockNameId="GorillaPaddock" rating="325" recommendedGems="14" reward="15" type="paddock_gorilla">
+            <marker pos_x="74" pos_y="33" />;
+            <marker pos_x="75" pos_y="36" />;
+            <marker pos_x="72" pos_y="33" />;
+            <marker pos_x="69" pos_y="39" />;
+            <marker pos_x="82" pos_y="34" />;
+            <marker pos_x="81" pos_y="31" />;
+            
+            <animal gem1="3" pos_cont_x="57" pos_cont_y="110" pos_x="57" pos_y="110" sex="male" tex="animal_gorilla_dad" tex_cont="animal_gorilla_dad_c" />;
+            <animal gem1="1" gem2="2" pos_cont_x="171" pos_cont_y="105" pos_x="171" pos_y="105" sex="female" tex="animal_gorilla_mom" tex_cont="animal_gorilla_mom_c" />;
+            <animal gem1="2" gem4="2" pos_cont_x="113" pos_cont_y="66" pos_x="112" pos_y="65" sex="male" tex="animal_gorilla_kind1" tex_cont="animal_gorilla_kind1_c" />;
+            <animal gem1="1" gem2="1" gem4="2" pos_cont_x="157" pos_cont_y="72" pos_x="157" pos_y="72" sex="female" tex="animal_gorilla_kind2" tex_cont="animal_gorilla_kind2_c" />;
+            
+        </paddock>
+        <paddock animalDescId="ZooPandaDesc" animalNameId="ZooPanda" breedingTime="1620m" familyNameId="pandaFamily" fon_tex="animal_forest" iconId="pandaChild" paddockNameId="pandaPaddock" rating="350" recommendedGems="16" reward="15" type="paddock_panda">
+            <marker pos_x="117" pos_y="54" />;
+            <marker pos_x="113" pos_y="53" />;
+            <marker pos_x="115" pos_y="51" />;
+			<marker pos_x="112" pos_y="50" />;
+            
+            <animal gem1="3" gem4="1" pos_cont_x="55" pos_cont_y="101" pos_x="56" pos_y="101" sex="male" tex="animal_panda_dad" tex_cont="animal_panda_dad_c" />;
+            <animal gem1="2" gem2="1" gem4="1" pos_cont_x="177" pos_cont_y="107" pos_x="177" pos_y="106" sex="female" tex="animal_panda_mom" tex_cont="animal_panda_mom_c" />;
+            <animal gem1="2" gem3="1" gem4="1" pos_cont_x="112" pos_cont_y="72" pos_x="112" pos_y="70" sex="male" tex="animal_panda_kind1" tex_cont="animal_panda_kind1_c" />;
+            <animal gem2="2" gem3="1" gem4="1" pos_cont_x="165" pos_cont_y="70" pos_x="162" pos_y="68" sex="female" tex="animal_panda_kind2" tex_cont="animal_panda_kind2_c" />;
+            
+        </paddock>
+        <paddock animalDescId="ZooBeaverDesc" animalNameId="ZooBeaver" breedingTime="1680m" familyNameId="BeaverFamily" fon_tex="animal_swamp" iconId="beaverChild" paddockNameId="beaverPaddock" rating="375" recommendedGems="18" reward="16" type="paddock_beaver">
+            <marker pos_x="9" pos_y="67" />;
+            <marker pos_x="15" pos_y="68" />;
+            <marker pos_x="24" pos_y="68" />;
+			<marker pos_x="15" pos_y="63" />;
+			<marker pos_x="29" pos_y="66" />;
+			<marker pos_x="18" pos_y="59" />;
+			<marker pos_x="23" pos_y="53" />;
+			<marker pos_x="27" pos_y="52" />;
+			<marker pos_x="34" pos_y="54" />;
+			<marker pos_x="40" pos_y="61" />;
+			<marker pos_x="75" pos_y="69" />;
+			<marker pos_x="71" pos_y="60" />;
+			<marker pos_x="78" pos_y="62" />;
+			<marker pos_x="86" pos_y="63" />;
+			<marker pos_x="91" pos_y="67" />;
+			<marker pos_x="99" pos_y="65" />;
+			<marker pos_x="104" pos_y="66" />;
+			<marker pos_x="111" pos_y="65" />;
+			            
+            <animal gem1="3" gem2="1" pos_cont_x="45" pos_cont_y="107" pos_x="47" pos_y="97" sex="male" tex="animal_beaver_dad" tex_cont="animal_beaver_dad_c" />;
+            <animal gem1="2" gem2="2" gem3="1" pos_cont_x="169" pos_cont_y="104" pos_x="170" pos_y="87" sex="female" tex="animal_beaver_mom" tex_cont="animal_beaver_mom_c" />;
+            <animal gem2="1" gem3="2" gem4="1" pos_cont_x="103" pos_cont_y="62" pos_x="102" pos_y="63" sex="male" tex="animal_beaver_kind1" tex_cont="animal_beaver_kind1_c" />;
+            <animal gem1="2" gem3="2" gem4="1" pos_cont_x="156" pos_cont_y="66" pos_x="158" pos_y="66" sex="female" tex="animal_beaver_kind2" tex_cont="animal_beaver_kind2_c" />;
+            
+        </paddock>
+        <paddock animalDescId="ZooRhinoDesc" animalNameId="ZooRhino" breedingTime="1740m" familyNameId="RhinoFamily" fon_tex="animal_savanna" iconId="rhinoChild" paddockNameId="rhinoPaddock" rating="400" recommendedGems="20" reward="16" type="paddock_rhino">
+            <marker pos_x="75" pos_y="41" />;
+            <marker pos_x="82" pos_y="39" />;
+            <marker pos_x="87" pos_y="37" />;
+			<marker pos_x="75" pos_y="32" />;
+			<marker pos_x="74" pos_y="27" />;
+			<marker pos_x="85" pos_y="29" />;
+			<marker pos_x="77" pos_y="23" />;
+			<marker pos_x="83" pos_y="23" />;
+			<marker pos_x="107" pos_y="49" />;
+			<marker pos_x="117" pos_y="34" />;
+			            
+            <animal gem1="4" gem2="1" pos_cont_x="45" pos_cont_y="109" pos_x="44" pos_y="109" sex="male" tex="animal_rhino_dad" tex_cont="animal_rhino_dad_c" />;
+            <animal gem1="3" gem3="2" pos_cont_x="170" pos_cont_y="111" pos_x="161" pos_y="110" sex="female" tex="animal_rhino_mom" tex_cont="animal_rhino_mom_c" />;
+            <animal gem1="1" gem2="3" gem3="1" pos_cont_x="102" pos_cont_y="68" pos_x="104" pos_y="70" sex="male" tex="animal_rhino_kind1" tex_cont="animal_rhino_kind1_c" />;
+            <animal gem1="3" gem3="1" gem4="1" pos_cont_x="159" pos_cont_y="67" pos_x="158" pos_y="68" sex="female" tex="animal_rhino_kind2" tex_cont="animal_rhino_kind2_c" />;
+            
+        </paddock>		
+        <paddock animalDescId="ZooMuskOxDesc" animalNameId="ZooMuskOx" breedingTime="1800m" familyNameId="MuskOxFamily" fon_tex="animal_ice" iconId="muskOxChild" paddockNameId="muskOxPaddock" rating="425" recommendedGems="22" reward="18" type="paddock_muskOx">
+            <marker pos_x="5" pos_y="71" />;
+            <marker pos_x="13" pos_y="70" />;
+            <marker pos_x="21" pos_y="74" />;
+			<marker pos_x="26" pos_y="71" />;
+			<marker pos_x="33" pos_y="70" />;
+			<marker pos_x="39" pos_y="71" />;
+			<marker pos_x="43" pos_y="75" />;
+			<marker pos_x="49" pos_y="74" />;
+			<marker pos_x="107" pos_y="73" />;
+			<marker pos_x="115" pos_y="76" />;
+			<marker pos_x="127" pos_y="72" />;
+            
+            <animal gem1="2" gem2="3" pos_cont_x="52" pos_cont_y="70" pos_x="49" pos_y="71" sex="male" tex="animal_muskOx_dad" tex_cont="animal_muskOx_dad_c" />;
+            <animal gem1="2" gem2="2" gem4="2" pos_cont_x="161" pos_cont_y="106" pos_x="163" pos_y="107" sex="female" tex="animal_muskOx_mom" tex_cont="animal_muskOx_mom_c" />;
+            <animal gem2="2" gem3="2" gem4="1" pos_cont_x="107" pos_cont_y="75" pos_x="107" pos_y="77" sex="female" tex="animal_muskOx_kind1" tex_cont="animal_muskOx_kind1_c" />;
+            <animal gem1="2" gem3="2" gem4="2" pos_cont_x="155" pos_cont_y="71" pos_x="156" pos_y="71" sex="male" tex="animal_muskOx_kind2" tex_cont="animal_muskOx_kind2_c" />;
+            
+        </paddock>		
+        <paddock animalDescId="ZooTigerDesc" animalNameId="ZooTiger" breedingTime="1860m" familyNameId="tigerFamily" fon_tex="animal_jungle" iconId="tigerChild" paddockNameId="tigerPaddock" rating="450" recommendedGems="24" reward="18" type="paddock_tiger">
+            <marker pos_x="103" pos_y="43" />;
+            <marker pos_x="104" pos_y="48" />;
+            <marker pos_x="105" pos_y="50" />;
+            <marker pos_x="113" pos_y="43" />;
+            <marker pos_x="117" pos_y="42" />;
+            <marker pos_x="110" pos_y="50" />;
+            <marker pos_x="115" pos_y="34" />;
+            <marker pos_x="131" pos_y="60" />;
+            
+            <animal gem1="4" gem2="1" gem3="1" pos_cont_x="68" pos_cont_y="107" pos_x="66" pos_y="109" sex="male" tex="animal_tiger_dad" tex_cont="animal_tiger_dad_c" />;
+            <animal gem1="2" gem2="2" gem3="2" pos_cont_x="135" pos_cont_y="103" pos_x="137" pos_y="106" sex="female" tex="animal_tiger_mom" tex_cont="animal_tiger_mom_c" />;
+            <animal gem1="2" gem2="3" gem4="1" pos_cont_x="109" pos_cont_y="72" pos_x="109" pos_y="73" sex="male" tex="animal_tiger_kind1" tex_cont="animal_tiger_kind1_c" />;
+            <animal gem1="2" gem2="3" gem4="1" pos_cont_x="158" pos_cont_y="72" pos_x="159" pos_y="73" sex="female" tex="animal_tiger_kind2" tex_cont="animal_tiger_kind2_c" />;
+            
+        </paddock>
+        <paddock animalDescId="ZooPeacockDesc" animalNameId="ZooPeacock" breedingTime="1920m" familyNameId="peacockFamily" fon_tex="animal_forest" iconId="peacockChild" paddockNameId="peacockPaddock" rating="475" recommendedGems="26" reward="20" type="paddock_peacock">
+            <marker pos_x="101" pos_y="49" />;
+            <marker pos_x="104" pos_y="42" />;
+			<marker pos_x="106" pos_y="45" />;
+			<marker pos_x="108" pos_y="49" />;
+			<marker pos_x="111" pos_y="51" />;
+			<marker pos_x="115" pos_y="43" />;
+			<marker pos_x="117" pos_y="42" />;
+			<marker pos_x="116" pos_y="35" />;
+			<marker pos_x="121" pos_y="37" />;
+            
+            <animal gem1="4" gem2="1" gem3="1" gem4="1" pos_cont_x="54" pos_cont_y="95" pos_x="55" pos_y="95" sex="male" tex="animal_peacock_dad" tex_cont="animal_peacock_dad_c" />;
+            <animal gem1="2" gem3="3" gem4="1" pos_cont_x="171" pos_cont_y="115" pos_x="172" pos_y="115" sex="female" tex="animal_peacock_mom" tex_cont="animal_peacock_mom_c" />;
+            <animal gem1="2" gem3="2" gem4="2" pos_cont_x="117" pos_cont_y="80" pos_x="118" pos_y="82" sex="male" tex="animal_peacock_kind1" tex_cont="animal_peacock_kind1_c" />;
+            <animal gem1="3" gem3="2" gem4="2" pos_cont_x="165" pos_cont_y="81" pos_x="166" pos_y="82" sex="female" tex="animal_peacock_kind2" tex_cont="animal_peacock_kind2_c" />;
+            
+        </paddock>
+        <paddock animalDescId="ZooTurtleDesc" animalNameId="ZooTurtle" breedingTime="1980m" familyNameId="turtleFamily" fon_tex="animal_swamp" iconId="turtleChild" paddockNameId="turtlePaddock" rating="500" recommendedGems="30" reward="20" type="paddock_turtle">
+            <marker pos_x="25" pos_y="34" />;
+            <marker pos_x="28" pos_y="36" />;
+            <marker pos_x="30" pos_y="34" />;
+                       
+            <animal gem1="5" gem3="1" gem4="1" pos_cont_x="50" pos_cont_y="104" pos_x="45" pos_y="101" sex="male" tex="animal_turtle_dad" tex_cont="animal_turtle_dad_c" />;
+            <animal gem1="3" gem2="1" gem3="2" gem4="1" pos_cont_x="160" pos_cont_y="105" pos_x="160" pos_y="105" sex="female" tex="animal_turtle_mom" tex_cont="animal_turtle_mom_c" />;
+            <animal gem1="3" gem2="3" gem3="1" gem4="1" pos_cont_x="88" pos_cont_y="66" pos_x="86" pos_y="66" sex="male" tex="animal_turtle_kind1" tex_cont="animal_turtle_kind1_c" />;
+            <animal gem1="2" gem2="3" gem3="2" gem4="1" pos_cont_x="153" pos_cont_y="65" pos_x="154" pos_y="64" sex="female" tex="animal_turtle_kind2" tex_cont="animal_turtle_kind2_c" />;
+            
+        </paddock>
+        <paddock animalDescId="ZooCamelDesc" animalNameId="ZooCamel" breedingTime="2040m" familyNameId="camelFamily" fon_tex="animal_savanna" iconId="camelChild" paddockNameId="camelPaddock" rating="525" recommendedGems="35" reward="22" type="paddock_camel">
+            <marker pos_x="61" pos_y="44" />;
+            <marker pos_x="65" pos_y="45" />;
+            <marker pos_x="70" pos_y="52" />;
+			<marker pos_x="72" pos_y="55" />;
+			<marker pos_x="73" pos_y="49" />;
+			<marker pos_x="77" pos_y="50" />;
+			<marker pos_x="81" pos_y="48" />;
+			<marker pos_x="83" pos_y="43" />;
+			<marker pos_x="87" pos_y="37" />;
+			<marker pos_x="90" pos_y="40" />;
+			<marker pos_x="93" pos_y="47" />;
+			<marker pos_x="97" pos_y="56" />;
+			<marker pos_x="103" pos_y="57" />;
+			<marker pos_x="113" pos_y="56" />;
+			<marker pos_x="127" pos_y="22" />;
+			<marker pos_x="129" pos_y="24" />;
+            
+            <animal gem1="4" gem2="4" gem3="1" pos_cont_x="55" pos_cont_y="106" pos_x="57" pos_y="107" sex="female" tex="animal_camel_mom" tex_cont="animal_camel_mom_c" />;
+            <animal gem1="6" gem2="1" gem4="1" pos_cont_x="160" pos_cont_y="99" pos_x="161" pos_y="100" sex="male" tex="animal_camel_dad" tex_cont="animal_camel_dad_c" />;
+            <animal gem1="4" gem2="3" gem4="2" pos_cont_x="114" pos_cont_y="70" pos_x="115" pos_y="71" sex="male" tex="animal_camel_kind1" tex_cont="animal_camel_kind1_c" />;
+            <animal gem1="1" gem2="3" gem3="3" gem4="2" pos_cont_x="156" pos_cont_y="74" pos_x="155" pos_y="76" sex="female" tex="animal_camel_kind2" tex_cont="animal_camel_kind2_c" />;
+            
+        </paddock>
+        <paddock animalDescId="ZooDeerDesc" animalNameId="ZooDeer" breedingTime="2100m" familyNameId="deerFamily" fon_tex="animal_ice" iconId="deerChild" paddockNameId="deerPaddock" rating="550" recommendedGems="40" reward="22" type="paddock_deer">
+            <marker pos_x="6" pos_y="70" />;
+            <marker pos_x="15" pos_y="67" />;
+            <marker pos_x="22" pos_y="72" />;
+            <marker pos_x="33" pos_y="71" />;
+            <marker pos_x="39" pos_y="72" />;
+            <marker pos_x="45" pos_y="75" />;
+            <marker pos_x="19" pos_y="60" />;
+			<marker pos_x="24" pos_y="62" />;
+			<marker pos_x="31" pos_y="64" />;
+			<marker pos_x="43" pos_y="63" />;
+			<marker pos_x="80" pos_y="70" />;
+			<marker pos_x="90" pos_y="69" />;
+			<marker pos_x="96" pos_y="73" />;
+			<marker pos_x="102" pos_y="72" />;
+			<marker pos_x="108" pos_y="71" />;
+			<marker pos_x="115" pos_y="74" />;
+			<marker pos_x="96" pos_y="67" />;
+			<marker pos_x="107" pos_y="65" />;
+			<marker pos_x="114" pos_y="64" />;
+			<marker pos_x="122" pos_y="67" />;
+			<marker pos_x="133" pos_y="67" />;
+			<marker pos_x="137" pos_y="72" />;
+			<marker pos_x="146" pos_y="70" />;
+            
+            <animal gem1="7" gem2="1" gem3="1" gem4="1" pos_cont_x="50" pos_cont_y="95" pos_x="45" pos_y="94" sex="male" tex="animal_deer_dad" tex_cont="animal_deer_dad_c" />;
+            <animal gem1="3" gem2="5" gem3="2" pos_cont_x="156" pos_cont_y="93" pos_x="156" pos_y="94" sex="female" tex="animal_deer_mom" tex_cont="animal_deer_mom_c" />;
+            <animal gem1="5" gem2="3" gem4="2" pos_cont_x="155" pos_cont_y="78" pos_x="153" pos_y="78" sex="male" tex="animal_deer_kind1" tex_cont="animal_deer_kind1_c" />;
+            <animal gem1="3" gem2="4" gem3="2" gem4="1" pos_cont_x="109" pos_cont_y="87" pos_x="103" pos_y="86" sex="female" tex="animal_deer_kind2" tex_cont="animal_deer_kind2_c" />;
+            
+        </paddock>
+        <paddock animalDescId="ZooToucanDesc" animalNameId="ZooToucan" breedingTime="2160m" familyNameId="toucanFamily" fon_tex="animal_jungle" iconId="toucanChild" paddockNameId="toucanPaddock" rating="575" recommendedGems="45" reward="24" type="paddock_toucan">
+            <marker pos_x="31" pos_y="43" />;
+            <marker pos_x="42" pos_y="39" />;
+            <marker pos_x="38" pos_y="32" />;
+            <marker pos_x="43" pos_y="23" />;
+            <marker pos_x="48" pos_y="29" />;
+            <marker pos_x="47" pos_y="36" />;
+            
+            <animal gem1="6" gem2="3" gem3="2" pos_cont_x="42" pos_cont_y="116" pos_x="44" pos_y="118" sex="male" tex="animal_toucan_dad" tex_cont="animal_toucan_dad_c" />;
+            <animal gem1="7" gem2="4" gem3="1" pos_cont_x="170" pos_cont_y="119" pos_x="169" pos_y="118" sex="female" tex="animal_toucan_mom" tex_cont="animal_toucan_mom_c" />;
+            <animal gem1="4" gem2="4" gem3="2" gem4="1" pos_cont_x="109" pos_cont_y="84" pos_x="111" pos_y="86" sex="male" tex="animal_toucan_kind1" tex_cont="animal_toucan_kind1_c" />;
+            <animal gem1="2" gem2="6" gem3="1" gem4="2" pos_cont_x="159" pos_cont_y="84" pos_x="160" pos_y="85" sex="female" tex="animal_toucan_kind2" tex_cont="animal_toucan_kind2_c" />;
+            
+        </paddock>
+    </AnimalPaddocks>
+
+    <FonTextures>
+        <FonTexture name="animal_forest" pos_x="10" pos_y="11" />
+        <FonTexture name="animal_swamp" pos_x="10" pos_y="29" />
+        <FonTexture name="animal_savanna" pos_x="10" pos_y="27" />
+        <FonTexture name="animal_ice" pos_x="10" pos_y="27" />
+        <FonTexture name="animal_jungle" pos_x="10" pos_y="25" />
+    </FonTextures>
+    
+    
+</root>

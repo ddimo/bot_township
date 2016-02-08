@@ -1,0 +1,262 @@
+<?xml version='1.0' encoding='utf-8'?>
+<root>
+    <cropfield_limit>
+        <key max_cropfields="5" residents="0" />
+        <key max_cropfields="6" residents="60" />
+        <key max_cropfields="7" residents="65" />
+        <key max_cropfields="8" residents="70" />
+        <key max_cropfields="9" residents="75" />
+        <key max_cropfields="10" residents="85" />
+        <key max_cropfields="11" residents="95" />
+        <key max_cropfields="12" residents="110" />
+        <key max_cropfields="13" residents="125" />
+        <key max_cropfields="14" residents="145" />
+        <key max_cropfields="15" residents="165" />
+        <key max_cropfields="16" residents="185" />
+        <key max_cropfields="17" residents="210" />
+        <key max_cropfields="18" residents="235" />
+        <key max_cropfields="19" residents="265" />
+        <key max_cropfields="20" residents="295" />
+        <key max_cropfields="21" residents="325" />
+        <key max_cropfields="22" residents="360" />
+        <key max_cropfields="23" residents="395" />
+        <key max_cropfields="24" residents="435" />
+        <key max_cropfields="25" residents="475" />
+        <key max_cropfields="26" residents="520" />
+        <key max_cropfields="27" residents="565" />
+        <key max_cropfields="28" residents="610" />
+        <key max_cropfields="29" residents="660" />
+        <key max_cropfields="30" residents="710" />
+        <key max_cropfields="31" residents="765" />
+        <key max_cropfields="32" residents="820" />
+        <key max_cropfields="33" residents="875" />
+        <key max_cropfields="34" residents="935" />
+        <key max_cropfields="35" residents="995" />
+        <key max_cropfields="36" residents="1060" />
+        <key max_cropfields="37" residents="1125" />
+        <key max_cropfields="38" residents="1190" />
+        <key max_cropfields="39" residents="1260" />
+        <key max_cropfields="40" residents="1335" />
+        <key max_cropfields="41" residents="1405" />
+        <key max_cropfields="42" residents="1485" />
+        <key max_cropfields="43" residents="1560" />
+        <key max_cropfields="44" residents="1640" />
+        <key max_cropfields="45" residents="1725" />
+        <key max_cropfields="46" residents="1810" />
+        <key max_cropfields="47" residents="1895" />
+        <key max_cropfields="48" residents="1980" />
+        <key max_cropfields="49" residents="2075" />
+        <key max_cropfields="50" residents="2165" />
+        <key max_cropfields="51" residents="2260" />
+        <key max_cropfields="52" residents="2355" />
+        <key max_cropfields="53" residents="2455" />
+        <key max_cropfields="54" residents="2555" />
+        <key max_cropfields="55" residents="2660" />
+        <key max_cropfields="56" residents="2765" />
+        <key max_cropfields="57" residents="2870" />
+        <key max_cropfields="58" residents="2980" />
+        <key max_cropfields="59" residents="3090" />
+        <key max_cropfields="60" residents="3205" />
+        <key max_cropfields="61" residents="3320" />
+        <key max_cropfields="62" residents="3435" />
+        <key max_cropfields="63" residents="3550" />
+        <key max_cropfields="64" residents="3670" />
+        <key max_cropfields="65" residents="3795" />
+        <key max_cropfields="66" residents="3920" />
+        <key max_cropfields="67" residents="4045" />
+        <key max_cropfields="68" residents="4175" />
+        <key max_cropfields="69" residents="4305" />
+        <key max_cropfields="70" residents="4435" />
+        <key max_cropfields="71" residents="4570" />
+        <key max_cropfields="72" residents="4705" />
+        <key max_cropfields="73" residents="4845" />
+        <key max_cropfields="74" residents="4985" />
+        <key max_cropfields="75" residents="5130" />
+        <key max_cropfields="76" residents="5270" />
+        <key max_cropfields="77" residents="5420" />
+        <key max_cropfields="78" residents="5565" />
+        <key max_cropfields="79" residents="5715" />
+        <key max_cropfields="80" residents="5870" />
+        <key max_cropfields="81" residents="6025" />
+        <key max_cropfields="82" residents="6180" />
+        <key max_cropfields="83" residents="6355" />
+        <key max_cropfields="84" residents="6585" />
+        <key max_cropfields="85" residents="6820" />
+        <key max_cropfields="86" residents="7055" />
+        <key max_cropfields="87" residents="7300" />
+        <key max_cropfields="88" residents="7550" />
+        <key max_cropfields="89" residents="7805" />
+        <key max_cropfields="90" residents="8070" />
+        <key max_cropfields="91" residents="8335" />
+        <key max_cropfields="92" residents="8605" />
+        <key max_cropfields="93" residents="8885" />
+        <key max_cropfields="94" residents="9170" />
+        <key max_cropfields="95" residents="9460" />
+        <key max_cropfields="96" residents="9755" />
+        <key max_cropfields="97" residents="10055" />
+        <key max_cropfields="98" residents="10380" />
+        <key max_cropfields="99" residents="10715" />
+        <key max_cropfields="100" residents="11055" />
+        <key max_cropfields="101" residents="11405" />
+        <key max_cropfields="102" residents="11760" />
+        <key max_cropfields="103" residents="12120" />
+        <key max_cropfields="104" residents="12490" />
+        <key max_cropfields="105" residents="12870" />
+        <key max_cropfields="106" residents="13275" />
+        <key max_cropfields="107" residents="13715" />
+        <key max_cropfields="108" residents="14170" />
+        <key max_cropfields="109" residents="14635" />
+        <key max_cropfields="110" residents="15110" />
+        <key max_cropfields="111" residents="15620" />
+        <key max_cropfields="112" residents="16155" />
+        <key max_cropfields="113" residents="16705" />
+        <key max_cropfields="114" residents="17265" />
+        <key max_cropfields="115" residents="17840" />
+    </cropfield_limit>
+    <userLevels>
+        <level experience="0" level="1" />
+        <level balance_reward="100" cash_reward="1" experience="15" level="2" shared_bonus="200">
+            <reward itemCount="3" itemId="wheatCounter" />
+        </level>
+        <level balance_reward="150" cash_reward="1" experience="32" level="3" shared_bonus="200">
+            <reward itemCount="6" itemId="cornCounter" />
+        </level>
+        <level balance_reward="200" cash_reward="1" experience="100" level="4" shared_bonus="200">
+            <reward itemCount="1" itemId="Brick" />
+            <reward itemCount="4" itemId="carrotCounter" />
+        </level>
+        <level balance_reward="250" cash_reward="1" experience="250" level="5" shared_bonus="200">
+            <reward itemCount="3" itemId="chickenfeedCounter" />
+        </level>
+        <level balance_reward="300" cash_reward="1" experience="484" level="6" shared_bonus="200" />
+        <level balance_reward="300" cash_reward="1" experience="776" level="7" shared_bonus="200">
+            <reward itemCount="3" itemId="sugarcaneCounter" />
+        </level>
+        <level balance_reward="300" cash_reward="0" experience="1184" level="8" shared_bonus="200" />
+        <level balance_reward="300" cash_reward="0" experience="1740" level="9" shared_bonus="200">
+            <reward itemCount="3" itemId="cottonCounter" />
+        </level>
+        <level balance_reward="300" cash_reward="0" experience="2479" level="10" shared_bonus="200">
+            <reward itemCount="3" itemId="sheepfeedCounter" />
+        </level>
+        <level balance_reward="400" cash_reward="0" experience="3442" level="11" shared_bonus="200" />
+        <level balance_reward="400" cash_reward="0" experience="4676" level="12" shared_bonus="200" />
+        <level balance_reward="400" cash_reward="0" experience="6231" level="13" shared_bonus="200">
+            <reward itemCount="3" itemId="strawberryCounter" />
+        </level>
+        <level balance_reward="400" cash_reward="0" experience="8166" level="14" shared_bonus="200" />
+        <level balance_reward="500" cash_reward="0" experience="10543" level="15" shared_bonus="200">
+            <reward itemCount="3" itemId="tomatCounter" />
+        </level>
+        <level balance_reward="500" cash_reward="0" experience="13432" level="16" shared_bonus="200" />
+        <level balance_reward="600" cash_reward="0" experience="16910" level="17" shared_bonus="200" />
+        <level balance_reward="600" cash_reward="0" experience="21059" level="18" shared_bonus="200">
+            <reward itemCount="3" itemId="pineCounter" />
+        </level>
+        <level balance_reward="700" cash_reward="0" experience="25971" level="19" shared_bonus="200" />
+        <level balance_reward="800" cash_reward="0" experience="31742" level="20" shared_bonus="200" />
+        <level balance_reward="800" cash_reward="0" experience="38478" level="21" shared_bonus="200" />
+        <level balance_reward="900" cash_reward="0" experience="46291" level="22" shared_bonus="200">
+            <reward itemCount="3" itemId="potatoCounter" />
+        </level>
+        <level balance_reward="1000" cash_reward="0" experience="55302" level="23" shared_bonus="200" />
+        <level balance_reward="1100" cash_reward="0" experience="65640" level="24" shared_bonus="200" />
+        <level balance_reward="1200" cash_reward="0" experience="77442" level="25" shared_bonus="200">
+            <reward itemCount="3" itemId="cacaoCounter" />
+        </level>
+        <level balance_reward="1300" cash_reward="0" experience="90855" level="26" shared_bonus="200" />
+        <level balance_reward="1400" cash_reward="0" experience="106033" level="27" shared_bonus="200" />
+        <level balance_reward="1500" cash_reward="0" experience="123141" level="28" shared_bonus="200" />
+        <level balance_reward="1600" cash_reward="0" experience="142351" level="29" shared_bonus="200">
+            <reward itemCount="3" itemId="rubberTreeCounter" />
+        </level>
+        <level balance_reward="1700" cash_reward="0" experience="163846" level="30" shared_bonus="200" />
+        <level balance_reward="1900" cash_reward="0" experience="187820" level="31" shared_bonus="200">
+            <reward itemCount="3" itemId="silkCounter" />
+        </level>
+        <level balance_reward="2000" cash_reward="0" experience="214474" level="32" shared_bonus="200" />
+        <level balance_reward="2200" cash_reward="0" experience="244021" level="33" shared_bonus="200" />
+        <level balance_reward="2300" cash_reward="0" experience="276684" level="34" shared_bonus="200" />
+        <level balance_reward="2500" cash_reward="0" experience="312697" level="35" shared_bonus="200">
+            <reward itemCount="3" itemId="beefeedCounter" />
+        </level>
+        <level balance_reward="2600" cash_reward="0" experience="352303" level="36" shared_bonus="200" />
+        <level balance_reward="2800" cash_reward="0" experience="395758" level="37" shared_bonus="200" />
+        <level balance_reward="3000" cash_reward="0" experience="443329" level="38" shared_bonus="200" />
+        <level balance_reward="3200" cash_reward="0" experience="495292" level="39" shared_bonus="200" />
+        <level balance_reward="3400" cash_reward="0" experience="551937" level="40" shared_bonus="200" />
+        <level balance_reward="3600" cash_reward="0" experience="613565" level="41" shared_bonus="200" />
+        <level balance_reward="3800" cash_reward="0" experience="680489" level="42" shared_bonus="200">
+            <reward itemCount="3" itemId="pigfeedCounter" />
+        </level>
+        <level balance_reward="4000" cash_reward="0" experience="753034" level="43" shared_bonus="200">
+            <reward itemCount="3" itemId="pepperCounter" />
+        </level>
+        <level balance_reward="4200" cash_reward="0" experience="831537" level="44" shared_bonus="200" />
+        <level balance_reward="4500" cash_reward="0" experience="916348" level="45" shared_bonus="200" />
+        <level balance_reward="4700" cash_reward="0" experience="1007829" level="46" shared_bonus="200" />
+        <level balance_reward="5000" cash_reward="0" experience="1106355" level="47" shared_bonus="200" />
+        <level balance_reward="5200" cash_reward="0" experience="1212316" level="48" shared_bonus="200" />
+        <level balance_reward="5500" cash_reward="0" experience="1326113" level="49" shared_bonus="200" />
+        <level balance_reward="5700" cash_reward="0" experience="1448160" level="50" shared_bonus="200" />
+        <level balance_reward="6000" cash_reward="0" experience="1578887" level="51" shared_bonus="200" />
+        <level balance_reward="6300" cash_reward="0" experience="1718735" level="52" shared_bonus="200" />
+        <level balance_reward="6600" cash_reward="0" experience="1868162" level="53" shared_bonus="200" />
+        <level balance_reward="6900" cash_reward="0" experience="2027638" level="54" shared_bonus="200" />
+        <level balance_reward="7200" cash_reward="0" experience="2197647" level="55" shared_bonus="200" />
+        <level balance_reward="7500" cash_reward="0" experience="2378690" level="56" shared_bonus="200">
+            <reward itemCount="3" itemId="riceCounter" />
+        </level>
+        <level balance_reward="7900" cash_reward="0" experience="2571280" level="57" shared_bonus="200" />
+        <level balance_reward="8200" cash_reward="0" experience="2775947" level="58" shared_bonus="200" />
+        <level balance_reward="8500" cash_reward="0" experience="2993233" level="59" shared_bonus="200" />
+        <level balance_reward="8900" cash_reward="0" experience="3223700" level="60" shared_bonus="200" />
+        <level balance_reward="9200" cash_reward="0" experience="3467920" level="61" shared_bonus="200">
+            <reward itemCount="3" itemId="roseSeedCounter" />
+        </level>
+        <level balance_reward="9600" cash_reward="0" experience="3726485" level="62" shared_bonus="200" />
+        <level balance_reward="10000" cash_reward="0" experience="4000000" level="63" shared_bonus="200" />
+        <level balance_reward="10000" cash_reward="0" experience="4300000" level="64" shared_bonus="200" />
+        <level balance_reward="10000" cash_reward="0" experience="4612000" level="65" shared_bonus="200" />
+        <level balance_reward="0" cash_reward="3" experience="4937000" level="66" shared_bonus="200" />
+        <level balance_reward="0" cash_reward="3" experience="5274000" level="67" shared_bonus="200">
+            <reward itemCount="3" itemId="jasmineCounter" />
+        </level>
+        <level balance_reward="0" cash_reward="3" experience="5623000" level="68" shared_bonus="200" />
+    </userLevels>
+    <zooLevels>
+        <level experience="0" level="1" ratingForChest="10" />
+        <level experience="35" level="2" ratingForChest="30" />
+        <level experience="335" level="3" ratingForChest="45" />
+        <level experience="935" level="4" ratingForChest="60" />
+        <level experience="1935" level="5" ratingForChest="65" />
+        <level experience="3735" level="6" ratingForChest="70" />
+        <level experience="7735" level="7" ratingForChest="75" />
+        <level experience="13735" level="8" ratingForChest="80" />
+        <level experience="21735" level="9" ratingForChest="90" />
+        <level experience="32612" level="10" ratingForChest="100" />
+        <level experience="45622" level="11" ratingForChest="110" />
+        <level experience="60921" level="12" ratingForChest="120" />
+        <level experience="78659" level="13" ratingForChest="130" />
+        <level experience="98981" level="14" ratingForChest="140" />
+        <level experience="122032" level="15" ratingForChest="150" />
+        <level experience="147952" level="16" ratingForChest="160" />
+        <level experience="176878" level="17" ratingForChest="170" />
+        <level experience="208944" level="18" ratingForChest="180" />
+        <level experience="244283" level="19" ratingForChest="190" />
+        <level experience="283024" level="20" ratingForChest="200" />
+        <level experience="325294" level="21" ratingForChest="210" />
+        <level experience="371220" level="22" ratingForChest="220" />
+        <level experience="420926" level="23" ratingForChest="230" />
+        <level experience="474533" level="24" ratingForChest="240" />
+        <level experience="532163" level="25" ratingForChest="250" />
+        <level experience="593935" level="26" ratingForChest="260" />
+        <level experience="659965" level="27" ratingForChest="270" />
+        <level experience="730371" level="28" ratingForChest="280" />
+        <level experience="805266" level="29" ratingForChest="290" />
+        <level experience="885266" level="30" ratingForChest="300" />
+        <level experience="965266" level="31" ratingForChest="310" />
+        <level experience="1045266" level="32" ratingForChest="320" />
+        <level experience="1125266" level="33" ratingForChest="330" />
+    </zooLevels>
+</root>

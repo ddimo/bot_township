@@ -1,0 +1,1146 @@
+<?xml version='1.0' encoding='utf-8'?>
+<buildings>
+    <zoo_building>
+        <item build_time="5s" buildingId="nursery" cash_price="0" coins_price="800" label="nursery" terrain="0,1,2" volumeSize="2x2" />
+        <item build_time="0m" buildingId="parking" cash_price="0" coins_price="800" label="parking" terrain="0,1,2" volumeSize="3x3" />
+        <item build_time="0m" buildingId="help_poster" cash_price="0" coins_price="800" label="help_poster" terrain="0,1,2" volumeSize="1x1" />
+    </zoo_building>
+    <zoo_community>
+        <item backTex="cafeBack" build_time="240m" buildingId="zoo_caffe" coins_price="1000" exp="200" experience="1" icon="zoo_cafe_final" icon_gui="zoo_caffe" label="zoo_caffe" levelneed="1" poster_icon="zoo_caffe_icon" progressForOneChest="100" rating="10" sellTime="3600" terrain="0,1,2" time="180m" volumeSize="2x2" zooLevelNeed="2">
+            <characterInfo x="120" y="146">
+                <intermediateBack id="cook_intermed_2">
+                </intermediateBack>
+                <intermediateForward id="cook_between">
+                </intermediateForward>
+                <passive id="cook_intermed">
+                </passive>
+                <work id="cook_action">
+                </work>
+            </characterInfo>
+            <pers name="reporter" />
+            <texture_pos x="-12" y="-14" />
+            <animInfo animId="zoo_cafe" dx="-15" dy="350" heigh="170" scale="0.5" />
+        </item>
+        <item backTex="snackBarBack" build_time="60m" buildingId="zoo_eatery" coins_price="500" exp="50" experience="4" icon="zoo_snack_bar_final" icon_gui="zoo_eatery" label="zoo_eatery" levelneed="2" poster_icon="zoo_eatery_icon" progressForOneChest="100" rating="5" sellTime="1800" terrain="0,1,2" time="360m" volumeSize="2x2" zooLevelNeed="1">
+            <pers name="buisness_woman" name2="grandma" />
+            <texture_pos x="2" y="2" />
+            <animInfo animId="zoo_snack_bar" dx="0" dy="252" heigh="170" scale="0.5" />
+            
+            <characterInfo x="119" y="150.8">
+                <intermediateBack id="snackseller_intermed_2" />
+                <intermediateForward id="snackseller_intermed" />
+                <passive id="snackseller_idle" />
+                <work id="snackseller_action" />
+            </characterInfo>
+        </item>
+        <item backTex="restaurantBack" build_time="2700m" buildingId="zoo_restaurant" coins_price="50000" exp="1000" experience="4" icon="zoorestaurant_final" icon_gui="zoo_restaurant" label="zoo_restaurant" levelneed="15" poster_icon="zoo_restaurant_icon" progressForOneChest="100" rating="700" sellTime="9000" terrain="0,1,2" time="540m" volumeSize="2x2" zooLevelNeed="20">
+            <pers name="buisness_woman" name2="grandma" />
+            
+            <animInfo animId="zoorestaurant" dx="0" dy="365" heigh="170" scale="0.5" />
+            
+            <texture_pos x="2" y="2" />
+            
+            <characterInfo x="110" y="164">
+                <intermediateBack id="restaurant_intermed_2" />
+                <intermediateForward id="restaurant_intermed_1" />
+                <passive id="restaurant_idle" />
+                <work id="restaurant_action" />
+            </characterInfo>
+
+        </item>
+        <item backTex="shopBack" build_time="2220m" buildingId="zoo_shop" coins_price="10000" exp="500" experience="10" icon="zoo_gift_shop_final" icon_gui="zoo_shop" label="zoo_shop" levelneed="7" poster_icon="zoo_shop_icon" progressForOneChest="100" rating="500" sellTime="5400" terrain="0,1,2" time="720m" volumeSize="2x2" zooLevelNeed="14">
+            <characterInfo x="119" y="155.8">
+                <intermediateBack id="giftseller_intermed_2" />
+                <intermediateForward id="giftseller_intermed_1" />
+                <passive id="giftseller_idle" />
+                <work id="giftseller_action" />
+            </characterInfo>
+            <pers name="buisness_woman" name2="grandma" />
+            <texture_pos x="2" y="2" />
+            <animInfo animId="zoo_gift_shop" dx="-30" dy="290" heigh="170" scale="0.5" />
+        </item>
+        <item backTex="cinemaBack" build_time="1440m" buildingId="zoo_cinema" coins_price="3000" exp="300" experience="10" icon="zoo_cinema_final" icon_gui="zoo_cinema" label="zoo_cinema" levelneed="10" poster_icon="zoo_cinema_icon" progressForOneChest="100" rating="50" sellTime="7200" terrain="0,1,2" time="960m" volumeSize="2x2" zooLevelNeed="4">
+            <characterInfo x="138" y="160">
+                <intermediateBack id="pop_corn_seller_intermed_2" />
+                <intermediateForward id="pop_corn_seller_intermed" />
+                <passive id="pop_corn_seller_idle" />
+                <work id="pop_corn_seller_action" />
+            </characterInfo>
+            <pers name="buisness_woman" name2="grandma" />
+            <texture_pos x="2" y="2" />
+            <animInfo animId="zoo_cinema" dx="-15" dy="320" heigh="170" scale="0.5" />
+        </item>
+        <item backTex="icecreamShopBack" build_time="1620m" buildingId="zoo_icecream_shop" coins_price="6000" exp="400" experience="10" icon="ice_cream_zoo_final" icon_gui="zoo_icecream_shop" label="zoo_icecream_shop" levelneed="13" poster_icon="zoo_icecream_shop_icon" progressForOneChest="100" rating="300" sellTime="12600" terrain="0,1,2" time="1200m" volumeSize="2x2" zooLevelNeed="8">
+            <characterInfo x="102" y="135">
+                <intermediateBack id="icecreamseller_intermed_2" />
+                <intermediateForward id="icecreamseller_intermed_1" />
+                <passive id="icecreamseller_idle" />
+                <work id="icecreamseller_action" />
+            </characterInfo>
+            <pers name="buisness_woman" name2="grandma" />
+            <texture_pos x="-1" y="6" />
+            <animInfo animId="ice_cream_zoo" dx="-50" dy="292" heigh="170" scale="0.5" />
+        </item>
+        <item backTex="cafeBack" build_time="3240m" buildingId="zoo_caffe_drinks" coins_price="500000" exp="1500" experience="10" icon="zoo_cocktail_store_final" icon_gui="zoo_caffe_drinks" label="zoo_caffe_drinks" levelneed="16" poster_icon="zoo_caffe_drinks_icon" progressForOneChest="100" rating="1000" sellTime="2400" terrain="0,1,2" time="1440m" volumeSize="2x2" zooLevelNeed="27">
+            <pers name="buisness_woman" name2="grandma" />
+            <texture_pos x="5" y="5" />
+            <animInfo animId="zoo_cocktail_store" dx="-5" dy="307" heigh="170" scale="0.5" />
+        </item>
+        <item backTex="contactBack" build_time="3000m" buildingId="zoo_contact" coins_price="150000" exp="1500" experience="1" icon="contactzooanimals_final" icon_gui="zoo_contact" label="zoo_contact" levelneed="16" poster_icon="zoo_contact_icon" progressForOneChest="100" rating="1000" sellTime="2400" terrain="0,1,2" time="1440m" volumeSize="2x2" zooLevelNeed="24">
+            <characterInfo x="137" y="158">
+                <intermediateBack id="contactzooworker_intermed_2" />
+                <intermediateForward id="contactzooworker_intermed_1" />
+                <passive id="contactzooworker_idle" />
+                <work id="contactzooworker_action" />
+            </characterInfo>
+            <pers name="buisness_woman" name2="grandma" />
+            <texture_pos x="5" y="5" />
+            <animInfo animId="contactzooanimals" dx="-5" dy="307" heigh="170" scale="0.5" />
+        </item>
+    </zoo_community>
+    <paddock>
+        <item build_time="5s" buildingId="paddock_bear" coins_price="500" exp="50" icon="bear_background" icon_gui="paddock_bear" label="BearPaddock" levelneed="1" rating="2" terrain="0,1,2" volumeSize="3x3" zooLevelNeed="1">
+            <sounds>
+                <sound id="Bear" />
+            </sounds>
+            <animation_settings scale="0.5" x="143.5" y="2" />
+            <star_pos x="273" y="98" />
+            <animal id="bear_father_idle">
+                <add animId="bear_father_idle_2" frontAnimId="bear_father_bash" x="178" y="60" />
+            </animal>
+            <animal id="bear_mother_idle">
+                <add frontAnimId="bear_mother_fence" x="94" y="54" />
+            </animal>
+            <animal id="bear_son_idle">
+                <add x="108" y="94" />
+            </animal>
+            <animal id="bear_daughter_idle">
+                <add deleteAnimId="bear_bridge" x="145" y="151" />
+            </animal>
+           
+            <animation id="bear_daughter_idle" looping="true" />
+            <animation id="bear_daughter_action" />
+            <animation id="bear_bridge" looping="true" visible="true" />
+            <animation id="bear_son_idle" looping="true" />
+            <animation id="bear_son_action" />
+            <animation id="bear_mother_idle" looping="true" />
+            <animation id="bear_mother_action" />
+            <animation id="bear_mother_son_action" />
+            <animation id="bear_father_idle_2" />
+            <animation id="bear_father_idle" looping="true" />
+            <animation id="bear_father_action" />
+            <animation id="bear_father_mother_action" />
+            <animation id="bear_father_bash" looping="true" visible="true" />
+            <animation id="bear_mother_fence" looping="true" visible="true" />
+            <swap_animation from="bear_father_idle" intervalMax="55" intervalMin="30" to="bear_father_action" />
+            <swap_animation from="bear_mother_idle" intervalMax="55" intervalMin="30" to="bear_mother_action" />
+            <swap_animation from="bear_son_idle" intervalMax="55" intervalMin="30" to="bear_son_action" />
+            <swap_animation from="bear_daughter_idle" intervalMax="55" intervalMin="30" to="bear_daughter_action" />
+            <swap_2animation from1="bear_mother_idle" from2="bear_son_idle" intervalMax="55" intervalMin="30" to="bear_mother_son_action" />
+            <swap_2animation from1="bear_father_idle" from2="bear_mother_idle" intervalMax="55" intervalMin="30" to="bear_father_mother_action" />
+            <CradleSettings>
+                <first cradleAnimId="cradle" />
+                <second cradleAnimId="cradle" />
+            </CradleSettings>
+        </item>
+        <item build_time="1260m" buildingId="paddock_elephant" coins_price="9000" exp="400" icon="elephant_background" icon_gui="paddock_elephant" label="ElephantPaddock" levelneed="1" rating="80" terrain="0,1,2" volumeSize="3x3" zooLevelNeed="11">
+            <sounds>
+                <sound id="Elephant" />
+            </sounds>
+            <animation_settings scale="0.5" x="143.7" y="2.5" />
+            <star_pos x="274.5" y="96.3" />
+            <animal id="elephant_father_idle">
+                <add x="114" y="87" />
+            </animal>
+            <animal id="elephant_mother_idle">
+                <add x="160" y="53" />
+            </animal>
+            <animal id="elephant_son_idle">
+                <add x="176" y="101" />
+            </animal>
+            <animal id="elephant_daughter_idle">
+                <add x="234" y="75" />
+            </animal>
+            <animation id="elephant_father_idle" looping="true" />
+            <animation id="elephant_father_action" />
+            <animation id="elephant_son_action" />
+            <animation id="elephant_son_idle" looping="true" />
+            <animation id="elephant_daughter_idle" looping="true" />
+            <animation id="elephant_daughter_action" />
+            <animation id="elephant_son_daughter_action" />
+            <animation id="elephant_mother_idle" looping="true" />
+            <animation id="elephant_mother_action" />
+            <animation id="elephant_father_mother_action" />
+            <animation id="elephant_mother_daughter_action" />
+            <swap_animation from="elephant_father_idle" intervalMax="55" intervalMin="30" to="elephant_father_action" />
+            <swap_animation from="elephant_mother_idle" intervalMax="55" intervalMin="30" to="elephant_mother_action" />
+            <swap_animation from="elephant_daughter_idle" intervalMax="55" intervalMin="30" to="elephant_daughter_action" />
+            <swap_animation from="elephant_son_idle" intervalMax="55" intervalMin="30" to="elephant_son_action" />
+            <swap_2animation from1="elephant_father_idle" from2="elephant_mother_idle" intervalMax="55" intervalMin="30" to="elephant_father_mother_action" />
+            <swap_2animation from1="elephant_daughter_idle" from2="elephant_son_idle" intervalMax="55" intervalMin="30" to="elephant_son_daughter_action" />
+            <swap_2animation from1="elephant_mother_idle" from2="elephant_daughter_idle" intervalMax="55" intervalMin="30" to="elephant_mother_daughter_action" />
+            <CradleSettings>
+                <first animation="cradle" />
+                <second animation="cradle" />
+            </CradleSettings>
+        </item>
+        <item build_time="1020m" buildingId="paddock_hippo" coins_price="5000" exp="300" icon="hypo_background" icon_gui="paddock_hippo" label="hippoPaddock" levelneed="1" rating="40" terrain="0,1,2" volumeSize="3x3" zooLevelNeed="7">
+            <sounds>
+                <sound id="Hippopotamus" />
+            </sounds>
+            <animation_settings scale="0.5" x="145" y="2" />
+            <star_pos x="274.5" y="92.3" />
+            <animal id="hypo_father_idle">
+                <add x="163" y="77" />
+            </animal>
+            <animal id="hypo_mother_idle">
+                <add x="125" y="61" />
+            </animal>
+            <animal id="hypo_son_idle">
+                <add x="66" y="80" />
+            </animal>
+            <animal id="hypo_daughter_idle">
+                <add x="149" y="137" />
+            </animal>
+            <animation id="hypo_daughter_idle" looping="true" />
+            <animation id="hypo_daughter_action" />
+            <animation id="hypo_son_idle" looping="true" />
+            <animation id="hypo_son_action" />
+            <animation id="hypo_daughter_son_action" />
+            <animation id="hypo_father_idle" looping="true" />
+            <animation id="hypo_father_action" />
+            <animation id="hypo_mother_idle" looping="true" />
+            <animation id="hypo_mother_action" />
+            <swap_animation from="hypo_father_idle" intervalMax="55" intervalMin="30" to="hypo_father_action" />
+            <swap_animation from="hypo_mother_idle" intervalMax="55" intervalMin="30" to="hypo_mother_action" />
+            <swap_animation from="hypo_son_idle" intervalMax="55" intervalMin="30" to="hypo_son_action" />
+            <swap_animation from="hypo_daughter_idle" intervalMax="55" intervalMin="30" to="hypo_daughter_action" />
+            <swap_2animation from1="hypo_son_idle" from2="hypo_daughter_idle" intervalMax="55" intervalMin="30" to="hypo_daughter_son_action" />
+            <CradleSettings>
+                <first animation="cradle" />
+                <second animation="cradle_water" />
+            </CradleSettings>
+        </item>
+        <item build_time="960m" buildingId="paddock_lion" coins_price="4000" exp="275" icon="lion_background" icon_gui="paddock_lion" label="LionPaddock" levelneed="1" rating="30" terrain="0,1,2" volumeSize="3x3" zooLevelNeed="6">
+            <sounds>
+                <sound id="Lion" />
+            </sounds>
+            <animation_settings scale="0.5" x="145" y="2.7" />
+            <star_pos x="279" y="97" />
+            <animal id="lion_father_idle">
+                <add x="117" y="137" />
+            </animal>
+            <animal id="lion_mother_idle">
+                <add x="171" y="135" />
+            </animal>
+            <animal id="lion_son_idle">
+                <add deleteAnimId="lion_wheel" x="235" y="69" />
+            </animal>
+            <animal id="lion_daughter_idle">
+                <add x="159" y="82" />
+            </animal>
+            <animation id="lion_father_idle" looping="true" />
+            <animation id="lion_father_action" />
+            <animation id="lion_mother_idle" looping="true" />
+            <animation id="lion_mother_action" />
+            <animation id="lion_wheel" looping="true" visible="true" />
+            <animation id="lion_son_idle" looping="true" />
+            <animation id="lion_son_action" />
+            <animation id="lion_daughter_idle" looping="true" />
+            <animation id="lion_daughter_action" />
+            <animation id="lion_son_daughter_action" />
+            <swap_animation from="lion_father_idle" intervalMax="55" intervalMin="30" to="lion_father_action" />
+            <swap_animation from="lion_mother_idle" intervalMax="55" intervalMin="30" to="lion_mother_action" />
+            <swap_animation from="lion_son_idle" intervalMax="55" intervalMin="30" to="lion_son_action" />
+            <swap_animation from="lion_daughter_idle" intervalMax="55" intervalMin="30" to="lion_daughter_action" />
+            <swap_2animation from1="lion_son_idle" from2="lion_daughter_idle" intervalMax="55" intervalMin="30" to="lion_son_daughter_action" />
+            <CradleSettings>
+                <first animation="cradle" />
+                <second animation="cradle" />
+            </CradleSettings>
+        </item>
+        <item build_time="1140m" buildingId="paddock_polar_bear" coins_price="7000" exp="350" icon="polar_bear_background" icon_gui="paddock_polar_bear" label="polar_bearPaddock" levelneed="1" rating="60" terrain="0,1,2" volumeSize="3x3" zooLevelNeed="9">
+            <sounds>
+                <sound id="Polar_Bear" />
+            </sounds>
+            <animation_settings scale="0.5" x="145" y="1" />
+            <star_pos x="275.5" y="93.0" />
+            <animal id="polar_bear_dad_idle">
+                <add x="224" y="101" />
+            </animal>
+            <animal id="polar_bear_mom_idle">
+                <add x="162" y="64" />
+            </animal>
+            <animal id="polar_bear_son_idle">
+                <add x="120" y="61" />
+            </animal>
+            <animal id="polar_bear_daughter_idle">
+                <add x="65" y="99" />
+            </animal>
+            <animation id="polar_bear_dad_idle" looping="true" />
+            <animation id="polar_bear_dad_action" />
+            <animation id="polar_bear_mom_idle" looping="true" />
+            <animation id="polar_bear_mom_action" />
+            <animation id="polar_bear_son_idle" looping="true" />
+            <animation id="polar_bear_son_action" />
+            <animation id="polar_bear_daughter_idle" looping="true" />
+            <animation id="polar_bear_daughter_action" />
+            <animation id="polar_bear_daughter_son_action" />
+            <swap_animation from="polar_bear_dad_idle" intervalMax="55" intervalMin="30" to="polar_bear_dad_action" />
+            <swap_animation from="polar_bear_mom_idle" intervalMax="55" intervalMin="30" to="polar_bear_mom_action" />
+            <swap_animation from="polar_bear_son_idle" intervalMax="55" intervalMin="30" to="polar_bear_son_action" />
+            <swap_animation from="polar_bear_daughter_idle" intervalMax="55" intervalMin="30" to="polar_bear_daughter_action" />
+            <swap_2animation from1="polar_bear_daughter_idle" from2="polar_bear_son_idle" intervalMax="55" intervalMin="30" to="polar_bear_daughter_son_action" />
+            <CradleSettings>
+                <first animation="cradle" />
+                <second animation="cradle" />
+            </CradleSettings>
+        </item>
+        <item build_time="840m" buildingId="paddock_penguin" coins_price="2000" exp="200" icon="penguin_background" icon_gui="paddock_penguin" label="penguinPaddock" levelneed="1" rating="10" terrain="0,1,2" volumeSize="3x3" zooLevelNeed="4">
+            <sounds>
+                <sound id="Penguin" />
+            </sounds>
+            <animation_settings scale="0.5" x="143.5" y="0.5" />
+            <star_pos x="272.0" y="103" />
+            <animal id="penguin_father_idle">
+                <add x="177" y="95" />
+            </animal>
+            <animal id="penguin_mother_idle">
+                <add x="135" y="78" />
+            </animal>
+            <animal id="penguin_son_idle">
+                <add x="189" y="60" />
+            </animal>
+            <animal id="penguin_daughter_idle">
+                <add x="132" y="132" />
+            </animal>
+            <animation id="penguin_father_idle" looping="true" />
+            <animation id="penguin_father_action" />
+            <animation id="penguin_mother_idle" looping="true" />
+            <animation id="penguin_mother_action" />
+            <animation id="penguin_mother_father_action" />
+            <animation id="penguin_son_idle" looping="true" />
+            <animation id="penguin_son_action_1" />
+            <animation id="penguin_son_action_2" />
+            <animation id="penguin_daughter_idle" looping="true" />
+            <animation id="penguin_daughter_action_1" />
+            <animation id="penguin_daughter_action_2" />
+            <animation id="penguin_daughter_son_action" />
+            <swap_animation from="penguin_father_idle" intervalMax="55" intervalMin="30" to="penguin_father_action" />
+            <swap_animation from="penguin_mother_idle" intervalMax="55" intervalMin="30" to="penguin_mother_action" />
+            <swap_animation from="penguin_son_idle" intervalMax="55" intervalMin="30" to="penguin_son_action_1" />
+            <swap_animation from="penguin_son_idle" intervalMax="55" intervalMin="30" to="penguin_son_action_2" />
+            <swap_animation from="penguin_daughter_idle" intervalMax="55" intervalMin="30" to="penguin_daughter_action_1" />
+            <swap_animation from="penguin_daughter_idle" intervalMax="55" intervalMin="30" to="penguin_daughter_action_2" />
+            <swap_2animation from1="penguin_mother_idle" from2="penguin_father_idle" intervalMax="55" intervalMin="30" to="penguin_mother_father_action" />
+            <swap_2animation from1="penguin_daughter_idle" from2="penguin_son_idle" intervalMax="55" intervalMin="30" to="penguin_daughter_son_action" />
+            <CradleSettings>
+                <first animation="cradle" />
+                <second animation="cradle" />
+            </CradleSettings>
+        </item>
+        <item build_time="1800m" buildingId="paddock_tiger" coins_price="60000" exp="625" icon="tiger_background" icon_gui="paddock_tiger" label="tigerPaddock" levelneed="1" rating="170" terrain="0,1,2" volumeSize="3x3" zooLevelNeed="20">
+            <sounds>
+                <sound id="Tiger" />
+            </sounds>
+            <animation_settings scale="0.5" x="145" y="0" />
+            <star_pos x="276.2" y="91.5" />
+            <animal id="Tiger_father_idle">
+                <add x="70" y="94" />
+            </animal>
+            <animal id="Tiger_mom_idle">
+                <add x="167" y="99" />
+            </animal>
+            <animal id="Tiger_son_idle">
+                <add x="117" y="66" />
+            </animal>
+            <animal id="Tiger_daughter_idle">
+                <add x="155" y="137" />
+            </animal>
+            <animation id="Tiger_father_idle" looping="true" />
+            <animation id="Tiger_mom_idle" looping="true" />
+            <animation id="Tiger_son_idle" looping="true" />
+            <animation id="Tiger_daughter_idle" looping="true" />
+            <animation id="Tiger_father_action" />
+            <animation id="Tiger_mom_action" />
+            <animation id="Tiger_son_action_1" />
+            <animation id="Tiger_son_action_2" />
+            <animation id="Tiger_daughter_action" />
+            <swap_animation from="Tiger_father_idle" intervalMax="55" intervalMin="30" to="Tiger_father_action" />
+            <swap_animation from="Tiger_mom_idle" intervalMax="55" intervalMin="30" to="Tiger_mom_action" />
+            <swap_animation from="Tiger_son_idle" intervalMax="55" intervalMin="30" to="Tiger_son_action_1" />
+            <swap_animation from="Tiger_son_idle" intervalMax="55" intervalMin="30" to="Tiger_son_action_2" />
+            <swap_animation from="Tiger_daughter_idle" intervalMax="55" intervalMin="30" to="Tiger_daughter_action" />
+            <CradleSettings>
+                <first animation="cradle" />
+                <second animation="cradle" />
+            </CradleSettings>
+        </item>
+        <item build_time="600m" buildingId="paddock_zebra" coins_price="1500" exp="150" icon="zebra_background" icon_gui="paddock_zebra" label="zebraPaddock" levelneed="1" rating="8" terrain="0,1,2" volumeSize="3x3" zooLevelNeed="3">
+            <sounds>
+                <sound id="Zebra" />
+            </sounds>
+            <animation_settings scale="0.5" x="145" y="3" />
+            <star_pos x="274.5" y="101.2" />
+            <animal id="zebra_papa_idle">
+                <add x="94" y="83" />
+            </animal>
+            <animal id="zebra_mom_idle">
+                <add x="167" y="77" />
+            </animal>
+            <animal id="zebra_boy_idle">
+                <add x="127" y="72" />
+            </animal>
+            <animal id="zebra_girl_idle">
+                <add x="242" y="71" />
+            </animal>
+            <animation id="zebra_papa_idle" looping="true" />
+            <animation id="zebra_mom_idle" looping="true" />
+            <animation id="zebra_boy_idle" looping="true" />
+            <animation id="zebra_girl_idle" looping="true" />
+            <animation id="zebra_papa_action" />
+            <animation id="zebra_mom_action" />
+            <animation id="zebra_boy_action_1" />
+            <animation id="zebra_boy_action_2" />
+            <animation id="zebra_girl_action" />
+            <animation id="zebra_mom_boy_action" />
+            <swap_animation from="zebra_papa_idle" intervalMax="55" intervalMin="30" to="zebra_papa_action" />
+            <swap_animation from="zebra_mom_idle" intervalMax="55" intervalMin="30" to="zebra_mom_action" />
+            <swap_animation from="zebra_boy_idle" intervalMax="55" intervalMin="30" to="zebra_boy_action_1" />
+            <swap_animation from="zebra_boy_idle" intervalMax="55" intervalMin="30" to="zebra_boy_action_2" />
+            <swap_animation from="zebra_girl_idle" intervalMax="55" intervalMin="30" to="zebra_girl_action" />
+            <swap_2animation from1="zebra_mom_idle" from2="zebra_boy_idle" intervalMax="55" intervalMin="30" to="zebra_mom_boy_action" />
+            <CradleSettings>
+                <first animation="cradle" />
+                <second animation="cradle" />
+            </CradleSettings>
+        </item>
+        <item build_time="1320m" buildingId="paddock_crocodile" coins_price="10000" exp="425" icon="crocodile_background" icon_gui="paddock_crocodile" label="crocodilePaddock" levelneed="1" rating="90" terrain="0,1,2" volumeSize="3x3" zooLevelNeed="12">
+            <sounds>
+                <sound id="Crocodile" />
+            </sounds>
+            <animation_settings scale="0.5" x="144" y="3" />
+            <star_pos x="278" y="92.3" />
+            <animal id="crocodile_mother_idle">
+                <add x="101" y="62" />
+            </animal>
+            <animal id="crocodile_father_idle">
+                <add animId="crocodile_father_idle_2" deleteAnimId="crocodile_lily" x="181" y="62" />
+            </animal>
+            <animal id="crocodile_baby_1_idle">
+                <add deleteAnimId="crocodile_log" x="127" y="107" />
+            </animal>
+            <animal id="crocodile_baby_2_idle">
+                <add x="159" y="89" />
+            </animal>
+            <animation id="crocodile_log" looping="true" visible="true" />
+            <animation id="crocodile_baby_1_idle" looping="true" />
+            <animation id="crocodile_baby_2_idle" looping="true" />
+            <animation id="crocodile_baby_1_action" />
+            <animation id="crocodile_baby_2_action" />
+            <animation id="crocodile_lily" looping="true" visible="true" />
+            <animation id="crocodile_father_idle" looping="true" />
+            <animation id="crocodile_father_idle_2" />
+            <animation id="crocodile_father_action" />
+            <animation id="crocodile_mother_log" looping="true" visible="true" />
+            <animation id="crocodile_mother_idle" looping="true" />
+            <animation id="crocodile_mother_action" />
+            <swap_animation from="crocodile_father_idle" intervalMax="55" intervalMin="30" to="crocodile_father_action" />
+            <swap_animation from="crocodile_mother_idle" intervalMax="55" intervalMin="30" to="crocodile_mother_action" />
+            <swap_animation from="crocodile_baby_1_idle" intervalMax="55" intervalMin="30" to="crocodile_baby_1_action" />
+            <swap_animation from="crocodile_baby_2_idle" intervalMax="55" intervalMin="30" to="crocodile_baby_2_action" />
+            <CradleSettings>
+                <first animation="cradle" />
+                <second animation="cradle" />
+            </CradleSettings>
+        </item>
+        <item build_time="420m" buildingId="paddock_flamingo" coins_price="1000" exp="100" icon="flamingo_background" icon_gui="paddock_flamingo" label="flamingoPaddock" levelneed="1" rating="4" terrain="0,1,2" volumeSize="3x3" zooLevelNeed="2">
+            <sounds>
+                <sound id="Flamingo" />
+            </sounds>
+            <animation_settings scale="0.5" x="144.5" y="12" />
+            <star_pos x="271.5" y="95.0" />
+            <animal id="flamingo_father_idle">
+                <add x="88" y="58" />
+            </animal>
+            <animal id="flamingo_mother_idle">
+                <add x="167" y="49" />
+            </animal>
+            <animal id="flamingo_baby_1_idle">
+                <add x="125" y="81" />
+            </animal>
+            <animal id="flamingo_baby_2_idle">
+                <add x="217" y="109" />
+            </animal>
+            <animation id="flamingo_baby_1_idle" looping="true" />
+            <animation id="flamingo_baby_1_action" />
+            <animation id="flamingo_baby_2_idle" looping="true" />
+            <animation id="flamingo_baby_2_action" />
+            <animation id="flamingo_mother_idle" looping="true" />
+            <animation id="flamingo_mother_action_1" />
+            <animation id="flamingo_mother_action_2" />
+            <animation id="flamingo_father_idle" looping="true" />
+            <animation id="flamingo_father_action" />
+            <swap_animation from="flamingo_father_idle" intervalMax="55" intervalMin="30" to="flamingo_father_action" />
+            <swap_animation from="flamingo_mother_idle" intervalMax="55" intervalMin="30" to="flamingo_mother_action_1" />
+            <swap_animation from="flamingo_mother_idle" intervalMax="55" intervalMin="30" to="flamingo_mother_action_2" />
+            <swap_animation from="flamingo_baby_1_idle" intervalMax="55" intervalMin="30" to="flamingo_baby_1_action" />
+            <swap_animation from="flamingo_baby_2_idle" intervalMax="55" intervalMin="30" to="flamingo_baby_2_action" />
+            <CradleSettings>
+                <second animation="cradle" />
+                <first animation="cradle_water" />
+            </CradleSettings>
+        </item>
+        <item build_time="1200m" buildingId="paddock_koala" coins_price="8000" exp="375" icon="coal_background" icon_gui="paddock_koala" label="koalaPaddock" levelneed="1" rating="70" terrain="0,1,2" volumeSize="3x3" zooLevelNeed="10">
+            <sounds>
+                <sound id="Koala_1" />
+                <sound id="Koala_2" />
+            </sounds>
+            <animation_settings scale="0.5" x="140" y="8" />
+            <star_pos x="270.5" y="88.0" />
+            <animal id="coal_mother_idle">
+                <add x="171" y="87" />
+            </animal>
+            <animal id="coal_father_idle">
+                <add x="51" y="106" />
+            </animal>
+            <animal id="coal_son_idle">
+                <add x="200" y="56" />
+            </animal>
+            <animal id="coal_daughter_idle">
+                <add x="190" y="146" />
+            </animal>
+            <animation id="coal_son_idle" looping="true" />
+            <animation id="coal_son_action_1" />
+            <animation id="coal_son_action_2" />
+            <animation id="coal_father_idle" looping="true" />
+            <animation id="coal_father_action" />
+            <animation id="coal_mother_idle" looping="true" />
+            <animation id="coal_mother_action_1" />
+            <animation id="coal_mother_action_2" />
+            <animation id="coal_daughter_idle" looping="true" />
+            <animation id="coal_daughter_action_1" />
+            <animation id="coal_daughter_action_2" />
+            <swap_animation from="coal_father_idle" intervalMax="55" intervalMin="30" to="coal_father_action" />
+            <swap_animation from="coal_mother_idle" intervalMax="55" intervalMin="30" to="coal_mother_action_1" />
+            <swap_animation from="coal_mother_idle" intervalMax="55" intervalMin="30" to="coal_mother_action_2" />
+            <swap_animation from="coal_son_idle" intervalMax="55" intervalMin="30" to="coal_son_action_1" />
+            <swap_animation from="coal_son_idle" intervalMax="55" intervalMin="30" to="coal_son_action_2" />
+            <swap_animation from="coal_daughter_idle" intervalMax="55" intervalMin="30" to="coal_daughter_action_1" />
+            <swap_animation from="coal_daughter_idle" intervalMax="55" intervalMin="30" to="coal_daughter_action_2" />
+            <CradleSettings>
+                <first animation="cradle" />
+                <second animation="cradle" />
+            </CradleSettings>
+        </item>
+        <item build_time="900m" buildingId="paddock_monkey" coins_price="3000" exp="250" icon="monkey_background" icon_gui="paddock_monkey" label="monkeyPaddock" levelneed="1" rating="20" terrain="0,1,2" volumeSize="3x3" zooLevelNeed="5">
+            <sounds>
+                <sound id="Monkeys" />
+            </sounds>
+            <animation_settings scale="0.5" x="144" y="2" />
+            <star_pos x="277.0" y="98" />
+            <animal id="monkey_father_idle">
+                <add x="125" y="78" />
+            </animal>
+            <animal id="monkey_mother_idle">
+                <add x="170" y="75" />
+            </animal>
+            <animal id="monkey_son_idle">
+                <add animId="monkey_son_appear" deleteAnimId="monkey_rope" x="200" y="92" />
+            </animal>
+            <animal id="monkey_daughter_idle">
+                <add x="200" y="92" />
+            </animal>
+            <animation id="monkey_rope" looping="true" visible="true" />
+            <animation id="monkey_son_idle" looping="true" />
+            <animation id="monkey_son_appear" visible="false" />
+            <animation id="monkey_son_action" />
+            <animation id="monkey_daughter_idle" looping="true" />
+            <animation id="monkey_daughter_action" />
+            <animation id="monkey_father_idle" looping="true" />
+            <animation id="monkey_father_action" />
+            <animation id="monkey_mother_idle" looping="true" />
+            <animation id="monkey_mother_action" />
+            <animation id="monkey_mother_daughter_action" />
+            <animation id="monkey_mother_father_action" />
+            <swap_animation from="monkey_father_idle" intervalMax="55" intervalMin="30" to="monkey_father_action" />
+            <swap_animation from="monkey_mother_idle" intervalMax="55" intervalMin="30" to="monkey_mother_action" />
+            <swap_animation from="monkey_son_idle" intervalMax="55" intervalMin="30" to="monkey_son_action" />
+            <swap_animation from="monkey_daughter_idle" intervalMax="55" intervalMin="30" to="monkey_daughter_action" />
+            <swap_2animation from1="monkey_mother_idle" from2="monkey_daughter_idle" intervalMax="55" intervalMin="30" to="monkey_mother_daughter_action" />
+            <swap_2animation from1="monkey_mother_idle" from2="monkey_father_idle" intervalMax="55" intervalMin="30" to="monkey_mother_father_action" />
+            <CradleSettings>
+                <first animation="cradle" />
+                <second animation="cradle" />
+            </CradleSettings>
+        </item>
+        <item build_time="1560m" buildingId="paddock_panda" coins_price="20000" exp="525" icon="panda_background" icon_gui="paddock_panda" label="pandaPaddock" levelneed="1" rating="130" terrain="0,1,2" volumeSize="3x3" zooLevelNeed="16">
+            <sounds>
+                <sound id="Panda1" />
+                <sound id="Panda2" />
+            </sounds>
+            <animation_settings scale="0.5" x="143" y="1" />
+            <star_pos x="276" y="91.3" />
+            <animal id="Panda_father_idle">
+                <add x="92" y="62" />
+            </animal>
+            <animal id="panda_mother_idle">
+                <add x="197" y="81" />
+            </animal>
+            <animal id="panda_son_idle">
+                <add deleteAnimId="panda_rope" x="120" y="91" />
+            </animal>
+            <animal id="panda_dauther_idle">
+                <add x="159" y="84" />
+            </animal>
+            <animation id="Panda_father_idle" looping="true" />
+            <animation id="panda_mother_idle" looping="true" />
+            <animation id="panda_rope" looping="true" visible="true" />
+            <animation id="panda_son_idle" looping="true" />
+            <animation id="panda_dauther_idle" looping="true" />
+            <animation id="Panda_father_action" />
+            <animation id="panda_mother_action" />
+            <animation id="panda_son_action" />
+            <animation id="panda_dauther_action" />
+            <animation id="panda_mother_dauther_action" />
+            <animation id="panda_son_dauther_action" />
+            <swap_animation from="Panda_father_idle" intervalMax="55" intervalMin="30" to="Panda_father_action" />
+            <swap_animation from="panda_mother_idle" intervalMax="55" intervalMin="30" to="panda_mother_action" />
+            <swap_animation from="panda_son_idle" intervalMax="55" intervalMin="30" to="panda_son_action" />
+            <swap_animation from="panda_dauther_idle" intervalMax="55" intervalMin="30" to="panda_dauther_action" />
+            <swap_2animation from1="panda_mother_idle" from2="panda_dauther_idle" intervalMax="55" intervalMin="30" to="panda_mother_dauther_action" />
+            <swap_2animation from1="panda_son_idle" from2="panda_dauther_idle" intervalMax="55" intervalMin="30" to="panda_son_dauther_action" />
+            <CradleSettings>
+                <first animation="cradle" />
+                <second animation="cradle" />
+            </CradleSettings>
+        </item>
+        <item build_time="1440m" buildingId="paddock_seal" coins_price="12000" exp="475" icon="seal_background" icon_gui="paddock_seal" label="sealPaddock" levelneed="1" rating="110" terrain="0,1,2" volumeSize="3x3" zooLevelNeed="14">
+            <sounds>
+                <sound id="Seal" />
+            </sounds>
+            <animation_settings scale="0.5" x="148" y="0" />
+            <star_pos x="277.5" y="99.3" />
+            <animal id="seal_father_idle">
+                <add x="140" y="105" />
+            </animal>
+            <animal id="seal_mother_idle">
+                <add x="207" y="68" />
+            </animal>
+            <animal id="seal_son_idle">
+                <add x="149" y="80" />
+            </animal>
+            <animal id="seal_daughter_idle">
+                <add x="163" y="73" />
+            </animal>
+            <animation id="seal_father_idle" looping="true" />
+            <animation id="seal_mother_idle" looping="true" />
+            <animation id="seal_son_idle" looping="true" />
+            <animation id="seal_daughter_idle" looping="true" />
+            <animation id="seal_father_action" />
+            <animation id="seal_mother_action" />
+            <animation id="seal_son_action" />
+            <animation id="seal_daughter_mother_action" />
+            <animation id="seal_son_father_action" />
+            <swap_animation from="seal_father_idle" intervalMax="55" intervalMin="30" to="seal_father_action" />
+            <swap_animation from="seal_mother_idle" intervalMax="55" intervalMin="30" to="seal_mother_action" />
+            <swap_animation from="seal_son_idle" intervalMax="55" intervalMin="30" to="seal_son_action" />
+            <swap_2animation from1="seal_daughter_idle" from2="seal_mother_idle" intervalMax="55" intervalMin="30" to="seal_daughter_mother_action" />
+            <swap_2animation from1="seal_son_idle" from2="seal_father_idle" intervalMax="55" intervalMin="30" to="seal_son_father_action" />
+            <CradleSettings>
+                <first animation="cradle" />
+                <second animation="cradle" />
+            </CradleSettings>
+        </item>
+        <item build_time="1500m" buildingId="paddock_gorilla" coins_price="16000" exp="500" icon="goralla_background" icon_gui="paddock_gorilla" label="GorillaPaddock" levelneed="1" rating="120" terrain="0,1,2" volumeSize="3x3" zooLevelNeed="15">
+            <sounds>
+                <sound id="Gorilla" />
+            </sounds>
+            <animation_settings scale="0.5" x="145" y="0" />
+            <star_pos x="276" y="90.0" />
+            <animal id="gorilla_father_idle">
+                <add x="206" y="96" />
+            </animal>
+            <animal id="gorilla_mother_idle">
+                <add deleteAnimId="gorilla_mother_hammock" x="145" y="116" />
+            </animal>
+            <animal id="gorilla_son_idle">
+                <add x="52" y="104" />
+            </animal>
+            <animal id="gorilla_daughter_idle">
+                <add animId="gorilla_daughter_appear" deleteAnimId="gorilla_grid" x="136" y="78" />
+            </animal>
+            <animation id="gorilla_mother_hammock" looping="true" visible="true" />
+            <animation id="gorilla_father_idle" looping="true" />
+            <animation id="gorilla_father_action" />
+            <animation id="gorilla_mother_idle" looping="true" />
+            <animation id="gorilla_mother_action" />
+            <animation id="gorilla_son_idle" looping="true" />
+            <animation id="gorilla_son_action" />
+            <animation id="gorilla_grid" looping="true" visible="true" />
+            <animation id="gorilla_daughter_idle" looping="true" />
+            <animation id="gorilla_daughter_action" />
+            <animation id="gorilla_daughter_appear" />
+            <swap_animation from="gorilla_father_idle" intervalMax="55" intervalMin="30" to="gorilla_father_action" />
+            <swap_animation from="gorilla_mother_idle" intervalMax="55" intervalMin="30" to="gorilla_mother_action" />
+            <swap_animation from="gorilla_son_idle" intervalMax="55" intervalMin="30" to="gorilla_son_action" />
+            <swap_animation from="gorilla_daughter_idle" intervalMax="55" intervalMin="30" to="gorilla_daughter_action" />
+
+            <CradleSettings>
+                <first animation="cradle" />
+                <second animation="cradle" />
+            </CradleSettings>
+        </item>
+        <item build_time="2100m" buildingId="paddock_toucan" coins_price="300000" exp="750" icon="toucan_background" icon_gui="paddock_toucan" label="toucanPaddock" levelneed="1" rating="220" terrain="0,1,2" volumeSize="3x3" zooLevelNeed="25">
+            <sounds>
+                <sound id="Toucan1" />
+                <sound id="Toucan2" />
+            </sounds>
+            <animation_settings scale="0.5" x="145" y="10" />
+            <star_pos x="254" y="106" />
+            <animal id="toucan_father_idle">
+                <add x="124" y="131" />
+            </animal>
+            <animal id="toucan_mother_idle">
+                <add x="168" y="146" />
+            </animal>
+            <animal id="toucan_son_idle">
+                <add x="179" y="53" />
+            </animal>
+            <animal id="toucan_daughter_idle">
+                <add x="169" y="102" />
+            </animal>
+            <CradleSettings>
+                <first animation="cradle" />
+                <second animation="cradle" />
+            </CradleSettings>
+            <animation id="toucan_father_idle" looping="true" />
+            <animation id="toucan_father_action" />
+            <animation id="toucan_mother_idle" looping="true" />
+            <animation id="toucan_mother_action" />
+            <animation id="toucan_son_idle" looping="true" />
+            <animation id="toucan_son_action" />
+            <animation id="toucan_daughter_idle" looping="true" />
+            <animation id="toucan_daughter_action" />
+            <animation id="toucan_mother_daughter_action" />
+            <animation id="toucan_son_father_action" />
+            <swap_2animation from1="toucan_mother_idle" from2="toucan_daughter_idle" intervalMax="55" intervalMin="30" to="toucan_mother_daughter_action" />
+            <swap_2animation from1="toucan_son_idle" from2="toucan_father_idle" intervalMax="55" intervalMin="30" to="toucan_son_father_action" />
+        </item>
+        <item build_time="1080m" buildingId="paddock_girrafe" coins_price="6000" exp="325" icon="girrafe_background" icon_gui="paddock_girrafe" label="GiraffePaddock" levelneed="1" rating="50" terrain="0,1,2" volumeSize="3x3" zooLevelNeed="8">
+            <sounds>
+                <sound id="Giraffe" />
+            </sounds>
+            <animation_settings scale="0.5" x="143" y="1" />
+            <star_pos x="280.5" y="89.3" />
+            <CradleSettings>
+                <first animation="cradle" />
+                <second animation="cradle" />
+            </CradleSettings>
+            <animal id="girrafe_father_idle">
+                <add x="132" y="75" />
+            </animal>
+            <animal id="girrafe_mother_idle">
+                <add x="197" y="58" />
+            </animal>
+            <animal id="girrafe_daughter_idle">
+                <add x="163" y="30" />
+            </animal>
+            <animal id="giraffe_son_idle">
+                <add x="35" y="60" />
+            </animal>
+            <animation id="girrafe_father_idle" looping="true" />
+            <animation id="girrafe_mother_idle" looping="true" />
+            <animation id="girrafe_daughter_idle" looping="true" />
+            <animation id="giraffe_son_idle" looping="true" />
+            <animation id="girrafe_father_action" />
+            <animation id="girrafe_mother_action" />
+            <animation id="giraffe_son_action" />
+            <animation id="girrafe_daughter_action" />
+            <animation id="girrafe_mother_daughter_action" />
+            <animation id="girrafe_father_son_action" />
+            <swap_animation from="girrafe_father_idle" intervalMax="55" intervalMin="30" to="girrafe_father_action" />
+            <swap_animation from="girrafe_mother_idle" intervalMax="55" intervalMin="30" to="girrafe_mother_action" />
+            <swap_animation from="giraffe_son_idle" intervalMax="55" intervalMin="30" to="giraffe_son_action" />
+            <swap_animation from="girrafe_daughter_idle" intervalMax="55" intervalMin="30" to="girrafe_daughter_action" />
+            <swap_2animation from1="girrafe_mother_idle" from2="girrafe_daughter_idle" intervalMax="55" intervalMin="30" to="girrafe_mother_daughter_action" />
+            <swap_2animation from1="giraffe_son_idle" from2="girrafe_father_idle" intervalMax="55" intervalMin="30" to="girrafe_father_son_action" />
+        </item>
+        <item build_time="1380m" buildingId="paddock_kangaroo" coins_price="11000" exp="450" icon="kangaroo_background" icon_gui="paddock_kangaroo" label="KangarooPaddock" levelneed="1" rating="100" terrain="0,1,2" volumeSize="3x3" zooLevelNeed="13">
+            <sounds>
+                <sound id="Kangaroo" />
+            </sounds>
+            <animation_settings scale="0.5" x="143" y="1" />
+            <star_pos x="270" y="89.0" />
+            <CradleSettings>
+                <first animation="cradle" />
+                <second animation="cradle" />
+            </CradleSettings>
+            <animal id="kangaroo_father_idle">
+                <add x="86" y="80" />
+            </animal>
+            <animal id="kangaroo_mother_idle">
+                <add x="152" y="117" />
+            </animal>
+            <animal id="kangaroo_daughter_idle">
+                <add x="222" y="99" />
+            </animal>
+            <animal id="kangaroo_son_idle">
+                <add x="122" y="24" />
+            </animal>
+            <animation id="kangaroo_mother_idle" looping="true" />
+            <animation id="kangaroo_mother_action_1" />
+            <animation id="kangaroo_mother_action_2" />
+            <animation id="kangaroo_father_idle" looping="true" />
+            <animation id="kangaroo_father_action" />
+            <animation id="kangaroo_daughter_idle" looping="true" />
+            <animation id="kangaroo_son_idle" looping="true" />
+            <animation id="kangaroo_son_action" />
+            <animation id="kangaroo_daughter_action" />
+            <animation id="kangaroo_mother_daughter_action" />
+            <animation id="kangaroo_son_father_action" />
+            <swap_animation from="kangaroo_father_idle" intervalMax="55" intervalMin="30" to="kangaroo_father_action" />
+            <swap_animation from="kangaroo_mother_idle" intervalMax="55" intervalMin="30" to="kangaroo_mother_action_1" />
+            <swap_animation from="kangaroo_mother_idle" intervalMax="55" intervalMin="30" to="kangaroo_mother_action_2" />
+            <swap_animation from="kangaroo_son_idle" intervalMax="55" intervalMin="30" to="kangaroo_son_action" />
+            <swap_animation from="kangaroo_daughter_idle" intervalMax="55" intervalMin="30" to="kangaroo_daughter_action" />
+            <swap_2animation from1="kangaroo_mother_idle" from2="kangaroo_daughter_idle" intervalMax="55" intervalMin="30" to="kangaroo_mother_daughter_action" />
+            <swap_2animation from1="kangaroo_son_idle" from2="kangaroo_father_idle" intervalMax="55" intervalMin="30" to="kangaroo_son_father_action" />
+        </item>
+        
+        <item build_time="1860m" buildingId="paddock_peacock" coins_price="70000" exp="650" icon="peacock_background" icon_gui="paddock_peacock" label="PeacockPaddock" levelneed="1" rating="180" terrain="0,1,2" volumeSize="3x3" zooLevelNeed="21">
+            <sounds>
+                <sound id="Peacock" />
+            </sounds>
+            <animation_settings scale="0.5" x="143" y="1" />
+            
+            <star_pos x="270" y="93.0" />
+            
+            <CradleSettings>
+                <first animation="cradle" />
+                <second animation="cradle" />
+            </CradleSettings>
+            
+            <animal id="peacock_father_idle">
+                <add x="85" y="61" />
+            </animal>
+            <animal id="peacock_mother_idle">
+                <add x="156" y="73" />
+            </animal>
+            <animal id="peacock_kid_1_idle">
+                <add x="151" y="61" />
+            </animal>
+            <animal id="peacock_kid_2_idle">
+                <add x="177" y="112" />
+            </animal>
+            
+            <animation id="peacock_mother_idle" looping="true" />
+            <animation id="peacock_mother_action_1" />
+            <animation id="peacock_mother_action_2" />
+            <animation id="Peacock_mother_action_3" />
+            <animation id="peacock_father_idle" looping="true" />
+            <animation id="peacock_father_action_1" />
+            <animation id="peacock_father_action_2" />
+            <animation id="peacock_father_action_3" />
+            <animation id="peacock_kid_1_idle" looping="true" />
+            <animation id="peacock_kid_1_action_1" />
+            <animation id="peacock_kid_1_action_2" />
+            <animation id="peacock_kid_2_idle" looping="true" />
+            <animation id="peacock_kid_2_action" />
+            
+            <swap_animation from="peacock_mother_idle" intervalMax="55" intervalMin="30" to="peacock_mother_action_1" />
+            <swap_animation from="peacock_mother_idle" intervalMax="55" intervalMin="30" to="peacock_mother_action_2" />
+            <swap_animation from="peacock_mother_idle" intervalMax="55" intervalMin="30" to="Peacock_mother_action_3" />
+            
+            <swap_animation from="peacock_father_idle" intervalMax="55" intervalMin="30" to="peacock_father_action_1" />
+            <swap_animation from="peacock_father_idle" intervalMax="55" intervalMin="30" to="peacock_father_action_2" />
+            <swap_animation from="peacock_father_idle" intervalMax="55" intervalMin="30" to="peacock_father_action_3" />
+            
+            <swap_animation from="peacock_kid_1_idle" intervalMax="55" intervalMin="30" to="peacock_kid_1_action_1" />
+            <swap_animation from="peacock_kid_1_idle" intervalMax="55" intervalMin="30" to="peacock_kid_1_action_2" />
+            
+            <swap_animation from="peacock_kid_2_idle" intervalMax="55" intervalMin="30" to="peacock_kid_2_action" />
+        </item>
+        <item build_time="1980m" buildingId="paddock_camel" coins_price="100000" exp="700" icon="camel_background" icon_gui="paddock_camel" label="CamelPaddock" levelneed="1" rating="200" terrain="0,1,2" volumeSize="3x3" zooLevelNeed="23">
+            <sounds>
+                <sound id="Camel" />
+            </sounds>
+            <animation_settings scale="0.5" x="143" y="1" />
+            
+            <star_pos x="270" y="89.0" />
+            
+            <CradleSettings>
+                <first animation="cradle" />
+                <second animation="cradle" />
+            </CradleSettings>
+            
+            <animal id="camel_father_idle">
+                <add x="138" y="81" />
+            </animal>
+            <animal id="camel_mother_idle">
+                <add x="152" y="39" />
+            </animal>
+            <animal id="camel_daughter_idle">
+                <add x="105" y="79" />
+            </animal>
+            <animal id="camel_son_idle">
+                <add x="165" y="105" />
+            </animal>
+            
+            <animation id="camel_mother_idle" looping="true" />
+            <animation id="camel_mother_action" />
+            <animation id="camel_father_idle" looping="true" />
+            <animation id="camel_father_action" />
+            <animation id="camel_daughter_idle" looping="true" />
+            <animation id="camel_daughter_action" />
+            <animation id="camel_son_idle" looping="true" />
+            <animation id="camel_son_action" />
+            <animation id="camel_daughter_father_action" />
+            
+            <swap_animation from="camel_father_idle" intervalMax="55" intervalMin="30" to="camel_father_action" />
+            <swap_animation from="camel_mother_idle" intervalMax="55" intervalMin="30" to="camel_mother_action" />
+            <swap_animation from="camel_daughter_idle" intervalMax="55" intervalMin="30" to="camel_daughter_action" />
+            <swap_animation from="camel_son_idle" intervalMax="55" intervalMin="30" to="camel_son_action" />
+            
+            <swap_2animation from1="camel_daughter_idle" from2="camel_father_idle" intervalMax="55" intervalMin="30" to="camel_daughter_father_action" />
+        </item>
+        <item build_time="1680m" buildingId="paddock_rhino" coins_price="40000" exp="575" icon="rhino_background" icon_gui="paddock_rhino" label="RhinoPaddock" levelneed="1" rating="150" terrain="0,1,2" volumeSize="3x3" zooLevelNeed="18">
+            <sounds>
+                <sound id="Rhino1" />
+                <sound id="Rhino2" />
+            </sounds>
+            <animation_settings scale="0.5" x="143" y="1" />
+            
+            <star_pos x="273" y="101.0" />
+            
+            <CradleSettings>
+                <first animation="cradle" />
+                <second animation="cradle" />
+            </CradleSettings>
+            
+            <animal id="rhino_father_idle">
+                <add x="130" y="63" />
+            </animal>
+            <animal id="rhino_mother_idle">
+                <add x="204" y="68" />
+            </animal>
+            <animal id="rhino_daughter_idle">
+                <add x="170" y="93" />
+            </animal>
+            <animal id="rhino_son_idle">
+                <add x="87" y="95" />
+            </animal>
+            
+            <animation id="background_shower" looping="true" visible="true" />
+            <animation id="rhino_daughter_idle" looping="true" />
+            <animation id="rhino_son_idle" looping="true" />
+            <animation id="rhino_son_action" />
+            <animation id="rhino_daughter_action" />
+            <animation id="rhino_mother_idle" looping="true" />
+            <animation id="rhino_mother_action" />
+            <animation id="rhino_mother_daughter_action" />
+            <animation id="rhino_father_idle" looping="true" />
+            <animation id="rhino_father_action" />
+            <animation id="rhino_mother_father_action" />
+            
+            <swap_animation from="rhino_father_idle" intervalMax="55" intervalMin="30" to="rhino_father_action" />
+            <swap_animation from="rhino_mother_idle" intervalMax="55" intervalMin="30" to="rhino_mother_action" /> 
+            <swap_animation from="rhino_daughter_idle" intervalMax="55" intervalMin="30" to="rhino_daughter_action" />
+            <swap_2animation from1="rhino_son_idle" from2="background_shower" intervalMax="55" intervalMin="30" to="rhino_son_action" />
+            <swap_2animation from1="rhino_mother_idle" from2="rhino_daughter_idle" intervalMax="55" intervalMin="30" to="rhino_mother_daughter_action" />
+            <swap_2animation from1="rhino_mother_idle" from2="rhino_father_idle" intervalMax="55" intervalMin="30" to="rhino_mother_father_action" />
+        </item>
+        
+        <item build_time="1620m" buildingId="paddock_beaver" coins_price="30000" exp="550" icon="beaver_background" icon_gui="paddock_beaver" label="beaverPaddock" levelneed="1" rating="140" terrain="0,1,2" volumeSize="3x3" zooLevelNeed="17">
+            <sounds>
+                <sound id="Beaver" />
+            </sounds>
+            <animation_settings scale="0.5" x="143" y="1" />
+            
+            <star_pos x="253" y="99.0" />
+            
+            <CradleSettings>
+                <first animation="cradle_water" />
+                <second animation="cradle_water" />
+            </CradleSettings>
+            
+            <animal id="beaver_father_idle">
+                <add x="210" y="54" />
+            </animal>
+            <animal id="beaver_mother_idle">
+                <add x="202" y="93" />
+            </animal>
+            <animal id="beaver_son_idle">
+                <add x="91" y="110" />
+            </animal>
+            <animal id="beaver_daughter_idle">
+                <add x="117" y="111" />
+            </animal>
+             
+            <animation id="beaver_mother_idle" looping="true" />
+            <animation id="beaver_mother_action" />
+            
+            <animation id="beaver_father_mother_action" />
+            
+            <animation id="beaver_father_idle" looping="true" />
+            <animation id="beaver_father_action" />
+            
+            <animation id="beaver_daughter_son_action" />
+            
+            <animation id="beaver_son_idle" looping="true" />
+            <animation id="beaver_son_action" />
+            
+            <animation id="beaver_daughter_idle" looping="true" />
+            <animation id="beaver_daughter_action" />
+            
+            <swap_animation from="beaver_father_idle" intervalMax="55" intervalMin="30" to="beaver_father_action" />
+            <swap_animation from="beaver_mother_idle" intervalMax="55" intervalMin="30" to="beaver_mother_action" />
+            <swap_animation from="beaver_son_idle" intervalMax="55" intervalMin="30" to="beaver_son_action" />
+            <swap_animation from="beaver_daughter_idle" intervalMax="55" intervalMin="30" to="beaver_daughter_action" />
+            <swap_2animation from1="beaver_daughter_idle" from2="beaver_son_idle" intervalMax="55" intervalMin="30" to="beaver_daughter_son_action" />
+            <swap_2animation from1="beaver_father_idle" from2="beaver_mother_idle" intervalMax="55" intervalMin="30" to="beaver_father_mother_action" />
+        </item>
+        
+        <item build_time="1740m" buildingId="paddock_muskOx" coins_price="50000" exp="600" icon="bizon_background" icon_gui="paddock_muskOx" label="muskOxPaddock" levelneed="1" rating="160" terrain="0,1,2" volumeSize="3x3" zooLevelNeed="19">
+            <sounds>
+                <sound id="Muskox" />
+            </sounds>
+            <animation_settings scale="0.5" x="143" y="1" />
+            
+            <star_pos x="270" y="98.0" />
+            
+            <CradleSettings>
+                <first animation="cradle" />
+                <second animation="cradle" />
+            </CradleSettings>
+            
+            <animal id="bizon_father_idle">
+                <add x="174" y="83" />
+            </animal>
+            
+            <animal id="bizon_mother_idle">
+                <add deleteAnimId="bizon_twig" x="119" y="54" />
+            </animal>
+            
+            <animal id="bizon_daughter_idle">
+                <add deleteAnimId="bizon_flower" x="213" y="78" />
+            </animal>
+            
+            <animal id="bizon_son_idle">
+                <add x="105" y="100" />
+            </animal>
+            
+            
+            <animation id="bizon_twig" looping="true" visible="true" />
+            <animation id="bizon_mother_idle" looping="true" />
+            <animation id="bizon_mother_action" />
+            
+            <animation id="bizon_mother_father_action" />
+            
+            <animation id="bizon_father_idle" looping="true" />
+            <animation id="bizon_father_action" />
+            
+            <animation id="bizon_son_idle" looping="true" />
+            <animation id="bizon_son_action" />
+            <animation id="bizon_son_action_2" />
+            
+            <animation id="bizon_flower" looping="true" visible="true" />
+            <animation id="bizon_daughter_idle" looping="true" />
+            <animation id="bizon_daughter_action" />
+            
+            <swap_animation from="bizon_father_idle" intervalMax="55" intervalMin="30" to="bizon_father_action" />
+            <swap_animation from="bizon_mother_idle" intervalMax="55" intervalMin="30" to="bizon_mother_action" />
+            <swap_animation from="bizon_son_idle" intervalMax="55" intervalMin="30" to="bizon_son_action" />
+            <swap_animation from="bizon_son_idle" intervalMax="55" intervalMin="30" to="bizon_son_action_2" />
+            <swap_animation from="bizon_daughter_idle" intervalMax="55" intervalMin="30" to="bizon_daughter_action" />
+            <swap_2animation from1="bizon_mother_idle" from2="bizon_father_idle" intervalMax="55" intervalMin="30" to="bizon_mother_father_action" />
+        </item>
+        
+        <item build_time="1920m" buildingId="paddock_turtle" coins_price="85000" exp="675" icon="turtle_background" icon_gui="paddock_turtle" label="turtlePaddock" levelneed="1" rating="190" terrain="0,1,2" volumeSize="3x3" zooLevelNeed="22">
+            <sounds>
+                <sound id="Turtle" />
+            </sounds>
+            <animation_settings scale="0.5" x="143" y="1" />
+            
+            <star_pos x="270" y="93.0" />
+            
+            <CradleSettings>
+                <first animation="cradle" />
+                <second animation="cradle" />
+            </CradleSettings>
+            
+            <animal id="turtle_father_idle">
+                <add x="188" y="107" />
+            </animal>
+            <animal id="turtle_mother_idle">
+                <add x="136" y="68" />
+            </animal>
+            <animal id="turtle_daughter_idle">
+                <add x="120" y="100" />
+            </animal>
+            <animal id="turtle_son_idle">
+                <add x="85" y="79" />
+            </animal>
+            
+            <animation id="turtle_mother_idle" looping="true" />
+            <animation id="turtle_mother_action" />
+            <animation id="turtle_father_idle" looping="true" />
+            <animation id="turtle_father_action" />
+            <animation id="turtle_daughter_idle" looping="true" />
+            <animation id="turtle_daughter_action" />
+            <animation id="turtle_son_idle" looping="true" />
+            <animation id="turtle_son_action" />
+            <animation id="turtle_mother_son_action" />
+            
+            <swap_animation from="turtle_father_idle" intervalMax="55" intervalMin="30" to="turtle_father_action" />
+            <swap_animation from="turtle_mother_idle" intervalMax="55" intervalMin="30" to="turtle_mother_action" />
+            <swap_animation from="turtle_daughter_idle" intervalMax="55" intervalMin="30" to="turtle_daughter_action" />
+            <swap_animation from="turtle_son_idle" intervalMax="55" intervalMin="30" to="turtle_son_action" />
+            
+            <swap_2animation from1="turtle_mother_idle" from2="turtle_son_idle" intervalMax="55" intervalMin="30" to="turtle_mother_son_action" />
+        </item>
+        
+        <item build_time="2040m" buildingId="paddock_deer" coins_price="200000" exp="725" icon="deer_background" icon_gui="paddock_deer" label="deerPaddock" levelneed="1" rating="210" terrain="0,1,2" volumeSize="3x3" zooLevelNeed="24">
+            <sounds>
+                <sound id="Reindeer1" />
+                <sound id="Reindeer2" />
+            </sounds>
+            <animation_settings scale="0.5" x="143" y="1" />
+            
+            <star_pos x="259" y="137.0" />
+            
+            <CradleSettings>
+                <first animation="cradle" />
+                <second animation="cradle" />
+            </CradleSettings>
+            
+            <animal id="deer_father_idle">
+                <add x="186" y="50" />
+            </animal>
+            <animal id="deer_mother_idle">
+                <add x="217" y="95" />
+            </animal>
+            <animal id="deer_daughter_idle">
+                <add x="80" y="85" />
+            </animal>
+            <animal id="deer_son_idle">
+                <add x="102" y="65" />
+            </animal>
+            
+            <animation id="deer_mother_idle" looping="true" />
+            <animation id="deer_mother_action" />
+            <animation id="deer_father_idle" looping="true" />
+            <animation id="deer_father_action" />
+            <animation id="deer_daughter_idle" looping="true" />
+            <animation id="deer_daughter_action" />
+            <animation id="deer_son_idle" looping="true" />
+            <animation id="deer_son_action" /> 
+            
+            <swap_animation from="deer_father_idle" intervalMax="55" intervalMin="30" to="deer_father_action" />
+            <swap_animation from="deer_mother_idle" intervalMax="55" intervalMin="30" to="deer_mother_action" />
+            <swap_animation from="deer_daughter_idle" intervalMax="55" intervalMin="30" to="deer_daughter_action" />
+            <swap_animation from="deer_son_idle" intervalMax="55" intervalMin="30" to="deer_son_action" />
+        </item>
+
+    </paddock>
+</buildings>

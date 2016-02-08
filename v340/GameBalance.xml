@@ -1,0 +1,456 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Root>
+    <TrainTemplates>
+        <TrainTemplate id="0" maxLevel="6" maxTime="0.25" minLevel="1" minTime="0.12" numCars="2" travelTime="300" />
+        <TrainTemplate id="1" maxLevel="6" maxTime="0.25" minLevel="1" minTime="0.12" numCars="2" travelTime="300" />
+        <TrainTemplate id="2" maxLevel="6" maxTime="0.25" minLevel="1" minTime="0.12" numCars="3" travelTime="300" />
+        <TrainTemplate id="3" maxLevel="10" maxTime="0.6" minLevel="7" minTime="0.2" numCars="4" travelTime="600" />
+        <TrainTemplate id="4" maxLevel="10" maxTime="0.9" minLevel="7" minTime="0.5" numCars="3" travelTime="600" />
+        <TrainTemplate id="5" maxLevel="10" maxTime="1.2" minLevel="7" minTime="0.8" numCars="2" travelTime="300" />
+        <TrainTemplate id="6" maxLevel="13" maxTime="0.6" minLevel="11" minTime="0.2" numCars="5" travelTime="900" />
+        <TrainTemplate id="7" maxLevel="13" maxTime="0.9" minLevel="11" minTime="0.5" numCars="4" travelTime="900" />
+        <TrainTemplate id="8" maxLevel="13" maxTime="1.2" minLevel="11" minTime="0.8" numCars="3" travelTime="600" />
+        <TrainTemplate id="9" maxLevel="16" maxTime="0.6" minLevel="14" minTime="0.2" numCars="5" travelTime="1200" />
+        <TrainTemplate id="10" maxLevel="16" maxTime="0.9" minLevel="14" minTime="0.5" numCars="4" travelTime="900" />
+        <TrainTemplate id="11" maxLevel="16" maxTime="1.2" minLevel="14" minTime="0.8" numCars="3" travelTime="600" />
+        <TrainTemplate id="12" maxLevel="21" maxTime="0.6" minLevel="17" minTime="0.2" numCars="5" travelTime="3600" />
+        <TrainTemplate id="13" maxLevel="21" maxTime="0.9" minLevel="17" minTime="0.5" numCars="4" travelTime="1800" />
+        <TrainTemplate id="14" maxLevel="21" maxTime="1.2" minLevel="17" minTime="0.8" numCars="3" travelTime="900" />
+        <TrainTemplate id="15" maxLevel="27" maxTime="0.6" minLevel="22" minTime="0.2" numCars="5" travelTime="7200" />
+        <TrainTemplate id="16" maxLevel="27" maxTime="0.9" minLevel="22" minTime="0.5" numCars="4" travelTime="3600" />
+        <TrainTemplate id="17" maxLevel="27" maxTime="1.2" minLevel="22" minTime="0.8" numCars="3" travelTime="1800" />
+        <TrainTemplate id="18" maxLevel="34" maxTime="0.6" minLevel="28" minTime="0.2" numCars="5" travelTime="10800" />
+        <TrainTemplate id="19" maxLevel="34" maxTime="0.9" minLevel="28" minTime="0.5" numCars="4" travelTime="7200" />
+        <TrainTemplate id="20" maxLevel="34" maxTime="1.2" minLevel="28" minTime="0.8" numCars="3" travelTime="3600" />
+        <TrainTemplate id="21" maxLevel="45" maxTime="0.6" minLevel="35" minTime="0.2" numCars="5" travelTime="14400" />
+        <TrainTemplate id="22" maxLevel="45" maxTime="0.9" minLevel="35" minTime="0.5" numCars="4" travelTime="10800" />
+        <TrainTemplate id="23" maxLevel="45" maxTime="1.2" minLevel="35" minTime="0.8" numCars="3" travelTime="7200" />
+        <TrainTemplate id="24" maxLevel="55" maxTime="0.6" minLevel="46" minTime="0.2" numCars="5" travelTime="18000" />
+        <TrainTemplate id="25" maxLevel="55" maxTime="0.9" minLevel="46" minTime="0.5" numCars="4" travelTime="14400" />
+        <TrainTemplate id="26" maxLevel="55" maxTime="1.2" minLevel="46" minTime="0.8" numCars="3" travelTime="10800" />
+        <TrainTemplate id="27" maxLevel="10000" maxTime="0.6" minLevel="56" minTime="0.2" numCars="5" travelTime="21600" />
+        <TrainTemplate id="28" maxLevel="10000" maxTime="0.9" minLevel="56" minTime="0.5" numCars="4" travelTime="18000" />
+        <TrainTemplate id="29" maxLevel="10000" maxTime="1.2" minLevel="56" minTime="0.8" numCars="3" travelTime="14400" />
+    </TrainTemplates>
+    <LevelSettings>
+        <level coinOffer1="136" coinOffer2="428" coinOffer3="1197" coinOffer4="2346" coinOffer5="5100" coinOffer6="16320" level="1" marketBuildMaterialMultiplier="1.00" marketExpandMaterialMultiplier="1.00" marketProductMultiplier="1.00" marketUpgradeMaterialMultiplier="1.00" materialsForBuilding="5" maxFields="8" maxOrders="1" maxPacks="1" maxPlows="1" maxProducts="2" orderMultiplier="3.5" orderRefusedTime="2" orderWorth="11" ordersToLvlUp="2" productsInRow="2" targetXp="7.50" />
+        <level coinOffer1="136" coinOffer2="428" coinOffer3="1197" coinOffer4="2346" coinOffer5="5100" coinOffer6="16320" level="2" marketBuildMaterialMultiplier="1.00" marketExpandMaterialMultiplier="1.00" marketProductMultiplier="1.00" marketUpgradeMaterialMultiplier="1.00" materialsForBuilding="5" maxFields="8" maxOrders="1" maxPacks="1" maxPlows="1" maxProducts="2" orderMultiplier="3.5" orderRefusedTime="2" orderWorth="11" ordersToLvlUp="2" productsInRow="2" targetXp="7.50" />
+        <level coinOffer1="146" coinOffer2="460" coinOffer3="1285" coinOffer4="2519" coinOffer5="5475" coinOffer6="17520" level="3" marketBuildMaterialMultiplier="1.00" marketExpandMaterialMultiplier="1.00" marketProductMultiplier="1.00" marketUpgradeMaterialMultiplier="1.00" materialsForBuilding="5" maxFields="8" maxOrders="2" maxPacks="1" maxPlows="1" maxProducts="2" orderMultiplier="3.5" orderRefusedTime="2" orderWorth="13" ordersToLvlUp="2" productsInRow="2" targetXp="8.50" />
+        <level coinOffer1="172" coinOffer2="542" coinOffer3="1514" coinOffer4="2967" coinOffer5="6450" coinOffer6="20640" level="4" marketBuildMaterialMultiplier="1.00" marketExpandMaterialMultiplier="1.00" marketProductMultiplier="1.00" marketUpgradeMaterialMultiplier="1.00" materialsForBuilding="5" maxFields="10" maxOrders="3" maxPacks="1" maxPlows="1" maxProducts="3" orderMultiplier="3.5" orderRefusedTime="2" orderWorth="15" ordersToLvlUp="5" productsInRow="2" targetXp="13.60" />
+        <level coinOffer1="206" coinOffer2="649" coinOffer3="1813" coinOffer4="3554" coinOffer5="7725" coinOffer6="24720" level="5" marketBuildMaterialMultiplier="1.00" marketExpandMaterialMultiplier="1.00" marketProductMultiplier="1.00" marketUpgradeMaterialMultiplier="1.00" materialsForBuilding="5" maxFields="11" maxOrders="3" maxPacks="1" maxPlows="1" maxProducts="3" orderMultiplier="3.5" orderRefusedTime="2" orderWorth="17" ordersToLvlUp="10" productsInRow="3" targetXp="15.00" />
+        <level coinOffer1="208" coinOffer2="655" coinOffer3="1830" coinOffer4="3588" coinOffer5="7800" coinOffer6="24960" level="6" marketBuildMaterialMultiplier="1.00" marketExpandMaterialMultiplier="1.00" marketProductMultiplier="1.00" marketUpgradeMaterialMultiplier="1.00" materialsForBuilding="5" maxFields="13" maxOrders="4" maxPacks="1" maxPlows="1" maxProducts="4" orderMultiplier="2.7" orderRefusedTime="3" orderWorth="19" ordersToLvlUp="11" productsInRow="3" targetXp="21.27" />
+        <level coinOffer1="213" coinOffer2="671" coinOffer3="1874" coinOffer4="3674" coinOffer5="7988" coinOffer6="25560" level="7" marketBuildMaterialMultiplier="1.00" marketExpandMaterialMultiplier="1.00" marketProductMultiplier="1.00" marketUpgradeMaterialMultiplier="1.00" materialsForBuilding="5" maxFields="14" maxOrders="4" maxPacks="1" maxPlows="1" maxProducts="4" orderMultiplier="2.4" orderRefusedTime="4" orderWorth="22" ordersToLvlUp="12" productsInRow="3" targetXp="24.33" />
+        <level coinOffer1="212" coinOffer2="668" coinOffer3="1866" coinOffer4="3657" coinOffer5="7950" coinOffer6="25440" level="8" marketBuildMaterialMultiplier="1.00" marketExpandMaterialMultiplier="1.00" marketProductMultiplier="1.00" marketUpgradeMaterialMultiplier="1.00" materialsForBuilding="5" maxFields="16" maxOrders="5" maxPacks="1" maxPlows="1" maxProducts="4" orderMultiplier="1.9" orderRefusedTime="5" orderWorth="25" ordersToLvlUp="13" productsInRow="4" targetXp="31.38" />
+        <level coinOffer1="210" coinOffer2="662" coinOffer3="1848" coinOffer4="3623" coinOffer5="7875" coinOffer6="25200" level="9" marketBuildMaterialMultiplier="1.00" marketExpandMaterialMultiplier="1.00" marketProductMultiplier="1.00" marketUpgradeMaterialMultiplier="1.00" materialsForBuilding="5" maxFields="18" maxOrders="5" maxPacks="1" maxPlows="1" maxProducts="5" orderMultiplier="1.5" orderRefusedTime="6" orderWorth="28" ordersToLvlUp="14" productsInRow="4" targetXp="39.71" />
+        <level coinOffer1="209" coinOffer2="658" coinOffer3="1839" coinOffer4="3605" coinOffer5="7838" coinOffer6="25080" level="10" marketBuildMaterialMultiplier="1.00" marketExpandMaterialMultiplier="1.00" marketProductMultiplier="1.00" marketUpgradeMaterialMultiplier="1.00" materialsForBuilding="5" maxFields="19" maxOrders="6" maxPacks="1" maxPlows="1" maxProducts="5" orderMultiplier="1.3" orderRefusedTime="7" orderWorth="31" ordersToLvlUp="15" productsInRow="4" targetXp="49.27" />
+        <level coinOffer1="224" coinOffer2="706" coinOffer3="1971" coinOffer4="3864" coinOffer5="8400" coinOffer6="26880" level="11" marketBuildMaterialMultiplier="1.00" marketExpandMaterialMultiplier="1.00" marketProductMultiplier="1.00" marketUpgradeMaterialMultiplier="1.00" materialsForBuilding="5" maxFields="21" maxOrders="6" maxPacks="1" maxPlows="1" maxProducts="5" orderMultiplier="1.2" orderRefusedTime="8" orderWorth="35" ordersToLvlUp="17" productsInRow="5" targetXp="56.65" />
+        <level coinOffer1="225" coinOffer2="709" coinOffer3="1980" coinOffer4="3881" coinOffer5="8438" coinOffer6="27000" level="12" marketBuildMaterialMultiplier="1.00" marketExpandMaterialMultiplier="1.00" marketProductMultiplier="1.00" marketUpgradeMaterialMultiplier="1.00" materialsForBuilding="5" maxFields="22" maxOrders="6" maxPacks="1" maxPlows="1" maxProducts="5" orderMultiplier="1.1" orderRefusedTime="9" orderWorth="39" ordersToLvlUp="18" productsInRow="5" targetXp="68.56" />
+        <level coinOffer1="235" coinOffer2="740" coinOffer3="2068" coinOffer4="4054" coinOffer5="8813" coinOffer6="28200" level="13" marketBuildMaterialMultiplier="1.01" marketExpandMaterialMultiplier="1.01" marketProductMultiplier="1.00" marketUpgradeMaterialMultiplier="1.01" materialsForBuilding="5" maxFields="24" maxOrders="6" maxPacks="1" maxPlows="1" maxProducts="6" orderMultiplier="1.0" orderRefusedTime="10" orderWorth="43" ordersToLvlUp="20" productsInRow="5" targetXp="77.75" />
+        <level coinOffer1="250" coinOffer2="788" coinOffer3="2200" coinOffer4="4313" coinOffer5="9375" coinOffer6="30000" level="14" marketBuildMaterialMultiplier="1.04" marketExpandMaterialMultiplier="1.04" marketProductMultiplier="1.00" marketUpgradeMaterialMultiplier="1.04" materialsForBuilding="5" maxFields="25" maxOrders="6" maxPacks="1" maxPlows="1" maxProducts="6" orderMultiplier="1.0" orderRefusedTime="11" orderWorth="48" ordersToLvlUp="23" productsInRow="5" targetXp="84.13" />
+        <level coinOffer1="268" coinOffer2="844" coinOffer3="2358" coinOffer4="4623" coinOffer5="10050" coinOffer6="32160" level="15" marketBuildMaterialMultiplier="1.08" marketExpandMaterialMultiplier="1.08" marketProductMultiplier="1.01" marketUpgradeMaterialMultiplier="1.08" materialsForBuilding="5" maxFields="27" maxOrders="7" maxPacks="1" maxPlows="1" maxProducts="6" orderMultiplier="1.0" orderRefusedTime="12" orderWorth="53" ordersToLvlUp="25" productsInRow="5" targetXp="95.08" />
+        <level coinOffer1="284" coinOffer2="895" coinOffer3="2499" coinOffer4="4899" coinOffer5="10650" coinOffer6="34080" level="16" marketBuildMaterialMultiplier="1.12" marketExpandMaterialMultiplier="1.12" marketProductMultiplier="1.02" marketUpgradeMaterialMultiplier="1.12" materialsForBuilding="5" maxFields="28" maxOrders="7" maxPacks="1" maxPlows="1" maxProducts="6" orderMultiplier="1.0" orderRefusedTime="13" orderWorth="58" ordersToLvlUp="28" productsInRow="5" targetXp="103.18" />
+        <level coinOffer1="304" coinOffer2="958" coinOffer3="2675" coinOffer4="5244" coinOffer5="11400" coinOffer6="36480" level="17" marketBuildMaterialMultiplier="1.15" marketExpandMaterialMultiplier="1.15" marketProductMultiplier="1.02" marketUpgradeMaterialMultiplier="1.15" materialsForBuilding="5" maxFields="30" maxOrders="7" maxPacks="1" maxPlows="1" maxProducts="7" orderMultiplier="1.0" orderRefusedTime="14" orderWorth="63" ordersToLvlUp="31" productsInRow="5" targetXp="112.19" />
+        <level coinOffer1="320" coinOffer2="1008" coinOffer3="2816" coinOffer4="5520" coinOffer5="12000" coinOffer6="38400" level="18" marketBuildMaterialMultiplier="1.18" marketExpandMaterialMultiplier="1.18" marketProductMultiplier="1.03" marketUpgradeMaterialMultiplier="1.18" materialsForBuilding="5" maxFields="32" maxOrders="7" maxPacks="1" maxPlows="1" maxProducts="7" orderMultiplier="1.0" orderRefusedTime="15" orderWorth="68" ordersToLvlUp="34" productsInRow="5" targetXp="122.03" />
+        <level coinOffer1="345" coinOffer2="1087" coinOffer3="3036" coinOffer4="5951" coinOffer5="12938" coinOffer6="41400" level="19" marketBuildMaterialMultiplier="1.22" marketExpandMaterialMultiplier="1.22" marketProductMultiplier="1.04" marketUpgradeMaterialMultiplier="1.22" materialsForBuilding="5" maxFields="33" maxOrders="7" maxPacks="1" maxPlows="1" maxProducts="7" orderMultiplier="1.0" orderRefusedTime="16" orderWorth="74" ordersToLvlUp="38" productsInRow="5" targetXp="129.26" />
+        <level coinOffer1="369" coinOffer2="1162" coinOffer3="3247" coinOffer4="6365" coinOffer5="13838" coinOffer6="44280" level="20" marketBuildMaterialMultiplier="1.25" marketExpandMaterialMultiplier="1.25" marketProductMultiplier="1.05" marketUpgradeMaterialMultiplier="1.25" materialsForBuilding="5" maxFields="35" maxOrders="7" maxPacks="1" maxPlows="1" maxProducts="7" orderMultiplier="1.0" orderRefusedTime="17" orderWorth="80" ordersToLvlUp="42" productsInRow="5" targetXp="137.40" />
+        <level coinOffer1="390" coinOffer2="1229" coinOffer3="3432" coinOffer4="6728" coinOffer5="14625" coinOffer6="46800" level="21" marketBuildMaterialMultiplier="1.28" marketExpandMaterialMultiplier="1.28" marketProductMultiplier="1.06" marketUpgradeMaterialMultiplier="1.28" materialsForBuilding="5" maxFields="36" maxOrders="7" maxPacks="1" maxPlows="1" maxProducts="7" orderMultiplier="1.0" orderRefusedTime="18" orderWorth="86" ordersToLvlUp="46" productsInRow="5" targetXp="146.43" />
+        <level coinOffer1="417" coinOffer2="1314" coinOffer3="3670" coinOffer4="7193" coinOffer5="15638" coinOffer6="50040" level="22" marketBuildMaterialMultiplier="1.31" marketExpandMaterialMultiplier="1.31" marketProductMultiplier="1.06" marketUpgradeMaterialMultiplier="1.31" materialsForBuilding="5" maxFields="38" maxOrders="8" maxPacks="1" maxPlows="1" maxProducts="7" orderMultiplier="1.0" orderRefusedTime="19" orderWorth="92" ordersToLvlUp="51" productsInRow="5" targetXp="153.20" />
+        <level coinOffer1="444" coinOffer2="1399" coinOffer3="3907" coinOffer4="7659" coinOffer5="16650" coinOffer6="53280" level="23" marketBuildMaterialMultiplier="1.34" marketExpandMaterialMultiplier="1.34" marketProductMultiplier="1.07" marketUpgradeMaterialMultiplier="1.34" materialsForBuilding="5" maxFields="39" maxOrders="8" maxPacks="1" maxPlows="1" maxProducts="8" orderMultiplier="1.0" orderRefusedTime="20" orderWorth="98" ordersToLvlUp="56" productsInRow="5" targetXp="160.91" />
+        <level coinOffer1="476" coinOffer2="1499" coinOffer3="4189" coinOffer4="8211" coinOffer5="17850" coinOffer6="57120" level="24" marketBuildMaterialMultiplier="1.37" marketExpandMaterialMultiplier="1.37" marketProductMultiplier="1.08" marketUpgradeMaterialMultiplier="1.37" materialsForBuilding="5" maxFields="41" maxOrders="8" maxPacks="1" maxPlows="1" maxProducts="8" orderMultiplier="1.0" orderRefusedTime="21" orderWorth="105" ordersToLvlUp="62" productsInRow="5" targetXp="166.74" />
+        <level coinOffer1="510" coinOffer2="1607" coinOffer3="4488" coinOffer4="8798" coinOffer5="19125" coinOffer6="61200" level="25" marketBuildMaterialMultiplier="1.40" marketExpandMaterialMultiplier="1.40" marketProductMultiplier="1.08" marketUpgradeMaterialMultiplier="1.40" materialsForBuilding="5" maxFields="42" maxOrders="8" maxPacks="1" maxPlows="1" maxProducts="8" orderMultiplier="1.0" orderRefusedTime="22" orderWorth="112" ordersToLvlUp="69" productsInRow="5" targetXp="171.04" />
+        <level coinOffer1="544" coinOffer2="1714" coinOffer3="4787" coinOffer4="9384" coinOffer5="20400" coinOffer6="65280" level="26" marketBuildMaterialMultiplier="1.42" marketExpandMaterialMultiplier="1.42" marketProductMultiplier="1.09" marketUpgradeMaterialMultiplier="1.42" materialsForBuilding="5" maxFields="44" maxOrders="8" maxPacks="1" maxPlows="1" maxProducts="8" orderMultiplier="1.0" orderRefusedTime="23" orderWorth="119" ordersToLvlUp="76" productsInRow="5" targetXp="176.49" />
+        <level coinOffer1="579" coinOffer2="1824" coinOffer3="5095" coinOffer4="9988" coinOffer5="21713" coinOffer6="69480" level="27" marketBuildMaterialMultiplier="1.45" marketExpandMaterialMultiplier="1.45" marketProductMultiplier="1.09" marketUpgradeMaterialMultiplier="1.45" materialsForBuilding="5" maxFields="45" maxOrders="8" maxPacks="1" maxPlows="1" maxProducts="8" orderMultiplier="1.0" orderRefusedTime="24" orderWorth="126" ordersToLvlUp="83" productsInRow="5" targetXp="182.87" />
+        <level coinOffer1="615" coinOffer2="1937" coinOffer3="5412" coinOffer4="10609" coinOffer5="23063" coinOffer6="73800" level="28" marketBuildMaterialMultiplier="1.48" marketExpandMaterialMultiplier="1.48" marketProductMultiplier="1.10" marketUpgradeMaterialMultiplier="1.48" materialsForBuilding="5" maxFields="47" maxOrders="8" maxPacks="1" maxPlows="1" maxProducts="8" orderMultiplier="1.0" orderRefusedTime="25" orderWorth="133" ordersToLvlUp="91" productsInRow="5" targetXp="188.00" />
+        <level coinOffer1="657" coinOffer2="2070" coinOffer3="5782" coinOffer4="11333" coinOffer5="24638" coinOffer6="78840" level="29" marketBuildMaterialMultiplier="1.50" marketExpandMaterialMultiplier="1.50" marketProductMultiplier="1.10" marketUpgradeMaterialMultiplier="1.50" materialsForBuilding="5" maxFields="49" maxOrders="8" maxPacks="1" maxPlows="1" maxProducts="9" orderMultiplier="1.0" orderRefusedTime="26" orderWorth="141" ordersToLvlUp="100" productsInRow="5" targetXp="192.10" />
+        <level coinOffer1="701" coinOffer2="2208" coinOffer3="6169" coinOffer4="12092" coinOffer5="26288" coinOffer6="84120" level="30" marketBuildMaterialMultiplier="1.53" marketExpandMaterialMultiplier="1.53" marketProductMultiplier="1.11" marketUpgradeMaterialMultiplier="1.53" materialsForBuilding="5" maxFields="50" maxOrders="9" maxPacks="1" maxPlows="1" maxProducts="9" orderMultiplier="1.0" orderRefusedTime="27" orderWorth="149" ordersToLvlUp="110" productsInRow="5" targetXp="195.41" />
+        <level coinOffer1="747" coinOffer2="2353" coinOffer3="6574" coinOffer4="12886" coinOffer5="28013" coinOffer6="89640" level="31" marketBuildMaterialMultiplier="1.55" marketExpandMaterialMultiplier="1.55" marketProductMultiplier="1.11" marketUpgradeMaterialMultiplier="1.55" materialsForBuilding="5" maxFields="52" maxOrders="9" maxPacks="1" maxPlows="1" maxProducts="9" orderMultiplier="1.0" orderRefusedTime="28" orderWorth="157" ordersToLvlUp="120" productsInRow="5" targetXp="199.78" />
+        <level coinOffer1="793" coinOffer2="2498" coinOffer3="6978" coinOffer4="13679" coinOffer5="29738" coinOffer6="95160" level="32" marketBuildMaterialMultiplier="1.58" marketExpandMaterialMultiplier="1.58" marketProductMultiplier="1.12" marketUpgradeMaterialMultiplier="1.58" materialsForBuilding="5" maxFields="53" maxOrders="9" maxPacks="1" maxPlows="1" maxProducts="9" orderMultiplier="1.0" orderRefusedTime="29" orderWorth="165" ordersToLvlUp="131" productsInRow="5" targetXp="203.47" />
+        <level coinOffer1="844" coinOffer2="2659" coinOffer3="7427" coinOffer4="14559" coinOffer5="31650" coinOffer6="101280" level="33" marketBuildMaterialMultiplier="1.60" marketExpandMaterialMultiplier="1.60" marketProductMultiplier="1.12" marketUpgradeMaterialMultiplier="1.60" materialsForBuilding="5" maxFields="55" maxOrders="9" maxPacks="1" maxPlows="1" maxProducts="9" orderMultiplier="1.0" orderRefusedTime="30" orderWorth="173" ordersToLvlUp="143" productsInRow="5" targetXp="206.62" />
+        <level coinOffer1="898" coinOffer2="2829" coinOffer3="7902" coinOffer4="15491" coinOffer5="33675" coinOffer6="107760" level="34" marketBuildMaterialMultiplier="1.63" marketExpandMaterialMultiplier="1.63" marketProductMultiplier="1.13" marketUpgradeMaterialMultiplier="1.63" materialsForBuilding="5" maxFields="56" maxOrders="9" maxPacks="1" maxPlows="1" maxProducts="9" orderMultiplier="1.0" orderRefusedTime="30" orderWorth="182" ordersToLvlUp="156" productsInRow="5" targetXp="209.38" />
+        <level coinOffer1="953" coinOffer2="3002" coinOffer3="8386" coinOffer4="16439" coinOffer5="35738" coinOffer6="114360" level="35" marketBuildMaterialMultiplier="1.65" marketExpandMaterialMultiplier="1.65" marketProductMultiplier="1.13" marketUpgradeMaterialMultiplier="1.65" materialsForBuilding="5" maxFields="58" maxOrders="9" maxPacks="1" maxPlows="1" maxProducts="10" orderMultiplier="1.0" orderRefusedTime="30" orderWorth="190" ordersToLvlUp="170" productsInRow="5" targetXp="211.84" />
+        <level coinOffer1="1009" coinOffer2="3178" coinOffer3="8879" coinOffer4="17405" coinOffer5="37838" coinOffer6="121080" level="36" marketBuildMaterialMultiplier="1.68" marketExpandMaterialMultiplier="1.68" marketProductMultiplier="1.14" marketUpgradeMaterialMultiplier="1.68" materialsForBuilding="5" maxFields="59" maxOrders="9" maxPacks="1" maxPlows="1" maxProducts="10" orderMultiplier="1.0" orderRefusedTime="30" orderWorth="199" ordersToLvlUp="184" productsInRow="5" targetXp="215.25" />
+        <level coinOffer1="1071" coinOffer2="3374" coinOffer3="9425" coinOffer4="18475" coinOffer5="40163" coinOffer6="128520" level="37" marketBuildMaterialMultiplier="1.70" marketExpandMaterialMultiplier="1.70" marketProductMultiplier="1.14" marketUpgradeMaterialMultiplier="1.70" materialsForBuilding="5" maxFields="61" maxOrders="9" maxPacks="1" maxPlows="1" maxProducts="10" orderMultiplier="1.0" orderRefusedTime="30" orderWorth="208" ordersToLvlUp="200" productsInRow="5" targetXp="217.28" />
+        <level coinOffer1="1135" coinOffer2="3575" coinOffer3="9988" coinOffer4="19579" coinOffer5="42563" coinOffer6="136200" level="38" marketBuildMaterialMultiplier="1.72" marketExpandMaterialMultiplier="1.72" marketProductMultiplier="1.15" marketUpgradeMaterialMultiplier="1.72" materialsForBuilding="5" maxFields="63" maxOrders="9" maxPacks="1" maxPlows="1" maxProducts="10" orderMultiplier="1.0" orderRefusedTime="30" orderWorth="217" ordersToLvlUp="217" productsInRow="5" targetXp="219.22" />
+        <level coinOffer1="1201" coinOffer2="3783" coinOffer3="10569" coinOffer4="20717" coinOffer5="45038" coinOffer6="144120" level="39" marketBuildMaterialMultiplier="1.74" marketExpandMaterialMultiplier="1.74" marketProductMultiplier="1.15" marketUpgradeMaterialMultiplier="1.74" materialsForBuilding="5" maxFields="64" maxOrders="9" maxPacks="1" maxPlows="1" maxProducts="10" orderMultiplier="1.0" orderRefusedTime="30" orderWorth="227" ordersToLvlUp="234" productsInRow="5" targetXp="222.06" />
+        <level coinOffer1="1269" coinOffer2="3997" coinOffer3="11167" coinOffer4="21890" coinOffer5="47588" coinOffer6="152280" level="40" marketBuildMaterialMultiplier="1.77" marketExpandMaterialMultiplier="1.77" marketProductMultiplier="1.16" marketUpgradeMaterialMultiplier="1.77" materialsForBuilding="5" maxFields="66" maxOrders="9" maxPacks="1" maxPlows="1" maxProducts="10" orderMultiplier="1.0" orderRefusedTime="30" orderWorth="236" ordersToLvlUp="253" productsInRow="5" targetXp="223.89" />
+        <level coinOffer1="1344" coinOffer2="4234" coinOffer3="11827" coinOffer4="23184" coinOffer5="50400" coinOffer6="161280" level="41" marketBuildMaterialMultiplier="1.79" marketExpandMaterialMultiplier="1.79" marketProductMultiplier="1.16" marketUpgradeMaterialMultiplier="1.79" materialsForBuilding="5" maxFields="67" maxOrders="9" maxPacks="1" maxPlows="1" maxProducts="11" orderMultiplier="1.0" orderRefusedTime="30" orderWorth="246" ordersToLvlUp="274" productsInRow="5" targetXp="224.92" />
+        <level coinOffer1="1419" coinOffer2="4470" coinOffer3="12487" coinOffer4="24478" coinOffer5="53213" coinOffer6="170280" level="42" marketBuildMaterialMultiplier="1.81" marketExpandMaterialMultiplier="1.81" marketProductMultiplier="1.16" marketUpgradeMaterialMultiplier="1.81" materialsForBuilding="5" maxFields="69" maxOrders="9" maxPacks="1" maxPlows="1" maxProducts="11" orderMultiplier="1.0" orderRefusedTime="30" orderWorth="256" ordersToLvlUp="295" productsInRow="5" targetXp="226.86" />
+        <level coinOffer1="1499" coinOffer2="4722" coinOffer3="13191" coinOffer4="25858" coinOffer5="56213" coinOffer6="179880" level="43" marketBuildMaterialMultiplier="1.83" marketExpandMaterialMultiplier="1.83" marketProductMultiplier="1.17" marketUpgradeMaterialMultiplier="1.83" materialsForBuilding="5" maxFields="71" maxOrders="9" maxPacks="1" maxPlows="1" maxProducts="11" orderMultiplier="1.0" orderRefusedTime="30" orderWorth="266" ordersToLvlUp="318" productsInRow="5" targetXp="228.13" />
+        <level coinOffer1="1580" coinOffer2="4977" coinOffer3="13904" coinOffer4="27255" coinOffer5="59250" coinOffer6="189600" level="44" marketBuildMaterialMultiplier="1.85" marketExpandMaterialMultiplier="1.85" marketProductMultiplier="1.17" marketUpgradeMaterialMultiplier="1.85" materialsForBuilding="5" maxFields="72" maxOrders="9" maxPacks="1" maxPlows="1" maxProducts="11" orderMultiplier="1.0" orderRefusedTime="30" orderWorth="276" ordersToLvlUp="342" productsInRow="5" targetXp="229.54" />
+        <level coinOffer1="1669" coinOffer2="5257" coinOffer3="14687" coinOffer4="28790" coinOffer5="62588" coinOffer6="200280" level="45" marketBuildMaterialMultiplier="1.87" marketExpandMaterialMultiplier="1.87" marketProductMultiplier="1.17" marketUpgradeMaterialMultiplier="1.87" materialsForBuilding="5" maxFields="74" maxOrders="9" maxPacks="1" maxPlows="1" maxProducts="12" orderMultiplier="1.0" orderRefusedTime="30" orderWorth="287" ordersToLvlUp="368" productsInRow="5" targetXp="230.46" />
+        <level coinOffer1="1756" coinOffer2="5531" coinOffer3="15453" coinOffer4="30291" coinOffer5="65850" coinOffer6="210720" level="46" marketBuildMaterialMultiplier="1.89" marketExpandMaterialMultiplier="1.89" marketProductMultiplier="1.18" marketUpgradeMaterialMultiplier="1.89" materialsForBuilding="5" maxFields="75" maxOrders="9" maxPacks="1" maxPlows="1" maxProducts="12" orderMultiplier="1.0" orderRefusedTime="30" orderWorth="297" ordersToLvlUp="395" productsInRow="5" targetXp="231.60" />
+        <level coinOffer1="1848" coinOffer2="5821" coinOffer3="16262" coinOffer4="31878" coinOffer5="69300" coinOffer6="221760" level="47" marketBuildMaterialMultiplier="1.91" marketExpandMaterialMultiplier="1.91" marketProductMultiplier="1.18" marketUpgradeMaterialMultiplier="1.91" materialsForBuilding="5" maxFields="77" maxOrders="9" maxPacks="1" maxPlows="1" maxProducts="12" orderMultiplier="1.0" orderRefusedTime="30" orderWorth="308" ordersToLvlUp="423" productsInRow="5" targetXp="232.92" />
+        <level coinOffer1="1944" coinOffer2="6124" coinOffer3="17107" coinOffer4="33534" coinOffer5="72900" coinOffer6="233280" level="48" marketBuildMaterialMultiplier="1.93" marketExpandMaterialMultiplier="1.93" marketProductMultiplier="1.18" marketUpgradeMaterialMultiplier="1.93" materialsForBuilding="5" maxFields="78" maxOrders="9" maxPacks="1" maxPlows="1" maxProducts="12" orderMultiplier="1.0" orderRefusedTime="30" orderWorth="319" ordersToLvlUp="453" productsInRow="5" targetXp="233.91" />
+        <level coinOffer1="2044" coinOffer2="6439" coinOffer3="17987" coinOffer4="35259" coinOffer5="76650" coinOffer6="245280" level="49" marketBuildMaterialMultiplier="1.95" marketExpandMaterialMultiplier="1.95" marketProductMultiplier="1.19" marketUpgradeMaterialMultiplier="1.95" materialsForBuilding="5" maxFields="80" maxOrders="9" maxPacks="1" maxPlows="1" maxProducts="13" orderMultiplier="1.0" orderRefusedTime="30" orderWorth="330" ordersToLvlUp="485" productsInRow="5" targetXp="234.63" />
+        <level coinOffer1="2147" coinOffer2="6763" coinOffer3="18894" coinOffer4="37036" coinOffer5="80513" coinOffer6="257640" level="50" marketBuildMaterialMultiplier="1.97" marketExpandMaterialMultiplier="1.97" marketProductMultiplier="1.19" marketUpgradeMaterialMultiplier="1.97" materialsForBuilding="5" maxFields="82" maxOrders="9" maxPacks="1" maxPlows="1" maxProducts="13" orderMultiplier="1.0" orderRefusedTime="30" orderWorth="341" ordersToLvlUp="519" productsInRow="5" targetXp="235.16" />
+        <level coinOffer1="2252" coinOffer2="7094" coinOffer3="19818" coinOffer4="38847" coinOffer5="84450" coinOffer6="270240" level="51" marketBuildMaterialMultiplier="1.99" marketExpandMaterialMultiplier="1.99" marketProductMultiplier="1.20" marketUpgradeMaterialMultiplier="1.99" materialsForBuilding="5" maxFields="83" maxOrders="9" maxPacks="1" maxPlows="1" maxProducts="13" orderMultiplier="1.0" orderRefusedTime="30" orderWorth="352" ordersToLvlUp="554" productsInRow="5" targetXp="235.97" />
+        <level coinOffer1="2366" coinOffer2="7453" coinOffer3="20821" coinOffer4="40814" coinOffer5="88725" coinOffer6="283920" level="52" marketBuildMaterialMultiplier="2.01" marketExpandMaterialMultiplier="2.01" marketProductMultiplier="1.20" marketUpgradeMaterialMultiplier="2.01" materialsForBuilding="5" maxFields="85" maxOrders="9" maxPacks="1" maxPlows="1" maxProducts="13" orderMultiplier="1.0" orderRefusedTime="30" orderWorth="364" ordersToLvlUp="592" productsInRow="5" targetXp="236.23" />
+        <level coinOffer1="2479" coinOffer2="7809" coinOffer3="21815" coinOffer4="42763" coinOffer5="92963" coinOffer6="297480" level="53" marketBuildMaterialMultiplier="2.03" marketExpandMaterialMultiplier="2.03" marketProductMultiplier="1.20" marketUpgradeMaterialMultiplier="2.03" materialsForBuilding="5" maxFields="86" maxOrders="9" maxPacks="1" maxPlows="1" maxProducts="14" orderMultiplier="1.0" orderRefusedTime="30" orderWorth="375" ordersToLvlUp="631" productsInRow="5" targetXp="236.81" />
+        <level coinOffer1="2598" coinOffer2="8184" coinOffer3="22862" coinOffer4="44816" coinOffer5="97425" coinOffer6="311760" level="54" marketBuildMaterialMultiplier="2.05" marketExpandMaterialMultiplier="2.05" marketProductMultiplier="1.20" marketUpgradeMaterialMultiplier="2.05" materialsForBuilding="5" maxFields="87" maxOrders="9" maxPacks="1" maxPlows="1" maxProducts="14" orderMultiplier="1.0" orderRefusedTime="30" orderWorth="387" ordersToLvlUp="672" productsInRow="5" targetXp="237.32" />
+        <level coinOffer1="2722" coinOffer2="8574" coinOffer3="23954" coinOffer4="46955" coinOffer5="102075" coinOffer6="326640" level="55" marketBuildMaterialMultiplier="2.07" marketExpandMaterialMultiplier="2.07" marketProductMultiplier="1.21" marketUpgradeMaterialMultiplier="2.07" materialsForBuilding="5" maxFields="89" maxOrders="9" maxPacks="1" maxPlows="1" maxProducts="14" orderMultiplier="1.0" orderRefusedTime="30" orderWorth="399" ordersToLvlUp="716" productsInRow="5" targetXp="237.44" />
+        <level coinOffer1="2850" coinOffer2="8978" coinOffer3="25080" coinOffer4="49163" coinOffer5="106875" coinOffer6="342000" level="56" marketBuildMaterialMultiplier="2.09" marketExpandMaterialMultiplier="2.09" marketProductMultiplier="1.21" marketUpgradeMaterialMultiplier="2.09" materialsForBuilding="5" maxFields="90" maxOrders="9" maxPacks="1" maxPlows="1" maxProducts="14" orderMultiplier="1.0" orderRefusedTime="30" orderWorth="411" ordersToLvlUp="762" productsInRow="5" targetXp="237.59" />
+        <level coinOffer1="2979" coinOffer2="9384" coinOffer3="26215" coinOffer4="51388" coinOffer5="111713" coinOffer6="357480" level="57" marketBuildMaterialMultiplier="2.11" marketExpandMaterialMultiplier="2.11" marketProductMultiplier="1.21" marketUpgradeMaterialMultiplier="2.11" materialsForBuilding="5" maxFields="92" maxOrders="9" maxPacks="1" maxPlows="1" maxProducts="15" orderMultiplier="1.0" orderRefusedTime="30" orderWorth="423" ordersToLvlUp="809" productsInRow="5" targetXp="238.06" />
+        <level coinOffer1="3118" coinOffer2="9822" coinOffer3="27438" coinOffer4="53786" coinOffer5="116925" coinOffer6="374160" level="58" marketBuildMaterialMultiplier="2.13" marketExpandMaterialMultiplier="2.13" marketProductMultiplier="1.22" marketUpgradeMaterialMultiplier="2.13" materialsForBuilding="5" maxFields="93" maxOrders="9" maxPacks="1" maxPlows="1" maxProducts="15" orderMultiplier="1.0" orderRefusedTime="30" orderWorth="436" ordersToLvlUp="860" productsInRow="5" targetXp="237.98" />
+        <level coinOffer1="3255" coinOffer2="10253" coinOffer3="28644" coinOffer4="56149" coinOffer5="122063" coinOffer6="390600" level="59" marketBuildMaterialMultiplier="2.15" marketExpandMaterialMultiplier="2.15" marketProductMultiplier="1.22" marketUpgradeMaterialMultiplier="2.15" materialsForBuilding="5" maxFields="95" maxOrders="9" maxPacks="1" maxPlows="1" maxProducts="15" orderMultiplier="1.0" orderRefusedTime="30" orderWorth="448" ordersToLvlUp="912" productsInRow="5" targetXp="238.25" />
+        <level coinOffer1="3401" coinOffer2="10713" coinOffer3="29929" coinOffer4="58667" coinOffer5="127538" coinOffer6="408120" level="60" marketBuildMaterialMultiplier="2.16" marketExpandMaterialMultiplier="2.16" marketProductMultiplier="1.22" marketUpgradeMaterialMultiplier="2.16" materialsForBuilding="5" maxFields="97" maxOrders="9" maxPacks="1" maxPlows="1" maxProducts="15" orderMultiplier="1.0" orderRefusedTime="30" orderWorth="461" ordersToLvlUp="967" productsInRow="5" targetXp="238.33" />
+        <level coinOffer1="3551" coinOffer2="11186" coinOffer3="31249" coinOffer4="61255" coinOffer5="133163" coinOffer6="426120" level="61" marketBuildMaterialMultiplier="2.18" marketExpandMaterialMultiplier="2.18" marketProductMultiplier="1.23" marketUpgradeMaterialMultiplier="2.18" materialsForBuilding="5" maxFields="97" maxOrders="9" maxPacks="1" maxPlows="1" maxProducts="16" orderMultiplier="1.0" orderRefusedTime="30" orderWorth="474" ordersToLvlUp="1025" productsInRow="5" targetXp="238.26" />
+        <level coinOffer1="3705" coinOffer2="11671" coinOffer3="32604" coinOffer4="63911" coinOffer5="138938" coinOffer6="444600" level="62" marketBuildMaterialMultiplier="2.20" marketExpandMaterialMultiplier="2.20" marketProductMultiplier="1.23" marketUpgradeMaterialMultiplier="2.20" materialsForBuilding="5" maxFields="98" maxOrders="9" maxPacks="1" maxPlows="1" maxProducts="16" orderMultiplier="1.0" orderRefusedTime="30" orderWorth="487" ordersToLvlUp="1085" productsInRow="5" targetXp="238.31" />
+        <level coinOffer1="3863" coinOffer2="12168" coinOffer3="33994" coinOffer4="66637" coinOffer5="144863" coinOffer6="463560" level="63" marketBuildMaterialMultiplier="2.22" marketExpandMaterialMultiplier="2.22" marketProductMultiplier="1.23" marketUpgradeMaterialMultiplier="2.22" materialsForBuilding="5" maxFields="98" maxOrders="9" maxPacks="1" maxPlows="1" maxProducts="16" orderMultiplier="1.0" orderRefusedTime="30" orderWorth="500" ordersToLvlUp="1148" productsInRow="5" targetXp="238.25" />
+    </LevelSettings>
+    <OrderTemplates>
+        <OrderTemplate id="0" maxLevel="100" minLevel="1" orderCount="1" xpReward="12">
+            <product maxCount="6" minCount="6" name="wheat" />
+        </OrderTemplate>
+        <OrderTemplate id="1" maxLevel="100000" minLevel="2" orderCount="2" xpReward="12">
+            <product maxCount="1" minCount="1" name="bread" />
+        </OrderTemplate>
+        <OrderTemplate id="2" maxLevel="100000" minLevel="1" orderCount="3" xpReward="20">
+            <product maxCount="3" minCount="3" name="milk" />
+        </OrderTemplate>
+        <OrderTemplate id="3" maxLevel="100000" minLevel="3" orderCount="4" xpReward="10">
+            <product maxCount="3" minCount="3" name="corn" />
+        </OrderTemplate>
+        <OrderTemplate id="4" maxLevel="100000" minLevel="3" orderCount="5" xpReward="18">
+            <product maxCount="8" minCount="8" name="wheat" />
+            <product maxCount="2" minCount="2" name="corn" />
+        </OrderTemplate>
+        <OrderTemplate id="5" maxLevel="100000" minLevel="1" orderCount="6" xpReward="37">
+            <product maxCount="3" minCount="3" name="milk" />
+        </OrderTemplate>
+        <OrderTemplate id="6" maxLevel="100000" minLevel="2" orderCount="7" xpReward="28">
+            <product maxCount="2" minCount="2" name="bread" />
+        </OrderTemplate>
+        <OrderTemplate id="7" maxLevel="100000" minLevel="1" orderCount="8" xpReward="31">
+            <product maxCount="6" minCount="6" name="wheat" />
+        </OrderTemplate>
+        <OrderTemplate id="8" maxLevel="100000" minLevel="4" orderCount="9" xpReward="46">
+            <product maxCount="2" minCount="2" name="carrot" />
+            <product maxCount="1" minCount="1" name="wheat" />
+            <product maxCount="1" minCount="1" name="corn" />
+        </OrderTemplate>
+        <OrderTemplate id="9" maxLevel="100000" minLevel="3" orderCount="10" xpReward="32">
+            <product maxCount="2" minCount="2" name="corn" />
+            <product maxCount="1" minCount="1" name="bread" />
+        </OrderTemplate>
+        <OrderTemplate id="10" maxLevel="100000" minLevel="4" orderCount="11" xpReward="21">
+            <product maxCount="2" minCount="2" name="carrot" />
+        </OrderTemplate>
+        <OrderTemplate id="11" maxLevel="100000" minLevel="3" orderCount="12" xpReward="52">
+            <product maxCount="3" minCount="3" name="wheat" />
+            <product maxCount="3" minCount="3" name="corn" />
+        </OrderTemplate>
+        <OrderTemplate id="12" maxLevel="100000" minLevel="2" orderCount="13" xpReward="60">
+            <product maxCount="3" minCount="1" name="bread" />
+            <product maxCount="3" minCount="1" name="milk" />
+        </OrderTemplate>
+        <OrderTemplate id="13" maxLevel="100000" minLevel="4" orderCount="14" xpReward="57">
+            <product maxCount="3" minCount="2" name="carrot" />
+            <product maxCount="3" minCount="2" name="milk" />
+        </OrderTemplate>
+        <OrderTemplate id="14" maxLevel="100000" minLevel="1">
+            <product needGenerateCount="true" needGenerateName="true" />
+        </OrderTemplate>
+        <OrderTemplate id="15" maxLevel="100000" minLevel="2">
+            <product needGenerateCount="true" needGenerateName="true" />
+            <product needGenerateCount="true" needGenerateName="true" />
+        </OrderTemplate>
+        <OrderTemplate id="16" maxLevel="100000" minLevel="4">
+            <product needGenerateCount="true" needGenerateName="true" />
+            <product needGenerateCount="true" needGenerateName="true" />
+            <product needGenerateCount="true" needGenerateName="true" />
+        </OrderTemplate>
+        <OrderTemplate id="17" maxLevel="10000" minLevel="10">
+            <product needGenerateCount="true" needGenerateName="true" />
+            <product needGenerateCount="true" needGenerateName="true" />
+            <product needGenerateCount="true" needGenerateName="true" />
+            <product needGenerateCount="true" needGenerateName="true" />
+        </OrderTemplate>
+        <OrderTemplate id="18" maxLevel="100000" minLevel="15">
+            <product needGenerateCount="true" needGenerateName="true" />
+            <product needGenerateCount="true" needGenerateName="true" />
+            <product needGenerateCount="true" needGenerateName="true" />
+            <product needGenerateCount="true" needGenerateName="true" />
+            <product needGenerateCount="true" needGenerateName="true" />
+        </OrderTemplate>
+        <OrderTemplate id="19" maxLevel="100000" minLevel="19">
+            <product needGenerateCount="true" needGenerateName="true" />
+            <product needGenerateCount="true" needGenerateName="true" />
+            <product needGenerateCount="true" needGenerateName="true" />
+            <product needGenerateCount="true" needGenerateName="true" />
+            <product needGenerateCount="true" needGenerateName="true" />
+            <product needGenerateCount="true" needGenerateName="true" />
+        </OrderTemplate>
+    </OrderTemplates>
+    <BuildingRequirements>
+        <building Brick="0" Glass="0" Plita="0" id="cityhall_v1" materialCount="0" />
+        <building Brick="1" Glass="0" Plita="0" id="store_101" materialCount="1" />
+        <building Brick="1" Glass="1" Plita="0" id="school_v1" materialCount="2" />
+        <building Brick="1" Glass="1" Plita="1" id="hospital" materialCount="3" />
+        <building Brick="1" Glass="2" Plita="1" id="police" materialCount="4" />
+        <building Brick="2" Glass="2" Plita="1" id="firestation" materialCount="5" />
+        <building Brick="1" Glass="2" Plita="3" id="post_office_v1" materialCount="6" />
+        <building Brick="2" Glass="3" Plita="2" id="laundry_v1" materialCount="7" />
+        <building Brick="3" Glass="2" Plita="3" id="cinema1_01" materialCount="8" />
+        <building Brick="4" Glass="2" Plita="3" id="cafe1_01" materialCount="9" />
+        <building Brick="2" Glass="4" Plita="4" id="barder_v1" materialCount="10" />
+        <building Brick="1" Glass="4" Plita="6" id="pizzeria" materialCount="11" />
+        <building Brick="5" Glass="2" Plita="5" id="widden_house_v1" materialCount="12" />
+        <building Brick="2" Glass="4" Plita="7" id="music_shop_v1" materialCount="13" />
+        <building Brick="5" Glass="5" Plita="4" id="bowling" materialCount="14" />
+        <building Brick="4" Glass="7" Plita="4" id="toyshop_v1" materialCount="15" />
+        <building Brick="5" Glass="4" Plita="7" id="photo_v1" materialCount="16" />
+        <building Brick="6" Glass="5" Plita="6" id="rocket_ride" materialCount="17" />
+        <building Brick="5" Glass="6" Plita="7" id="observatory" materialCount="18" />
+        <building Brick="5" Glass="8" Plita="6" id="library" materialCount="19" />
+        <building Brick="5" Glass="6" Plita="10" id="univers_v1" materialCount="21" />
+        <building Brick="6" Glass="10" Plita="7" id="theatre_v1" materialCount="23" />
+        <building Brick="7" Glass="8" Plita="10" id="museum_v1" materialCount="25" />
+        <building Brick="8" Glass="12" Plita="7" id="circus_v1" materialCount="27" />
+        <building Brick="6" Glass="14" Plita="9" id="garage_v1" materialCount="29" />
+        <building Brick="12" Glass="9" Plita="10" id="gasstation_v1" materialCount="31" />
+        <building Brick="11" Glass="13" Plita="9" id="taxi_v1" materialCount="33" />
+        <building Brick="16" Glass="10" Plita="9" id="drivein_cinema_v1" materialCount="35" />
+        <building Brick="12" Glass="12" Plita="13" id="office_v1" materialCount="37" />
+        <building Brick="13" Glass="11" Plita="15" id="hotel_v1" materialCount="39" />
+        <building Brick="10" Glass="17" Plita="14" id="tv_v1" materialCount="41" />
+        <building Brick="13" Glass="16" Plita="14" id="tvtower_v1" materialCount="43" />
+        <building Brick="18" Glass="11" Plita="16" id="wheel_v1" materialCount="45" />
+        <building Brick="10" Glass="13" Plita="24" id="roller" materialCount="47" />
+        <building Brick="11" Glass="18" Plita="20" id="stadium_v1" materialCount="49" />
+        <building Brick="14" Glass="19" Plita="18" id="petstore" materialCount="51" />
+        <building Brick="16" Glass="15" Plita="22" id="weatherstation" materialCount="53" />
+        <building Brick="19" Glass="18" Plita="18" id="airfield_v1" materialCount="55" />
+        <building Brick="20" Glass="22" Plita="15" id="comic_store" materialCount="57" />
+        <building Brick="17" Glass="22" Plita="20" id="coastguard" materialCount="59" />
+        <building Brick="23" Glass="19" Plita="19" id="supermarket" materialCount="61" />
+        <building Brick="23" Glass="25" Plita="15" id="greenhouse" materialCount="63" />
+        <building Brick="24" Glass="23" Plita="18" id="water_park" materialCount="65" />
+        <building Brick="18" Glass="22" Plita="27" id="motorshow" materialCount="67" />
+        <building Brick="21" Glass="24" Plita="24" id="hydropower" materialCount="69" />
+        <building Brick="25" Glass="20" Plita="26" id="fashion" materialCount="71" />
+        <building Brick="20" Glass="28" Plita="25" id="film_studio" materialCount="73" />
+        <building Brick="29" Glass="28" Plita="18" id="court_of_law" materialCount="75" />
+        <building Brick="27" Glass="27" Plita="23" id="karting" materialCount="77" />
+        <building Brick="23" Glass="38" Plita="18" id="gym" materialCount="79" />
+        <building Brick="25" Glass="23" Plita="33" id="spa_center" materialCount="81" />
+        <building Brick="27" Glass="24" Plita="32" id="golf" materialCount="83" />
+        <building Brick="24" Glass="36" Plita="25" id="organ_hall" materialCount="85" />
+        <building Brick="25" Glass="34" Plita="28" id="donut_shop" materialCount="87" />
+        <building Brick="24" Glass="34" Plita="31" id="racing" materialCount="89" />
+        <building Brick="31" Glass="32" Plita="28" id="climbing_wall" materialCount="91" />
+        <building Brick="34" Glass="24" Plita="35" id="car_workshop" materialCount="93" />
+        <building Brick="24" Glass="32" Plita="39" id="planetarium" materialCount="95" />
+        <building Brick="39" Glass="41" Plita="35" id="flower_shop" materialCount="115" />
+        <building Brick="45" Glass="45" Plita="45" id="hippodrome" materialCount="135" />
+        <building Brick="52" Glass="52" Plita="51" id="concert_venue" materialCount="155" />
+        <building Brick="52" Glass="64" Plita="59" id="car_wash" materialCount="175" />
+        <building Brick="73" Glass="61" Plita="61" id="dolphinarium" materialCount="195" />
+        <building Brick="99" Glass="90" Plita="106" id="dog_training" materialCount="295" />
+        <building Brick="93" Glass="109" Plita="113" id="bank_v1" materialCount="315" />
+        <building Brick="91" Glass="92" Plita="92" id="kindergarten" materialCount="275" />
+        <building Brick="67" Glass="80" Plita="68" id="lighthouse" materialCount="215" />
+        <building Brick="75" Glass="73" Plita="87" id="office_center" materialCount="235" />
+        <building Brick="98" Glass="84" Plita="73" id="bike_rental" materialCount="255" />
+        
+        <building Brick="0" Glass="0" Plita="0" id="citymarket" materialCount="0" />
+        <building Brick="0" Glass="0" Plita="0" id="digging" materialCount="0" />
+        <building Brick="0" Glass="0" Plita="0" id="smeltery" materialCount="0" />
+        <building Brick="0" Glass="0" Plita="0" id="industry_academy" materialCount="0" />
+        <building Brick="0" Glass="0" Plita="0" id="artefactmuseum" materialCount="0" />
+        <building Brick="0" Glass="0" Plita="0" id="golden_palace" materialCount="0" />
+        <building Brick="0" Glass="0" Plita="0" id="airport" materialCount="0" />
+        <building Brick="0" Glass="0" Plita="0" id="bus_station" materialCount="0" />
+        <building Brick="0" Glass="0" Plita="0" id="harbor" materialCount="0" />
+        <building Brick="0" Glass="0" Plita="0" id="laboratory" materialCount="0" />
+        <building Brick="0" Glass="0" Plita="0" id="mint" materialCount="0" />
+        
+        <building Brick="3" Glass="3" id="zoo_eatery" materialCount="2" vaucher="1" zooMaterials="1" zooServiceMaterial1="1" />
+        <building Plita="2" id="zoo_caffe" materialCount="5" vaucher="2" zooBuildingMaterial="1" zooMaterials="1" zooServiceMaterial2="1" />
+        <building Brick="9" Plita="9" id="zoo_cinema" materialCount="10" vaucher="3" zooMaterials="10" zooServiceMaterial3="1" /> 
+        <building Glass="16" id="zoo_icecream_shop" materialCount="15" vaucher="6" zooBuildingMaterial="9" zooMaterials="40" zooServiceMaterial2="10" />       
+        <building Plita="16" id="zoo_shop" materialCount="50" vaucher="8" zooMaterials="60" zooServiceMaterial1="10" zooServiceMaterial3="10" />
+        <building Brick="16" Plita="23" id="zoo_restaurant" materialCount="100" vaucher="12" zooMaterials="80" zooServiceMaterial2="39" />
+        <building Brick="23" id="zoo_caffe_drinks" materialCount="150" vaucher="15" zooBuildingMaterial="59" zooMaterials="100" zooServiceMaterial1="39" />
+        <building Glass="30" id="zoo_contact" materialCount="150" vaucher="15" zooBuildingMaterial="48" zooMaterials="100" zooServiceMaterial3="39" />
+
+
+        <building Glass="2" Plita="2" id="paddock_bear" materialCount="4" vaucher="1" zooBuildingMaterial="1" />
+        <building Brick="18" Plita="18" id="paddock_elephant" materialCount="36" vaucher="45" zooBuildingMaterial="18" />
+        <building Brick="8" Glass="8" id="paddock_hippo" materialCount="16" vaucher="14" zooBuildingMaterial="8" />
+        <building Glass="6" Plita="6" id="paddock_lion" materialCount="12" vaucher="8" zooBuildingMaterial="7" />
+        <building Brick="12" Plita="12" id="paddock_polar_bear" materialCount="24" vaucher="30" zooBuildingMaterial="14" />
+        <building Brick="3" Glass="3" id="paddock_penguin" materialCount="6" vaucher="4" zooBuildingMaterial="4" />
+        <building Glass="45" Plita="45" id="paddock_tiger" materialCount="90" vaucher="90" zooBuildingMaterial="40" />
+        <building Brick="3" Plita="3" id="paddock_zebra" materialCount="6" vaucher="3" zooBuildingMaterial="3" />
+        <building Brick="20" Glass="20" id="paddock_crocodile" materialCount="40" vaucher="50" zooBuildingMaterial="20" />
+        <building Glass="2" Plita="2" id="paddock_flamingo" materialCount="4" vaucher="2" zooBuildingMaterial="2" />
+        <building Brick="15" Plita="15" id="paddock_koala" materialCount="30" vaucher="40" zooBuildingMaterial="16" />
+        <building Brick="4" Glass="4" id="paddock_monkey" materialCount="8" vaucher="6" zooBuildingMaterial="5" />
+        <building Glass="30" Plita="30" id="paddock_panda" materialCount="60" vaucher="70" zooBuildingMaterial="29" />
+        <building Brick="25" Plita="25" id="paddock_seal" materialCount="50" vaucher="60" zooBuildingMaterial="24" />
+        <building Brick="28" Glass="28" id="paddock_gorilla" materialCount="56" vaucher="65" zooBuildingMaterial="27" />
+        <building Brick="80" Glass="80" id="paddock_toucan" materialCount="160" vaucher="115" zooBuildingMaterial="55" />
+        <building Brick="10" Plita="10" id="paddock_girrafe" materialCount="20" vaucher="20" zooBuildingMaterial="12" />
+        <building Brick="23" Glass="23" id="paddock_kangaroo" materialCount="46" vaucher="55" zooBuildingMaterial="22" />
+
+
+
+        <building Glass="50" Plita="50" id="paddock_peacock" materialCount="100" vaucher="95" zooBuildingMaterial="43" />
+        <building Brick="60" Plita="60" id="paddock_camel" materialCount="120" vaucher="105" zooBuildingMaterial="48" />
+        <building Brick="35" Glass="35" id="paddock_rhino" materialCount="70" vaucher="80" zooBuildingMaterial="34" />
+        <building Glass="33" Plita="33" id="paddock_beaver" materialCount="66" vaucher="75" zooBuildingMaterial="32" />
+        <building Brick="40" Plita="40" id="paddock_muskOx" materialCount="80" vaucher="85" zooBuildingMaterial="37" />
+        <building Brick="55" Glass="55" id="paddock_turtle" materialCount="110" vaucher="100" zooBuildingMaterial="46" />
+        <building Glass="70" Plita="70" id="paddock_deer" materialCount="140" vaucher="110" zooBuildingMaterial="51" />
+
+    </BuildingRequirements>
+    <SeedFactors>
+        <factor id="wheat" value="0.5" />
+        <factor id="corn" value="0.5" />
+        <factor id="carrot" value="0.45" />
+        <factor id="pumpkin" value="0.47" />
+        <factor id="sugarcane" value="0.4" />
+        <factor id="cotton" value="0.35" />
+        <factor id="strawberry" value="0.3" />
+        <factor id="tomat" value="0.27" />
+        <factor id="pine" value="0.25" />
+        <factor id="potato" value="0.25" />
+        <factor id="cacao" value="0.2" />
+        <factor id="rubberTree" value="0.2" />
+        <factor id="silk" value="0.18" />
+        <factor id="pepper" value="0.22" />
+        <factor id="rice" value="0.285" />
+        <factor id="roseSeed" value="0.26" />
+        <factor id="jasmine" value="0.25" />
+    </SeedFactors>
+    <SpeedUpSettings>
+        <stage cost="1" minutes="5" />
+        <stage cost="2" minutes="13" />
+        <stage cost="3" minutes="25" />
+        <stage cost="4" minutes="50" />
+        <stage cost="5" minutes="80" />
+        <stage cost="6" minutes="120" />
+        <stage cost="7" minutes="180" />
+        <stage cost="8" minutes="240" />
+        <stage cost="9" minutes="330" />
+        <stage cost="10" minutes="420" />
+        <stage cost="11" minutes="510" />
+        <stage cost="12" minutes="690" />
+        <stage cost="13" minutes="870" />
+        <stage cost="14" minutes="1050" />
+        <stage cost="15" minutes="1290" />
+        <stage cost="16" minutes="1530" />
+        <stage cost="17" minutes="1890" />
+        <stage cost="18" minutes="2250" />
+        <stage cost="19" minutes="2610" />
+        <stage cost="20" minutes="3090" />
+        <stage cost="21" minutes="3570" />
+        <stage cost="22" minutes="4050" />
+        <stage cost="23" minutes="4650" />
+        <stage cost="24" minutes="5250" />
+        <stage cost="25" minutes="5850" />
+        <stage cost="26" minutes="6570" />
+    </SpeedUpSettings>
+    <MaterialWeights>
+        <material id="Brick" weight="155" />
+        <material id="Glass" weight="155" />
+        <material id="Plita" weight="155" />
+        <material id="pick" weight="40" />
+        <material id="axe" weight="32" />
+        <material id="TNT" weight="28" />
+        <material id="hammerMat" weight="45" />
+        <material id="nailMat" weight="45" />
+        <material id="paintRedMat" weight="45" />
+    </MaterialWeights>
+    <MineMaterialWeights>
+        <material id="m2" weight="60" />
+        <material id="m3" weight="60" />
+        <material id="m1" weight="60" />
+    </MineMaterialWeights>
+    <ZooMaterialWeights>
+        <material id="zooBuildingMaterial" weight="155" />
+        <material id="zooServiceMaterial1" weight="100" />
+        <material id="zooServiceMaterial2" weight="100" />
+        <material id="zooServiceMaterial3" weight="100" />
+        <material id="zooLandDeed" weight="40" />
+    </ZooMaterialWeights>
+    <FreeMarketSlotsSettings stepAfterAll="20">
+        <slot friendsCount="1" />
+        <slot friendsCount="3" />
+        <slot friendsCount="5" />
+        <slot friendsCount="8" />
+        <slot friendsCount="11" />
+        <slot friendsCount="15" />
+        <slot friendsCount="19" />
+        <slot friendsCount="24" />
+        <slot friendsCount="29" />
+        <slot friendsCount="35" />
+        <slot friendsCount="41" />
+        <slot friendsCount="47" />
+        <slot friendsCount="53" />
+        <slot friendsCount="60" />
+        <slot friendsCount="67" />
+        <slot friendsCount="74" />
+        <slot friendsCount="81" />
+        <slot friendsCount="88" />
+        <slot friendsCount="96" />
+        <slot friendsCount="104" />
+        <slot friendsCount="112" />
+        <slot friendsCount="120" />
+        <slot friendsCount="128" />
+        <slot friendsCount="136" />
+        <slot friendsCount="145" />
+        <slot friendsCount="154" />
+        <slot friendsCount="163" />
+        <slot friendsCount="172" />
+        <slot friendsCount="181" />
+        <slot friendsCount="190" />
+    </FreeMarketSlotsSettings>
+    <PaidMarketSlotsSettings stepAfterAll="0">
+        <slot price="8" />
+        <slot price="8" />
+        <slot price="8" />
+        <slot price="9" />
+        <slot price="9" />
+        <slot price="9" />
+        <slot price="10" />
+        <slot price="10" />
+        <slot price="10" />
+        <slot price="11" />
+        <slot price="11" />
+        <slot price="12" />
+        <slot price="12" />
+        <slot price="13" />
+        <slot price="13" />
+        <slot price="14" />
+        <slot price="14" />
+        <slot price="15" />
+        <slot price="15" />
+        <slot price="16" />
+        <slot price="16" />
+        <slot price="17" />
+        <slot price="17" />
+        <slot price="18" />
+        <slot price="18" />
+        <slot price="19" />
+        <slot price="19" />
+        <slot price="20" />
+        <slot price="20" />
+        <slot price="21" />
+        <slot price="21" />
+        <slot price="22" />
+        <slot price="22" />
+        <slot price="23" />
+        <slot price="23" />
+        <slot price="24" />
+        <slot price="24" />
+        <slot price="25" />
+        <slot price="25" />
+    </PaidMarketSlotsSettings>
+    <GemProbabilities>
+        <gem id="gem1" prob="48" />
+        <gem id="gem2" prob="27" />
+        <gem id="gem3" prob="13" />
+        <gem id="gem4" prob="12" />
+    </GemProbabilities>
+</Root>

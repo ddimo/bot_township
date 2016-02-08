@@ -4,20 +4,35 @@ from functions import *
 import xml.etree.ElementTree as xml
 
 
-MAX_WAIT_FOR_UPGRADE = 5 # сколько шагов максимум ждем прежде чем купим апгрейд даже если копим на здание
+MAX_WAIT_FOR_UPGRADE = 5    # сколько шагов максимум ждем прежде чем купим апгрейд даже если копим на здание
+USE_340_XMLS = True         # если True - используем хмл из 340 версии
 
-gameBalanceXml = xml.parse('../township/base/GameBalance.xml', parser=CommentsParser())
+xmlPath = '../township/base/'
+if USE_340_XMLS:
+    xmlPath = './v340/'
+
+gameBalanceXml = xml.parse(xmlPath+'GameBalance.xml', parser=CommentsParser())
+buildingsLocksXml = xml.parse(xmlPath+'BuildingsLocks_v1.xml', parser=CommentsParser())
+upgradesXml = xml.parse(xmlPath+'ZooUpgrade.xml', parser=CommentsParser())
+paddocksXml = xml.parse(xmlPath+'All_AnimalPaddocks.xml', parser=CommentsParser())
+buildingsZooXml = xml.parse(xmlPath+'buildings_zoo.xml', parser=CommentsParser())
+levelupInfoXml = xml.parse(xmlPath+'LevelupInfo_v1.xml', parser=CommentsParser())
+expandXml = xml.parse(xmlPath+'expand_zoo.xml', parser=CommentsParser())
+
 gameBalanceRoot = gameBalanceXml.getroot()
 BuildingRequirements = gameBalanceRoot.find('BuildingRequirements')
-buildingsLocksXml = xml.parse('../township/base/BuildingsLocks_v1.xml', parser=CommentsParser())
+
 buildingsLocksRoot = buildingsLocksXml.getroot()
 
 reqs = []
 
 # Заполним требования материалов на все комьюнити и загоны
-for elem in BuildingRequirements.iter():
-    if elem.tag == "reqs" and elem.attrib['ver'] == "2":
-        reqs = elem
+if USE_340_XMLS:
+    reqs = BuildingRequirements
+else:
+    for elem in BuildingRequirements.iter():
+        if elem.tag == "reqs" and elem.attrib['ver'] == "2":
+            reqs = elem
 
 for reqsElem in reqs.iter():
     if 'id' in reqsElem.attrib:
@@ -51,9 +66,7 @@ for reqsElem in reqs.iter():
 # buildingSettings["zoo_caffe"].price - сколько дает рейтинга за постройку
 
 
-
 # сбор инфы об апгрейдах
-upgradesXml = xml.parse('../township/base/ZooUpgrade.xml', parser=CommentsParser())
 upgradesRoot = upgradesXml.getroot()
 UpgradesSettingsXml = upgradesRoot.find('Community')
 for upgradeBuildingElem in UpgradesSettingsXml:
@@ -79,7 +92,6 @@ for upgradeBuildingElem in UpgradesSettingsXml:
 
 
 # теперь соберем инфу сколько рейтинга дает постройка загона, а также какие требования на животных из All_AnimalPaddocks
-paddocksXml = xml.parse('../township/base/All_AnimalPaddocks.xml', parser=CommentsParser())
 paddocksSettings = paddocksXml.find('AnimalPaddocks')
 for paddockElem in paddocksSettings:
     elemId = paddockElem.attrib['type']
@@ -101,12 +113,9 @@ for paddockElem in paddocksSettings:
 # каждый элемент которого - класс animalReqsClass
 # пример: animalsReqs['paddock_turtle'][1].gem2 = требования gem2 на первое животное из загона черепах
 
-#print vars(animalsReqs['paddock_turtle'][1])
-#exit()
 
 
 # также добавим инфу о бонусном рейтинге за комьюнити
-buildingsZooXml = xml.parse('../township/base/buildings_zoo.xml', parser=CommentsParser())
 zooCommunitySettings = buildingsZooXml.find('zoo_community')
 for zooCommunityElem in zooCommunitySettings:
     elemId = zooCommunityElem.attrib['buildingId']
@@ -116,7 +125,6 @@ for zooCommunityElem in zooCommunitySettings:
 
 
 # теперь соберем инфу о левелапах в зоопарке
-levelupInfoXml = xml.parse('../township/base/LevelupInfo_v1.xml', parser=CommentsParser())
 levelupInfoRoot = levelupInfoXml.getroot()
 zooLevelups = levelupInfoRoot.find('zooLevels')
 for levelupElem in zooLevelups:
@@ -131,7 +139,6 @@ for levelupElem in zooLevelups:
 
 
 # соберем инфу о расширениях в зоопарке
-expandXml = xml.parse('../township/base/expand_zoo.xml', parser=CommentsParser())
 expandXmlRoot = expandXml.getroot()
 for expandElem in expandXmlRoot:
     curExpand = zooExpansionClass()
@@ -156,15 +163,14 @@ gameInfo.paddocksTotalAnimals["paddock_bear"] = 1
 writeLog("lime","building <b>zoo_caffe</b> (tutorial)")
 gameInfo.communities["zoo_caffe"] = 1
 
-gameInfo.communitiesUpgrades['zoo_eatery'] = 2
 justLeveluped = 0
+
 
 # ЗАПУСКАЕМ ПОСЛЕДОВАТЕЛЬНОЕ ОТКРЫВАНИЕ ПОДАРКОВ
 #for x in range(0,35):
 x = 0
-# gameInfo.paddocksTotalAnimals['paddock_zebra'] = 0
 # while gameInfo.paddocksTotalAnimals['paddock_zebra']<4:
-while gameInfo.zooLevel<11:
+while gameInfo.zooLevel<15:
     x += 1
     print ""
     writeLog("normal","&nbsp;<br>&nbsp;<br>&nbsp;<br>&nbsp;<br>&nbsp;")

@@ -1,0 +1,228 @@
+<?xml version='1.0' encoding='utf-8'?>
+<expand>
+    <expandBuy exp="4" id="1" money="25" population="60" time="1200" />
+    <expandBuy exp="6" id="2" money="30" population="75" time="1500" />
+    <expandBuy exp="8" id="3" money="40" population="90" time="1800" />
+    <expandBuy exp="11" id="4" money="50" population="105" time="2100" />
+    <expandBuy exp="13" id="5" money="60" population="120" time="2400" />
+    <expandBuy exp="15" id="6" money="70" population="135" time="2700" />
+    <expandBuy exp="17" id="7" money="85" population="150" time="3000" />
+    <expandBuy exp="19" id="8" money="100" population="165" time="3300" />
+    <expandBuy exp="21" id="9" money="115" population="180" time="3600" />
+    <expandBuy exp="23" id="10" money="130" population="200" time="3900" />
+    <expandBuy exp="25" id="11" money="145" population="220" time="4200" />
+    <expandBuy exp="27" id="12" money="160" population="240" time="4500" />
+    <expandBuy exp="29" id="13" money="175" population="260" time="4800" />
+    <expandBuy exp="32" id="14" money="190" population="280" time="5100" />
+    <expandBuy exp="34" id="15" money="205" population="305" time="5400" />
+    <expandBuy exp="36" id="16" money="220" population="330" time="5700" />
+    <expandBuy exp="38" id="17" money="235" population="355" time="6000" />
+    <expandBuy exp="40" id="18" money="250" population="380" time="6300" />
+    <expandBuy exp="42" id="19" money="265" population="405" time="6600" />
+    <expandBuy exp="44" id="20" money="280" pick="1" population="430" time="6900" />
+    <expandBuy exp="46" id="21" money="295" pick="1" population="455" time="7200" />
+    <expandBuy exp="48" id="22" money="310" pick="1" population="480" time="7500" />
+    <expandBuy exp="50" id="23" money="325" pick="1" population="510" time="7800" />
+    <expandBuy exp="53" id="24" money="340" pick="1" population="540" time="8100" />
+    <expandBuy exp="55" id="25" money="355" pick="1" population="570" time="8400" />
+    <expandBuy exp="57" id="26" money="370" pick="2" population="600" time="8700" />
+    <expandBuy exp="59" id="27" money="385" pick="2" population="630" time="9000" />
+    <expandBuy exp="61" id="28" money="400" pick="2" population="660" time="9300" />
+    <expandBuy exp="63" id="29" money="425" pick="2" population="690" time="9600" />
+    <expandBuy exp="65" id="30" money="450" pick="2" population="720" time="9900" />
+    <expandBuy exp="67" id="31" money="475" pick="2" population="750" time="10200" />
+    <expandBuy exp="69" id="32" money="500" pick="2" population="780" time="10500" />
+    <expandBuy exp="71" id="33" money="525" pick="2" population="815" time="10800" />
+    <expandBuy axe="1" exp="74" id="34" money="550" pick="2" population="850" time="11100" />
+    <expandBuy axe="1" exp="76" id="35" money="575" pick="2" population="885" time="11400" />
+    <expandBuy axe="1" exp="78" id="36" money="600" pick="2" population="920" time="11700" />
+    <expandBuy axe="1" exp="80" id="37" money="625" pick="2" population="955" time="12000" />
+    <expandBuy axe="1" exp="82" id="38" money="650" pick="2" population="990" time="12300" />
+    <expandBuy axe="1" exp="84" id="39" money="675" pick="2" population="1025" time="12600" />
+    <expandBuy axe="1" exp="86" id="40" money="700" pick="2" population="1060" time="12900" />
+    <expandBuy axe="1" exp="88" id="41" money="725" pick="2" population="1095" time="13200" />
+    <expandBuy axe="1" exp="90" id="42" money="750" pick="2" population="1130" time="13500" />
+    <expandBuy axe="2" exp="92" id="43" money="775" pick="2" population="1170" time="13800" />
+    <expandBuy axe="2" exp="95" id="44" money="800" pick="2" population="1210" time="14100" />
+    <expandBuy axe="2" exp="97" id="45" money="850" pick="2" population="1250" time="14400" />
+    <expandBuy axe="2" exp="99" id="46" money="900" pick="2" population="1290" time="14700" />
+    <expandBuy axe="2" exp="101" id="47" money="950" pick="2" population="1330" time="15000" />
+    <expandBuy axe="2" exp="103" id="48" money="1000" pick="2" population="1370" time="15300" />
+    <expandBuy axe="2" exp="105" id="49" money="1050" pick="3" population="1410" time="15600" />
+    <expandBuy TNT="1" axe="2" exp="107" id="50" money="1100" pick="3" population="1450" time="15900" />
+    <expandBuy TNT="1" axe="2" exp="109" id="51" money="1150" pick="3" population="1490" time="16200" />
+    <expandBuy TNT="1" axe="2" exp="111" id="52" money="1200" pick="3" population="1530" time="16500" />
+    <expandBuy TNT="1" axe="2" exp="113" id="53" money="1250" pick="3" population="1580" time="16800" />
+    <expandBuy TNT="1" axe="2" exp="116" id="54" money="1300" pick="3" population="1630" time="17100" />
+    <expandBuy TNT="1" axe="2" exp="118" id="55" money="1350" pick="3" population="1680" time="17400" />
+    <expandBuy TNT="1" axe="2" exp="120" id="56" money="1400" pick="3" population="1730" time="17700" />
+    <expandBuy TNT="1" axe="2" exp="122" id="57" money="1450" pick="3" population="1780" time="18000" />
+    <expandBuy TNT="1" axe="2" exp="124" id="58" money="1500" pick="3" population="1830" time="18300" />
+    <expandBuy TNT="2" axe="2" exp="126" id="59" money="1550" pick="3" population="1880" time="18600" />
+    <expandBuy TNT="2" axe="2" exp="128" id="60" money="1600" pick="3" population="1930" time="18900" />
+    <expandBuy TNT="2" axe="2" exp="130" id="61" money="1675" pick="3" population="1980" time="19200" />
+    <expandBuy TNT="2" axe="3" exp="132" id="62" money="1750" pick="3" population="2030" time="19500" />
+    <expandBuy TNT="2" axe="3" exp="134" id="63" money="1825" pick="3" population="2080" time="19800" />
+    <expandBuy TNT="2" axe="3" exp="137" id="64" money="1900" pick="3" population="2130" time="20100" />
+    <expandBuy TNT="2" axe="3" exp="139" id="65" money="1975" pick="4" population="2180" time="20400" />
+    <expandBuy TNT="2" axe="3" exp="141" id="66" money="2050" pick="4" population="2230" time="20700" />
+    <expandBuy TNT="2" axe="3" exp="143" id="67" money="2150" pick="4" population="2280" time="21000" />
+    <expandBuy TNT="2" axe="3" exp="145" id="68" money="2250" pick="4" population="2330" time="21300" />
+    <expandBuy TNT="2" axe="3" exp="147" id="69" money="2350" pick="4" population="2380" time="21600" />
+    <expandBuy TNT="2" axe="3" exp="149" id="70" money="2450" pick="4" population="2430" time="21900" />
+    <expandBuy TNT="2" axe="3" exp="151" id="71" money="2550" pick="4" population="2490" time="22200" />
+    <expandBuy TNT="2" axe="3" exp="153" id="72" money="2700" pick="4" population="2550" time="22500" />
+    <expandBuy TNT="2" axe="3" exp="155" id="73" money="2850" pick="4" population="2610" time="22800" />
+    <expandBuy TNT="2" axe="3" exp="158" id="74" money="3000" pick="4" population="2670" time="23100" />
+    <expandBuy TNT="2" axe="3" exp="160" id="75" money="3150" pick="4" population="2730" time="23400" />
+    <expandBuy TNT="2" axe="3" exp="162" id="76" money="3300" pick="4" population="2790" time="23700" />
+    <expandBuy TNT="2" axe="3" exp="164" id="77" money="3450" pick="4" population="2850" time="24000" />
+    <expandBuy TNT="2" axe="3" exp="166" id="78" money="3600" pick="4" population="2910" time="24600" />
+    <expandBuy TNT="2" axe="3" exp="168" id="79" money="3750" pick="4" population="2970" time="25200" />
+    <expandBuy TNT="2" axe="3" exp="170" id="80" money="3900" pick="4" population="3030" time="25800" />
+    <expandBuy TNT="2" axe="4" exp="172" id="81" money="4050" pick="4" population="3090" time="26400" />
+    <expandBuy TNT="2" axe="4" exp="174" id="82" money="4200" pick="4" population="3150" time="27000" />
+    <expandBuy TNT="2" axe="4" exp="176" id="83" money="4350" pick="4" population="3210" time="27600" />
+    <expandBuy TNT="2" axe="4" exp="179" id="84" money="4500" pick="5" population="3270" time="28200" />
+    <expandBuy TNT="2" axe="4" exp="181" id="85" money="4650" pick="5" population="3330" time="28800" />
+    <expandBuy TNT="2" axe="4" exp="183" id="86" money="4800" pick="5" population="3390" time="29400" />
+    <expandBuy TNT="2" axe="4" exp="185" id="87" money="4950" pick="5" population="3450" time="30000" />
+    <expandBuy TNT="2" axe="4" exp="187" id="88" money="5100" pick="5" population="3510" time="30600" />
+    <expandBuy TNT="3" axe="4" exp="189" id="89" money="5250" pick="5" population="3570" time="31200" />
+    <expandBuy TNT="3" axe="4" exp="191" id="90" money="5400" pick="5" population="3630" time="31800" />
+    <expandBuy TNT="3" axe="4" exp="193" id="91" money="5550" pick="5" population="3690" time="32400" />
+    <expandBuy TNT="3" axe="4" exp="195" id="92" money="5700" pick="5" population="3750" time="33000" />
+    <expandBuy TNT="3" axe="4" exp="197" id="93" money="5850" pick="5" population="3810" time="33600" />
+    <expandBuy TNT="3" axe="4" exp="200" id="94" money="6000" pick="5" population="3870" time="34200" />
+    <expandBuy TNT="3" axe="4" exp="202" id="95" money="6150" pick="5" population="3930" time="34800" />
+    <expandBuy TNT="3" axe="4" exp="204" id="96" money="6300" pick="5" population="4000" time="35400" />
+    <expandBuy TNT="3" axe="4" exp="206" id="97" money="6450" pick="5" population="4070" time="36000" />
+    <expandBuy TNT="3" axe="4" exp="208" id="98" money="6600" pick="5" population="4140" time="36600" />
+    <expandBuy TNT="3" axe="4" exp="210" id="99" money="6750" pick="5" population="4210" time="37200" />
+    <expandBuy TNT="3" axe="4" exp="212" id="100" money="6900" pick="6" population="4280" time="37800" />
+    <expandBuy TNT="3" axe="4" exp="214" id="101" money="7050" pick="6" population="4350" time="38400" />
+    <expandBuy TNT="3" axe="4" exp="216" id="102" money="7200" pick="6" population="4420" time="39000" />
+    <expandBuy TNT="3" axe="4" exp="218" id="103" money="7350" pick="6" population="4490" time="39600" />
+    <expandBuy TNT="3" axe="4" exp="221" id="104" money="7500" pick="6" population="4560" time="40800" />
+    <expandBuy TNT="3" axe="4" exp="223" id="105" money="7650" pick="6" population="4630" time="42000" />
+    <expandBuy TNT="3" axe="4" exp="225" id="106" money="7800" pick="6" population="4700" time="43200" />
+    <expandBuy TNT="3" axe="5" exp="227" id="107" money="7950" pick="6" population="4770" time="44400" />
+    <expandBuy TNT="3" axe="5" exp="229" id="108" money="8100" pick="6" population="4840" time="45600" />
+    <expandBuy TNT="3" axe="5" exp="231" id="109" money="8250" pick="6" population="4910" time="46800" />
+    <expandBuy TNT="3" axe="5" exp="233" id="110" money="8400" pick="6" population="4980" time="48000" />
+    <expandBuy TNT="3" axe="5" exp="235" id="111" money="8550" pick="6" population="5050" time="49200" />
+    <expandBuy TNT="3" axe="5" exp="237" id="112" money="8700" pick="6" population="5120" time="50400" />
+    <expandBuy TNT="3" axe="5" exp="239" id="113" money="8850" pick="6" population="5190" time="51600" />
+    <expandBuy TNT="3" axe="5" exp="242" id="114" money="9000" pick="6" population="5260" time="52800" />
+    <expandBuy TNT="4" axe="5" exp="244" id="115" money="9300" pick="6" population="5330" time="54000" />
+    <expandBuy TNT="4" axe="5" exp="246" id="116" money="9600" pick="6" population="5400" time="55200" />
+    <expandBuy TNT="4" axe="5" exp="248" id="117" money="9900" pick="6" population="5470" time="56400" />
+    <expandBuy TNT="4" axe="5" exp="250" id="118" money="10200" pick="6" population="5540" time="57600" />
+    <expandBuy TNT="4" axe="5" exp="252" id="119" money="10500" pick="6" population="5610" time="58800" />
+    <expandBuy TNT="4" axe="5" exp="254" id="120" money="10800" pick="6" population="5680" time="60000" />
+    <expandBuy TNT="4" axe="5" exp="256" id="121" money="11100" pick="6" population="5750" time="61200" />
+    <expandBuy TNT="4" axe="5" exp="258" id="122" money="11400" pick="6" population="5820" time="62400" />
+    <expandBuy TNT="4" axe="5" exp="260" id="123" money="11700" pick="7" population="5890" time="63600" />
+    <expandBuy TNT="4" axe="5" exp="263" id="124" money="12000" pick="7" population="5960" time="64800" />
+    <expandBuy TNT="4" axe="5" exp="265" id="125" money="12300" pick="7" population="6030" time="66600" />
+    <expandBuy TNT="4" axe="5" exp="267" id="126" money="12600" pick="7" population="6100" time="68400" />
+    <expandBuy TNT="4" axe="5" exp="269" id="127" money="12900" pick="7" population="6170" time="70200" />
+    <expandBuy TNT="4" axe="5" exp="271" id="128" money="13200" pick="7" population="6240" time="72000" />
+    <expandBuy TNT="4" axe="5" exp="273" id="129" money="13500" pick="7" population="6310" time="73800" />
+    <expandBuy TNT="4" axe="5" exp="275" id="130" money="13800" pick="7" population="6380" time="75600" />
+    <expandBuy TNT="4" axe="5" exp="277" id="131" money="14100" pick="7" population="6450" time="77400" />
+    <expandBuy TNT="4" axe="6" exp="279" id="132" money="14400" pick="7" population="6520" time="79200" />
+    <expandBuy TNT="4" axe="6" exp="281" id="133" money="14700" pick="7" population="6590" time="81000" />
+    <expandBuy TNT="4" axe="6" exp="284" id="134" money="15000" pick="7" population="6660" time="82800" />
+    <expandBuy TNT="4" axe="6" exp="286" id="135" money="15500" pick="7" population="6730" time="84600" />
+    <expandBuy TNT="4" axe="6" exp="288" id="136" money="16000" pick="7" population="6800" time="86400" />
+    <expandBuy TNT="4" axe="6" exp="290" id="137" money="16500" pick="7" population="6870" time="88200" />
+    <expandBuy TNT="4" axe="6" exp="292" id="138" money="17000" pick="7" population="6940" time="90000" />
+    <expandBuy TNT="4" axe="6" exp="294" id="139" money="17500" pick="8" population="7020" time="91800" />
+    <expandBuy TNT="4" axe="6" exp="296" id="140" money="18000" pick="8" population="7100" time="91800" />
+    <expandBuy TNT="4" axe="6" exp="298" id="141" money="18500" pick="8" population="7180" time="93600" />
+    <expandBuy TNT="4" axe="6" exp="300" id="142" money="19000" pick="8" population="7260" time="93600" />
+    <expandBuy TNT="4" axe="6" exp="302" id="143" money="19500" pick="8" population="7340" time="95400" />
+    <expandBuy TNT="5" axe="6" exp="305" id="144" money="20000" pick="8" population="7420" time="95400" />
+    <expandBuy TNT="5" axe="6" exp="307" id="145" money="20500" pick="8" population="7500" time="97200" />
+    <expandBuy TNT="5" axe="6" exp="309" id="146" money="21000" pick="8" population="7580" time="97200" />
+    <expandBuy TNT="5" axe="6" exp="311" id="147" money="21500" pick="8" population="7660" time="99000" />
+    <expandBuy TNT="5" axe="7" exp="313" id="148" money="22000" pick="8" population="7740" time="99000" />
+    <expandBuy TNT="5" axe="7" exp="315" id="149" money="22500" pick="8" population="7820" time="100800" />
+    <expandBuy TNT="5" axe="7" exp="317" id="150" money="23000" pick="8" population="7900" time="100800" />
+    <expandBuy TNT="6" axe="7" exp="319" id="151" money="23500" pick="8" population="7980" time="102600" />
+    <expandBuy TNT="6" axe="7" exp="321" id="152" money="24000" pick="8" population="8060" time="102600" />
+    <expandBuy TNT="6" axe="7" exp="323" id="153" money="24500" pick="8" population="8140" time="104400" />
+    <expandBuy TNT="6" axe="7" exp="326" id="154" money="25000" pick="9" population="8220" time="104400" />
+    <expandBuy TNT="6" axe="7" exp="328" id="155" money="26000" pick="9" population="8300" time="106200" />
+    <expandBuy TNT="6" axe="7" exp="330" id="156" money="27000" pick="9" population="8380" time="106200" />
+    <expandBuy TNT="6" axe="7" exp="332" id="157" money="28000" pick="9" population="8460" time="108000" />
+    <expandBuy TNT="6" axe="7" exp="334" id="158" money="29000" pick="9" population="8540" time="108000" />
+    <expandBuy TNT="6" axe="8" exp="336" id="159" money="30000" pick="9" population="8620" time="109800" />
+    <expandBuy TNT="6" axe="8" exp="338" id="160" money="31000" pick="9" population="8700" time="109800" />
+    <expandBuy TNT="6" axe="8" exp="340" id="161" money="32000" pick="9" population="8780" time="111600" />
+    <expandBuy TNT="6" axe="8" exp="342" id="162" money="33000" pick="9" population="8860" time="111600" />
+    <expandBuy TNT="6" axe="8" exp="344" id="163" money="34000" pick="9" population="8940" time="113400" />
+    <expandBuy TNT="7" axe="8" exp="347" id="164" money="35000" pick="9" population="9020" time="113400" />
+    <expandBuy TNT="7" axe="8" exp="349" id="165" money="36000" pick="9" population="9100" time="115200" />
+    <expandBuy TNT="7" axe="8" exp="351" id="166" money="37000" pick="9" population="9180" time="115200" />
+    <expandBuy TNT="7" axe="8" exp="353" id="167" money="38000" pick="9" population="9260" time="117000" />
+    <expandBuy TNT="7" axe="8" exp="355" id="168" money="39000" pick="9" population="9340" time="117000" />
+    <expandBuy TNT="7" axe="8" exp="357" id="169" money="40000" pick="10" population="9420" time="118800" />
+    <expandBuy TNT="7" axe="8" exp="359" id="170" money="41000" pick="10" population="9500" time="118800" />
+    <expandBuy TNT="7" axe="8" exp="361" id="171" money="42000" pick="10" population="9580" time="120600" />
+    <expandBuy TNT="7" axe="8" exp="363" id="172" money="43000" pick="10" population="9660" time="120600" />
+    <expandBuy TNT="7" axe="8" exp="365" id="173" money="44000" pick="10" population="9740" time="122400" />
+    <expandBuy TNT="7" axe="9" exp="368" id="174" money="45000" pick="10" population="9820" time="122400" />
+    <expandBuy TNT="7" axe="9" exp="370" id="175" money="46000" pick="10" population="9900" time="124200" />
+    <expandBuy TNT="7" axe="9" exp="372" id="176" money="47000" pick="10" population="9980" time="124200" />
+    <expandBuy TNT="7" axe="9" exp="374" id="177" money="48000" pick="10" population="10060" time="126000" />
+    <expandBuy TNT="7" axe="9" exp="376" id="178" money="49000" pick="10" population="10140" time="126000" />
+    <expandBuy TNT="8" axe="9" exp="378" id="179" money="50000" pick="10" population="10220" time="127800" />
+    <expandBuy TNT="8" axe="9" exp="380" id="180" money="51000" pick="10" population="10300" time="127800" />
+    <expandBuy TNT="8" axe="9" exp="382" id="181" money="52000" pick="10" population="10380" time="129600" />
+    <expandBuy TNT="8" axe="9" exp="384" id="182" money="53000" pick="10" population="10460" time="129600" />
+    <expandBuy TNT="8" axe="9" exp="386" id="183" money="54000" pick="10" population="10540" time="131400" />
+    <expandBuy TNT="8" axe="9" exp="389" id="184" money="55000" pick="11" population="10620" time="131400" />
+    <expandBuy TNT="8" axe="9" exp="391" id="185" money="56000" pick="11" population="10700" time="133200" />
+    <expandBuy TNT="8" axe="9" exp="393" id="186" money="57000" pick="11" population="10780" time="133200" />
+    <expandBuy TNT="8" axe="9" exp="395" id="187" money="58000" pick="11" population="10860" time="135000" />
+    <expandBuy TNT="8" axe="9" exp="397" id="188" money="59000" pick="11" population="10940" time="135000" />
+    <expandBuy TNT="8" axe="10" exp="399" id="189" money="60000" pick="11" population="11020" time="136800" />
+    <expandBuy TNT="8" axe="10" exp="401" id="190" money="61000" pick="11" population="11100" time="136800" />
+    <expandBuy TNT="8" axe="10" exp="403" id="191" money="62000" pick="11" population="11180" time="138600" />
+    <expandBuy TNT="8" axe="10" exp="405" id="192" money="63000" pick="11" population="11260" time="138600" />
+    <expandBuy TNT="8" axe="10" exp="407" id="193" money="64000" pick="11" population="11340" time="140400" />
+    <expandBuy TNT="9" axe="10" exp="410" id="194" money="65000" pick="11" population="11420" time="140400" />
+    <expandBuy TNT="9" axe="10" exp="412" id="195" money="66000" pick="11" population="11500" time="142200" />
+    <expandBuy TNT="9" axe="10" exp="414" id="196" money="67000" pick="11" population="11580" time="142200" />
+    <expandBuy TNT="9" axe="10" exp="416" id="197" money="68000" pick="11" population="11660" time="144000" />
+    <expandBuy TNT="9" axe="10" exp="418" id="198" money="69000" pick="11" population="11740" time="144000" />
+    <expandBuy TNT="9" axe="10" exp="420" id="199" money="70000" pick="12" population="11820" time="145800" />
+    <expandBuy TNT="9" axe="10" exp="422" id="200" money="71000" pick="12" population="11900" time="145800" />
+    <expandBuy TNT="9" axe="10" exp="424" id="201" money="72000" pick="12" population="11980" time="147600" />
+    <expandBuy TNT="9" axe="10" exp="426" id="202" money="73000" pick="12" population="12060" time="147600" />
+    <expandBuy TNT="9" axe="10" exp="428" id="203" money="74000" pick="12" population="12140" time="149400" />
+    <expandBuy TNT="9" axe="11" exp="431" id="204" money="75000" pick="12" population="12220" time="149400" />
+    <expandBuy TNT="9" axe="11" exp="433" id="205" money="76000" pick="12" population="12300" time="151200" />
+    <expandBuy TNT="9" axe="11" exp="435" id="206" money="77000" pick="12" population="12380" time="151200" />
+    <expandBuy TNT="9" axe="11" exp="437" id="207" money="78000" pick="12" population="12460" time="153000" />
+    <expandBuy TNT="9" axe="11" exp="439" id="208" money="79000" pick="12" population="12540" time="153000" />
+    <expandBuy TNT="10" axe="11" exp="441" id="209" money="80000" pick="12" population="12620" time="154800" />
+    <expandBuy TNT="10" axe="11" exp="443" id="210" money="81000" pick="12" population="12700" time="154800" />
+    <expandBuy TNT="10" axe="11" exp="445" id="211" money="82000" pick="12" population="12780" time="156600" />
+    <expandBuy TNT="10" axe="11" exp="447" id="212" money="83000" pick="12" population="12860" time="156600" />
+    <expandBuy TNT="10" axe="11" exp="449" id="213" money="84000" pick="12" population="12940" time="158400" />
+    <expandBuy TNT="10" axe="11" exp="452" id="214" money="85000" pick="13" population="13020" time="158400" />
+    <expandBuy TNT="10" axe="11" exp="454" id="215" money="86000" pick="13" population="13100" time="160200" />
+    <expandBuy TNT="10" axe="11" exp="456" id="216" money="87000" pick="13" population="13180" time="160200" />
+    <expandBuy TNT="10" axe="11" exp="458" id="217" money="88000" pick="13" population="13260" time="162000" />
+    <expandBuy TNT="10" axe="11" exp="460" id="218" money="89000" pick="13" population="13340" time="162000" />
+    <expandBuy TNT="10" axe="12" exp="462" id="219" money="90000" pick="13" population="13420" time="163800" />
+    <expandBuy TNT="10" axe="12" exp="464" id="220" money="91000" pick="13" population="13500" time="163800" />
+    <expandBuy TNT="10" axe="12" exp="466" id="221" money="92000" pick="13" population="13580" time="165600" />
+    <expandBuy TNT="10" axe="12" exp="468" id="222" money="93000" pick="13" population="13660" time="165600" />
+    <expandBuy TNT="10" axe="12" exp="470" id="223" money="94000" pick="13" population="13740" time="167400" />
+    <expandBuy TNT="11" axe="12" exp="473" id="224" money="95000" pick="13" population="13820" time="167400" />
+    <expandBuy TNT="11" axe="12" exp="475" id="225" money="96000" pick="13" population="13900" time="169200" />
+</expand>

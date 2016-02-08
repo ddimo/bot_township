@@ -1,0 +1,1886 @@
+<?xml version='1.0' encoding='utf-8'?>
+<buildings>
+    <!-- Каждый item описывает настройки для отдельного здания. 
+		label          - название (поддерживаются переменные из текстовой системы, нужно обернуть в '%name%')
+		buildingId     - идентификатор, обязателен - case insensetive (пофиг на регистр букв)
+		build_time     - время постройки, по умалчанию 0
+		coins_price    - цена покупки в монетах(в самих покупках может быть установлена другая цена)
+		cash_price     - цена покупки в банкнота (должна быть установлен только одна цена, если установены обе, coins_price становится "0")
+		sell_price     - цена при продаже сооружения
+		breakable      - может ли сооружение ломаться (пока ломаются только жилые дома)
+		fix_price      - плата за починку сооружения (число прибавляется к балансу игрока)
+		fix_experience - опыт, который дается за починку сооружения
+		terrain        - на какую поверхность можно поставить сооружение,
+		                 числа через запятую (0 - песок, 1 - трава, 2 - вода, 3 - чернозем)
+		cling          - если истина, то в режиме конструктора, сооружение не 
+		                 будет пропадать с курсора при покупке, по умолчанию "false"
+		happiness      - счастье, которое добавляет сооружение (по умолчанию 0)
+		levelneed	   - уровень начиная с которого здание разрешено строить
+		Только для жилый домов:
+		residents  - количенство жителей в здании
+		
+		Только для фабрик:
+		process_time       - время переработки одного продукта
+		product_capacity   - вместимость фабрики (вместимость всех фабрик равно 3)
+		inputProduct       - перерабатываемый продукт
+		outputProduct      - вырабатываемый продукт
+		order_experience   - опыт за начало переработки одного продукта
+		collect_experience - опыт за сбор готового продукта
+		
+		Только для сооружение, вырабатывающих деньги:
+		time       - время генерации ренты
+		rent_money - генерируемая рента
+		experience - опыт за сбор ренты
+		
+		Только для мусора:
+		clear_balance - сумма, которая добавляется игруку за очистку мусора
+		
+		Только для шахт:
+		resource			- тип ресурса, вырабатываемый шахтой
+		collect_experience	- опыт, получаемый при сборе ресурса
+	
+	Может содержать следующие вложенные элементы:
+	
+	Настройки для спецполомок. Описывает специальные условия для восстановления сломанного здания.
+	<special_breakable break_on_build="true">
+		<fix_requirement id="resource" type="steel" amount="1"/>
+		<fix_requirement id="cash" amount="1"/>
+		<fix_requirement id="balance"  amount="100"/>
+	</special_breakable>
+	
+	break_on_build - должно ли быть здание быть сломаным в момент постройки/добавления в нового пользователя
+	<fix_requirement id="resource" type="steel" amount="1"/> - для починки требуются ресурсы
+		type - тип ресурса. Можно указать home для домашеного ресурса игрока
+		amount - количество ресурса, снимаемое за починку
+	<fix_requirement id="cash" amount="1"/> - условие, требующее вложения спецвалюты в ремонт
+	<fix_requirement id="balance"  amount="100"/> - условие, требующее вложения денег в ремонт
+	
+	
+	Настройки для зданий, строящихся за ресурсы (эпические)
+	<resource_buildable cash_price="2" incomplete_sell_price="0" complete_experience="200">
+		<requirement resource="home" amount="3"/>
+		<requirement resource="wood" amount="3"/>
+		<requirement resource="glass" amount="3"/>
+	</resource_buildable>
+	
+	incomplete_sell_price - цена продажи в незавершенном виде
+	complete_experience - опыт, начисляемый при завершении
+	cash_price - стоимость немедленного заверщения строитьства за спецвалюту. Все ресурсы из списка должны быть вложены для завершения строительства.
+	<requirement resource="wood" amount="3"/> - тип и количество ресурса, который нужно вложить в постройку. Тип может быть home для домашнего ресурса.
+
+	Настройки ландшафтных объектов
+		refX, refY - смещение относительно левого нижнего угла текстуры, задающее положение опорной точки ландшафтного объекта.
+					 По опорной точке определяется попадание объекта в расширение
+		randomTint - если true, то объекту задается случайный оттенок
+	-->
+    <!-- жилые дома -->
+    <person>
+        <steam_man text1="OrderSteamMan1" text2="OrderSteamMan2" text3="OrderSteamMan3" text4="OrderSteamMan4" text5="OrderSteamMan5" text6="OrderSteamMan6" text7="OrderSteamMan7" text8="OrderSteamMan8" />
+        <teacher text1="OrderTeacher1" text2="OrderTeacher2" text3="OrderTeacher3" text4="OrderTeacher4" text5="OrderTeacher5" text6="OrderTeacher6" text7="OrderTeacher7" />
+        <taxi_driver text1="OrderTaxiDriver1" text2="OrderTaxiDriver2" text3="OrderTaxiDriver3" text4="OrderTaxiDriver4" text5="OrderTaxiDriver5" text6="OrderTaxiDriver6" text7="OrderTaxiDriver7" />
+        <soccer_player text1="OrderFootballPlayer1" text2="OrderFootballPlayer2" text3="OrderFootballPlayer3" text4="OrderFootballPlayer4" text5="OrderFootballPlayer5" text6="OrderFootballPlayer6" />
+        <havymetal_man text1="OrderRockMan1" text2="OrderRockMan2" text3="OrderRockMan3" text4="OrderRockMan4" text5="OrderRockMan5" text6="OrderRockMan6" text7="OrderRockMan7" />
+        <reporter text1="OrderReporter1" text2="OrderReporter2" text3="OrderReporter3" text4="OrderReporter4" text5="OrderReporter5" text6="OrderReporter6" text7="OrderReporter7" text8="OrderReporter8" />
+        <musium_man text1="OrderMusiumMan1" text2="OrderMusiumMan2" text3="OrderMusiumMan3" text4="OrderMusiumMan4" text5="OrderMusiumMan5" text6="OrderMusiumMan6" text7="OrderMusiumMan7" text8="OrderMusiumMan8" text9="OrderMusiumMan9" />
+        <artist text1="OrderArtist1" text2="OrderArtist2" text3="OrderArtist3" text4="OrderArtist4" text5="OrderArtist5" text6="OrderArtist6" text7="OrderArtist7" text8="OrderArtist8" text9="OrderArtist9" />
+        <jak_kusto text1="OrderJakKusto1" text2="OrderJakKusto2" text3="OrderJakKusto3" text4="OrderJakKusto4" text5="OrderJakKusto5" text6="OrderJakKusto6" text7="OrderJakKusto7" text8="OrderJakKusto8" text9="OrderJakKusto9" />
+        <hairdresser text1="OrderHairdresser1" text2="OrderHairdresser2" text3="OrderHairdresser3" text4="OrderHairdresser4" text5="OrderHairdresser5" text6="OrderHairdresser6" text7="OrderHairdresser7" text8="OrderHairdresser8" />
+        <doc_ok text1="OrderDoctor1" text2="OrderDoctor2" text3="OrderDoctor3" text4="OrderDoctor4" text5="OrderDoctor5" text6="OrderDoctor6" text7="OrderDoctor7" text8="OrderDoctor8" />
+        <cook text1="OrderCook1" text2="OrderCook2" text3="OrderCook3" text4="OrderCook4" text5="OrderCook5" text6="OrderCook6" text7="OrderCook7" text8="OrderCook8" text9="OrderCook9" />
+        <clown text1="OrderClown1" text2="OrderClown2" text3="OrderClown3" text4="OrderClown4" text5="OrderClown5" text6="OrderClown6" text7="OrderClown7" text8="OrderClown8" />
+        <buisness_woman text1="OrderBuisnessWoman1" text2="OrderBuisnessWoman2" text3="OrderBuisnessWoman3" text4="OrderBuisnessWoman4" text5="OrderBuisnessWoman5" text6="OrderBuisnessWoman6" text7="OrderBuisnessWoman7" text8="OrderBuisnessWoman8" text9="OrderBuisnessWoman9" />
+        <basketball_man text1="OrderBasketballMan1" text2="OrderBasketballMan2" text3="OrderBasketballMan3" text4="OrderBasketballMan4" text5="OrderBasketballMan5" text6="OrderBasketballMan6" text7="OrderBasketballMan7" />
+        <fireman text1="OrderFireman1" text2="OrderFireman2" text3="OrderFireman3" text4="OrderFireman4" text5="OrderFireman5" text6="OrderFireman6" text7="OrderFireman7" text8="OrderFireman8" />
+        <grandma text1="OrderGrandma1" text2="OrderGrandma2" text3="OrderGrandma3" text4="OrderGrandma4" text5="OrderGrandma5" text6="OrderGrandma6" text7="OrderGrandma7" text8="OrderGrandma8" />
+        <ernie text1="OrderErnia1" text2="OrderErnia2" text3="OrderErnia3" text4="OrderErnia4" text5="OrderErnia5" text6="OrderErnia6" text7="OrderErnia7" />
+        <cop text1="OrderCop1" text2="OrderCop2" text3="OrderCop3" text4="OrderCop4" text5="OrderCop5" text6="OrderCop6" text7="OrderCop7" text8="OrderCop8" text9="OrderCop9" />
+        <Capitan text1="OrderCapitan1" text2="OrderCapitan2" text3="OrderCapitan3" text4="OrderCapitan4" text5="OrderCapitan5" text6="OrderCapitan6" text7="OrderCapitan7" text8="OrderCapitan8" />
+        <recluse text1="OrderRecluse1" text2="OrderRecluse2" text3="OrderRecluse3" text4="OrderRecluse4" text5="OrderRecluse5" text6="OrderRecluse6" text7="OrderRecluse7" />
+        <miner text1="OrderDigger1" text2="OrderDigger2" text3="OrderDigger3" text4="OrderDigger4" text5="OrderDigger5" text6="OrderDigger6" text7="OrderDigger7" />
+        <athlete text1="OrderMacho1" text2="OrderMacho2" text3="OrderMacho3" text4="OrderMacho4" text5="OrderMacho5" text6="OrderMacho6" text7="OrderMacho7" />
+        <nuclear_physicist text1="OrderPhysic1" text2="OrderPhysic2" text3="OrderPhysic3" text4="OrderPhysic4" text5="OrderPhysic5" text6="OrderPhysic6" text7="OrderPhysic7" text8="OrderPhysic8" />
+        <filmmaker text1="OrderDirected1" text2="OrderDirected2" text3="OrderDirected3" text4="OrderDirected4" text5="OrderDirected5" text6="OrderDirected6" text7="OrderDirected7" text8="OrderDirected8" />
+        <comics_man text1="OrderComicsMan1" text2="OrderComicsMan2" text3="OrderComicsMan3" text4="OrderComicsMan4" text5="OrderComicsMan5" text6="OrderComicsMan6" text7="OrderComicsMan7" text8="OrderComicsMan8" text9="OrderComicsMan9" />
+        <girl text1="OrderGirl1" text2="OrderGirl2" text3="OrderGirl3" text4="OrderGirl4" text5="OrderGirl5" text6="OrderGirl6" text7="OrderGirl7" />
+        <boy text1="OrderBoy1" text2="OrderBoy2" text3="OrderBoy3" text4="OrderBoy4" text5="OrderBoy5" text6="OrderBoy6" text7="OrderBoy7" text8="OrderBoy8" />
+        <blonde text1="OrderBlonde1" text2="OrderBlonde2" text3="OrderBlonde3" text4="OrderBlonde4" text5="OrderBlonde5" text6="OrderBlonde6" text7="OrderBlonde7" />
+        <english_woman text1="OrderOldLedy1" text2="OrderOldLedy2" text3="OrderOldLedy3" text4="OrderOldLedy4" text5="OrderOldLedy5" text6="OrderOldLedy6" />
+        <mafioso text1="OrderMafioso1" text2="OrderMafioso2" text3="OrderMafioso3" text4="OrderMafioso4" text5="OrderMafioso5" text6="OrderMafioso6" text7="OrderMafioso7" text8="OrderMafioso8" text9="OrderMafioso9" />
+        <postman text1="OrderPostman1" text2="OrderPostman2" text3="OrderPostman3" text4="OrderPostman4" text5="OrderPostman5" text6="OrderPostman6" text7="OrderPostman7" />
+        <magician text1="OrderMagician1" text2="OrderMagician2" text3="OrderMagician3" text4="OrderMagician4" text5="OrderMagician5" text6="OrderMagician6" text7="OrderMagician7" text8="OrderMagician8" />
+        <pilot text1="OrderPilot1" text2="OrderPilot2" text3="OrderPilot3" text4="OrderPilot4" text5="OrderPilot5" text6="OrderPilot6" text7="OrderPilot7" />
+        <dealer text1="OrderDealer1" text2="OrderDealer2" text3="OrderDealer3" text4="OrderDealer4" text5="OrderDealer5" text6="OrderDealer6" text7="OrderDealer7" />
+        <carman text1="OrderStationMaster1" text2="OrderStationMaster2" text3="OrderStationMaster3" text4="OrderStationMaster4" text5="OrderStationMaster5" text6="OrderStationMaster6" text7="OrderStationMaster7" />
+        <afrogirl text1="OrderAfroGirl1" text2="OrderAfroGirl2" text3="OrderAfroGirl3" text4="OrderAfroGirl4" text5="OrderAfroGirl5" text6="OrderAfroGirl6" text7="OrderAfroGirl7" />
+        <helicopter_girl text1="OrderHelGirl1" text2="OrderHelGirl2" text3="OrderHelGirl3" text4="OrderHelGirl4" text5="OrderHelGirl5" text6="OrderHelGirl6" text7="OrderHelGirl7" />
+        <zooworker text1="OrderZooWorker1" text2="OrderZooWorker2" text3="OrderZooWorker3" text4="OrderZooWorker4" text5="OrderZooWorker5" text6="OrderZooWorker6" text7="OrderZooWorker7" text8="OrderZooWorker8"/>
+        <student text1="OrderMulatGirl1" text2="OrderMulatGirl2" text3="OrderMulatGirl3" text4="OrderMulatGirl4" text5="OrderMulatGirl5" text6="OrderMulatGirl6" text7="OrderMulatGirl7" text8="OrderMulatGirl8" />
+        <sushist text1="OrderSushiman1" text2="OrderSushiman2" text3="OrderSushiman3" text4="OrderSushiman4" text5="OrderSushiman5" text6="OrderSushiman6" text7="OrderSushiman7" />
+        <elf text1="OrderElf1" text2="OrderElf2" text3="OrderElf3" text4="OrderElf4" text5="OrderElf5" text6="OrderElf6"/>
+    </person>
+    <!--у жилых домов может быть любой персонаж в заказе, пока с одинаковой вероятностью-->
+    <livinghouse>
+        <item breakable="true" build_time="2m" buildingId="house26" coins_price="5" fix_price="5" icon="house26" label="house26" levelneed="3" residents="5" terrain="0,1,2" />
+        <item breakable="true" build_time="10m" buildingId="house56" coins_price="10" fix_price="5" icon="house56" label="house56" levelneed="4" residents="10" terrain="0,1,2" />
+        <item breakable="true" build_time="20m" buildingId="house10" coins_price="15" fix_price="5" icon="house10" label="house10" levelneed="5" residents="15" terrain="0,1,2" />
+        <item breakable="true" build_time="30m" buildingId="house48" coins_price="20" fix_price="5" icon="house48" label="house48" levelneed="6" residents="20" terrain="0,1,2" />
+        <item breakable="true" build_time="60m" buildingId="house45" coins_price="25" fix_price="5" icon="house45" label="house45" levelneed="8" residents="25" terrain="0,1,2" />
+        <item breakable="true" build_time="90m" buildingId="house43" coins_price="60" fix_price="5" icon="house43" label="house43" levelneed="10" residents="30" terrain="0,1,2" />
+        <item breakable="true" build_time="120m" buildingId="house40" coins_price="105" fix_price="5" icon="house40" label="house40" levelneed="12" residents="35" terrain="0,1,2" />
+        <item breakable="true" build_time="180m" buildingId="house25" coins_price="160" fix_price="5" icon="house25" label="house25" levelneed="14" residents="40" terrain="0,1,2" />
+        <item breakable="true" build_time="240m" buildingId="house19" coins_price="225" fix_price="5" icon="house19" label="house19" levelneed="17" residents="45" terrain="0,1,2" />
+        <item breakable="true" build_time="360m" buildingId="house38" coins_price="300" fix_price="5" icon="house38" label="house38" levelneed="20" residents="50" terrain="0,1,2" />
+        <item breakable="true" build_time="420m" buildingId="house2" coins_price="385" fix_price="5" icon="house2" label="house2" levelneed="22" residents="55" terrain="0,1,2" />
+        <item breakable="true" build_time="480m" buildingId="house17" coins_price="540" fix_price="5" icon="house17" label="house17" levelneed="24" residents="60" terrain="0,1,2" />
+        <item breakable="true" build_time="540m" buildingId="house57" coins_price="715" fix_price="5" icon="house57" label="house57" levelneed="26" residents="65" terrain="0,1,2" />
+        <item breakable="true" build_time="600m" buildingId="house33" coins_price="910" fix_price="5" icon="house33" label="house33" levelneed="28" residents="70" terrain="0,1,2" />
+        <item breakable="true" build_time="720m" buildingId="house21" coins_price="1200" fix_price="5" icon="house21" label="house21" levelneed="29" residents="75" terrain="0,1,2" volumeSize="1x2" />
+        <item breakable="true" build_time="960m" buildingId="house60" coins_price="1440" fix_price="5" icon="house60" label="house60" levelneed="31" residents="80" terrain="0,1,2" volumeSize="1x2" />
+        <item breakable="true" build_time="1080m" buildingId="house61" coins_price="1700" fix_price="5" icon="house61" label="house61" levelneed="32" residents="85" terrain="0,1,2" volumeSize="1x2" />
+        <item breakable="true" build_time="1440m" buildingId="house58" coins_price="2250" fix_price="5" icon="house58" label="house58" levelneed="34" residents="90" terrain="0,1,2" volumeSize="1x2" />
+        <item breakable="true" build_time="1680m" buildingId="house59" coins_price="3000" fix_price="5" icon="house59" label="house59" levelneed="37" residents="100" terrain="0,1,2" volumeSize="1x2" />
+        <item breakable="true" build_time="1680m" buildingId="house65" coins_price="3850" fix_price="5" icon="house65" label="house65" levelneed="39" residents="110" terrain="0,1,2" volumeSize="1x2" />
+        <item breakable="true" build_time="1680m" buildingId="house62" coins_price="4800" fix_price="5" icon="house62" label="house62" levelneed="42" residents="120" terrain="0,1,2" volumeSize="1x2" />
+        <item breakable="true" build_time="1680m" buildingId="house63" coins_price="6300" fix_price="5" icon="house63" label="house63" levelneed="46" residents="140" terrain="0,1,2" volumeSize="1x2" />
+        <item breakable="true" build_time="1680m" buildingId="house64" coins_price="7500" fix_price="5" icon="house64" label="house64" levelneed="50" residents="150" terrain="0,1,2" volumeSize="2x1" />
+        <item breakable="true" build_time="1680m" buildingId="house66" coins_price="9500" fix_price="5" icon="house66" label="house66" levelneed="52" residents="190" terrain="0,1,2" volumeSize="1x2" />
+        <item breakable="true" build_time="1680m" buildingId="house67" coins_price="11500" fix_price="5" icon="house67" label="house67" levelneed="54" residents="230" terrain="0,1,2" volumeSize="1x2" />
+        <item breakable="true" build_time="1680m" buildingId="house68" coins_price="13500" fix_price="5" icon="house68" label="house68" levelneed="56" residents="270" terrain="0,1,2" volumeSize="1x2" />
+        <item breakable="true" build_time="2160m" buildingId="house69" coins_price="16500" fix_price="5" icon="house69" label="house69" levelneed="58" residents="330" terrain="0,1,2" volumeSize="1x2" />
+        <item breakable="true" build_time="2160m" buildingId="house70" coins_price="19000" fix_price="5" icon="house70" label="house70" levelneed="62" residents="380" terrain="0,1,2" volumeSize="1x2" />
+        <item breakable="true" build_time="2160m" buildingId="house71" coins_price="21000" fix_price="5" icon="house71" label="house71" levelneed="68" residents="420" terrain="0,1,2" volumeSize="1x2" />
+        <item breakable="true" build_time="2400m" buildingId="house72" coins_price="27600" fix_price="5" icon="house72" label="house72" levelneed="72" residents="460" terrain="0,1,2" volumeSize="1x2" />
+        <item breakable="true" build_time="2400m" buildingId="house73" coins_price="36400" fix_price="5" icon="house73" label="house73" levelneed="78" residents="520" terrain="0,1,2" volumeSize="2x2" />
+    </livinghouse>
+    <!-- фабрики -->
+    <factory>
+        <item build_time="40s" buildingId="mill" cash_price="0" coins_price="150" collect_experience="0" hurryCoeff="0.9" icon="factory_mill" initialSlots="3" label="mill" levelneed="3" order_experience="2" terrain="0,1,2" volumeSize="2x2">
+            <pers name="ernie" />
+            <production>
+                <product amount="3" name="cowfeed" time="5m">
+                    <resource count="2" name="wheat" />
+                    <resource count="1" name="corn" />
+                </product>
+                <product amount="3" name="chickenfeed" time="10m">
+                    <resource count="2" name="wheat" />
+                    <resource count="1" name="carrot" />
+                </product>
+                <product amount="3" name="sheepfeed" time="20m">
+                    <resource count="2" name="corn" />
+                    <resource count="2" name="carrot" />
+                </product>
+                <product amount="3" name="beefeed" time="30m">
+                    <resource count="3" name="wheat" />
+                    <resource count="1" name="sugarcane" />
+                </product>
+                <product amount="3" name="pigfeed" time="40m">
+                    <resource count="2" name="wheat" />
+                    <resource count="2" name="carrot" />
+                    <resource count="1" name="corn" />
+                </product>
+            </production>
+        </item>
+        <item build_time="5s" buildingId="cowfactory" cash_price="0" coins_price="100" collect_experience="0" icon="factory_cowfactory" label="cowfactory" levelneed="1" order_experience="2" terrain="0,1,2" volumeSize="2x2">
+            <pers name="ernie" />
+            <production>
+                <product name="milk" time="20m">
+                    <resource count="1" name="cowfeed" />
+                </product>
+            </production>
+        </item>
+        <item build_time="60m" buildingId="chickenfactory" cash_price="0" coins_price="200" collect_experience="0" icon="factory_chickenfactory" label="chickenfactory" levelneed="5" order_experience="2" terrain="0,1,2" volumeSize="2x2">
+            <pers name="ernie" />
+            <production>
+                <product name="egg" time="60m">
+                    <resource count="1" name="chickenfeed" />
+                </product>
+            </production>
+        </item>
+        <item build_time="240m" buildingId="sheepfactory" cash_price="0" coins_price="600" collect_experience="0" icon="factory_sheepfactory" label="sheepfactory" levelneed="10" order_experience="2" terrain="0,1,2" volumeSize="2x2">
+            <pers name="ernie" />
+            <production>
+                <product name="wool" time="240m">
+                    <resource count="1" name="sheepfeed" />
+                </product>
+            </production>
+        </item>
+        <item build_time="2580m" buildingId="pigfactory" cash_price="0" coins_price="12000" collect_experience="0" icon="factory_pigfactory" label="pigfactory" levelneed="42" order_experience="2" terrain="0,1,2" volumeSize="2x2">
+            <production>
+                <product name="bacon" time="420m">
+                    <resource count="1" name="pigfeed" />
+                </product>
+            </production>
+        </item>
+        <item build_time="2280m" buildingId="beefactory" cash_price="0" coins_price="9000" collect_experience="0" icon="factory_beefactory" label="beefactory" levelneed="35" order_experience="2" terrain="0,1,2" volumeSize="2x2">
+            <pers name="ernie" />
+            <production>
+                <product name="honeycomb" time="360m">
+                    <resource count="1" name="beefeed" />
+                </product>
+            </production>
+        </item>
+        <item build_time="5s" buildingId="bakery" cash_price="0" coins_price="125" collect_experience="0" hurryCoeff="0.8" icon="factory_bakery" initialSlots="3" label="bakery" levelneed="2" order_experience="2" terrain="0,1,2" volumeSize="2x2">
+            <pers name="grandma" name2="cook" name3="mafioso" />
+            <production>
+                <product name="bread" time="5m">
+                    <resource count="2" name="wheat" />
+                </product>
+                <product name="cookie" time="15m">
+                    <resource count="2" name="wheat" />
+                    <resource count="2" name="egg" />
+                </product>
+                <product name="halloweenpie" time="50m">
+                    <resource count="3" name="wheat" />
+                    <resource count="2" name="pumpkin" />
+                    <resource count="1" name="egg" />
+                </product>
+                <product name="bagel" time="30m">
+                    <resource count="2" name="wheat" />
+                    <resource count="1" name="sugar" />
+                    <resource count="3" name="egg" />
+                </product>
+                <product name="gingerbread" time="50m">
+                    <resource count="3" name="wheat" />
+                    <resource count="1" name="butter" />
+                    <resource count="1" name="sugar" />
+                </product>
+                <product name="pizza" time="120m">
+                    <resource count="2" name="wheat" />
+                    <resource count="1" name="cheese" />
+                    <resource count="2" name="tomat" />
+                </product>
+                <product name="potatobread" time="60m">
+                    <resource count="2" name="wheat" />
+                    <resource count="2" name="potato" />
+                    <resource count="4" name="egg" />
+                </product>
+                <product name="bananabread" time="90m">
+                    <resource count="2" name="wheat" />
+                    <resource count="3" name="banana" />
+                    <resource count="2" name="egg" />
+                    <resource count="1" name="butter" />
+                </product>
+                <product name="marinepizza" time="150m">
+                    <resource count="2" name="wheat" />
+                    <resource count="1" name="cheese" />
+                    <resource count="1" name="fish" />
+                    <resource count="1" name="shrimp" />
+                </product>
+            </production>
+        </item>
+        <item build_time="720m" buildingId="chipsfactory" cash_price="0" coins_price="1400" collect_experience="0" icon="factory_chipsfactory" initialSlots="2" label="chipsfactory" levelneed="14" order_experience="2" terrain="0,1,2" volumeSize="2x2">
+            <pers name="comics_man" name2="mafioso" />
+            <production>
+                <product name="popcorn" time="30m">
+                    <resource count="2" name="corn" />
+                </product>
+                <product name="halloweenchips" time="150m">
+                    <resource count="3" name="pumpkin" />
+                </product>
+                <product name="marshmallow" time="50m">
+                    <resource count="2" name="sugar" />
+                </product>
+                <product name="cornchips" time="60m">
+                    <resource count="3" name="corn" />
+                </product>
+                <product name="granola" time="40m">
+                    <resource count="2" name="wheat" />
+                    <resource count="2" name="strawberry" />
+                </product>
+                <product name="chips" time="120m">
+                    <resource count="2" name="potato" />
+                </product>
+                <product name="canape" time="15m">
+                    <resource count="2" name="olive" />
+                    <resource count="2" name="grapes" />
+                    <resource count="1" name="cheese" />
+                </product>
+                <product name="glazedbacon" time="80m">
+                    <resource count="2" name="bacon" />
+                    <resource count="1" name="syrup" />
+                </product>
+                <product name="puffedrice" time="45m">
+                    <resource count="4" name="rice" />
+                    <resource count="1" name="syrup" />
+                </product>
+            </production>
+        </item>
+        <item build_time="960m" buildingId="fastfoodfactory" cash_price="0" coins_price="2400" collect_experience="0" hurryCoeff="0.9" icon="factory_fastfoodfactory" initialSlots="2" label="fastfoodfactory" levelneed="16" order_experience="2" terrain="0,1,2" volumeSize="2x2">
+            <pers name="comics_man" name2="boy" />
+            <production>
+                <product name="milkshake" time="15m">
+                    <resource count="2" name="milk" />
+                    <resource count="1" name="strawberry" />
+                </product>
+                <product name="cheeseburger" time="30m">
+                    <resource count="2" name="bread" />
+                    <resource count="1" name="cheese" />
+                    <resource count="1" name="tomat" />
+                </product>
+                <product name="sandwich" time="40m">
+                    <resource count="1" name="bread" />
+                    <resource count="1" name="butter" />
+                    <resource count="2" name="strawberry" />
+                </product>
+                <product name="frenchfries" time="60m">
+                    <resource count="2" name="potato" />
+                    <resource count="1" name="cream" />
+                    <resource count="2" name="tomat" />
+                </product>
+                <product name="bakedpotatoes" time="50m">
+                    <resource count="2" name="potato" />
+                    <resource count="1" name="bacon" />
+                    <resource count="1" name="cheese" />
+                </product>
+                <product name="fishburger" time="45m">
+                    <resource count="2" name="bread" />
+                    <resource count="2" name="fish" />
+                    <resource count="1" name="pepper" />
+                </product>
+                <product name="fish_chips" time="90m">
+                    <resource count="2" name="fish" />
+                    <resource count="2" name="potato" />
+                </product>
+            </production>
+        </item>
+        <item build_time="60m" buildingId="milkfactory" cash_price="0" coins_price="175" collect_experience="0" hurryCoeff="0.9" icon="factory_milkfactory" initialSlots="3" label="milkfactory" levelneed="4" order_experience="2" terrain="0,1,2" volumeSize="2x2">
+            <pers name="cook" name2="mafioso" />
+            <production>
+                <product name="cream" time="15m">
+                    <resource count="1" name="milk" />
+                </product>
+                <product name="cheese" time="30m">
+                    <resource count="2" name="milk" />
+                </product>
+                <product name="butter" time="60m">
+                    <resource count="3" name="milk" />
+                </product>
+                <product name="yogurt" time="90m">
+                    <resource count="4" name="milk" />
+                </product>
+                <product name="peachyogurt" time="120m">
+                    <resource count="2" name="milk" />
+                    <resource count="2" name="peach" />
+                </product>
+            </production>
+        </item>
+        <item build_time="120m" buildingId="sugarfactory" cash_price="0" coins_price="250" collect_experience="0" hurryCoeff="0.95" icon="factory_sugarfactory" initialSlots="2" label="sugarfactory" levelneed="7" order_experience="2" terrain="0,1,2" volumeSize="2x2">
+            <pers name="cook" name2="mafioso" />
+            <production>
+                <product name="sugar" time="20m">
+                    <resource count="1" name="sugarcane" />
+                </product>
+                <product name="syrup" time="40m">
+                    <resource count="2" name="sugarcane" />
+                </product>
+                <product name="caramel" time="90m">
+                    <resource count="3" name="sugarcane" />
+                </product>
+                <product name="honeycaramel" time="150m">
+                    <resource count="1" name="honeycomb" />
+                    <resource count="1" name="sugarcane" />
+                </product>
+            </production>
+        </item>
+        <item build_time="1440m" buildingId="icecreamfactory" cash_price="0" coins_price="4300" collect_experience="0" icon="factory_icecreamfactory" initialSlots="2" label="icecreamfactory" levelneed="20" order_experience="2" terrain="0,1,2" volumeSize="2x2">
+            <pers name="cook" name2="girl" name3="blonde" />
+            <production>
+                <product name="icecream" time="30m">
+                    <resource count="1" name="milk" />
+                    <resource count="1" name="cream" />
+                    <resource count="1" name="sugar" />
+                </product>
+                <product name="fruitice" time="90m">
+                    <resource count="2" name="strawberry" />
+                    <resource count="1" name="sugar" />
+                </product>
+                <product name="frozenyogurt" time="180m">
+                    <resource count="1" name="yogurt" />
+                    <resource count="1" name="cream" />
+                </product>
+                <product name="eskimo" time="240m">
+                    <resource count="1" name="syrup" />
+                    <resource count="1" name="cacao" />
+                    <resource count="1" name="pine" />
+                </product>
+                <product name="pineapplesorbet" time="150m">
+                    <resource count="1" name="syrup" />
+                    <resource count="2" name="pineapple" />
+                </product>
+                <product name="roseSorbet" time="120m">
+                    <resource count="1" name="syrup" />
+                    <resource count="2" name="roseSeed" />
+                    <resource count="1" name="milk" />
+                </product>
+            </production>
+        </item>
+        <item build_time="1680m" buildingId="chocolatefactory" cash_price="0" coins_price="6000" collect_experience="0" hurryCoeff="1.1" icon="factory_chocolatefactory" initialSlots="2" label="chocolatefactory" levelneed="24" order_experience="2" terrain="0,1,2" volumeSize="2x2">
+            <pers name="cook" name2="comics_man" name3="cop" />
+            <production>
+                <product name="muffin" time="30m">
+                    <resource count="3" name="wheat" />
+                    <resource count="1" name="sugar" />
+                    <resource count="4" name="egg" />
+                </product>
+                <product name="pudding" time="70m">
+                    <resource count="1" name="bread" />
+                    <resource count="2" name="strawberry" />
+                    <resource count="2" name="milk" />
+                </product>
+                <product name="brownie" time="40m">
+                    <resource count="2" name="cacao" />
+                    <resource count="1" name="syrup" />
+                    <resource count="1" name="butter" />
+                </product>
+                <product name="cupcake" time="60m">
+                    <resource count="1" name="sugar" />
+                    <resource count="5" name="egg" />
+                    <resource count="1" name="cream" />
+                </product>
+                <product name="doughnut" time="90m">
+                    <resource count="1" name="bagel" />
+                    <resource count="1" name="caramel" />
+                    <resource count="1" name="cacao" />
+                </product>
+                <product name="cheesecake" time="180m">
+                    <resource count="1" name="cookie" />
+                    <resource count="1" name="cheese" />
+                    <resource count="1" name="syrup" />
+                    <resource count="2" name="strawberry" />
+                </product>
+                <product name="honeycake" time="60m">
+                    <resource count="3" name="wheat" />
+                    <resource count="2" name="honeycomb" />
+                    <resource count="1" name="egg" />
+                </product>
+                <product name="limepie" time="120m">
+                    <resource count="3" name="wheat" />
+                    <resource count="2" name="lemon" />
+                    <resource count="1" name="sugar" />
+                    <resource count="1" name="cream" />
+                </product>
+                <product name="coconutmacaroon" time="90m">
+                    <resource count="2" name="coconut" />
+                    <resource count="2" name="egg" />
+                    <resource count="1" name="sugar" />
+                </product>
+            </production>
+        </item>
+        <item build_time="2400m" buildingId="candyfactory" cash_price="0" coins_price="27000" collect_experience="0" icon="factory_candyfactory" initialSlots="2" label="candyfactory" levelneed="39" order_experience="2" terrain="0,1,2" volumeSize="2x2">
+            <pers name="cook" name2="girl" name3="blonde" />
+            <production>
+                <product name="jellybeans" time="120m">
+                    <resource count="3" name="strawberry" />
+                    <resource count="1" name="syrup" />
+                </product>
+                <product name="toffee" time="180m">
+                    <resource count="1" name="caramel" />
+                    <resource count="1" name="butter" />
+                </product>
+                <product name="candystick" time="240m">
+                    <resource count="1" name="caramel" />
+                    <resource count="1" name="cream" />
+                    <resource count="1" name="paper" />
+                </product>
+                <product name="chocolate" time="150m">
+                    <resource count="3" name="cacao" />
+                    <resource count="1" name="cream" />
+                    <resource count="1" name="sugar" />
+                </product>
+                <product name="lollipop" time="300m">
+                    <resource count="2" name="strawberry" />
+                    <resource count="1" name="syrup" />
+                    <resource count="2" name="pine" />
+                </product>
+                <product name="honeycandy" time="270m">
+                    <resource count="1" name="honeycaramel" />
+                    <resource count="2" name="egg" />
+                </product>
+                <product name="fruitjelly" time="150m">
+                    <resource count="1" name="watermelon_jam" />
+                    <resource count="1" name="strawberry_jam" />
+                    <resource count="1" name="lemon" />
+                </product>
+            </production>
+        </item>
+        <item build_time="2640m" buildingId="mexfoodfactory" cash_price="0" coins_price="45000" collect_experience="0" icon="factory_mexfoodfactory" initialSlots="2" label="mexfoodfactory" levelneed="43" order_experience="2" terrain="0,1,2" volumeSize="2x2">
+            <pers name="mafioso" name2="cop" name3="mafioso" />
+            <production>
+                <product name="sauce" time="120m">
+                    <resource count="3" name="tomat" />
+                    <resource count="3" name="pepper" />
+                    <resource count="1" name="sugar" />
+                </product>
+                <product name="burrito" time="60m">
+                    <resource count="2" name="wheat" />
+                    <resource count="2" name="bacon" />
+                    <resource count="1" name="tomat" />
+                </product>
+                <product name="nachos" time="180m">
+                    <resource count="1" name="cornchips" />
+                    <resource count="1" name="cheese" />
+                    <resource count="2" name="pepper" />
+                </product>
+                <product name="taco" time="90m">
+                    <resource count="3" name="corn" />
+                    <resource count="1" name="cream" />
+                    <resource count="2" name="tomat" />
+                    <resource count="2" name="pepper" />
+                </product>
+                <product name="jalapeno" time="120m">
+                    <resource count="2" name="pepper" />
+                    <resource count="1" name="bacon" />
+                    <resource count="1" name="cheese" />
+                </product>
+                <product name="gazpacho" time="150m">
+                    <resource count="3" name="tomat" />
+                    <resource count="2" name="pepper" />
+                    <resource count="1" name="bread" />
+                </product>
+                <product name="corn_soup" time="105m">
+                    <resource count="3" name="corn" />
+                    <resource count="2" name="carrot" />
+                    <resource count="2" name="bacon" />
+                </product>
+                <product name="mole" time="120m">
+                    <resource count="3" name="cacao" />
+                    <resource count="3" name="pepper" />
+                </product>
+            </production>
+        </item>
+        <item build_time="360m" buildingId="cottonfactory" cash_price="0" coins_price="500" collect_experience="0" hurryCoeff="0.9" icon="factory_cottonfactory" initialSlots="2" label="cottonfactory" levelneed="9" order_experience="2" terrain="0,1,2" volumeSize="2x2">
+            <pers name="grandma" name2="english_woman" name3="hairdresser" />
+            <production>
+                <product name="cottonfabric" time="30m">
+                    <resource count="2" name="cotton" />
+                </product>
+                <product name="woolfabric" time="40m">
+                    <resource count="2" name="wool" />
+                </product>
+                <product name="silkfabric" time="90m">
+                    <resource count="2" name="silk" />
+                </product>
+            </production>
+        </item>
+        <item build_time="600m" buildingId="clothingfactory" cash_price="0" coins_price="800" collect_experience="0" icon="factory_clothingfactory" initialSlots="2" label="clothingfactory" levelneed="12" order_experience="2" terrain="0,1,2" volumeSize="2x2">
+            <pers name="filmmaker" name2="buisness_woman" name3="mafioso" />
+            <production>
+                <product name="shirt" time="60m">
+                    <resource count="1" name="cottonfabric" />
+                </product>
+                <product name="sweater" time="90m">
+                    <resource count="1" name="woolfabric" />
+                </product>
+                <product name="hat_scarf" time="120m">
+                    <resource count="2" name="woolfabric" />
+                </product>
+                <product name="backpack" time="70m">
+                    <resource count="2" name="cottonfabric" />
+                </product>
+                <product name="coat" time="120m">
+                    <resource count="1" name="cottonfabric" />
+                    <resource count="1" name="woolfabric" />
+                </product>
+                <product name="hat" time="150m">
+                    <resource count="1" name="cottonfabric" />
+                    <resource count="1" name="silkfabric" />
+                </product>
+                <product name="dress" time="180m">
+                    <resource count="1" name="woolfabric" />
+                    <resource count="1" name="silkfabric" />
+                </product>
+                <product name="suit" time="240m">
+                    <resource count="1" name="woolfabric" />
+                    <resource count="1" name="cottonfabric" />
+                    <resource count="1" name="silkfabric" />
+                </product>
+            </production>
+        </item>
+        <item build_time="1920m" buildingId="spongefactory" cash_price="0" coins_price="12000" collect_experience="0" icon="factory_spongefactory" initialSlots="2" label="spongefactory" levelneed="29" order_experience="2" terrain="0,1,2" volumeSize="2x2">
+            <pers name="ernie" name2="buisness_woman" name3="nuclear_physicist" />
+            <production>
+                <product name="rubber" time="60m">
+                    <resource count="1" name="rubberTree" />
+                </product>
+                <product name="plastic" time="90m">
+                    <resource count="2" name="rubberTree" />
+                </product>
+                <product name="glue" time="120m">
+                    <resource count="3" name="rubberTree" />
+                </product>
+            </production>
+        </item>
+        <item build_time="960m" buildingId="paperfactory" cash_price="0" coins_price="3400" collect_experience="0" icon="factory_paperfactory" initialSlots="2" label="paperfactory" levelneed="18" order_experience="2" terrain="0,1,2" volumeSize="2x2">
+            <pers name="ernie" name2="buisness_woman" />
+            <production>
+                <product name="paper" time="90m">
+                    <resource count="1" name="pine" />
+                </product>
+                <product name="map" time="120m">
+                    <resource count="1" name="paper" />
+                </product>
+                <product name="papertowel" time="150m">
+                    <resource count="2" name="pine" />
+                </product>
+                <product name="wallpapers" time="180m">
+                    <resource count="2" name="pine" />
+                    <resource count="1" name="rubber" />
+                </product>
+                <product name="book" time="210m">
+                    <resource count="4" name="paper" />
+                    <resource count="1" name="cottonfabric" />
+                    <resource count="1" name="glue" />
+                </product>
+            </production>
+        </item>
+        <item build_time="2880m" buildingId="furniturefactory" cash_price="0" coins_price="70000" collect_experience="0" icon="factory_furniturefactory" initialSlots="2" label="furniturefactory" levelneed="47" order_experience="2" terrain="0,1,2" volumeSize="2x2">
+            <pers name="ernie" name2="buisness_woman" name3="english_woman" />
+            <production>
+                <product name="table" time="240m">
+                    <resource count="3" name="pine" />
+                </product>
+                <product name="chair" time="180m">
+                    <resource count="1" name="plastic" />
+                </product>
+                <product name="couch" time="360m">
+                    <resource count="2" name="pine" />
+                    <resource count="1" name="cottonfabric" />
+                </product>
+                <product name="bed" time="270m">
+                    <resource count="2" name="pine" />
+                    <resource count="1" name="cottonfabric" />
+                    <resource count="1" name="silkfabric" />
+                </product>
+                <product name="floor_lamp" time="210m">
+                    <resource count="1" name="BronzeBullion" />
+                    <resource count="1" name="plastic" />
+                </product>
+            </production>
+        </item>
+        <item build_time="3120m" buildingId="shoefactory" cash_price="0" coins_price="85000" collect_experience="0" icon="factory_shoefactory" initialSlots="2" label="shoefactory" levelneed="50" order_experience="2" terrain="0,1,2" volumeSize="2x2">
+            <pers name="blonde" name2="basketball_man" name3="soccer_player" />
+            <production>
+                <product name="flipflops" time="90m">
+                    <resource count="1" name="rubber" />
+                </product>
+                <product name="sneakers" time="120m">
+                    <resource count="1" name="rubber" />
+                    <resource count="1" name="cottonfabric" />
+                    <resource count="1" name="glue" />
+                </product>
+                <product name="boots" time="180m">
+                    <resource count="1" name="rubber" />
+                    <resource count="1" name="silkfabric" />
+                    <resource count="1" name="glue" />
+                </product>
+                <product name="heels" time="150m">
+                    <resource count="1" name="rubber" />
+                    <resource count="1" name="pine" />
+                    <resource count="1" name="silkfabric" />
+                    <resource count="1" name="glue" />
+                </product>
+            </production>
+        </item>
+        <item build_time="2160m" buildingId="wheelfactory" cash_price="0" coins_price="21000" collect_experience="0" hurryCoeff="1.2" icon="factory_wheelfactory" initialSlots="2" label="wheelfactory" levelneed="34" order_experience="2" terrain="0,1,2" volumeSize="2x2">
+            <pers name="ernie" name2="taxi_driver" />
+            <production>
+                <product name="plasticbottle" time="90m">
+                    <resource count="1" name="plastic" />
+                </product>
+                <product name="toys" time="45m">
+                    <resource count="1" name="plastic" />
+                    <resource count="1" name="rubber" />
+                </product>
+                <product name="ball" time="120m">
+                    <resource count="1" name="plastic" />
+                    <resource count="1" name="glue" />
+                </product>
+                <product name="wheel" time="150m">
+                    <resource count="2" name="rubber" />
+                    <resource count="1" name="glue" />
+                </product>
+            </production>
+        </item>
+        <item build_time="3360m" buildingId="jewelryfactory" cash_price="0" coins_price="100000" collect_experience="0" hurryCoeff="2" icon="factory_jewelryfactory" initialSlots="1" label="jewelryfactory" levelneed="53" order_experience="2" terrain="0,1,2" volumeSize="2x2">
+            <pers name="buisness_woman" name2="english_woman" name3="mafioso" />
+            <production>
+                <product name="pendant" time="30m">
+                    <resource count="2" name="SilverBullion" />
+                </product>
+                <product name="ring" time="60m">
+                    <resource count="1" name="SilverBullion" />
+                    <resource count="1" name="GoldBullion" />
+                </product>
+                <product name="earrings" time="90m">
+                    <resource count="2" name="GoldBullion" />
+                    <resource count="1" name="PlatinumBullion" />
+                </product>
+                <product name="diadem" time="120m">
+                    <resource count="2" name="SilverBullion" />
+                    <resource count="1" name="GoldBullion" />
+                    <resource count="1" name="PlatinumBullion" />
+                </product>
+            </production>
+        </item>
+        <item build_time="1560m" buildingId="jamfactory" cash_price="0" coins_price="8200" collect_experience="0" icon="factory_jamfactory" initialSlots="2" label="jamfactory" levelneed="27" order_experience="2" terrain="0,1,2" volumeSize="2x2">
+            <pers name="cook" name2="grandma" name3="buisness_woman" />
+            <production>
+                <product name="strawberry_jam" time="90m">
+                    <resource count="3" name="strawberry" />
+                </product>
+                <product name="peach_jam" time="150m">
+                    <resource count="3" name="peach" />
+                </product>
+                <product name="watermelon_jam" time="180m">
+                    <resource count="3" name="watermelon" />
+                </product>
+                <product name="plum_jam" time="240m">
+                    <resource count="3" name="plum" />
+                </product>
+                <product name="grapes_jam" time="210m">
+                    <resource count="3" name="grapes" />
+                </product>
+                <product name="roseJam" time="120m">
+                    <resource count="3" name="roseSeed" />
+                </product>
+            </production>
+        </item>
+        <item build_time="3600m" buildingId="sushifactory" cash_price="0" coins_price="140000" collect_experience="0" icon="factory_sushifactory" initialSlots="2" label="sushifactory" levelneed="56" order_experience="2" terrain="0,1,2" volumeSize="2x2">
+            <pers name="cook" name2="hairdresser" name3="blonde" />
+            <production>
+                <product name="sushi" time="45m">
+                    <resource count="5" name="rice" />
+                    <resource count="1" name="fish" />
+                </product>
+                <product name="soup" time="135m">
+                    <resource count="1" name="coconut" />
+                    <resource count="2" name="shrimp" />
+                    <resource count="1" name="lemon" />
+                </product>
+                <product name="rice_noodle" time="60m">
+                    <resource count="6" name="rice" />
+                    <resource count="3" name="corn" />
+                    <resource count="1" name="pepper" />
+                    <resource count="1" name="shrimp" />
+                </product>
+                <product name="seafood_salad" time="90m">
+                    <resource count="1" name="fish" />
+                    <resource count="1" name="shrimp" />
+                    <resource count="2" name="corn" />
+                    <resource count="1" name="cheese" />
+                </product>
+            </production>
+        </item>
+        <item build_time="3780m" buildingId="roasterfactory" cash_price="0" coins_price="170000" collect_experience="0" icon="factory_roasterfactory" initialSlots="2" label="roasterfactory" levelneed="59" order_experience="2" terrain="0,1,2" volumeSize="2x2">
+            <pers name="cook" name2="comics_man" name3="cop" />
+            <production>
+                <product name="quiche" time="90m">
+                    <resource count="2" name="wheat" />
+                    <resource count="2" name="bacon" />
+                    <resource count="1" name="egg" />
+                </product>
+                <product name="baked_lobster" time="180m">
+                    <resource count="1" name="lobster" />
+                    <resource count="1" name="cream" />
+                </product>
+                <product name="bacon_eggs" time="60m">
+                    <resource count="2" name="bacon" />
+                    <resource count="2" name="egg" />
+                </product>
+                <product name="fried_fish" time="120m">
+                    <resource count="1" name="fish" />
+                    <resource count="1" name="butter" />
+                </product>
+                <product name="rice_casserole" time="105m">
+                    <resource count="5" name="rice" />
+                    <resource count="2" name="bacon" />
+                    <resource count="2" name="egg" />
+                    <resource count="1" name="cheese" />
+                </product>
+                <product name="pancake" time="45m">
+                    <resource count="3" name="egg" />
+                    <resource count="1" name="honeycomb" />
+                    <resource count="1" name="sugar" />
+                </product>
+            </production>
+        </item>
+        <item build_time="3900m" buildingId="scentfactory" cash_price="0" coins_price="200000" collect_experience="0" icon="factory_scentfactory" initialSlots="2" label="scentfactory" levelneed="61" order_experience="2" terrain="0,1,2" volumeSize="2x2">
+            <pers name="buisness_woman" name2="english_woman" name3="blonde" />
+            <production>
+                <product name="brownCandle" time="120m">
+                    <resource count="2" name="honeycomb" />
+                    <resource count="2" name="cacao" />
+                    <resource count="1" name="caramel" />
+                </product>
+                <product name="perfumeBottle" time="180m">
+                    <resource count="3" name="roseSeed" />
+                    <resource count="2" name="strawberry" />
+                    <resource count="2" name="banana" />
+                </product>
+                <product name="air_freshener" time="40m">
+                    <resource count="2" name="jasmine" />
+                    <resource count="2" name="roseSeed" />
+                </product>
+                <product name="flowerSoap" time="150m">
+                    <resource count="3" name="honeycomb" />
+                    <resource count="2" name="olive" />
+                </product>
+                <product name="aromatic_oil" time="240m">
+                    <resource count="3" name="jasmine" />
+                    <resource count="2" name="olive" />
+                </product>
+                <product name="lotionBottle" time="90m">
+                    <resource count="2" name="roseSeed" />
+                    <resource count="2" name="coconut" />
+                </product>
+            </production>
+        </item>
+        <item build_time="4320m" buildingId="drinksfactory" cash_price="0" coins_price="300000" collect_experience="0" icon="factory_drinksfactory" initialSlots="2" label="drinksfactory" levelneed="65" order_experience="2" terrain="0,1,2" volumeSize="2x2">
+            <pers name="cook" name2="basketball_man" name3="comics_man" />
+            <production>
+                <product name="vitamin_cocktail" time="30m">
+                    <resource count="1" name="carrot" />
+                    <resource count="1" name="tomat" />
+                    <resource count="1" name="pepper" />
+                </product>
+                <product name="grap_fizz" time="60m">
+                    <resource count="2" name="grapes" />
+                    <resource count="1" name="egg" />
+                    <resource count="1" name="sugar" />
+                </product>
+                <product name="chocolate_smoothie" time="90m">
+                    <resource count="2" name="milk" />
+                    <resource count="1" name="chocolate" />
+                    <resource count="2" name="banana" />
+                </product>
+                <product name="watermelon_fresh" time="45m">
+                    <resource count="2" name="watermelon" />
+                    <resource count="1" name="sugar" />
+                </product>
+                <product name="cold_tea" time="100m">
+                    <resource count="3" name="jasmine" />
+                    <resource count="1" name="lemon" />
+                </product>
+                <product name="tropical_mix" time="120m">
+                    <resource count="2" name="coconut" />
+                    <resource count="2" name="pineapple" />
+                    <resource count="3" name="sugarcane" />
+                </product>
+            </production>
+        </item>
+    </factory>
+    <!-- бизнес здания -->
+    <!-- community -->
+    <rentmaker>
+        <item build_time="5m" buildingId="cityhall_v1" coins_price="50" experience="1" happiness="0" icon="community_cityhall_v1" label="cityhall_v1" levelneed="1" rent_money="10" rent_percentage="30" terrain="0,1,2" time="5m" volumeSize="2x2">
+            <pers name="reporter" />
+            <trainOrder />
+        </item>
+        <item build_time="2m" buildingId="store_101" coins_price="25" experience="4" happiness="15" icon="community_store_101" label="store_101" levelneed="4" rent_money="10" rent_percentage="30" terrain="0,1,2" time="2m" volumeSize="1x2">
+            <pers name="buisness_woman" name2="grandma" />
+            <trainOrder />
+        </item>
+        <item build_time="10m" buildingId="school_v1" coins_price="30" experience="5" happiness="20" icon="community_school_v1" label="school_v1" levelneed="5" rent_money="10" rent_percentage="30" terrain="0,1,2" time="10m" volumeSize="1x2">
+            <pers name="teacher" />
+            <trainOrder />
+        </item>
+        <item build_time="20m" buildingId="hospital" coins_price="40" experience="6" happiness="25" icon="community_hospital" label="hospital" levelneed="6" rent_money="10" rent_percentage="30" terrain="0,1,2" time="20m" volumeSize="1x2">
+            <pers name="doc_oc" name2="boy" />
+            <trainOrder />
+        </item>
+        <item build_time="30m" buildingId="police" coins_price="50" experience="7" happiness="30" icon="community_police" label="police" levelneed="7" rent_money="10" rent_percentage="30" terrain="0,1,2" time="30m" volumeSize="1x2">
+            <pers name="cop" name2="mafioso" />
+            <trainOrder />
+        </item>
+        <item build_time="60m" buildingId="firestation" coins_price="75" experience="8" happiness="35" icon="community_firestation" label="firestation" levelneed="8" rent_money="10" rent_percentage="30" terrain="0,1,2" time="60m" volumeSize="1x2">
+            <pers name="fireman" />
+            <trainOrder />
+        </item>
+        <item build_time="90m" buildingId="post_office_v1" coins_price="100" experience="9" happiness="40" icon="community_post_office_v1" label="post_office_v1" levelneed="9" rent_money="10" rent_percentage="30" terrain="0,1,2" time="90m" volumeSize="1x2">
+            <animInfo dx="-147" dy="124" scale="0.5" />
+            <pers name="grandma" />
+            <trainOrder />
+        </item>
+        <item build_time="120m" buildingId="laundry_v1" coins_price="125" experience="10" happiness="45" icon="community_laundry_v1" label="laundry_v1" levelneed="10" rent_money="10" rent_percentage="30" terrain="0,1,2" time="120m" volumeSize="1x1">
+            <pers name="grandma" name2="english_woman" />
+            <trainOrder />
+        </item>
+        <item build_time="150m" buildingId="cinema1_01" coins_price="150" experience="11" happiness="50" icon="community_cinema1_01" label="cinema1_01" levelneed="11" rent_money="10" rent_percentage="30" terrain="0,1,2" time="150m" volumeSize="2x1">
+            <pers name="filmmaker" name2="boy" name3="athlete" />
+            <trainOrder />
+        </item>
+        <item build_time="180m" buildingId="cafe1_01" coins_price="175" experience="12" happiness="55" icon="community_cafe1_01" label="cafe1_01" levelneed="12" rent_money="10" rent_percentage="30" terrain="0,1,2" time="180m" volumeSize="2x1">
+            <pers name="cook" name2="cop" name3="blonde" />
+            <trainOrder />
+        </item>
+        <item build_time="210m" buildingId="barder_v1" coins_price="200" experience="13" happiness="60" icon="community_barder_v1" label="barder_v1" levelneed="13" rent_money="10" rent_percentage="30" terrain="0,1,2" time="210m"  volumeSize="1x1">
+            <pers name="hairdresser" />
+            <trainOrder />
+        </item>
+        <item build_time="240m" buildingId="pizzeria" coins_price="250" experience="14" happiness="65" icon="community_pizzeria" label="pizzeria" levelneed="14" rent_money="10" rent_percentage="30" terrain="0,1,2" time="240m" volumeSize="1x2">
+            <pers name="cook" name2="comics_man" />
+            <trainOrder />
+        </item>
+        <item build_time="270m" buildingId="widden_house_v1" coins_price="300" experience="15" happiness="70" icon="community_widden_house_v1" label="widden_house_v1" levelneed="15" rent_money="10" rent_percentage="30" terrain="0,1,2" time="270m" volumeSize="1x2">
+            <pers name="hairdresser" />
+            <trainOrder />
+        </item>
+        <item build_time="300m" buildingId="music_shop_v1" coins_price="350" experience="16" happiness="75" icon="community_music_shop_v1" icon_gui="community_music_shop_v1_icon" label="music_shop_v1" levelneed="16" rent_money="10" rent_percentage="30" terrain="0,1,2" time="300m" volumeSize="1x2">
+            <pers name="havymetal_man" />
+            <trainOrder />
+        </item>
+        <item build_time="330m" buildingId="bowling" coins_price="400" experience="17" happiness="80" icon="community_bowling" label="bowling" levelneed="17" rent_money="10" rent_percentage="30" terrain="0,1,2" time="330m" volumeSize="2x2">
+            <pers name="cop" />
+            <trainOrder />
+        </item>
+        <item build_time="360m" buildingId="toyshop_v1" coins_price="450" experience="18" happiness="85" icon="community_toyshop_v1" label="toyshop_v1" levelneed="18" rent_money="10" rent_percentage="30" terrain="0,1,2" time="360m" volumeSize="2x2">
+            <pers name="buisness_woman" name2="girl" />
+            <trainOrder />
+        </item>
+        <item build_time="390m" buildingId="photo_v1" coins_price="500" experience="19" happiness="90" icon="community_photo_v1" label="photo_v1" levelneed="19" rent_money="10" rent_percentage="30" terrain="0,1,2" time="390m" volumeSize="1x2">
+            <animInfo dx="-69" dy="106" scale="0.5" />
+            <pers name="hairdresser" name2="blonde" />
+            <trainOrder />
+        </item>
+        <item build_time="420m" buildingId="rocket_ride" coins_price="650" experience="20" happiness="95" icon="community_rocket_ride" label="rocket_ride" levelneed="20" rent_money="10" rent_percentage="30" terrain="0,1,2" time="420m" volumeSize="2x2">
+            <pers name="clown" name2="athlete" name3="boy" />
+            <trainOrder />
+        </item>
+        <item build_time="450m" buildingId="observatory" coins_price="800" experience="21" happiness="100" icon="community_observatory" label="observatory" levelneed="21" rent_money="10" rent_percentage="30" terrain="0,1,2" time="450m" volumeSize="1x1">
+            <pers name="teacher" name2="boy" />
+            <trainOrder />
+        </item>
+        <item build_time="480m" buildingId="library" coins_price="950" experience="22" happiness="105" icon="community_library" label="library" levelneed="22" rent_money="10" rent_percentage="30" terrain="0,1,2" time="480m" volumeSize="1x2">
+            <pers name="teacher" name3="english_woman" />
+            <trainOrder />
+        </item>
+        <item build_time="540m" buildingId="univers_v1" coins_price="1100" experience="23" happiness="110" icon="community_univers_v1" label="univers_v1" levelneed="23" rent_money="10" rent_percentage="30" terrain="0,1,2" time="540m" volumeSize="1x2">
+            <pers name="havymetal_man" name2="teacher" name3="blonde" />
+            <trainOrder />
+        </item>
+        <item build_time="600m" buildingId="theatre_v1" coins_price="1350" experience="24" happiness="115" icon="community_theatre_v1" label="theatre_v1" levelneed="24" rent_money="10" rent_percentage="30" terrain="0,1,2" time="600m" volumeSize="2x1">
+            <animInfo dx="10" dy="272" scale="0.5" />
+            <pers name="english_woman" name2="musium_man" name3="mafioso" />
+            <trainOrder />
+        </item>
+        <item build_time="660m" buildingId="museum_v1" coins_price="1600" experience="25" happiness="120" icon="community_museum_v1" label="museum_v1" levelneed="25" rent_money="10" rent_percentage="30" terrain="0,1,2" time="660m" volumeSize="1x2">
+            <pers name="musium_man" name2="english_woman" name3="artist" />
+            <trainOrder />
+        </item>
+        <item build_time="720m" buildingId="circus_v1" coins_price="1900" experience="26" happiness="125" icon="community_circus_v1" label="circus_v1" levelneed="26" rent_money="10" rent_percentage="30" terrain="0,1,2" time="720m" volumeSize="2x2">
+            <animInfo dx="-136" dy="40" scale="0.5" />
+            <pers name="clown" name2="girl" />
+            <trainOrder />
+        </item>
+        <item build_time="780m" buildingId="garage_v1" coins_price="2200" experience="27" happiness="130" icon="community_garage_v1" label="garage_v1" levelneed="27" rent_money="10" rent_percentage="30" terrain="0,1,2" time="780m" volumeSize="1x2">
+            <pers name="taxi_driver" />
+            <trainOrder />
+        </item>
+        <item build_time="840m" buildingId="gasstation_v1" coins_price="2500" experience="28" happiness="135" icon="community_gasstation_v1" label="gasstation_v1" levelneed="28" rent_money="10" rent_percentage="30" terrain="0,1,2" time="840m" volumeSize="2x2">
+            <pers name="taxi_driver" />
+            <trainOrder />
+        </item>
+        <item build_time="900m" buildingId="taxi_v1" coins_price="2900" experience="29" happiness="140" icon="community_taxi_v1" label="taxi_v1" levelneed="29" rent_money="10" rent_percentage="30" terrain="0,1,2" time="900m" volumeSize="2x2">
+            <pers name="taxi_driver" />
+            <trainOrder />
+        </item>
+        <item build_time="960m" buildingId="drivein_cinema_v1" coins_price="3300" experience="30" happiness="145" icon="community_drivein_cinema_v1" label="drivein_cinema_v1" levelneed="30" rent_money="10" rent_percentage="30" terrain="0,1,2" time="960m" volumeSize="2x2">
+            <pers name="athlete" name2="filmmaker" />
+            <trainOrder />
+        </item>
+        <item build_time="1020m" buildingId="office_v1" coins_price="3800" experience="31" happiness="150" icon="community_office_v1" label="office_v1" levelneed="31" rent_money="10" rent_percentage="30" terrain="0,1,2" time="1020m" volumeSize="1x1">
+            <pers name="buisness_woman" />
+            <trainOrder />
+        </item>
+        <item build_time="1080m" buildingId="hotel_v1" coins_price="4300" experience="32" happiness="155" icon="community_hotel_v1" label="hotel_v1" levelneed="32" rent_money="10" rent_percentage="30" terrain="0,1,2" time="1080m" volumeSize="1x2">
+            <pers name="buisness_woman" name2="reporter" />
+            <trainOrder />
+        </item>
+        <item build_time="1140m" buildingId="tv_v1" coins_price="4800" experience="33" happiness="160" icon="community_tv_v1" icon_gui="community_tv_v1_icon" label="tv_v1" levelneed="33" rent_money="10" rent_percentage="30" terrain="0,1,2" time="1140m" volumeSize="2x2">
+            <pers name="reporter" />
+            <trainOrder />
+        </item>
+        <item build_time="1200m" buildingId="tvtower_v1" coins_price="5300" experience="34" happiness="165" icon="community_tvtower_v1" label="tvtower_v1" levelneed="34" rent_money="10" rent_percentage="30" terrain="0,1,2" time="1200m" volumeSize="1x1">
+            <pers name="reporter" name2="mafioso" />
+            <trainOrder />
+        </item>
+        <item build_time="1260m" buildingId="wheel_v1" coins_price="5900" experience="35" happiness="170" icon="community_wheel_v1" label="wheel_v1" levelneed="35" rent_money="10" rent_percentage="30" terrain="0,1,2" time="1260m" volumeSize="2x2">
+            <animInfo dx="38" dy="433" scale="0.5" />
+            <pers name="clown" name2="girl" />
+            <trainOrder />
+        </item>
+        <item build_time="1320m" buildingId="roller" coins_price="6500" experience="36" happiness="175" icon="community_roller" label="roller" levelneed="36" rent_money="10" rent_percentage="30" terrain="0,1,2" time="1320m" volumeSize="2x3">
+            <animInfo dx="308" dy="723" scale="0.5" />
+            <pers name="clown" name2="boy" name3="athlete" />
+            <trainOrder />
+        </item>
+        <item build_time="1380m" buildingId="stadium_v1" coins_price="7200" experience="37" happiness="180" icon="community_stadium_v1" label="stadium_v1" levelneed="37" rent_money="10" rent_percentage="30" terrain="0,1,2" time="1380m" volumeSize="3x2">
+            <pers name="soccer_player" name2="basketball_man" />
+            <trainOrder />
+        </item>
+        <item build_time="1440m" buildingId="petstore" coins_price="7900" experience="38" happiness="185" icon="community_petstore" label="petstore" levelneed="38" rent_money="10" rent_percentage="30" terrain="0,1,2" time="1440m" volumeSize="1x2">
+            <pers name="girl" name2="boy" name3="buisness_woman" />
+            <trainOrder />
+        </item>
+        <item build_time="1500m" buildingId="weatherstation" coins_price="8600" experience="39" happiness="190" icon="community_weatherstation" label="weatherstation" levelneed="39" rent_money="10" rent_percentage="30" terrain="0,1,2" time="1500m" volumeSize="1x2">
+            <pers name="grandma" name2="reporter" name3="teacher" />
+            <trainOrder />
+        </item>
+        <item build_time="1560m" buildingId="airfield_v1" coins_price="9300" experience="40" happiness="195" icon="community_airfield_v1" label="airfield_v1" levelneed="40" rent_money="10" rent_percentage="30" terrain="0,1,2" time="1560m" volumeSize="2x2">
+            <animInfo dx="-15" dy="255" scale="0.5" />
+            <pers name="buisness_woman" name2="mafioso" name3="artist" />
+            <trainOrder />
+        </item>
+        <item build_time="1620m" buildingId="comic_store" coins_price="10000" experience="41" happiness="200" icon="community_comic_store" label="comic_store" levelneed="41" rent_money="10" rent_percentage="30" terrain="0,1,2" time="1620m" volumeSize="1x2">
+            <pers name="comics_man" name2="filmmaker" name3="boy" />
+            <trainOrder />
+        </item>
+        <item build_time="1680m" buildingId="coastguard" coins_price="10700" experience="42" happiness="205" icon="community_coastguard" label="coastguard" levelneed="42" rent_money="10" rent_percentage="30" terrain="3" time="1680m" volumeSize="2x2">
+            <animInfo dx="-194" dy="104" scale="0.5" />
+            <pers name="Capitan" name2="athlete" name3="cop" />
+            <trainOrder />
+        </item>
+        <item build_time="1740m" buildingId="supermarket" coins_price="11500" experience="43" happiness="210" icon="community_supermarket" label="supermarket" levelneed="43" rent_money="10" rent_percentage="30" terrain="0,1,2" time="1740m" volumeSize="2x2">
+            <pers name="blonde" name2="athlete" name3="buisness_woman" />
+            <trainOrder />
+        </item>
+        <item build_time="1800m" buildingId="greenhouse" coins_price="12500" experience="44" happiness="215" icon="community_greenhouse" label="greenhouse" levelneed="44" rent_money="10" rent_percentage="30" terrain="0,1,2" time="1800m" volumeSize="3x3">
+            <pers name="english_woman" name2="grandma" name3="musium_man" />
+            <trainOrder />
+        </item>
+        <item build_time="1860m" buildingId="water_park" coins_price="13500" experience="45" happiness="220" icon="community_water_park" label="water_park" levelneed="45" rent_money="10" rent_percentage="30" terrain="0,1,2" time="1860m" volumeSize="2x2">
+            <animInfo dx="14" dy="295" scale="0.5" />
+            <pers name="taxi_driver" name2="boy" name3="girl" />
+            <trainOrder />
+        </item>
+        <item build_time="1920m" buildingId="motorshow" coins_price="14500" experience="46" happiness="230" icon="community_motorshow" label="motorshow" levelneed="46" rent_money="10" rent_percentage="30" terrain="0,1,2" time="1920m" volumeSize="1x2">
+            <pers name="taxi_driver" name2="buisness_woman" name3="blonde" />
+            <trainOrder />
+        </item>
+        <item build_time="1980m" buildingId="hydropower" coins_price="15500" experience="47" happiness="240" icon="community_hydropower" label="hydropower" levelneed="47" rent_money="10" rent_percentage="30" terrain="3" time="1980m" volumeSize="3x2">
+            <pers name="teacher" name2="buisness_woman" name3="ernie" />
+            <trainOrder />
+        </item>
+        <item build_time="2040m" buildingId="fashion" coins_price="16500" experience="48" happiness="250" icon="community_fashion" label="fashion" levelneed="48" rent_money="10" rent_percentage="30" terrain="0,1,2" time="2040m" volumeSize="2x1">
+            <animInfo dx="128" dy="432" scale="0.5" />
+            <pers name="blonde" name2="hairdresser" name3="buisness_woman" />
+            <trainOrder />
+        </item>
+        <item build_time="2100m" buildingId="film_studio" coins_price="17500" experience="49" happiness="260" icon="community_film_studio" label="film_studio" levelneed="49" rent_money="10" rent_percentage="30" terrain="0,1,2" time="2100m" volumeSize="2x2">
+            <animInfo dx="-94" dy="124" scale="0.5" />
+            <pers name="filmmaker" name2="reporter" name3="reporter" />
+            <trainOrder />
+        </item>
+        <item build_time="2160m" buildingId="court_of_law" coins_price="18500" experience="50" happiness="270" icon="community_court_of_law" label="court_of_law" levelneed="50" rent_money="10" rent_percentage="30" terrain="0,1,2" time="2160m" volumeSize="2x2">
+            <pers name="cop" name2="mafioso" name3="reporter" />
+            <trainOrder />
+        </item>
+        <item build_time="2220m" buildingId="karting" coins_price="19500" experience="51" happiness="290" icon="community_karting" label="karting" levelneed="51" rent_money="10" rent_percentage="30" terrain="0,1,2" time="2220m" volumeSize="2x2">
+            <animInfo dx="-5" dy="274" scale="0.5" />
+            <pers name="taxi_driver" name2="ernie" name3="boy" />
+            <trainOrder />
+        </item>
+        <item build_time="2280m" buildingId="gym" coins_price="20500" experience="52" happiness="310" icon="community_gym" label="gym" levelneed="52" rent_money="10" rent_percentage="30" terrain="0,1,2" time="2280m" volumeSize="2x1">
+            <pers name="athlete" name2="cop" name3="fireman" />
+            <trainOrder />
+        </item>
+        <item build_time="2340m" buildingId="spa_center" coins_price="21500" experience="53" happiness="330" icon="community_spa_center" label="spa_center" levelneed="53" rent_money="10" rent_percentage="30" terrain="0,1,2" time="2340m" volumeSize="2x2">
+            <animInfo dx="0" dy="269" scale="0.5" />
+            <pers name="blonde" name2="hairdresser" name3="buisness_woman" />
+            <trainOrder />
+        </item>
+        <item build_time="2400m" buildingId="golf" coins_price="22500" experience="54" happiness="350" icon="community_golf" label="golf" levelneed="54" rent_money="10" rent_percentage="30" terrain="0,1,2" time="2400m" volumeSize="2x2">
+            <animInfo dx="2" dy="227" scale="0.5" />
+            <pers name="doc_ok" name2="mafioso" name3="buisness_woman" />
+            <trainOrder />
+        </item>
+        <item build_time="2460m" buildingId="organ_hall" coins_price="23500" experience="55" happiness="370" icon="community_organ_hall" label="organ_hall" levelneed="55" rent_money="10" rent_percentage="30" terrain="0,1,2" time="2460m" volumeSize="1x2">
+            <pers name="musium_man" name2="english_woman" name3="artist" />
+            <trainOrder />
+        </item>
+        <item build_time="2520m" buildingId="donut_shop" coins_price="25000" experience="56" happiness="390" icon="community_donut_shop" label="donut_shop" levelneed="56" rent_money="10" rent_percentage="30" terrain="0,1,2" time="2520m" volumeSize="1x2">
+            <pers name="cop" name2="havymetal_man" name3="comics_man" />
+            <trainOrder />
+        </item>
+        <item build_time="2580m" buildingId="racing" coins_price="26500" experience="57" happiness="410" icon="community_racing" label="racing" levelneed="57" rent_money="10" rent_percentage="30" terrain="0,1,2" time="2580m" volumeSize="3x3">
+            <animInfo dx="-310" dy="190" scale="0.48" />
+            <pers name="taxi_driver" name2="mafioso" />
+            <trainOrder />
+        </item>
+        <item build_time="2640m" buildingId="climbing_wall" coins_price="28000" experience="58" happiness="430" icon="community_climbing_wall" label="climbing_wall" levelneed="58" rent_money="10" rent_percentage="30" terrain="0,1,2" time="2640m" volumeSize="2x1">
+            <animInfo dx="138" dy="105" scale="0.5" mirror="true"/>
+            <pers name="boy" name2="basketball_man" name3="athlete" />
+            <trainOrder />
+        </item>
+        <item build_time="2700m" buildingId="car_workshop" coins_price="29500" experience="59" happiness="450" icon="community_car_workshop" label="car_workshop" levelneed="59" rent_money="10" rent_percentage="30" terrain="0,1,2" time="2700m" volumeSize="1x2">
+            <animInfo dx="-2" dy="243" scale="0.5" />
+            <pers name="taxi_driver" name2="athlete" name3="blonde" />
+            <trainOrder />
+        </item>
+        <item build_time="2760m" buildingId="planetarium" coins_price="31000" experience="60" happiness="470" icon="community_planetarium" label="planetarium" levelneed="60" rent_money="10" rent_percentage="30" terrain="0,1,2" time="2760m" volumeSize="2x2">
+            <pers name="teacher" name2="havymetal_man" name3="boy" />
+            <trainOrder />
+        </item>
+        <item build_time="2820m" buildingId="flower_shop" coins_price="50500" experience="62" happiness="490" icon="community_flower_shop" label="flower_shop" levelneed="62" rent_money="10" rent_percentage="30" terrain="0,1,2" time="2820m" volumeSize="1x2">
+            <pers name="athlete" name2="buisness_woman" name3="grandma" />
+            <trainOrder />
+        </item>
+        <item build_time="2880m" buildingId="hippodrome" coins_price="63000" experience="64" happiness="530" icon="community_hippodrome" label="hippodrome" levelneed="64" rent_money="10" rent_percentage="30" terrain="0,1,2" time="2880m" volumeSize="2x2">
+            <animInfo dx="-12" dy="261" scale="0.5" />
+            <pers name="girl" name2="mafioso" name3="buisness_woman" />
+            <trainOrder />
+        </item>
+        <item build_time="2940m" buildingId="concert_venue" coins_price="75500" experience="66" happiness="570" icon="community_concert_venue" label="concert_venue" levelneed="66" rent_money="10" rent_percentage="30" terrain="0,1,2" time="2940m" volumeSize="2x1">
+            <pers name="havymetal_man" name2="athlete" name3="blonde" />
+            <trainOrder />
+        </item>
+        <item build_time="3000m" buildingId="car_wash" coins_price="87000" experience="68" happiness="610" icon="community_car_wash" label="car_wash" levelneed="68" rent_money="10" rent_percentage="30" terrain="0,1,2" time="3000m" volumeSize="1x2">
+            <pers name="mafioso" name2="taxi_driver" name3="athlete" />
+            <trainOrder />
+        </item>
+        <item build_time="3060m" buildingId="dolphinarium" coins_price="99500" experience="70" happiness="650" icon="community_dolphinarium" label="dolphinarium" levelneed="70" rent_money="10" rent_percentage="30" terrain="0,1,2" time="3060m" volumeSize="2x2">
+            <animInfo dx="0" dy="270" scale="0.5" />
+            <pers name="doc_oc" name2="reporter" name3="girl" />
+            <trainOrder />
+        </item>
+        <item build_time="3120m" buildingId="lighthouse" coins_price="111000" experience="72" happiness="690" icon="community_lighthouse" label="lighthouse" levelneed="72" rent_money="10" rent_percentage="30" terrain="3" time="3120m" volumeSize="1x1">
+            <pers name="Capitan" name2="jak_kusto" />
+            <trainOrder />
+        </item>
+        <item build_time="3180m" buildingId="office_center" coins_price="125000" experience="74" happiness="730" icon="community_office_center" label="office_center" levelneed="74" rent_money="10" rent_percentage="30" terrain="0,1,2" time="3180m" volumeSize="1x1">
+            <pers name="buisness_woman" name2="teacher" />
+            <trainOrder />
+        </item>
+        <item build_time="3240m" buildingId="bike_rental" coins_price="133000" experience="76" happiness="790" icon="community_bike_rental" label="bike_rental" levelneed="76" rent_money="10" rent_percentage="30" terrain="0,1,2" time="3240m" volumeSize="1x2">
+            <pers name="athlete" name2="teacher" name3="boy" />
+            <trainOrder />
+        </item>
+        <item build_time="3300m" buildingId="kindergarten" coins_price="148000" experience="78" happiness="850" icon="community_kindergarten" label="kindergarten" levelneed="78" rent_money="10" rent_percentage="30" terrain="0,1,2" time="3300m" volumeSize="2x2">
+            <animInfo dx="-14" dy="265" scale="0.5" />
+            <pers name="grandma" name2="girl" name3="boy" />
+            <trainOrder />
+        </item>
+        <item build_time="3360m" buildingId="dog_training" coins_price="167000" experience="80" happiness="900" icon="community_dog_training" label="dog_training" levelneed="80" rent_money="10" rent_percentage="30" terrain="0,1,2" time="3360m" volumeSize="1x2">
+            <pers name="blonde" name2="havymetal_man" name3="taxi_driver" />
+            <trainOrder />
+        </item>
+        <item build_time="3420m" buildingId="bank_v1" coins_price="180000" experience="82" happiness="980" icon="community_bank_v1" label="bank_v1" levelneed="82" rent_money="10" rent_percentage="30" terrain="0,1,2" time="3420m" volumeSize="2x2">
+            <pers name="cop" name2="buisness_woman" name3="mafioso" />
+            <trainOrder />
+        </item>
+    </rentmaker>
+    <!-- декорации -->
+    <decoration>
+        <!--item buildingId="WareHouseCash" happiness="0" label="WareHouse" terrain="0,1,2">
+			<pers name="ernie"/>
+		</item-->
+        <!-- backdoor="@developer" -->
+        <!--item buildingId="expandBuy" cash_price="0" forest="true" happiness="0" label="expandBuy" terrain="0,1,2" volumeSize="3x3"/-->
+        <item buildingId="expandBuyAvailable" cash_price="0" forest="true" happiness="0" icon="community_cityhall_v1" label="expandBuyAvailable" terrain="0,1,2" volumeSize="3x3" />
+        <item buildingId="shack" cash_price="0" happiness="30" icon="beauty_shack" label="shack" terrain="0,1,2" volumeSize="1x1">
+            <pers name="recluse" />
+        </item>
+        <item buildingId="railway_station" cash_price="0" happiness="0" icon="beauty_railway_station" label="railway_station" terrain="0,1,2" volumeSize="1x3">
+            <pers name="steam_man" />
+        </item>
+        <item buildingId="darkForestWithTrainSign" cash_price="0" happiness="0" icon="beauty_darkForestWithTrainSign" label="darkForestWithTrainSign" terrain="0,1,2" volumeSize="1x1" />
+        <item buildingId="buek1" cash_price="0" happiness="0" icon="beauty_buek1" label="buek1" terrain="0,1,2,3" volumeSize="1x1" />
+        <item buildingId="buek2" cash_price="0" happiness="0" icon="beauty_buek2" label="buek2" terrain="0,1,2,3" volumeSize="1x1" />
+        <item buildingId="buek3" cash_price="0" happiness="0" icon="beauty_buek3" label="buek3" terrain="0,1,2,3" volumeSize="1x1" />
+        <item buildingId="buek4" cash_price="0" happiness="0" icon="beauty_buek4" label="buek4" terrain="0,1,2,3" volumeSize="1x1" />
+        <item buildingId="buek5" cash_price="0" happiness="0" icon="beauty_buek5" label="buek5" terrain="0,1,2,3" volumeSize="1x1" />
+        <item buildingId="buek6" cash_price="0" happiness="0" icon="beauty_buek6" label="buek6" terrain="0,1,2,3" volumeSize="1x1" />
+        <item buildingId="buek7" cash_price="0" happiness="0" icon="beauty_buek7" label="buek7" terrain="0,1,2,3" volumeSize="1x1" />
+        <item buildingId="buek8" cash_price="0" happiness="0" icon="beauty_buek8" label="buek8" terrain="0,1,2,3" volumeSize="1x1" />
+        <!-- end of backdoor="@developer" -->
+        <!-- exclusive -->
+        <item bronzePrice="6" buildingId="flag" cash_price="0" exp="169" goldPrice="4" happiness="0" icon="beauty_flag" icon_gui="beauty_flag_gui" label="flag" levelneed="21" platinumPrice="0" silverPrice="0" terrain="0,1,2" volumeSize="1x1"/>
+        <item bronzePrice="0" buildingId="airship_base" cash_price="0" exp="174" goldPrice="0" happiness="0" icon="beauty_airship_base" icon_gui="beauty_airship_base_gui" label="airship_base" levelneed="22" platinumPrice="2" silverPrice="7" terrain="0,1,2" volumeSize="1x1"/>
+        <item bronzePrice="9" buildingId="sphinx_v1" cash_price="0" exp="294" goldPrice="0" happiness="0" icon="beauty_sphinx_v1" label="sphinx_v1" levelneed="23" platinumPrice="0" silverPrice="9" terrain="0,1,2" volumeSize="2x1"/>
+        <item bronzePrice="0" buildingId="eifel_tower" cash_price="0" exp="341" goldPrice="4" happiness="0" icon="beauty_eifel_tower" label="eifel_tower" levelneed="24" platinumPrice="0" silverPrice="14" terrain="0,1,2" volumeSize="2x2"/>
+        <item bronzePrice="20" buildingId="empire_state_v1" cash_price="0" exp="342" goldPrice="0" happiness="0" icon="beauty_empire_state_v1" label="empire_state_v1" levelneed="27" platinumPrice="3" silverPrice="0" terrain="0,1,2" volumeSize="1x2"/>
+        <item bronzePrice="10" buildingId="yacht_fin" cash_price="0" exp="200" goldPrice="0" happiness="0" icon="beauty_yacht_fin" label="yacht_fin" levelneed="28" platinumPrice="0" silverPrice="6" terrain="3" volumeSize="1x1"/>
+        <item bronzePrice="10" buildingId="pyramide" cash_price="0" exp="389" goldPrice="10" happiness="0" icon="beauty_pyramide" label="pyramide" levelneed="29" platinumPrice="0" silverPrice="0" terrain="0,1,2" volumeSize="2x2"/>
+        <item bronzePrice="0" buildingId="golden_gate" cash_price="0" exp="400" goldPrice="0" happiness="0" icon="beauty_golden_gate" label="golden_gate" levelneed="32" platinumPrice="5" silverPrice="14" terrain="3" volumeSize="2x1"/>
+        <item bronzePrice="0" buildingId="big_ban" cash_price="0" exp="415" goldPrice="10" happiness="0" icon="beauty_big_ban" label="big_ban" levelneed="33" platinumPrice="0" silverPrice="6" terrain="0,1,2" volumeSize="1x1"/>
+        <item bronzePrice="0" buildingId="sea_gate" cash_price="0" exp="400" goldPrice="9" happiness="0" icon="beauty_sea_gate" label="sea_gate" levelneed="34" platinumPrice="5" silverPrice="0" terrain="3" volumeSize="1x2"/>
+        <item bronzePrice="16" buildingId="spaceneedle_v1" cash_price="0" exp="439" goldPrice="9" happiness="0" icon="beauty_spaceneedle_v1" label="spaceneedle_v1" levelneed="35" platinumPrice="0" silverPrice="0" terrain="0,1,2" volumeSize="1x1"/>
+        <item bronzePrice="0" buildingId="monument5" cash_price="0" exp="261" goldPrice="5" happiness="0" icon="beauty_monument5" label="monument5" levelneed="37" platinumPrice="0" silverPrice="10" terrain="0,1,2" volumeSize="1x2"/>
+        <item bronzePrice="0" buildingId="petronas" cash_price="0" exp="479" goldPrice="0" happiness="0" icon="beauty_petronas" label="petronas" levelneed="39" platinumPrice="0" silverPrice="25" terrain="0,1,2" volumeSize="1x2"/>
+        <item bronzePrice="14" buildingId="lookout_point" cash_price="0" exp="368" goldPrice="0" happiness="0" icon="beauty_lookout_point" label="lookout_point" levelneed="40" platinumPrice="0" silverPrice="10" terrain="0,1,2" volumeSize="1x1"/>
+        <item bronzePrice="0" buildingId="tajmahal_v1" cash_price="0" exp="485" goldPrice="0" happiness="0" icon="beauty_tajmahal_v1" label="tajmahal_v1" levelneed="41" platinumPrice="8" silverPrice="13" terrain="0,1,2" volumeSize="3x3"/>
+        <item bronzePrice="0" buildingId="crater" cash_price="0" exp="302" goldPrice="12" happiness="0" icon="beauty_crater" label="crater" levelneed="42" platinumPrice="0" silverPrice="0" terrain="0,1,2" volumeSize="3x3"/>
+        <item bronzePrice="0" buildingId="freedom_v1" cash_price="0" exp="507" goldPrice="10" happiness="0" icon="beauty_freedom_v1" label="freedom_v1" levelneed="43" platinumPrice="10" silverPrice="0" terrain="0,1,2" volumeSize="1x1"/>
+        <item bronzePrice="0" buildingId="castle" cash_price="0" exp="504" goldPrice="0" happiness="0" icon="beauty_castle" label="castle" levelneed="44" platinumPrice="6" silverPrice="17" terrain="0,1,2" volumeSize="2x2"/>
+        <item bronzePrice="0" buildingId="Basil_Cath" cash_price="0" exp="545" goldPrice="12" happiness="0" icon="beauty_Basil_Cath" label="Basil_Cath" levelneed="45" platinumPrice="0" silverPrice="12" terrain="0,1,2" volumeSize="2x3" />
+        <item bronzePrice="15" buildingId="Palace_of_the_sky" cash_price="0" exp="436" goldPrice="0" happiness="0" icon="beauty_Palace_of_the_sky" label="Palace_of_the_sky" levelneed="36" platinumPrice="6" silverPrice="0" terrain="0,1,2" volumeSize="2x2"/>
+        <item bronzePrice="0" buildingId="Tower_of_Pisa" cash_price="0" exp="388" goldPrice="14" happiness="0" icon="beauty_Tower_of_Pisa" label="Tower_of_Pisa" levelneed="38" platinumPrice="0" silverPrice="0" terrain="0,1,2" volumeSize="2x2"/>
+        <item bronzePrice="0" buildingId="yacht" cash_price="0" exp="427" goldPrice="7" happiness="0" icon="beauty_yacht" label="yacht" levelneed="46" platinumPrice="0" silverPrice="10" terrain="3" volumeSize="1x1"/>
+        <item bronzePrice="0" buildingId="sydney_opera" cash_price="0" exp="665" goldPrice="0" happiness="0" icon="beauty_sydney_opera" label="sydney_opera" levelneed="48" platinumPrice="10" silverPrice="15" terrain="0,1,2" volumeSize="2x2"/>
+        <!-- end of exclusive -->
+        <!-- halloween -->
+        <item buildingId="halloween_witch" cling="true" coins_price="800" exp="88" happiness="0" icon="beauty_halloween_witch" label="halloween_witch" levelneed="1" terrain="0,1,2" volumeSize="1x1"/>
+        <item buildingId="halloween_pump" cash_price="10" cling="true" exp="100" happiness="0" icon="beauty_halloween_pump" label="halloween_pump" levelneed="1" terrain="0,1,2" volumeSize="1x1"/>
+        <item buildingId="halloween_cat" cling="true" cash_price="16" exp="160" happiness="0" icon="beauty_halloween_cat" label="halloween_cat" levelneed="1" terrain="0,1,2" volumeSize="1x1"/>
+        <item buildingId="halloween_tree" cling="true" cash_price="22" exp="220" happiness="0" icon="beauty_halloween_tree" label="halloween_tree" levelneed="1" terrain="0,1,2" volumeSize="1x1"/>
+        <item buildingId="halloween_castle" cash_price="60" cling="true" exp="600" happiness="0" icon="beauty_halloween_castle" label="halloween_castle" levelneed="1" terrain="0,1,2" volumeSize="2x2"/>
+        <item buildingId="halloween_gargoyle" cash_price="15" cling="true" exp="150" happiness="0" icon="beauty_halloween_gargoyle" label="halloween_gargoyle" levelneed="1" terrain="0,1,2" volumeSize="1x1"/>
+       <!-- end of halloween -->
+        <!-- christmas -->
+        <item buildingId="christmas_snowball" cash_price="100" exp="1" happiness="0" icon="beauty_christmas_snowball" label="christmas_snowball" levelneed="1" terrain="0,1,2" volumeSize="1x1"/>
+ 
+        <item buildingId="Christmas_angel" coins_price="900" exp="98" cling="true" happiness="0" icon="beauty_Christmas_angel" label="Christmas_angel" levelneed="1" terrain="0,1,2" volumeSize="1x1"/>
+		<item buildingId="Christmas_Snowman" cash_price="10" cling="true" exp="100" happiness="0" icon="beauty_Christmas_Snowman" label="Christmas_Snowman" levelneed="1" terrain="0,1,2" volumeSize="1x1"/>
+		<item buildingId="christmas_santa_helper" cash_price="14" exp="140" happiness="0" icon="beauty_christmas_santa_helper" label="christmas_santa_helper" levelneed="1" terrain="0,1,2" volumeSize="1x1"/>
+        <item buildingId="Christmas_Snow_fortress" coins_price="7000" cling="true" exp="770" happiness="0" icon="beauty_Christmas_Snow_fortress" label="Christmas_Snow_fortress" levelneed="1" terrain="0,1,2" volumeSize="1x2"/>
+        <item buildingId="Christmas_Santas_Reinde" cash_price="18" exp="180" cling="true" happiness="0" icon="beauty_Christmas_Santas_Reinde" label="Christmas_Santas_Reinde" levelneed="1" terrain="0,1,2" volumeSize="1x1"/>
+ 		<item buildingId="iglu" cash_price="26" exp="260" happiness="0" icon="beauty_iglu" label="Christmas_igloo" levelneed="1" terrain="0,1,2" volumeSize="1x1"/>
+ 		<item buildingId="Christmas_Ice_skating" cash_price="32" exp="320" cling="true" happiness="0" icon="beauty_Christmas_Ice_skating" label="Christmas_Ice_skating" levelneed="1" terrain="0,1,2" volumeSize="1x2"/>
+ 		<item buildingId="iceDragon" cash_price="34" exp="340" happiness="0" icon="beauty_iceDragon" label="Christmas_ice_dragon" levelneed="1" terrain="0,1,2" volumeSize="1x1"/>
+ 		<item buildingId="Christmas_gifts" cash_price="38" exp="380" cling="true" happiness="0" icon="beauty_Christmas_gifts" label="Christmas_gifts" levelneed="1" terrain="0,1,2" volumeSize="1x1"/>
+ 		<item buildingId="Christmas_Santa_House" cash_price="52" exp="520" cling="true" happiness="0" icon="beauty_Christmas_Santa_House" label="Christmas_Santa_House" levelneed="1" terrain="0,1,2" volumeSize="2x2"/>
+        <item buildingId="Christmas_Urban_tree" cash_price="60" exp="600" cling="true" happiness="0" icon="beauty_Christmas_Urban_tree" label="Christmas_Urban_tree" levelneed="1" terrain="0,1,2" volumeSize="1x1"/>
+
+        <item buildingId="SantaSleigh" cash_price="100" exp="1000" happiness="0" icon="beauty_SantaSleigh" label="SantaSleigh" zooLevelNeed="0" levelneed="0" terrain="0,1,2" volumeSize="1x1"/>
+        <!-- end of christmas -->
+        <!-- ValentineDay -->
+        <item buildingId="Valentine_Topiary" coins_price="1930" exp="215" happiness="0" icon="beauty_Valentine_Topiary" label="Valentine_Topiary" levelneed="1" terrain="0,1,2" volumeSize="1x2"/>
+        <item buildingId="Valentine_Gazebo_lovers" cash_price="10" cling="true" exp="100" happiness="0" icon="beauty_Valentine_Gazebo_lovers" label="Valentine_Gazebo_lovers" levelneed="1" terrain="0,1,2" volumeSize="1x1"/>
+        <item buildingId="Valentine_Pond_with_swans" cash_price="14" cling="true" exp="140" happiness="0" icon="beauty_Valentine_Pond_with_swans" label="Valentine_Pond_with_swans" levelneed="1" terrain="0,1,2" volumeSize="1x2"/>
+        <item buildingId="Valentine_Teddy_bear" cash_price="39" cling="true" exp="390" happiness="0" icon="beauty_Valentine_Teddy_bear" label="Valentine_Teddy_bear" levelneed="1" terrain="0,1,2" volumeSize="1x1"/>
+        <item buildingId="Valentine_Flowerbed" cash_price="58" cling="true" exp="580" happiness="0" icon="beauty_Valentine_Flowerbed" label="Valentine_Flowerbed" levelneed="1" terrain="0,1,2" volumeSize="1x1"/>
+        <item buildingId="Valentine_Swing_lovers" cash_price="70" cling="true" exp="700" happiness="0" icon="beauty_Valentine_Swing_lovers" label="Valentine_Swing_lovers" levelneed="1" terrain="0,1,2" volumeSize="2x2"/>
+        <item buildingId="Valentine_Statue_of_cupid" cash_price="150" exp="1" happiness="0" icon="beauty_Valentine_Statue_of_cupid" label="Valentine_Statue_of_cupid" levelneed="1" terrain="0,1,2" volumeSize="1x1"/>
+        <item buildingId="Valentine_Statue_Lovers" cash_price="200" exp="1" happiness="0" icon="beauty_Valentine_Statue_Lovers" label="Valentine_Statue_Lovers" levelneed="1" terrain="0,1,2" volumeSize="1x1"/>
+        <!-- end of ValentineDay -->
+        <!-- EasterDay -->
+        <item buildingId="SpecialBeauty_Easter_EasterBunny" cash_price="12" cling="true" exp="120" happiness="0" icon="beauty_SpecialBeauty_Easter_EasterBunny" label="SpecialBeauty_Easter_EasterBunny" levelneed="1" terrain="0,1,2" volumeSize="1x1"/>
+        <item buildingId="SpecialBeauty_Easter_EasterTree" cash_price="35" cling="true" exp="350" happiness="0" icon="beauty_SpecialBeauty_Easter_EasterTree" label="SpecialBeauty_Easter_EasterTree" levelneed="1" terrain="0,1,2" volumeSize="1x1"/>
+        <item buildingId="SpecialBeauty_Easter_FabergeEgg" cash_price="41" cling="true" exp="410" happiness="0" icon="beauty_SpecialBeauty_Easter_FabergeEgg" label="SpecialBeauty_Easter_FabergeEgg" levelneed="1" terrain="0,1,2" volumeSize="1x1"/>
+        <item buildingId="SpecialBeauty_Easter_ChocolateFoun" cash_price="58" cling="true" exp="580" happiness="0" icon="beauty_SpecialBeauty_Easter_ChocolateFoun" label="SpecialBeauty_Easter_ChocolateFoun" levelneed="1" terrain="0,1,2" volumeSize="1x1"/>
+        <item buildingId="SpecialBeauty_Easter_RabbitHouse" cash_price="75" cling="true" exp="750" happiness="0" icon="beauty_SpecialBeauty_Easter_RabbitHouse" label="SpecialBeauty_Easter_RabbitHouse" levelneed="1" terrain="0,1,2" volumeSize="2x2"/>
+        <item buildingId="SpecialBeauty_Easter_EasterChicken" cash_price="170" exp="1" happiness="0" icon="beauty_SpecialBeauty_Easter_EasterChicken" label="SpecialBeauty_Easter_EasterChicken" levelneed="1" terrain="0,1,2" volumeSize="1x1"/>
+        <item buildingId="SpecialBeauty_Easter_SpringGirl" cash_price="150" exp="1" happiness="0" icon="beauty_SpecialBeauty_Easter_SpringGirl" label="SpecialBeauty_Easter_SpringGirl" levelneed="1" terrain="0,1,2" volumeSize="1x1" />
+        <!-- end of EasterDay -->
+        <!--стимпанк-->
+        <item buildingId="SpecialBeauty_perpetumlucerna" cash_price="9" exp="90" happiness="0" icon="beauty_SpecialBeauty_perpetumlucerna" label="SpecialBeauty_perpetumlucerna" levelneed="1" terrain="0,1,2" volumeSize="1x1"/>
+        <item buildingId="SpecialBeauty_bioplan" cash_price="18" exp="180" happiness="0" icon="beauty_SpecialBeauty_bioplan" label="SpecialBeauty_bioplan" levelneed="1" terrain="0,1,2" volumeSize="1x1"/>
+        <item buildingId="SpecialBeauty_paukohod" cash_price="35" exp="350" happiness="0" icon="beauty_SpecialBeauty_paukohod" label="SpecialBeauty_paukohod" levelneed="1" terrain="0,1,2" volumeSize="1x1"/>
+        <item buildingId="SpecialBeauty_galorobot" cash_price="50" exp="500" happiness="0" icon="beauty_SpecialBeauty_galorobot" label="SpecialBeauty_galorobot" levelneed="1" terrain="0,1,2" volumeSize="1x1"/>
+        <!--end of стимпанк-->
+		<!-- City Day -->
+		<item buildingId="SpecialBeauty_CityDay_arch_of_flowers" cash_price="5" exp="50" happiness="0" icon="beauty_SpecialBeauty_CityDay_arch_of_flowers" label="SpecialBeauty_CityDay_arch_of_flowers" levelneed="1" terrain="0,1,2" volumeSize="1x1"/>
+        <item buildingId="SpecialBeauty_CityDay_boat_of_flowers" cash_price="16" exp="160" happiness="0" icon="beauty_SpecialBeauty_CityDay_boat_of_flowers" label="SpecialBeauty_CityDay_boat_of_flowers" levelneed="1" terrain="3" volumeSize="1x1"/>
+        <item buildingId="SpecialBeauty_CityDay_flowerbed_car" cash_price="30" exp="300" happiness="0" icon="beauty_SpecialBeauty_CityDay_flowerbed_car" label="SpecialBeauty_CityDay_flowerbed_car" levelneed="1" terrain="0,1,2" volumeSize="1x1"/>
+        <item buildingId="SpecialBeauty_CityDay_pavlin" cash_price="42" exp="420" happiness="0" icon="beauty_SpecialBeauty_CityDay_pavlin" label="SpecialBeauty_CityDay_pavlin" levelneed="1" terrain="0,1,2" volumeSize="1x1"/>
+ 		<!-- end of City Day -->
+ 		<!--For saleoff-->
+        <item buildingId="SpecialBeauty_walking_castle" cash_price="150" exp="1" happiness="0" icon="beauty_SpecialBeauty_walking_castle" label="SpecialBeauty_walking_castle" levelneed="1" terrain="0,1,2" volumeSize="1x1"/>
+        <item buildingId="SpecialBeauty_statue_pig" cash_price="150" exp="1" happiness="0" icon="beauty_SpecialBeauty_statue_pig" label="SpecialBeauty_statue_pig" levelneed="1" terrain="0,1,2" volumeSize="1x1"/>
+        <item buildingId="SpecialBeauty_CityDay_sheeps" cash_price="150" exp="1" happiness="0" icon="beauty_SpecialBeauty_CityDay_sheeps" label="SpecialBeauty_CityDay_sheeps" levelneed="1" terrain="0,1,2" volumeSize="1x1"/>
+        <!--end For saleoff-->
+        <!--halloween 2015 -->
+        <item buildingId="halloween_museum" cash_price="35" exp="350" happiness="0" icon="beauty_halloween_museum" label="halloween_museum" levelneed="1" terrain="0,1,2" volumeSize="1x2"/>
+        <item buildingId="SpecialBeauty_Ghostbuster" cash_price="18" exp="180" happiness="0" icon="beauty_SpecialBeauty_Ghostbuster" label="SpecialBeauty_Ghostbuster" levelneed="1" terrain="0,1,2" volumeSize="1x1"/>
+        <!--end of halloween 2015 -->
+        
+		<!--thanksgiving 2015 -->
+		<item buildingId="SpecialBeauty_flyPig" cash_price="20" exp="200" happiness="0" icon="beauty_flyPig" icon_gui="beauty_flyPig_gui" label="flyPig" levelneed="1" terrain="0,1,2" volumeSize="1x1"/>
+        <item buildingId="SpecialBeauty_flyChicken" cash_price="22" exp="220" happiness="0" icon="beauty_flyChicken" icon_gui="beauty_flyChicken_gui" label="flyChicken" levelneed="1" terrain="0,1,2" volumeSize="1x1"/>
+		<item buildingId="SpecialBeauty_flySheep" cash_price="24" exp="240" happiness="0" icon="beauty_flySheep" icon_gui="beauty_flySheep_gui" label="flySheep" levelneed="1" terrain="0,1,2" volumeSize="1x1"/>
+		<item buildingId="SpecialBeauty_flyCow" cash_price="26" exp="260" happiness="0" icon="beauty_flyCow" icon_gui="beauty_flyCow_gui" label="flyCow" levelneed="1" terrain="0,1,2" volumeSize="1x1"/>
+        
+        <item buildingId="SpecialBeauty_harvest_figure" cash_price="35" exp="350" happiness="0" icon="beauty_SpecialBeauty_harvest_figure" label="SpecialBeauty_harvest_figure" levelneed="1" terrain="0,1,2" volumeSize="1x1"/>
+		<item buildingId="SpecialBeauty_GiantWatermelon" cash_price="100" exp="900" happiness="0" icon="beauty_SpecialBeauty_GiantWatermelon" label="GiantWatermelon" levelneed="1" terrain="0,1,2" volumeSize="1x1"/>
+  		<!--end of thanksgiving 2015 -->
+          
+		<item buildingId="green9" cling="true" coins_price="15" exp="2" happiness="0" label="green9" levelneed="1" terrain="0,1,2" />
+        <item buildingId="green10" cling="true" coins_price="15" exp="2" happiness="0" icon="beauty_green10" label="green10" levelneed="1" terrain="0,1,2" volumeSize="1x1"/>
+        <item buildingId="green12" coins_price="40" exp="4" happiness="0" icon="beauty_green12" label="green12" levelneed="1" terrain="0,1,2" volumeSize="1x1"/>
+        <item buildingId="flowerbed1" coins_price="50" exp="6" happiness="0" icon="beauty_flowerbed1" label="flowerbed1" levelneed="1" terrain="0,1,2" volumeSize="1x1"/>
+        <item buildingId="playground" coins_price="80" exp="9" happiness="0" icon="beauty_playground" label="playground" levelneed="1" terrain="0,1,2" volumeSize="1x1"/>
+        <item buildingId="flowerbed2" coins_price="70" exp="8" happiness="0" icon="beauty_flowerbed2" label="flowerbed2" levelneed="7" terrain="0,1,2" volumeSize="1x1"/>
+        <item buildingId="green8" coins_price="50" exp="6" happiness="0" icon="beauty_green8" label="green8" levelneed="8" terrain="0,1,2" volumeSize="1x1"/>
+        <item buildingId="green16" coins_price="60" exp="7" happiness="0" icon="beauty_green16" label="green16" levelneed="9" terrain="0,1,2" volumeSize="1x1"/>
+        <item buildingId="monument1" coins_price="250" exp="28" happiness="0" icon="beauty_monument1" label="monument1" levelneed="11" terrain="0,1,2" volumeSize="1x1"/>
+        <item buildingId="lovegarden" coins_price="120" exp="13" happiness="0" icon="beauty_lovegarden" label="lovegarden" levelneed="12" terrain="0,1,2" volumeSize="1x1"/>
+        <item buildingId="tennis" coins_price="500" exp="55" happiness="0" icon="beauty_tennis" label="tennis" levelneed="13" terrain="0,1,2" volumeSize="2x1"/>
+        <item buildingId="green2" coins_price="70" exp="8" happiness="0" icon="beauty_green2" label="green2" levelneed="13" terrain="0,1,2" volumeSize="1x1"/>
+        <item buildingId="green20" coins_price="100" exp="10" happiness="0" icon="beauty_green20" label="green20" levelneed="14" terrain="0,1,2" volumeSize="1x1"/>
+        <item buildingId="track" coins_price="80" exp="9" happiness="0" icon="beauty_track" label="track" levelneed="14" terrain="0,1,2" volumeSize="1x1"/>
+        <item buildingId="park2_1x1" coins_price="120" exp="13" happiness="0" icon="beauty_park2_1x1" label="park2_1x1" levelneed="15" terrain="0,1,2" volumeSize="1x1"/>
+        <item buildingId="football" coins_price="700" exp="77" happiness="0" icon="beauty_football" label="football" levelneed="15" terrain="0,1,2" volumeSize="2x1"/>
+        <item buildingId="green5" coins_price="110" exp="12" happiness="0" icon="beauty_green5" label="green5" levelneed="16" terrain="0,1,2" volumeSize="1x1"/>
+        <item buildingId="bridge01_fin" coins_price="240" exp="26" happiness="0" icon="beauty_bridge01_fin" label="bridge01_fin" levelneed="16" terrain="3" volumeSize="1x1"/>
+        <item buildingId="green14" coins_price="130" exp="14" happiness="0" icon="beauty_green14" label="green14" levelneed="17" terrain="0,1,2" volumeSize="1x1"/>
+        <item buildingId="fountain2" coins_price="320" exp="35" happiness="0" icon="beauty_fountain2" label="fountain2" levelneed="17" terrain="0,1,2" volumeSize="1x1"/>
+        <item buildingId="plank3_fin" coins_price="500" exp="55" happiness="0" icon="beauty_plank3_fin" label="plank3_fin" levelneed="18" terrain="0,1,2" volumeSize="1x1"/>
+        <item buildingId="monument3" coins_price="400" exp="44" happiness="0" icon="beauty_monument3" label="monument3" levelneed="19" terrain="0,1,2" volumeSize="1x1"/>
+        <item buildingId="basketball_1x2" coins_price="1000" exp="110" happiness="0" icon="beauty_basketball_1x2" label="basketball_1x2" levelneed="20" terrain="0,1,2" volumeSize="2x1"/>
+        <item buildingId="palma1" coins_price="350" exp="39" happiness="0" icon="beauty_palma1" label="palma1" levelneed="20" terrain="0,1,2" volumeSize="1x1"/>
+        <item buildingId="palma2" coins_price="400" exp="44" happiness="0" icon="beauty_palma2" label="palma2" levelneed="21" terrain="0,1,2" volumeSize="1x1"/>
+        <item buildingId="monument4" coins_price="560" exp="62" happiness="0" icon="beauty_monument4" label="monument4" levelneed="22" terrain="0,1,2" volumeSize="1x1"/>
+        <item buildingId="quay_fin" coins_price="650" exp="72" happiness="0" icon="beauty_quay_fin" label="quay_fin" levelneed="22" terrain="3" volumeSize="2x1"/>
+        <item buildingId="plank1_fin" coins_price="550" exp="61" happiness="0" icon="beauty_plank1_fin" label="plank1_fin" levelneed="23" terrain="0,1,2" volumeSize="1x1"/>
+        <item buildingId="monument2" coins_price="1200" exp="132" happiness="0" icon="beauty_monument2" label="monument2" levelneed="24" terrain="0,1,2" volumeSize="2x1"/>
+        <item buildingId="baseball" coins_price="2000" exp="220" happiness="0" icon="beauty_baseball" label="baseball" levelneed="25" terrain="0,1,2" volumeSize="2x2"/>
+        <item buildingId="park1_1x2" coins_price="500" exp="55" happiness="0" icon="beauty_park1_1x2" label="park1_1x2" levelneed="25" terrain="0,1,2" volumeSize="2x1"/>
+        <item buildingId="boat00_fin" coins_price="400" exp="44" happiness="0" icon="beauty_boat00_fin" label="boat00_fin" levelneed="26" terrain="0,1,2" volumeSize="1x1"/>
+        <item buildingId="aquarium_v1" coins_price="1200" exp="132" happiness="0" icon="beauty_aquarium_v1" label="aquarium_v1" levelneed="26" terrain="0,1,2" volumeSize="1x1"/>
+        <item buildingId="fountain1" coins_price="400" exp="44" happiness="0" icon="beauty_fountain1" label="fountain1" levelneed="27" terrain="0,1,2" volumeSize="1x1"/>
+        <item buildingId="park1_1x1" coins_price="160" exp="18" happiness="0" icon="beauty_park1_1x1" label="park1_1x1" levelneed="28" terrain="0,1,2" volumeSize="1x1"/>
+        <item buildingId="Tree_sakura" coins_price="10000" exp="1000" happiness="0" icon="beauty_Tree_sakura" label="Tree_sakura" levelneed="39" terrain="0,1,2" volumeSize="1x1"/>
+        <item buildingId="palma4" coins_price="450" exp="50" happiness="0" icon="beauty_palma4" label="palma4" levelneed="29" terrain="0,1,2" volumeSize="1x1"/>
+        <item buildingId="green_bunny" coins_price="1300" exp="143" happiness="0" icon="beauty_green_bunny" label="green_bunny" levelneed="30" terrain="0,1,2" volumeSize="1x1"/>
+        <item buildingId="bridge00_fin" coins_price="2400" exp="264" happiness="0" icon="beauty_bridge00_fin" label="bridge00_fin" levelneed="30" terrain="3" volumeSize="1x1"/>
+        <item buildingId="bar_fin" coins_price="1600" exp="176" happiness="0" icon="beauty_bar_fin" label="bar_fin" levelneed="31" terrain="0,1,2" volumeSize="1x1"/>
+        <item buildingId="palma_totem" coins_price="1000" exp="110" happiness="0" icon="beauty_palma_totem" label="palma_totem" levelneed="32" terrain="0,1,2" volumeSize="1x1"/>
+        <item buildingId="pool" coins_price="4000" exp="440" happiness="0" icon="beauty_pool" label="pool" levelneed="33" terrain="0,1,2" volumeSize="2x1"/>
+        <item buildingId="love_bridge" coins_price="2600" exp="286" happiness="0" icon="beauty_love_bridge" label="love_bridge" levelneed="33" terrain="0,1,2" volumeSize="1x1"/>
+        <item buildingId="spacegarden" coins_price="2500" exp="275" happiness="0" icon="beauty_spacegarden" label="spacegarden" levelneed="34" terrain="0,1,2" volumeSize="1x1"/>
+        <item buildingId="boat02_fin" coins_price="2200" exp="242" happiness="0" icon="beauty_boat02_fin" label="boat02_fin" levelneed="34" terrain="3" volumeSize="1x2"/>
+        <item buildingId="monument_tools" coins_price="2500" exp="275" happiness="0" icon="beauty_monument_tools" label="monument_tools" levelneed="35" terrain="0,1,2" volumeSize="1x1"/>
+        <item buildingId="fountainbig" coins_price="4500" exp="495" happiness="0" icon="beauty_fountainbig" label="fountainbig" levelneed="36" terrain="0,1,2" volumeSize="2x2"/>
+        <item buildingId="greenbox_fin" coins_price="6500" exp="715" happiness="0" icon="beauty_greenbox_fin" label="greenbox_fin" levelneed="38" terrain="0,1,2" volumeSize="3x3"/>
+        <item buildingId="groundroad" cash_price="0" happiness="0" label="groundroad" terrain="0,1,2" />
+        <item buildingId="gravelroad" cash_price="0" happiness="0" label="groundroad" terrain="0,1,2" />
+        <item buildingId="asphalt" cash_price="0" happiness="0" label="asphalt" terrain="0,1,2" />
+        <item buildingId="sand" cash_price="0" happiness="0" label="sand" terrain="0,1,2,3" />
+        <item buildingId="ground" cash_price="0" happiness="0" label="ground" terrain="0,1,2,3" />
+        <item buildingId="green" cash_price="0" happiness="0" label="green" terrain="0,1,2,3" />
+        <item buildingId="water" cash_price="0" happiness="0" label="water" terrain="0,1,2,3" />
+        <item buildingId="snow" cash_price="0" happiness="0" label="snow" terrain="0,1,2,3" />
+        <item buildingId="white_fence" coins_price="40" exp="4" happiness="0" icon="beauty_white_fence" label="white_fence" levelneed="12" terrain="0,1,2" volumeSize="1x1"/>
+        <item buildingId="granite_fence" coins_price="80" exp="9" happiness="0" icon="beauty_granite_fence" label="granite_fence" levelneed="18" terrain="0,1,2" volumeSize="1x1"/>
+        <item buildingId="landing_fence" coins_price="40" exp="4" happiness="0" icon="beauty_landing_fence" label="landing_fence" levelneed="0" terrain="0,1,2" volumeSize="1x1"/>
+        <item buildingId="rose_bush" coins_price="400" exp="60" happiness="0" icon="beauty_rose_bush" label="rose_bush" levelneed="24" terrain="0,1,2" volumeSize="1x1"/>
+        <item buildingId="flowering_tree" coins_price="1100" exp="72" happiness="0" icon="beauty_flowering_tree" label="flowering_tree" levelneed="26" terrain="0,1,2" volumeSize="1x1"/>
+        <item buildingId="yellow_roses" coins_price="550" exp="90" happiness="0" icon="beauty_yellow_roses" label="yellow_roses" levelneed="30" terrain="0,1,2" volumeSize="1x1"/>
+        <item buildingId="whiterose_tree" coins_price="1300" exp="110" happiness="0" icon="beauty_whiterose_tree" label="whiterose_tree" levelneed="32" terrain="0,1,2" volumeSize="1x1"/>
+        <item buildingId="fountain4" coins_price="3000" exp="325" icon="beauty_fountain4" label="fountain4" levelneed="35" terrain="0,1,2" volumeSize="1x1"/>
+        <item buildingId="floating_lanterns" coins_price="3800" exp="340" happiness="0" icon="beauty_floating_lanterns" label="floating_lanterns" levelneed="36" terrain="3+" volumeSize="1x1"/>
+        <item buildingId="arbor" coins_price="8200" exp="420" happiness="0" icon="beauty_arbor" label="arbor" levelneed="39" terrain="0,1,2" volumeSize="1x1"/>
+        <item buildingId="green_tree1" coins_price="12500" exp="759" happiness="0" icon="beauty_green_tree1" label="green_tree1" levelneed="41" terrain="0,1,2" volumeSize="1x1"/>
+        <item buildingId="green_tree2" coins_price="21500" exp="780" happiness="0" icon="beauty_green_tree2" label="green_tree2" levelneed="44" terrain="0,1,2" volumeSize="1x1"/>
+        <item buildingId="green_tree3" coins_price="30000" exp="798" happiness="0" icon="beauty_green_tree3" label="green_tree3" levelneed="46" terrain="0,1,2" volumeSize="1x1"/>
+        <item buildingId="topiary_castle" coins_price="85000" exp="919" happiness="0" icon="beauty_topiary_castle" label="topiary_castle" levelneed="49" terrain="0,1,2" volumeSize="1x1"/>
+        <item buildingId="fountain_swan" coins_price="600000" exp="2052" happiness="0" icon="beauty_fountain_swan" label="fountain_swan" levelneed="100" terrain="0,1,2" volumeSize="3x2"/>
+        <item buildingId="teahouse" coins_price="39000" exp="817" happiness="0" icon="beauty_teahouse" label="teahouse" levelneed="47" terrain="0,1,2" volumeSize="2x2"/>
+        <item buildingId="ship" coins_price="7500" exp="750" happiness="0" icon="beauty_ship" label="ship" levelneed="38" terrain="3" volumeSize="1x1"/>
+        <item buildingId="skin_city_sign_def_sign" coins_price="100" exp="10" happiness="0" icon="beauty_skin_city_sign_def_sign" label="def_sign" levelneed="1" terrain="0,1,2" volumeSize="2x2"/>
+        <item buildingId="skin_city_sign_stone_sign" coins_price="2500" exp="142" happiness="0" icon="beauty_skin_city_sign_stone_sign" label="stone_sign" levelneed="17" terrain="0,1,2" />
+        <item buildingId="skin_city_sign_asian_sign" coins_price="3800" exp="212" happiness="0" icon="beauty_skin_city_sign_asian_sign" label="asian_sign" levelneed="22" terrain="0,1,2" />
+        <item buildingId="skin_city_sign_ilove_sign" cash_price="30" exp="600" happiness="0" icon="beauty_skin_city_sign_ilove_sign_icon" label="ilove_sign" levelneed="27" terrain="0,1,2" volumeSize="2x2"/>
+        <item buildingId="skin_city_sign_vegas_sign" cash_price="60" exp="850" happiness="0" icon="beauty_skin_city_sign_vegas_sign_icon" label="vegas_sign" levelneed="33" terrain="0,1,2" volumeSize="2x2"/>
+        <item buildingId="skin_city_sign_farm_sign" coins_price="32000" exp="1640" happiness="0" icon="beauty_skin_city_sign_farm_sign" label="farm_sign" levelneed="40" terrain="0,1,2" />
+        <item buildingId="pondSwans" coins_price="11500" exp="615" happiness="0" icon="beauty_pondSwans" label="pondSwans" levelneed="40" terrain="0,1,2" volumeSize="2x2"/>
+        <item buildingId="hedge" coins_price="1000" exp="70" happiness="0" icon="hedge_icon" label="hedge" levelneed="40" terrain="0,1,2" volumeSize="1x1" />
+        <item buildingId="zoo_decor" cash_price="150" exp="0" happiness="0" icon="beauty_zoo_decor" label="zoo_decor" levelneed="0" terrain="0,1,2" volumeSize="2x1" />
+        <item buildingId="weeping_willow" coins_price="2700" exp="163" happiness="0" icon="beauty_weeping_willow" label="weeping_willow" levelneed="28" terrain="0,1,2" volumeSize="1x1" />
+        <item buildingId="flowerbed_daffodils" coins_price="550" exp="61" happiness="0" icon="beauty_flowerbed_daffodils" label="flowerbed_daffodils" levelneed="21" terrain="0,1,2" volumeSize="1x1"/>
+        <item buildingId="flowerbed_irises" coins_price="750" exp="83" happiness="0" icon="beauty_flowerbed_irises" label="flowerbed_irises" levelneed="25" terrain="0,1,2" volumeSize="1x1"/>
+        <item buildingId="flowerbed_poppies" coins_price="950" exp="105" happiness="0" icon="beauty_flowerbed_poppies" label="flowerbed_poppies" levelneed="29" terrain="0,1,2" volumeSize="1x1"/>
+        <item buildingId="flowerbed_gladiolus" coins_price="1200" exp="132" happiness="0" icon="beauty_flowerbed_gladiolus" label="flowerbed_gladiolus" levelneed="34" terrain="0,1,2" volumeSize="1x1"/>
+        <item buildingId="flowerbed_gerbera" coins_price="1650" exp="182" happiness="0" icon="beauty_flowerbed_gerbera" label="flowerbed_gerbera" levelneed="37" terrain="0,1,2" volumeSize="1x1"/>
+ 		<item buildingId="picnic" coins_price="1800" exp="198" happiness="0" icon="beauty_picnic" label="picnicZone" levelneed="31" terrain="0,1,2" volumeSize="1x1"/>
+        <item buildingId="vetryak" coins_price="16000" exp="1760" happiness="0" icon="beauty_vetryak" label="windPower" levelneed="42" terrain="0,1,2" volumeSize="1x1"/>
+		<!--zoo_statues-->
+        <item buildingId="green_bird" coins_price="3500" exp="385" happiness="0" icon="beauty_green_bird" label="green_bird" zooLevelNeed="1" levelneed="40" terrain="0,1,2" volumeSize="1x1"/>
+        <item buildingId="green_dolphin" coins_price="3700" exp="407" happiness="0" icon="beauty_green_dolphin" label="green_dolphin" zooLevelNeed="1" levelneed="40" terrain="0,1,2" volumeSize="1x1"/>
+        <item buildingId="swan" coins_price="4000" exp="440" happiness="0" icon="beauty_swan"  label="swan" zooLevelNeed="1" levelneed="40" terrain="0,1,2" volumeSize="1x1"/>
+        <item buildingId="koala" coins_price="4400" exp="484" happiness="0" icon="beauty_koala" label="koala" zooLevelNeed="1" levelneed="40" terrain="0,1,2" volumeSize="1x1"/>
+        <item buildingId="green_peacock" coins_price="4900" exp="539" happiness="0" icon="beauty_green_peacock" label="green_peacock" zooLevelNeed="3" levelneed="40" terrain="0,1,2" volumeSize="1x1"/>
+		<item buildingId="girrafe" coins_price="6100" exp="671" happiness="0" icon="beauty_girrafe" label="giraffe" zooLevelNeed="5" levelneed="40" terrain="0,1,2" volumeSize="1x1"/>
+        <item buildingId="lion" coins_price="6600" exp="726" happiness="0" icon="beauty_lion" label="lion" zooLevelNeed="6" levelneed="40" terrain="0,1,2" volumeSize="1x1"/>
+        <item buildingId="green_turtle" coins_price="7300" exp="803" happiness="0" icon="beauty_green_turtle" label="green_turtle" zooLevelNeed="7" levelneed="40" terrain="0,1,2" volumeSize="1x1"/>
+        <item buildingId="penguin" coins_price="8500" exp="935" happiness="0" icon="beauty_penguin" label="penguin" zooLevelNeed="9" levelneed="40" terrain="0,1,2" volumeSize="1x1"/>
+        <item buildingId="tiger" coins_price="10200" exp="1122" happiness="0" icon="beauty_tiger" label="tiger" zooLevelNeed="10" levelneed="40" terrain="0,1,2" volumeSize="1x1"/>
+        <item buildingId="green_elephant" coins_price="12300" exp="1185" icon="beauty_green_elephant" label="green_elephant" zooLevelNeed="11" levelneed="40" terrain="0,1,2" volumeSize="1x1"/>
+        <item buildingId="crocodile" coins_price="15500" exp="1240" happiness="0" icon="beauty_crocodile"  label="crocodile" zooLevelNeed="12" levelneed="40" terrain="0,1,2" volumeSize="1x1"/>
+        <item buildingId="flamingo" coins_price="21000" exp="1350" happiness="0" icon="beauty_flamingo"  label="flamingo" zooLevelNeed="13" levelneed="40" terrain="0,1,2" volumeSize="1x1"/>
+        <item buildingId="gorilla" coins_price="29500" exp="1623" happiness="0" icon="beauty_gorilla" label="gorilla" zooLevelNeed="15" levelneed="40" terrain="0,1,2" volumeSize="1x1"/>
+        <item buildingId="panda" coins_price="28000" exp="1540" happiness="0" icon="beauty_panda"  label="panda" zooLevelNeed="16" levelneed="40" terrain="0,1,2" volumeSize="1x1"/>
+        <item buildingId="seal" coins_price="24500" exp="1348" happiness="0" icon="beauty_seal" label="seal" zooLevelNeed="17" levelneed="1" terrain="0,1,2" volumeSize="1x1"/>
+        <item buildingId="zebra" coins_price="26000" exp="1430" happiness="0" icon="beauty_zebra" label="zebra" zooLevelNeed="18" levelneed="40" terrain="0,1,2" volumeSize="1x1"/>
+        <item buildingId="bears_family" coins_price="32000" exp="1760" happiness="0" icon="beauty_bears_family"  label="bears_family" zooLevelNeed="19" levelneed="40" terrain="0,1,2" volumeSize="1x1"/>
+        <item buildingId="baloons" coins_price="27500" exp="1513" happiness="0" icon="beauty_baloons" label="balloons" zooLevelNeed="21" levelneed="40" terrain="0,1,2" volumeSize="1x1"/>
+        <item buildingId="katamaran" coins_price="29000" exp="1595" happiness="0" icon="beauty_katamaran" label="catamaran" zooLevelNeed="22" levelneed="40" terrain="3" volumeSize="1x1"/>		
+		<item buildingId="SpecialBeauty_flyElep" coins_price="33000" exp="1815" happiness="0" icon="beauty_flyElep" icon_gui="beauty_flyElep_gui" label="flyElephant" zooLevelNeed="23" levelneed="40" terrain="0,1,2" volumeSize="1x1"/>
+        <item buildingId="shark_slide" coins_price="35500" exp="1953" happiness="0" icon="beauty_shark_slide"  label="shark_slide" zooLevelNeed="25" levelneed="40" terrain="0,1,2" volumeSize="2x1"/>
+        <item buildingId="baloon_castle" coins_price="1" exp="1" happiness="0" icon="beauty_baloon_castle" label="trampoline_zoo" levelneed="1" terrain="0,1,2" volumeSize="2x1"/>
+        <item buildingId="lion_slides" coins_price="1" exp="1" happiness="0" icon="beauty_lion_slides" label="lion_slide" levelneed="1" terrain="0,1,2" volumeSize="2x1"/>
+		
+		<!--item buildingId="peacock" coins_price="1" exp="1" happiness="0" icon="beauty_peacock" label="peacock" zooLevelNeed="1" levelneed="40" terrain="0,1,2" volumeSize="1x1"/-->
+		<!--end of zoo_statues-->
+
+        <!--statue-->
+
+        <!--statue-->
+        <item buildingId="statue_flyboy" cash_price="100" exp="2220" happiness="0" icon="beauty_statue_flyboy" label="statue_flyboy" levelneed="50" terrain="0,1,2" volumeSize="1x1"/>
+        <item buildingId="statue_neanderthal" coins_price="400000" exp="1660" happiness="0" icon="beauty_statue_neanderthal" label="statue_neanderthal" levelneed="52" terrain="0,1,2" volumeSize="1x1"/>
+        <item buildingId="statue_footballer" coins_price="500000" exp="1900" happiness="0" icon="beauty_statue_footballer" label="statue_footballer" levelneed="55" terrain="0,1,2" volumeSize="1x1"/>
+        <item buildingId="statue_geneticist" cash_price="120" exp="2640" happiness="0" icon="beauty_statue_geneticist" label="statue_geneticist" levelneed="56" terrain="0,1,2" volumeSize="1x1"/>
+        <item buildingId="statue_tourist" coins_price="700000" exp="2500" happiness="0" icon="beauty_statue_tourist" label="statue_tourist" levelneed="57" terrain="0,1,2" volumeSize="1x1"/>
+        <item buildingId="statue_chemist" coins_price="900000" exp="2860" happiness="0" icon="beauty_statue_chemist" label="statue_chemist" levelneed="59" terrain="0,1,2" volumeSize="1x1"/>
+        <item buildingId="statue_thinker" coins_price="1200000" exp="3440" happiness="0" icon="beauty_statue_thinker" label="statue_thinker" levelneed="62" terrain="0,1,2" volumeSize="1x1"/>
+        <item buildingId="statue_fireman" coins_price="1500000" exp="3800" happiness="0" icon="beauty_statue_fireman" label="statue_fireman" levelneed="65" terrain="0,1,2" volumeSize="1x1"/>
+        <item buildingId="statue_general" coins_price="1700000" exp="4200" happiness="0" icon="beauty_statue_general" label="statue_general" levelneed="67" terrain="0,1,2" volumeSize="1x1"/>
+        <item buildingId="statue_writer" coins_price="1900000" exp="4600" happiness="0" icon="beauty_statue_writer" label="statue_writer" levelneed="69" terrain="0,1,2" volumeSize="1x1"/>
+        <item buildingId="statue_policeman" coins_price="1000000" exp="2960" happiness="0" icon="beauty_statue_policeman" label="statue_policeman" levelneed="60" terrain="0,1,2" volumeSize="2x1"/>
+		<item buildingId="statue_musican" cash_price="100" exp="2900" happiness="0" icon="beauty_statue_musican" label="statue_musican" levelneed="63" terrain="0,1,2" volumeSize="1x1"/>
+        <item buildingId="statue_artist" coins_price="1600000" exp="4300" happiness="0" icon="beauty_statue_artist" label="statue_artist" levelneed="66" terrain="0,1,2" volumeSize="1x1"/>
+
+	    <!--Событие на шахту-->
+        <item buildingId="SpecialBeauty_Digging_Tyrannosaurus" cash_price="150" exp="1" happiness="0" icon="beauty_SpecialBeauty_Digging_Tyrannosaurus" label="SpecialBeauty_Digging_Tyrannosaurus" levelneed="1" terrain="0,1,2" volumeSize="1x1"/>
+        <!--Акция день всемирного солнцестояния-->
+        <item buildingId="SpecialBeauty_Sun" cash_price="150" exp="1" happiness="0" icon="beauty_SpecialBeauty_Sun" label="SpecialBeauty_Sun" levelneed="1" terrain="0,1,2" volumeSize="1x1"/>
+        <!--это фэйк-->
+        <item buildingId="roadsIcon" cash_price="0" happiness="0" icon="roadsIcon" label="Roads" terrain="0,1,2" />
+        <item buildingId="dalesIcon" cash_price="0" happiness="0" icon="dalesIcon" label="Dales" terrain="0,1,2" />
+        <!--это фэйк-->
+        <item buildingId="LandscapesIcon" cash_price="0" happiness="0" icon="LandscapesIcon" label="Landscape" terrain="0,1,2,3" />
+        <item buildingId="green18" coins_price="500" forest="true" happiness="0" label="green18" terrain="0,1,2" />
+        <!-- android -->
+        <item buildingId="apple_tree" coins_price="4000" exp="238" happiness="0" icon="beauty_apple_tree" label="apple_tree" levelneed="38" terrain="0,1,2" volumeSize="2x2" />
+        <item buildingId="bronze_bull" coins_price="2000" exp="131" happiness="0" icon="beauty_bronze_bull" label="bronze_bull" levelneed="31" terrain="0,1,2" volumeSize="2x1" />
+        <item buildingId="camping" coins_price="3600" exp="216" happiness="0" icon="beauty_camping" label="camping" levelneed="36" terrain="0,1,2" volumeSize="1x1"/>
+        <item buildingId="love_flowers" coins_price="350" exp="32" happiness="0" icon="beauty_love_flowers" label="love_flowers" levelneed="14" terrain="0,1,2" volumeSize="1x1"/>
+        <item buildingId="phone_box" coins_price="300" exp="27" happiness="0" icon="beauty_phone_box" label="phone_box" levelneed="12" terrain="0,1,2" volumeSize="1x1"/>
+        <item buildingId="radar" coins_price="1200" exp="79" happiness="0" icon="beauty_radar" label="radar" levelneed="19" terrain="0,1,2" volumeSize="1x1"/>
+        <item buildingId="scarecrow" coins_price="150" exp="19" happiness="0" icon="beauty_scarecrow" label="scarecrow" levelneed="11" terrain="0,1,2" volumeSize="1x1"/>
+        <item buildingId="tractor_and_hay" coins_price="450" exp="41" happiness="0" icon="beauty_tractor_and_hay" label="tractor_and_hay" levelneed="18" terrain="0,1,2" volumeSize="1x1"/>
+        <item buildingId="tree_with_stairs" coins_price="2300" exp="141" happiness="0" icon="beauty_tree_with_stairs" label="tree_with_stairs" levelneed="26" terrain="0,1,2" volumeSize="1x1"/>
+        <item buildingId="vegetables" coins_price="200" exp="34" happiness="0" icon="beauty_vegetables" label="vegetables" levelneed="24" terrain="0,1,2" volumeSize="1x1"/>
+        <item buildingId="water_flowers_1" coins_price="25" exp="2" happiness="0" icon="beauty_water_flowers_1" label="water_flowers_1" levelneed="1" terrain="3+" volumeSize="1x1"/>
+        <item buildingId="water_flowers_2" coins_price="25" exp="2" happiness="0" icon="beauty_water_flowers_2" label="water_flowers_2" levelneed="10" terrain="3+" volumeSize="1x1"/>
+        <item buildingId="hay" coins_price="400" exp="44" happiness="0" icon="beauty_hay" label="hay" levelneed="13" terrain="0,1,2" volumeSize="1x1"/>
+        <item buildingId="pond" coins_price="1200" exp="132" happiness="0" icon="beauty_pond" label="pond" levelneed="15" terrain="0,1,2" volumeSize="1x1"/>
+        <item buildingId="sunflower" coins_price="300" exp="27" happiness="0" icon="beauty_sunflower" label="sunflower" levelneed="10" terrain="0,1,2" volumeSize="1x1"/>
+        <item buildingId="windmill" coins_price="2000" exp="125" happiness="0" icon="beauty_windmill" label="windmill" levelneed="16" terrain="0,1,2" volumeSize="1x1"/>
+        <item buildingId="well" coins_price="1000" exp="82" happiness="0" icon="beauty_well" label="well" levelneed="17" terrain="0,1,2" volumeSize="1x1"/>
+        <!-- reserves -->
+        <item buildingId="reserve1x2_v1" coins_price="2500" exp="275" happiness="0" icon="beauty_reserve1x2_v1" label="reserve1x2_v1" levelneed="20" terrain="0,1,2" volumeSize="1x2" />
+        <item buildingId="reserve2x2_v1" coins_price="3600" exp="332" happiness="0" icon="beauty_reserve2x2_v1" label="reserve2x2_v1" levelneed="26" terrain="0,1,2" volumeSize="2x2" />
+        <item buildingId="reserve3x3_v1" coins_price="5400" exp="535" happiness="0" icon="beauty_reserve3x3_v1" label="reserve3x3_v1" levelneed="35" terrain="0,1,2" volumeSize="3x3" />
+    </decoration>
+    <special_building>
+        <item build_time="720m" buildingId="golden_palace" cash_price="0" coins_price="800" icon="special_casino" label="golden_palace" levelneed="11" renew_time="1440m" terrain="0,1,2" volumeSize="2x2" />
+        <item build_time="1080m" buildingId="citymarket" cash_price="0" coins_price="1700" icon="beauty_market" label="citymarket" levelneed="13" renew_time="360m" terrain="0,1,2" volumeSize="3x3" />
+        <item build_time="1440m" buildingId="airport" cash_price="0" coins_price="1500" icon_gui="airport_small" label="airport" levelneed="17" renew_time="0m" terrain="0,1,2" volumeSize="4x3">
+            <pers name="pilot" />
+        </item>
+        <item build_time="1800m" buildingId="digging" cash_price="0" coins_price="3000" icon_gui="MineIcon" label="digging" levelneed="21" renew_time="0m" terrain="0,1,2" volumeSize="3x5">
+            <pers name="miner" />
+        </item>
+        <item build_time="2160m" buildingId="smeltery" cash_price="0" coins_price="2000" hurryCoeff="0.6" icon="special_building_smeltery" label="smeltery" levelneed="21" renew_time="0m" terrain="0,1,2" volumeSize="2x2">
+            <production>
+                <product amount="1" name="BronzeBullion" time="60m">
+                    <resource count="5" name="o1" />
+                </product>
+                <product amount="1" name="SilverBullion" time="120m">
+                    <resource count="5" name="o3" />
+                </product>
+                <product amount="1" name="GoldBullion" time="180m">
+                    <resource count="5" name="o2" />
+                </product>
+                <product amount="1" name="PlatinumBullion" time="240m">
+                    <resource count="5" name="o4" />
+                </product>
+            </production>
+        </item>
+        <item build_time="2880m" buildingId="mint" cash_price="0" coins_price="15000" hurryCoeff="1.5" icon="special_building_mint" label="mint" levelneed="31" renew_time="0m" terrain="0,1,2" volumeSize="2x2">
+            <production>
+                <product amount="1" name="coinsPack1" time="420m">
+                    <resource count="3" name="BronzeBullion" />
+                </product>
+                <product amount="1" name="coinsPack2" time="660m">
+                    <resource count="4" name="BronzeBullion" />
+                    <resource count="1" name="SilverBullion" />
+                </product>
+                <product amount="1" name="coinsPack3" time="840m">
+                    <resource count="5" name="BronzeBullion" />
+                    <resource count="1" name="GoldBullion" />
+                </product>
+                <product amount="1" name="coinsPack4" time="1080m">
+                    <resource count="6" name="BronzeBullion" />
+                    <resource count="1" name="PlatinumBullion" />
+                </product>
+            </production>
+        </item>
+        <item bronzePrice="6" build_time="2520m" buildingId="industry_academy" cash_price="0" coins_price="0" icon="special_building_industry_academy" label="industry_academy" levelneed="22" renew_time="0m" silverPrice="2" terrain="0,1,2" volumeSize="2x2" />
+        <item build_time="2880m" buildingId="artefactmuseum" cash_price="0" coins_price="9000" icon="special_artefactmuseum" label="artefactmuseum" levelneed="25" renew_time="0m" terrain="0,1,2" volumeSize="2x2" />
+        <item build_time="2880m" buildingId="harbor" cash_price="0" coins_price="8000" label="harbor" levelneed="29" renew_time="0m" terrain="0,1,2,3" volumeSize="3x3">
+            <pers name="Capitan" name2="jak_kusto" name3="cook" />
+        </item>
+        <item build_time="2880m" buildingId="event_center" cash_price="0" coins_price="9000" label="artefactmuseum" levelneed="8" renew_time="0m" terrain="0,1,2" volumeSize="2x2" />
+        <item build_time="1500m" buildingId="laboratory" cash_price="0" coins_price="2000" icon="special_building_laboratory" label="laboratory" levelneed="18" renew_time="0m" terrain="0,1,2" volumeSize="2x2" />
+		<item build_time="4320m" buildingId="bus_station" cash_price="0" coins_price="20000" label="bus_station" levelneed="40" renew_time="0m" terrain="0,1,2" volumeSize="3x4"/>
+    </special_building>
+    <roads>
+        <!-- Дороги -->
+        <item buildingId="rt_asphalt" road_type="0" icon_gui="pb_asphalt"/>
+        <item buildingId="rt_ground" road_type="1" icon_gui="pb_groundroad"/>
+        <item buildingId="rt_gravel" road_type="2" icon_gui="pb_gravelroad"/>
+        <item buildingId="rt_stoneroad" road_type="3" icon_gui="pb_stoneroad"/>
+        <item buildingId="rt_zoosand" road_type="12" icon_gui="pb_zoosand"/>
+        <item buildingId="rt_zoostone" road_type="13" icon_gui="pb_zoostone"/>
+
+        <!-- Плитки -->
+        <item buildingId="rt_dales" road_type="7" icon_gui="pb_rt_dales" levelNeed="1" label="daleLabel"/>
+        <item buildingId="rt_boards" road_type="6" icon_gui="pb_rt_boards" levelNeed="5" label="daleLabel"/>
+        <item buildingId="rt_stone" road_type="9" icon_gui="pb_rt_stone" levelNeed="9" label="daleLabel"/>
+        <item buildingId="rt_hole" road_type="10" icon_gui="pb_rt_hole" levelNeed="13" label="daleLabel"/>
+        <item buildingId="rt_cdales" road_type="8" icon_gui="pb_rt_cdales" levelNeed="17" label="daleLabel"/>
+		<item buildingId="rt_wood" road_type="5" icon_gui="pb_rt_wood" levelNeed="28" label="daleLabel"/>
+        <item buildingId="rt_rawstone" road_type="21" icon_gui="pb_rt_rawstone" levelNeed="32" label="daleLabel"/>
+        <item buildingId="rt_bricks" road_type="19" icon_gui="pb_rt_bricks" levelNeed="38" label="daleLabel"/>
+        <item buildingId="rt_rounds" road_type="4" icon_gui="pb_rt_rounds" levelNeed="43" label="daleLabel"/>
+        <item buildingId="rt_motley" road_type="20" icon_gui="pb_rt_motley" levelNeed="40" label="daleLabel"/>
+        <item buildingId="rt_tetris" road_type="17" icon_gui="pb_rt_tetris" levelNeed="47" label="daleLabel"/>
+        <item buildingId="rt_hexdales" road_type="18" icon_gui="pb_rt_hexdales" levelNeed="50" label="daleLabel"/>
+    </roads>
+    <!-- Другие здания  -->
+    <others>
+        <item buildingId="cropField" icon="shovel" label="cropField" terrain="0,1,2" />
+        <item buildingId="CitySign" icon="CitySign" label="CitySignNameBuilding" terrain="0,1,2" volumeSize="2x2" />
+        <item buildingId="WareHouse" icon_gui="WareHouseIcon" label="WareHouse" terrain="0,1,2" />
+        <item buildingId="WareHouseCash" icon_gui="WareHouseIcon" label="WareHouse" terrain="0,1,2" volumeSize="3x3"/>
+        <item buildingId="helicplace" icon_gui="HeliportIcon" terrain="0,1,2" volumeSize="3x3"/>
+        <!--item buildingId="railways" happiness="0" label="railways" terrain="0,1,2" volumeSize="1x16"/-->
+    </others>
+    <!-- мусор с шаблона -->
+    <debris>
+        <item buildingId="cactus" clear_balance="5" clear_experience="1" cling="true" terrain="0,1,2" />
+        <item buildingId="forest1" clear_balance="5" clear_experience="1" cling="true" terrain="0,1,2" />
+        <item buildingId="forest2" clear_balance="5" clear_experience="1" cling="true" terrain="0,1,2" />
+        <item buildingId="rock" clear_balance="5" clear_experience="1" cling="true" terrain="0,1,2" />
+    </debris>
+    <!-- ландшафт -->
+    <landscape>
+        <!-- Красные деревья могут понадобиться для осеннего апдейта
+        <item buildingId="landscape_big_brown_tree_01" label="Big Brown Tree 01" randomTint="1" refX="95" refY="40" terrain="0,1,2" volumeSize="1x1" />
+        <item buildingId="landscape_big_brown_tree_02" label="Big Brown Tree 02" randomTint="1" refX="114" refY="42" terrain="0,1,2" volumeSize="1x1" />
+        <item buildingId="landscape_big_brown_tree_03" label="Big Brown Tree 03" randomTint="1" refX="116" refY="50" terrain="0,1,2" volumeSize="1x1" />
+        <item buildingId="landscape_big_brown_tree_04" label="Big Brown Tree 04" randomTint="1" refX="85" refY="45" terrain="0,1,2" volumeSize="1x1" />
+        -->
+        <item buildingId="landscape_Bevel" icon="landscape_Bevel" refX="60" refY="36"/>
+        <item buildingId="expand_table" icon="expand_table" randomTint="0" refX="60" refY="28"/>
+        <item buildingId="zoo_expand_table" icon="zoo_expand_table" randomTint="0" refX="60" refY="0"/>
+        <item buildingId="landscape_big_green_tree_01" icon="landscape_big_green_tree_01" randomTint="1" refX="74" refY="26"/>
+        <item buildingId="landscape_big_green_tree_02" icon="landscape_big_green_tree_02" randomTint="1" refX="84" refY="33"/>
+        <item buildingId="landscape_big_green_tree_03" icon="landscape_big_green_tree_03" randomTint="1" refX="80" refY="37"/>
+        <item buildingId="landscape_big_green_tree_04" icon="landscape_big_green_tree_04" randomTint="1" refX="60" refY="35"/>
+        <item buildingId="landscape_big_green_tree_05" icon="landscape_big_green_tree_05" randomTint="1" refX="102" refY="35"/>
+        <item buildingId="landscape_big_yellow_tree_01" icon="landscape_big_yellow_tree_01" randomTint="1" refX="88" refY="31"/>
+        <item buildingId="landscape_big_yellow_tree_02" icon="landscape_big_yellow_tree_02" randomTint="1" refX="84" refY="33"/>
+        <item buildingId="landscape_big_yellow_tree_03" icon="landscape_big_yellow_tree_03" randomTint="1" refX="80" refY="37"/>
+        <item buildingId="landscape_big_yellow_tree_04" icon="landscape_big_yellow_tree_04" randomTint="1" refX="60" refY="35"/>
+        <item buildingId="landscape_big_yellow_tree_05" icon="landscape_big_yellow_tree_05" randomTint="1" refX="60" refY="35"/>
+        <item buildingId="landscape_small_green_tree_01" icon="landscape_small_green_tree_01" randomTint="1" refX="55" refY="28"/>
+        <item buildingId="landscape_small_green_tree_02" icon="landscape_small_green_tree_02" randomTint="1" refX="58" refY="33"/>
+        <item buildingId="landscape_small_green_tree_03" icon="landscape_small_green_tree_03" randomTint="1" refX="64" refY="39"/>
+        <item buildingId="landscape_small_green_tree_04" icon="landscape_small_green_tree_04" randomTint="1" refX="35" refY="20"/>
+        <item buildingId="landscape_small_yellow_tree_01" icon="landscape_small_yellow_tree_01" randomTint="1" refX="55" refY="28"/>
+        <item buildingId="landscape_small_yellow_tree_02" icon="landscape_small_yellow_tree_02" randomTint="1" refX="61" refY="22"/>
+        <item buildingId="landscape_small_yellow_tree_03" icon="landscape_small_yellow_tree_03" randomTint="1" refX="64" refY="39"/>
+        <item buildingId="landscape_small_yellow_tree_04" icon="landscape_small_yellow_tree_04" randomTint="1" refX="35" refY="20"/>
+        <item buildingId="landscape_cypress_01" icon="landscape_cypress_01" randomTint="1" refX="47" refY="21"/>
+        <item buildingId="landscape_cypress_02" icon="landscape_cypress_02" randomTint="1" refX="44" refY="23"/>
+        <item buildingId="landscape_cypress_03" icon="landscape_cypress_03" randomTint="1" refX="26" refY="15"/>
+        <item buildingId="landscape_bush_01" icon="landscape_bush_01" refX="64" refY="36"/>
+        <item buildingId="landscape_bush_02" icon="landscape_bush_02" refX="74" refY="50"/>
+        <item buildingId="landscape_bush_03" icon="landscape_bush_03" refX="64" refY="40"/>
+        <item buildingId="landscape_bush_05" icon="landscape_bush_05" refX="56" refY="30"/>
+        <item buildingId="landscape_bush_06" icon="landscape_bush_06" refX="78" refY="40"/>
+        <item buildingId="landscape_bush_07" icon="landscape_bush_07" refX="74" refY="28"/>
+        <item buildingId="landscape_yellow_bush_03" icon="landscape_yellow_bush_03" refX="64" refY="40"/>
+        <item buildingId="landscape_yellow_bush_05" icon="landscape_yellow_bush_05" refX="56" refY="30"/>
+        <item buildingId="landscape_yellow_bush_06" icon="landscape_yellow_bush_06" refX="78" refY="40"/>
+        <item buildingId="landscape_yellow_bush_07" icon="landscape_yellow_bush_07" refX="74" refY="28"/>
+        <item buildingId="landscape_fir_tree_05" icon="landscape_fir_tree_05" randomTint="1" refX="68" refY="40"/>
+        <item buildingId="landscape_fir_tree_06" icon="landscape_fir_tree_06" randomTint="1" refX="76" refY="30"/>
+        <item buildingId="landscape_fir_tree_07" icon="landscape_fir_tree_07" randomTint="1" refX="70" refY="40"/>
+        <item buildingId="landscape_flowers_01" icon="landscape_flowers_01" refX="28" refY="28"/>
+        <item buildingId="landscape_flowers_02" icon="landscape_flowers_02" refX="44" refY="28"/>
+        <item buildingId="landscape_flowers_04" icon="landscape_flowers_04" refX="26" refY="18"/>
+        <item buildingId="landscape_flowers_05" icon="landscape_flowers_05" refX="60" refY="48"/>
+        <item buildingId="landscape_flowers_06" icon="landscape_flowers_06" refX="44" refY="28"/>
+        <item buildingId="landscape_flowers_07" icon="landscape_flowers_07" refX="80" refY="60"/>
+        <item buildingId="landscape_flowers_08" icon="landscape_flowers_08" refX="78" refY="42"/>
+        <item buildingId="landscape_flowers_09" icon="landscape_flowers_09" refX="60" refY="36"/>
+        <item buildingId="landscape_flowers_11" icon="landscape_flowers_11" refX="30" refY="20"/>
+        <item buildingId="landscape_flowers_12" icon="landscape_flowers_12" refX="26" refY="10"/>
+        <item buildingId="landscape_fowers_10" icon="landscape_fowers_10" refX="64" refY="44"/>
+        <item buildingId="landscape_glass_01" icon="landscape_glass_01" refX="44" refY="14"/>
+        <item buildingId="landscape_hummock_01" icon="landscape_hummock_01" refX="68" refY="48"/>
+        <item buildingId="landscape_hummock_02" icon="landscape_hummock_02" refX="98" refY="54"/>
+        <item buildingId="landscape_hummock_03" icon="landscape_hummock_03" refX="68" refY="46"/>
+        <item buildingId="landscape_mushrooms_01" icon="landscape_mushrooms_01" refX="24" refY="16"/>
+        <item buildingId="landscape_mushrooms_02" icon="landscape_mushrooms_02" refX="8" refY="8"/>
+        <item buildingId="landscape_one_flower_01" icon="landscape_one_flower_01" refX="5" refY="5"/>
+        <item buildingId="landscape_one_flower_02" icon="landscape_one_flower_02" refX="6" refY="6"/>
+        <item buildingId="landscape_one_flower_03" icon="landscape_one_flower_03" refX="6" refY="12"/>
+        <item buildingId="landscape_one_flower_04" icon="landscape_one_flower_04" refX="6" refY="12"/>
+        <item buildingId="landscape_one_flower_05" icon="landscape_one_flower_05" refX="6" refY="12"/>
+        <item buildingId="landscape_one_flower_06" icon="landscape_one_flower_06" refX="6" refY="12"/>
+        <item buildingId="landscape_pond_01" icon="landscape_pond_01" refX="96" refY="24"/>
+        <item buildingId="landscape_pond_02" icon="landscape_pond_02" refX="142" refY="76" volumeSize="2x2"/>
+        <item buildingId="landscape_pond_03" icon="landscape_pond_03" refX="174" refY="92" volumeSize="2x2"/>
+        <item buildingId="landscape_pond_04" icon="landscape_pond_04" refX="170" refY="66" volumeSize="2x2"/>
+        <item buildingId="landscape_sand_01" icon="landscape_sand_01" refX="76" refY="36"/>
+        <item buildingId="landscape_sand_02" icon="landscape_sand_02" refX="76" refY="36"/>
+        <item buildingId="landscape_sand_03" icon="landscape_sand_03" refX="76" refY="36"/>
+        <item buildingId="landscape_sand_04" icon="landscape_sand_04" refX="76" refY="36"/>
+        <item buildingId="landscape_stone_01" icon="landscape_stone_01" refX="94" refY="46"/>
+        <item buildingId="landscape_stones_01" icon="landscape_stones_01" refX="60" refY="20"/>
+        <item buildingId="landscape_stones_02" icon="landscape_stones_02" refX="16" refY="10"/>
+        <item buildingId="landscape_stones_03" icon="landscape_stones_03" refX="10" refY="8"/>
+        <item buildingId="landscape_stumps_01" icon="landscape_stumps_01" refX="74" refY="50"/>
+        <item buildingId="landscape_stumps_02" icon="landscape_stumps_02" refX="82" refY="46"/>
+        <item buildingId="landscape_stumps_03" icon="landscape_stumps_03" refX="70" refY="40"/>
+        <item buildingId="landscape_stumps_05" icon="landscape_stumps_05" refX="40" refY="14"/>
+        <item buildingId="landscape_stumps_06" icon="landscape_stumps_06" refX="46" refY="20"/>
+        <item buildingId="landscape_mountain_01w" icon="landscape_mountain_01" refX="17" refY="35"/>
+        <item buildingId="landscape_mountain_01" icon="landscape_mountain_01" refX="123" refY="125"/>
+        <item buildingId="landscape_mountain_02" icon="landscape_mountain_02" refX="140" refY="155"/>
+        <item buildingId="landscape_mountain_03" icon="landscape_mountain_03" refX="125" refY="140"/>
+        <item buildingId="landscape_mountain_04" icon="landscape_mountain_04" refX="205" refY="155"/>
+        <item buildingId="landscape_mountain_05" icon="landscape_mountain_05" refX="202" refY="150"/>
+        <item buildingId="landscape_mountain_06" icon="landscape_mountain_06" refX="129" refY="151"/>
+        <item buildingId="landscape_mountain_07" icon="landscape_mountain_07" refX="130" refY="200"/>
+        <item buildingId="landscape_mountain_08" icon="landscape_mountain_08" refX="140" refY="170"/>
+        <item buildingId="landscape_mountain_09" icon="landscape_mountain_09" refX="59" refY="81"/>
+        <item buildingId="landscape_mountain_10" icon="landscape_mountain_10" refX="120" refY="40"/>
+        <item buildingId="landscape_mountain_11" icon="landscape_mountain_11" refX="57" refY="76"/>
+        <item buildingId="landscape_mountain_12" icon="landscape_mountain_12" refX="71" refY="12"/>
+        <item buildingId="landscape_mountain_15" icon="landscape_mountain_15" refX="60" refY="56"/>
+        <item buildingId="landscape_mountain_16" icon="landscape_mountain_16" refX="78" refY="42"/>
+        <item buildingId="landscape_mountain_17" icon="landscape_mountain_17" refX="50" refY="40"/>
+        <item buildingId="landscape_mountain_18" icon="landscape_mountain_18" refX="88" refY="74"/>
+        <item buildingId="landscape_mountain_19" icon="landscape_mountain_19" refX="84" refY="56"/>
+        <item buildingId="landscape_mountain_20" icon="landscape_mountain_20" refX="98" refY="56"/>
+        <item buildingId="landscape_mountain_21" icon="landscape_mountain_21" refX="48" refY="34"/>
+        <item buildingId="landscape_mountain_22" icon="landscape_mountain_22" refX="75" refY="100"/>
+        <item buildingId="landscape_castle_01" icon="landscape_castle_01" refX="0" refY="0"/>
+        <item buildingId="landscape_stationSpace" icon="landscape_stationSpace" refX="64" refY="40"/>
+        <item buildingId="landscape_stationSpace2" icon="landscape_stationSpace2" refX="64" refY="40"/>
+        <item buildingId="landscape_stationSpace3" icon="landscape_stationSpace3" refX="64" refY="40"/>
+        <!--dublicates-->
+        <item buildingId="landscape_cypress_01_top" icon="landscape_cypress_01" refX="0" refY="0"/>
+        <item buildingId="landscape_cypress_02_top" icon="landscape_cypress_02" refX="0" refY="0"/>
+        <item buildingId="landscape_fir_tree_06_top" icon="landscape_fir_tree_06" refX="0" refY="0"/>
+        <item buildingId="landscape_mountain_01_top" icon="landscape_mountain_01" refX="0" refY="0"/>
+        <item buildingId="landscape_mountain_02_top" icon="landscape_mountain_02" refX="0" refY="0"/>
+        <item buildingId="landscape_mountain_07_top" icon="landscape_mountain_07" refX="0" refY="0"/>
+        <item buildingId="landscape_mountain_08_top" icon="landscape_mountain_08" refX="0" refY="0"/>
+        <!--dublicates-->
+        <item buildingId="landscape_waterfall_01" icon="landscape_waterfall_01" refX="250" refY="20" >
+            <constParticleEffect id="waterfall_water_effect2" x="338" y="702"/>
+            <waterfall>
+                <Beauties>
+                    <StretchTexture height="178" inGameType="water" texture="landscape_water1_small" width="231" x="458.517" y="203.199">
+                        <mesh ind="30" vert="12">
+                            <vert tx="0" ty="1" x="45.2213" y="-41.2802"/>
+                            <vert tx="0.5" ty="1" x="5.00133" y="-35.1052"/>
+                            <vert tx="0.5" ty="0" x="17.3069" y="-14.613"/>
+                            <vert tx="0" ty="0" x="39.3377" y="-23.8489"/>
+                            <vert tx="1" ty="1" x="-18.7793" y="-31.7767"/>
+                            <vert tx="1" ty="0" x="-6.21548" y="-9.69272"/>
+                            <vert tx="1.5" ty="1" x="-47.3443" y="-23.4032"/>
+                            <vert tx="1.5" ty="0" x="-34.2716" y="-3.40274"/>
+                            <vert tx="2" ty="1" x="-82.4861" y="47.9941"/>
+                            <vert tx="2" ty="0" x="-78.0603" y="90.676"/>
+                            <vert tx="2.5" ty="1" x="-120.902" y="48.8119"/>
+                            <vert tx="2.5" ty="0" x="-116.476" y="96.1575"/>
+                        </mesh>
+                        <indexes>
+                            <poly v0="0" v1="1" v2="2" v3="3"/>
+                            <poly v0="1" v1="4" v2="5" v3="2"/>
+                            <poly v0="4" v1="6" v2="7" v3="5"/>
+                            <poly v0="6" v1="8" v2="9" v3="7"/>
+                            <poly v0="8" v1="10" v2="11" v3="9"/>
+                        </indexes>
+                    </StretchTexture>
+                    <StretchTexture height="227" inGameType="water" texture="landscape_water1" width="22" x="625.749" y="490.081">
+                        <mesh ind="24" vert="10">
+                            <vert tx="0" ty="1" x="-196.861" y="-133.042"/>
+                            <vert tx="0.5" ty="1" x="-211.676" y="-36.5407"/>
+                            <vert tx="0.5" ty="0" x="-100.509" y="-59.3307"/>
+                            <vert tx="0" ty="0" x="-111.807" y="-123.741"/>
+                            <vert tx="1" ty="1" x="-201.497" y="132.215"/>
+                            <vert tx="1" ty="0" x="-80.0816" y="87.0727"/>
+                            <vert tx="1.5" ty="1" x="-186.076" y="156.94"/>
+                            <vert tx="1.5" ty="0" x="-53.6036" y="100.361"/>
+                            <vert tx="2" ty="1" x="-165.704" y="172.967"/>
+                            <vert tx="2" ty="0" x="-29.203" y="113.748"/>
+                        </mesh>
+                        <indexes>
+                            <poly v0="0" v1="1" v2="2" v3="3"/>
+                            <poly v0="1" v1="4" v2="5" v3="2"/>
+                            <poly v0="4" v1="6" v2="7" v3="5"/>
+                            <poly v0="6" v1="8" v2="9" v3="7"/>
+                        </indexes>
+                    </StretchTexture>
+                    <Beauty height="36" texture="landscape_cover1" width="46" x="501.854" y="173.373"/>
+                    <StretchTexture height="416" inGameType="water" texture="landscape_water1_small" width="235" x="584.009" y="165.589">
+                        <mesh ind="48" vert="18">
+                            <vert tx="0" ty="1" x="14.4867" y="-105.966"/>
+                            <vert tx="0.5" ty="1" x="-7.21909" y="-82.996"/>
+                            <vert tx="0.5" ty="0" x="19.1787" y="-81.2214"/>
+                            <vert tx="0" ty="0" x="33.8834" y="-104.134"/>
+                            <vert tx="1" ty="1" x="-9.65953" y="-51.3566"/>
+                            <vert tx="1" ty="0" x="20.2931" y="-53.8718"/>
+                            <vert tx="1.5" ty="1" x="-16.1207" y="-30.8906"/>
+                            <vert tx="1.5" ty="0" x="14.3899" y="-11.2601"/>
+                            <vert tx="2" ty="1" x="-63.3037" y="-18.182"/>
+                            <vert tx="2" ty="0" x="-16.155" y="10.0558"/>
+                            <vert tx="2.5" ty="1" x="-105.599" y="4.15061"/>
+                            <vert tx="2.5" ty="0" x="-28.2815" y="38.0931"/>
+                            <vert tx="3" ty="1" x="-108.508" y="39.1061"/>
+                            <vert tx="3" ty="0" x="-45.8102" y="67.4517"/>
+                            <vert tx="3.5" ty="1" x="-152.885" y="96.9832"/>
+                            <vert tx="3.5" ty="0" x="-73.1259" y="104.476"/>
+                            <vert tx="4" ty="1" x="-170.488" y="189.191"/>
+                            <vert tx="4" ty="0" x="-71.8311" y="200.945"/>
+                        </mesh>
+                        <indexes>
+                            <poly v0="0" v1="1" v2="2" v3="3"/>
+                            <poly v0="1" v1="4" v2="5" v3="2"/>
+                            <poly v0="4" v1="6" v2="7" v3="5"/>
+                            <poly v0="6" v1="8" v2="9" v3="7"/>
+                            <poly v0="8" v1="10" v2="11" v3="9"/>
+                            <poly v0="10" v1="12" v2="13" v3="11"/>
+                            <poly v0="12" v1="14" v2="15" v3="13"/>
+                            <poly v0="14" v1="16" v2="17" v3="15"/>
+                        </indexes>
+                    </StretchTexture>
+                    <StretchTexture color="0xFFFFFFFF" height="327" inGameType="water" texture="landscape_water1" width="19" x="552.116" y="508.801">
+                        <mesh ind="30" vert="12">
+                            <vert tx="0" ty="1" x="-140.82" y="-154.334"/>
+                            <vert tx="0.5" ty="1" x="-204.934" y="-100.665"/>
+                            <vert tx="0.5" ty="0" x="-97.7338" y="-107.691"/>
+                            <vert tx="0" ty="0" x="-82.9818" y="-146.655"/>
+                            <vert tx="1" ty="1" x="-201.922" y="-41.3551"/>
+                            <vert tx="1" ty="0" x="-108.217" y="-57.3943"/>
+                            <vert tx="1.5" ty="1" x="-192.013" y="121.395"/>
+                            <vert tx="1.5" ty="0" x="-91.366" y="101.946"/>
+                            <vert tx="2" ty="1" x="-145.975" y="141.496"/>
+                            <vert tx="2" ty="0" x="-69.6417" y="117.609"/>
+                            <vert tx="2.5" ty="1" x="-105.836" y="155.362"/>
+                            <vert tx="2.5" ty="0" x="-54.1527" y="146.552"/>
+                        </mesh>
+                        <indexes>
+                            <poly v0="0" v1="1" v2="2" v3="3"/>
+                            <poly v0="1" v1="4" v2="5" v3="2"/>
+                            <poly v0="4" v1="6" v2="7" v3="5"/>
+                            <poly v0="6" v1="8" v2="9" v3="7"/>
+                            <poly v0="8" v1="10" v2="11" v3="9"/>
+                        </indexes>
+                    </StretchTexture>
+                    <Beauty height="414" texture="landscape_cover2" width="308" x="477" y="250"/>
+                    <Beauty height="50" texture="landscape_cover5" width="57" x="350" y="280"/>
+                    <Beauty height="110" texture="landscape_cover3" width="253" x="467" y="617"/>
+                    <Beauty height="21" texture="landscape_cover4" width="90" x="461.894" y="359.988"/>
+                </Beauties>
+            </waterfall>
+        </item>
+        <item buildingId="landscape_waterfall_02" icon="landscape_waterfall_02" refX="250" refY="20" >
+            <waterfall>
+                <Beauties>
+                    <StretchTexture height="416" inGameType="water" texture="landscape_water1_small" width="235" x="584.009" y="165.589">
+                        <mesh ind="48" vert="18">
+                            <vert tx="2.5" ty="1" x="-118.508" y="335.1061"/>
+                            <vert tx="2.5" ty="0" x="-60.8102" y="357.4517"/>
+                            <vert tx="3" ty="1" x="-232.885" y="416.9832"/>
+                            <vert tx="3" ty="0" x="-100.1259" y="430.476"/>
+                            <vert tx="3.5" ty="1" x="-230.488" y="529.191"/>
+                            <vert tx="3.5" ty="0" x="-104.8311" y="550.945"/>
+
+                            <vert tx="3.5" ty="0.75" x="-199.488" y="534.191"/>
+                            <vert tx="3.5" ty="0.5" x="-168.488" y="539.191"/>
+                            <vert tx="3.5" ty="0.25" x="-136.488" y="545.191"/>
+
+                            <vert tx="4" ty="1" x="-255.488" y="557.191"/>
+                            <vert tx="4" ty="0.75" x="-220.488" y="575.891"/>
+                            <vert tx="4" ty="0.5" x="-190.488" y="580.191"/>
+                            <vert tx="4" ty="0.25" x="-155.488" y="580.091"/>
+                            <vert tx="4" ty="0" x="-115.8311" y="570.945"/>
+                        </mesh>
+                        <indexes>
+                            <poly v0="0" v1="2" v2="3" v3="1"/>
+                            <poly v0="2" v1="4" v2="5" v3="3"/>
+
+                            <poly v0="4" v1="9" v2="10" v3="6"/>
+                            <poly v0="6" v1="10" v2="11" v3="7"/>
+                            <poly v0="7" v1="11" v2="12" v3="8"/>
+                            <poly v0="8" v1="12" v2="13" v3="5"/>
+                        </indexes>
+                    </StretchTexture>
+                    <Beauty height="414" texture="landscape_waterfall_02_cover" width="295" x="427" y="545"/>
+                </Beauties>
+            </waterfall>
+            <constParticleEffect id="waterfall_water_effect3" x="327" y="514"/>
+        </item>
+
+        <!-- Zoo landscape -->
+        <item buildingId="zoo_landscape_grass_tile1" icon="zoo_landscape_grass_tile1" refX="110" refY="60"/>
+        <item buildingId="zoo_landscape_grass_tile2" icon="zoo_landscape_grass_tile2" refX="110" refY="60"/>
+        <item buildingId="zoo_landscape_grass_tile3" icon="zoo_landscape_grass_tile3" refX="110" refY="60"/>
+
+        <item buildingId="zoo_landscape_rock_back1" icon="zoo_landscape_rock_back1" refX="0" refY="0"/>
+        <item buildingId="zoo_landscape_rock_back2" icon="zoo_landscape_rock_back2" refX="0" refY="0"/>
+        <item buildingId="zoo_landscape_rock_corner1" icon="zoo_landscape_rock_corner1" refX="48" refY="22"/>
+        <item buildingId="zoo_landscape_rock_corner2" icon="zoo_landscape_rock_corner2" refX="58" refY="28"/>
+        <item buildingId="zoo_landscape_rock_corner3" icon="zoo_landscape_rock_corner3" refX="0" refY="0"/>
+        <item buildingId="zoo_landscape_rock_corner4" icon="zoo_landscape_rock_corner4" refX="0" refY="0"/>
+        <item buildingId="zoo_landscape_rock_front1" icon="zoo_landscape_rock_front1" refX="78" refY="48"/>
+        <item buildingId="zoo_landscape_rock_front2" icon="zoo_landscape_rock_front2" refX="80" refY="40"/>
+        <item buildingId="zoo_landscape_rock_front3" icon="zoo_landscape_rock_front3" refX="76" refY="42"/>
+
+        <item buildingId="zoo_landscape_bush1" icon="zoo_landscape_bush1" refX="48" refY="22"/>
+        <item buildingId="zoo_landscape_bush2" icon="zoo_landscape_bush2" refX="34" refY="10"/>
+        <item buildingId="zoo_landscape_flower1" icon="zoo_landscape_flower1" refX="38" refY="18"/>
+        <item buildingId="zoo_landscape_flower2" icon="zoo_landscape_flower2" refX="44" refY="26"/>
+        <item buildingId="zoo_landscape_flower3" icon="zoo_landscape_flower3" refX="70" refY="34"/>
+        <item buildingId="zoo_landscape_flower4" icon="zoo_landscape_flower4" refX="30" refY="20"/>
+        <item buildingId="zoo_landscape_flower5" icon="zoo_landscape_flower5" refX="22" refY="8"/>
+        <item buildingId="zoo_landscape_flower6" icon="zoo_landscape_flower6" refX="44" refY="22"/>
+        <item buildingId="zoo_landscape_grass1" icon="zoo_landscape_grass1" refX="66" refY="26"/>
+        <item buildingId="zoo_landscape_grass2" icon="zoo_landscape_grass2" refX="34" refY="10"/>
+        <item buildingId="zoo_landscape_stone1" icon="zoo_landscape_stone1" refX="34" refY="10"/>
+        <item buildingId="zoo_landscape_stone2" icon="zoo_landscape_stone2" refX="48" refY="14"/>
+        <item buildingId="zoo_landscape_stone3" icon="zoo_landscape_stone3" refX="48" refY="16"/>
+        <item buildingId="zoo_landscape_tree_small1" icon="zoo_landscape_tree_small1" refX="32" refY="6"/>
+        <item buildingId="zoo_landscape_tree1" icon="zoo_landscape_tree1" refX="70" refY="18"/>
+        <item buildingId="zoo_landscape_tree2" icon="zoo_landscape_tree2" refX="68" refY="20"/>
+
+        <item buildingId="zoo_landscape_entrance_bench1" icon="zoo_landscape_entrance_bench1" refX="0" refY="0"/>
+        <item buildingId="zoo_landscape_entrance_bench2" icon="zoo_landscape_entrance_bench2" refX="0" refY="0"/>
+        <item buildingId="zoo_landscape_entrance_bench3" icon="zoo_landscape_entrance_bench3" refX="0" refY="0"/>
+        <item buildingId="zoo_landscape_entrance_bench4" icon="zoo_landscape_entrance_bench4" refX="0" refY="0"/>
+        <item buildingId="zoo_landscape_entrance_fence1_shadow_wall" icon="zoo_landscape_entrance_fence1_shadow_wall" refX="0" refY="0"/>
+        <item buildingId="zoo_landscape_entrance_fence1_sun_wall" icon="zoo_landscape_entrance_fence1_sun_wall" refX="0" refY="0"/>
+        <item buildingId="zoo_landscape_entrance_fence1_tower" icon="zoo_landscape_entrance_fence1_tower" refX="0" refY="0"/>
+        <item buildingId="zoo_landscape_entrance_fence2_angleR" icon="hedge_angleR" refX="0" refY="0"/>
+        <item buildingId="zoo_landscape_entrance_fence2_angleUp" icon="hedge_angleUp" refX="0" refY="0"/>
+        <item buildingId="zoo_landscape_entrance_fence2_angleDown" icon="hedge_angleDown" refX="0" refY="0"/>
+        <item buildingId="zoo_landscape_entrance_fence2_line" icon="hedge_line" refX="0" refY="0"/>
+        <item buildingId="zoo_landscape_entrance_fence2_halfLineUp" icon="hedge_halfLineUp" refX="0" refY="0"/>
+        <item buildingId="zoo_landscape_entrance_fence2_halfLineDown" icon="hedge_halfLineDown" refX="0" refY="0"/>
+        <item buildingId="zoo_landscape_entrance_fontain" icon="zoo_landscape_entrance_fontain" refX="0" refY="0" >
+            <constParticleEffect id="FountainElephant" x="146" y="62" scale="0.5655"/>
+        </item>
+        <item buildingId="zoo_landscape_entrance_fontain_ground" icon="zoo_landscape_entrance_fontain_ground" refX="0" refY="0"/>
+        <item buildingId="zoo_landscape_entrance_gate" icon="zoo_landscape_entrance_gate" refX="0" refY="0" >
+            <flag/>
+        </item>
+        <item buildingId="zoo_landscape_entrance_lantern" icon="zoo_landscape_entrance_lantern" refX="0" refY="0"/>
+        <item buildingId="zoo_landscape_entrance_stone_circle" icon="zoo_landscape_entrance_stone_circle" refX="0" refY="0"/>
+        <item buildingId="zoo_landscape_entrance_pond" icon="zoo_landscape_entrance_pond" refX="0" refY="0"/>
+        <item buildingId="zoo_landscape_entrance_infotable" icon="zoo_landscape_entrance_infotable" refX="0" refY="0"/>
+
+        <item buildingId="zoo_landscape_entrance_stuff1" icon="zoo_landscape_entrance_stuff1" refX="0" refY="0"/>
+        <item buildingId="zoo_landscape_entrance_stuff2" icon="zoo_landscape_entrance_stuff2" refX="0" refY="0"/>
+
+    </landscape>
+</buildings>

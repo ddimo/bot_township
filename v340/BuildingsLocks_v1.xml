@@ -1,0 +1,453 @@
+<?xml version='1.0' encoding='utf-8'?>
+<BuildingsLocks>
+    <building buildingId="mill">
+        <params level="3" population="60" price="150" seq="1" time="40s" />
+        <params level="19" population="655" price="3000" seq="2" time="960m" />
+        <params level="44" population="4150" price="40000" seq="3" time="2700m" />
+    </building>
+    <building buildingId="cowfactory">
+        <params level="1" price="100" seq="1" time="5s" />
+        <params level="15" price="1000" seq="2" time="840m" />
+        <params level="22" price="5000" seq="3" time="1560m" />
+    </building>
+    <building buildingId="chickenfactory">
+        <params level="5" price="200" seq="1" time="60m" />
+        <params level="24" price="3000" seq="2" time="1680m" />
+        <params level="39" price="15000" seq="3" time="2400m" />
+    </building>
+    <building buildingId="sheepfactory">
+        <params level="10" price="600" seq="1" time="240m" />
+        <params level="31" price="8000" seq="2" time="2040m" />
+    </building>
+    <building buildingId="pigfactory">
+        <params level="42" price="12000" seq="1" time="2580m" />
+        <params level="54" price="35000" seq="2" time="3420m" />
+    </building>
+    <building buildingId="beefactory">
+        <params level="35" price="9000" seq="1" time="2280m" />
+        <params level="50" price="15000" seq="2" time="2760m" />
+    </building>
+    <building buildingId="bakery">
+        <params level="2" population="55" price="125" seq="1" time="5s" />
+    </building>
+    <building buildingId="chipsfactory">
+        <params level="14" population="300" price="1400" seq="1" time="720m" />
+    </building>
+    <building buildingId="fastfoodfactory">
+        <params level="16" population="425" price="2400" seq="1" time="960m" />
+    </building>
+    <building buildingId="milkfactory">
+        <params level="4" population="65" price="175" seq="1" time="60m" />
+    </building>
+    <building buildingId="sugarfactory">
+        <params level="7" population="75" price="250" seq="1" time="120m" />
+    </building>
+    <building buildingId="icecreamfactory">
+        <params level="20" population="735" price="4300" seq="1" time="1440m" />
+    </building>
+    <building buildingId="chocolatefactory">
+        <params level="24" population="1100" price="6000" seq="1" time="1680m" />
+    </building>
+    <building buildingId="candyfactory">
+        <params level="39" population="3190" price="33000" seq="1" time="2400m" />
+    </building>
+    <building buildingId="mexfoodfactory">
+        <params level="43" population="3950" price="49000" seq="1" time="2640m" />
+    </building>
+    <building buildingId="cottonfactory">
+        <params level="9" population="105" price="500" seq="1" time="360m" />
+    </building>
+    <building buildingId="clothingfactory">
+        <params level="12" population="195" price="800" seq="1" time="600m" />
+    </building>
+    <building buildingId="spongefactory">
+        <params level="29" population="1670" price="12000" seq="1" time="1920m" />
+    </building>
+    <building buildingId="paperfactory">
+        <params level="18" population="570" price="3400" seq="1" time="960m" />
+    </building>
+    <building buildingId="furniturefactory">
+        <params level="47" population="4760" price="70000" seq="1" time="2880m" />
+    </building>
+    <building buildingId="shoefactory">
+        <params level="50" population="5465" price="85000" seq="1" time="3120m" />
+    </building>
+    <building buildingId="wheelfactory">
+        <params level="34" population="2375" price="21000" seq="1" time="2160m" />
+    </building>
+    <building buildingId="jewelryfactory">
+        <params level="53" population="5860" price="100000" seq="1" time="3360m" />
+    </building>
+    <building buildingId="jamfactory">
+        <params level="27" population="1480" price="8200" seq="1" time="1560m" />
+    </building>
+    <building buildingId="sushifactory">
+        <params level="56" population="7500" price="140000" seq="1" time="3600m" />
+    </building>
+    <building buildingId="roasterfactory">
+        <params level="59" population="8700" price="170000" seq="1" time="3780m" />
+    </building>
+    <building buildingId="scentfactory">
+        <params level="61" population="9480" price="200000" seq="1" time="3900m" />
+    </building>
+    <building buildingId="drinksfactory">
+        <params level="65" population="10900" price="300000" seq="1" time="4320m" />
+    </building>
+    <building buildingId="cityhall_v1">
+        <params level="1" price="50" seq="1" />
+    </building>
+    <building buildingId="store_101">
+        <params level="4" price="25" seq="1" />
+    </building>
+    <building buildingId="school_v1">
+        <params level="5" price="30" seq="1" />
+    </building>
+    <building buildingId="hospital">
+        <params level="6" price="40" seq="1" />
+    </building>
+    <building buildingId="police">
+        <params level="7" price="50" seq="1" />
+    </building>
+    <building buildingId="firestation">
+        <params level="8" price="75" seq="1" />
+    </building>
+    <building buildingId="post_office_v1">
+        <params level="9" price="100" seq="1" />
+    </building>
+    <building buildingId="laundry_v1">
+        <params level="10" price="125" seq="1" />
+    </building>
+    <building buildingId="cinema1_01">
+        <params level="11" price="150" seq="1" />
+    </building>
+    <building buildingId="cafe1_01">
+        <params level="12" price="175" seq="1" />
+    </building>
+    <building buildingId="barder_v1">
+        <params level="13" price="200" seq="1" />
+    </building>
+    <building buildingId="pizzeria">
+        <params level="14" price="250" seq="1" />
+    </building>
+    <building buildingId="widden_house_v1">
+        <params level="15" price="300" seq="1" />
+    </building>
+    <building buildingId="music_shop_v1">
+        <params level="16" price="350" seq="1" />
+    </building>
+    <building buildingId="bowling">
+        <params level="17" price="400" seq="1" />
+    </building>
+    <building buildingId="toyshop_v1">
+        <params level="18" price="450" seq="1" />
+    </building>
+    <building buildingId="photo_v1">
+        <params level="19" price="500" seq="1" />
+    </building>
+    <building buildingId="rocket_ride">
+        <params level="20" price="650" seq="1" />
+    </building>
+    <building buildingId="observatory">
+        <params level="21" price="800" seq="1" />
+    </building>
+    <building buildingId="library">
+        <params level="22" price="950" seq="1" />
+    </building>
+    <building buildingId="univers_v1">
+        <params level="23" price="1100" seq="1" />
+    </building>
+    <building buildingId="theatre_v1">
+        <params level="24" price="1350" seq="1" />
+    </building>
+    <building buildingId="museum_v1">
+        <params level="25" price="1600" seq="1" />
+    </building>
+    <building buildingId="circus_v1">
+        <params level="26" price="1900" seq="1" />
+    </building>
+    <building buildingId="garage_v1">
+        <params level="27" price="2200" seq="1" />
+    </building>
+    <building buildingId="gasstation_v1">
+        <params level="28" price="2500" seq="1" />
+    </building>
+    <building buildingId="taxi_v1">
+        <params level="29" price="2900" seq="1" />
+    </building>
+    <building buildingId="drivein_cinema_v1">
+        <params level="30" price="3300" seq="1" />
+    </building>
+    <building buildingId="office_v1">
+        <params level="31" price="3800" seq="1" />
+    </building>
+    <building buildingId="hotel_v1">
+        <params level="32" price="4300" seq="1" />
+    </building>
+    <building buildingId="tv_v1">
+        <params level="33" price="4800" seq="1" />
+    </building>
+    <building buildingId="tvtower_v1">
+        <params level="34" price="5300" seq="1" />
+    </building>
+    <building buildingId="wheel_v1">
+        <params level="35" price="5900" seq="1" />
+    </building>
+    <building buildingId="roller">
+        <params level="36" price="6500" seq="1" />
+    </building>
+    <building buildingId="stadium_v1">
+        <params level="37" price="7200" seq="1" />
+    </building>
+    <building buildingId="petstore">
+        <params level="38" price="7900" seq="1" />
+    </building>
+    <building buildingId="weatherstation">
+        <params level="39" price="8600" seq="1" />
+    </building>
+    <building buildingId="airfield_v1">
+        <params level="40" price="9300" seq="1" />
+    </building>
+    <building buildingId="comic_store">
+        <params level="41" price="10000" seq="1" />
+    </building>
+    <building buildingId="coastguard">
+        <params level="42" price="10700" seq="1" />
+    </building>
+    <building buildingId="supermarket">
+        <params level="43" price="11500" seq="1" />
+    </building>
+    <building buildingId="greenhouse">
+        <params level="44" price="12500" seq="1" />
+    </building>
+    <building buildingId="water_park">
+        <params level="45" price="13500" seq="1" />
+    </building>
+    <building buildingId="motorshow">
+        <params level="46" price="14500" seq="1" />
+    </building>
+    <building buildingId="hydropower">
+        <params level="47" price="15500" seq="1" />
+    </building>
+    <building buildingId="fashion">
+        <params level="48" price="16500" seq="1" />
+    </building>
+    <building buildingId="film_studio">
+        <params level="49" price="17500" seq="1" />
+    </building>
+    <building buildingId="court_of_law">
+        <params level="50" price="18500" seq="1" />
+    </building>
+    <building buildingId="karting">
+        <params level="51" price="19500" seq="1" />
+    </building>
+    <building buildingId="gym">
+        <params level="52" price="20500" seq="1" />
+    </building>
+    <building buildingId="spa_center">
+        <params level="53" price="21500" seq="1" />
+    </building>
+    <building buildingId="golf">
+        <params level="54" price="22500" seq="1" />
+    </building>
+    <building buildingId="organ_hall">
+        <params level="55" price="23500" seq="1" />
+    </building>
+    <building buildingId="donut_shop">
+        <params level="56" price="25000" seq="1" />
+    </building>
+    <building buildingId="racing">
+        <params level="57" price="26500" seq="1" />
+    </building>
+    <building buildingId="climbing_wall">
+        <params level="58" price="28000" seq="1" />
+    </building>
+    <building buildingId="car_workshop">
+        <params level="59" price="29500" seq="1" />
+    </building>
+    <building buildingId="planetarium">
+        <params level="60" price="31000" seq="1" />
+    </building>
+    <building buildingId="flower_shop">
+        <params level="62" price="50500" seq="1" />
+    </building>
+    <building buildingId="hippodrome">
+        <params level="64" price="63000" seq="1" />
+    </building>
+    <building buildingId="concert_venue">
+        <params level="66" price="75500" seq="1" />
+    </building>
+    <building buildingId="car_wash">
+        <params level="68" price="87000" seq="1" />
+    </building>
+    <building buildingId="dolphinarium">
+        <params level="70" price="99500" seq="1" />
+    </building>
+    <building buildingId="lighthouse">
+        <params level="72" price="111000" seq="1" />
+    </building>
+    <building buildingId="office_center">
+        <params level="74" price="125000" seq="1" />
+    </building>
+    <building buildingId="bike_rental">
+        <params level="76" price="133000" seq="1" />
+    </building>
+    <building buildingId="kindergarten">
+        <params level="78" price="148000" seq="1" />
+    </building>
+    <building buildingId="dog_training">
+        <params level="80" price="167000" seq="1" />
+    </building>
+    <building buildingId="bank_v1">
+        <params level="82" price="180000" seq="1" />
+    </building>
+	
+	
+	<building buildingId="golden_palace">
+        <params buildNeed="" level="11" population="160" price="800" seq="1" />
+    </building>
+    <building buildingId="citymarket">
+        <params buildNeed="" level="13" population="250" price="1700" seq="1" />
+    </building>
+    <building buildingId="airport">
+        <params buildNeed="" level="17" population="0" price="1500" seq="1" />
+    </building>
+    <building buildingId="digging">
+        <params buildNeed="" level="21" population="0" price="3000" seq="1" />
+    </building>
+    <building buildingId="smeltery">
+        <params buildNeed="digging" level="21" population="730" price="2000" seq="1" />
+        <params buildNeed="digging" level="21" population="920" price="8000" seq="2" />
+    </building>
+    <building buildingId="mint">
+        <params buildNeed="digging" level="31" population="1650" price="15000" seq="1" />
+    </building>
+    <building buildingId="industry_academy">
+        <params buildNeed="digging" level="22" population="810" price="0" seq="1" />
+    </building>
+    <building buildingId="laboratory">
+        <params buildNeed="airport" level="18" population="560" price="2000" seq="1" />
+    </building>
+    <building buildingId="artefactmuseum">
+        <params buildNeed="digging" level="25" population="1190" price="9000" seq="1" />
+    </building>
+    <building buildingId="harbor">
+        <params buildNeed="" level="29" population="0" price="8000" seq="1" />
+    </building>
+    <building buildingId="islands_ship">
+        <params buildNeed="harbor" level="29" population="2050" price="5000" seq="1" />
+        <params buildNeed="harbor" level="29" population="2050" price="5000" seq="2" />
+        <params buildNeed="harbor" level="29" population="2500" price="8000" seq="3" />
+        <params buildNeed="harbor" level="29" population="3500" price="25000" seq="4" />
+    </building>
+    <building buildingId="nursery">
+        <params buildNeed="" level="40" population="0" price="0" seq="1" />
+    </building>
+    <building buildingId="parking">
+        <params buildNeed="" level="40" population="0" price="0" seq="1" />
+    </building>
+    <building buildingId="bus_station">
+        <params buildNeed="" level="40" population="0" price="20000" seq="1" />
+    </building>
+    
+    <building buildingId="zoo_eatery">
+        <params price="500" seq="1" zooLevel="1" />
+    </building>
+    <building buildingId="zoo_caffe">
+        <params price="1000" seq="1" zooLevel="2" />
+    </building>
+    <building buildingId="zoo_restaurant">
+        <params price="50000" seq="1" zooLevel="20" />
+    </building>
+    <building buildingId="zoo_shop">
+        <params price="10000" seq="1" zooLevel="14" />
+    </building>
+    <building buildingId="zoo_cinema">
+        <params price="3000" seq="1" zooLevel="4" />
+    </building>
+    <building buildingId="zoo_icecream_shop">
+        <params price="6000" seq="1" zooLevel="8" />
+    </building>
+    <building buildingId="zoo_caffe_drinks">
+        <params price="500000" seq="1" zooLevel="27" />
+    </building>
+    <building buildingId="zoo_contact">
+        <params price="150000" seq="1" zooLevel="24" />
+    </building>
+    
+    <building buildingId="paddock_bear">
+        <params price="500" seq="1" zooLevel="1" />
+    </building>
+    <building buildingId="paddock_elephant">
+        <params price="9000" seq="1" zooLevel="11" />
+    </building>
+    <building buildingId="paddock_hippo">
+        <params price="5000" seq="1" zooLevel="7" />
+    </building>
+    <building buildingId="paddock_lion">
+        <params price="4000" seq="1" zooLevel="6" />
+    </building>
+    <building buildingId="paddock_polar_bear">
+        <params price="7000" seq="1" zooLevel="9" />
+    </building>
+    <building buildingId="paddock_penguin">
+        <params price="2000" seq="1" zooLevel="4" />
+    </building>
+    <building buildingId="paddock_tiger">
+        <params price="60000" seq="1" zooLevel="20" />
+    </building>
+    <building buildingId="paddock_zebra">
+        <params price="1500" seq="1" zooLevel="3" />
+    </building>
+    <building buildingId="paddock_crocodile">
+        <params price="10000" seq="1" zooLevel="12" />
+    </building>
+    <building buildingId="paddock_flamingo">
+        <params price="1000" seq="1" zooLevel="2" />
+    </building>
+    <building buildingId="paddock_koala">
+        <params price="8000" seq="1" zooLevel="10" />
+    </building>
+    <building buildingId="paddock_monkey">
+        <params price="3000" seq="1" zooLevel="5" />
+    </building>
+    <building buildingId="paddock_panda">
+        <params price="20000" seq="1" zooLevel="16" />
+    </building>
+    <building buildingId="paddock_seal">
+        <params price="12000" seq="1" zooLevel="14" />
+    </building>
+    <building buildingId="paddock_gorilla">
+        <params price="16000" seq="1" zooLevel="15" />
+    </building>
+    <building buildingId="paddock_toucan">
+        <params price="300000" seq="1" zooLevel="25" />
+    </building>
+    <building buildingId="paddock_girrafe">
+        <params price="6000" seq="1" zooLevel="8" />
+    </building>
+    <building buildingId="paddock_kangaroo">
+        <params price="11000" seq="1" zooLevel="13" />
+    </building>
+    <building buildingId="paddock_peacock">
+        <params price="70000" seq="1" zooLevel="21" />
+    </building>
+    <building buildingId="paddock_camel">
+        <params price="100000" seq="1" zooLevel="23" />
+    </building>
+    <building buildingId="paddock_rhino">
+        <params price="40000" seq="1" zooLevel="18" />
+    </building>
+    <building buildingId="paddock_beaver">
+        <params price="30000" seq="1" zooLevel="17" />
+    </building>
+    <building buildingId="paddock_muskOx">
+        <params price="50000" seq="1" zooLevel="19" />
+    </building>
+    <building buildingId="paddock_turtle">
+        <params price="85000" seq="1" zooLevel="22" />
+    </building>
+    <building buildingId="paddock_deer">
+        <params price="200000" seq="1" zooLevel="24" />
+    </building>
+    
+</BuildingsLocks>

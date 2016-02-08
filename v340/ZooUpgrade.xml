@@ -1,0 +1,370 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Root>
+    <Community>
+        <BonusLimit>
+            <bonus count="1" id="moneyBonus" needLevel="4" />
+            <bonus count="1" id="ratingBonus" needLevel="5" />
+            <bonus count="1" id="timeBonus" needLevel="6" />
+            <bonus count="2" id="timeBonus" needLevel="8" />
+            <bonus count="3" id="timeBonus" needLevel="10" />
+            <bonus count="4" id="timeBonus" needLevel="12" />
+            <bonus count="5" id="timeBonus" needLevel="14" />
+            <bonus count="6" id="timeBonus" needLevel="15" />
+            <bonus count="4" id="box" needLevel="7" />
+            <bonus count="5" id="box" needLevel="11" />
+            <bonus count="6" id="box" needLevel="16" />
+        </BonusLimit>
+        <Building id="zoo_eatery">
+            <upgrade Brick="2" Glass="3" animalsCount="2" zooServiceMaterial1="1" />
+            <upgrade Brick="3" Glass="4" animalsCount="4" zooServiceMaterial1="1" />
+            <upgrade Brick="3" Glass="4" animalsCount="7" zooServiceMaterial1="1" />
+            <upgrade Brick="3" Glass="5" animalsCount="10" zooServiceMaterial1="1" />
+            <upgrade Brick="4" Glass="5" animalsCount="13" zooServiceMaterial1="1" />
+            <upgrade Brick="4" Glass="5" animalsCount="17" zooServiceMaterial1="1" />
+            <upgrade Brick="4" Glass="5" animalsCount="20" zooServiceMaterial1="1" />
+            <upgrade Brick="4" Glass="5" animalsCount="24" zooServiceMaterial1="1" />
+            <upgrade Brick="4" Glass="5" animalsCount="27" zooServiceMaterial1="2" />
+            <upgrade Brick="5" Glass="6" animalsCount="32" zooServiceMaterial1="2" />
+            <upgrade Brick="5" Glass="6" animalsCount="36" zooServiceMaterial1="2" />
+            <upgrade Brick="5" Glass="6" animalsCount="39" zooServiceMaterial1="3" />
+            <upgrade Brick="5" Glass="6" animalsCount="43" zooServiceMaterial1="3" />
+            <upgrade Brick="5" Glass="6" animalsCount="47" zooServiceMaterial1="3" />
+            <upgrade Brick="5" Glass="6" animalsCount="51" zooServiceMaterial1="4" />
+            <upgrade Brick="5" Glass="7" animalsCount="55" zooServiceMaterial1="4" />
+            <upgrade Brick="5" Glass="7" animalsCount="60" zooServiceMaterial1="5" />
+            <upgrade Brick="5" Glass="7" animalsCount="66" zooServiceMaterial1="7" />
+            <upgrade Brick="5" Glass="7" animalsCount="71" zooServiceMaterial1="8" />
+            <upgrade Brick="6" Glass="7" animalsCount="75" zooServiceMaterial1="9" />
+            <upgrade Brick="6" Glass="7" animalsCount="81" zooServiceMaterial1="10" />
+            <upgrade Brick="6" Glass="7" animalsCount="86" zooServiceMaterial1="11" />
+            <upgrade Brick="6" Glass="7" animalsCount="91" zooServiceMaterial1="12" />
+            <upgrade Brick="6" Glass="7" animalsCount="96" zooServiceMaterial1="14" />
+            <upgrade Brick="6" Glass="8" animalsCount="101" zooServiceMaterial1="17" />
+            <upgrade Brick="6" Glass="8" animalsCount="106" zooServiceMaterial1="20" />
+            <upgrade Brick="6" Glass="8" animalsCount="111" zooServiceMaterial1="22" />
+            <upgrade Brick="6" Glass="8" animalsCount="117" zooServiceMaterial1="25" />
+            <upgrade animalsCount="123" />
+            <upgrade animalsCount="129" />
+            <upgrade animalsCount="135" />
+            <upgrade animalsCount="141" />
+            <upgrade animalsCount="147" />
+            <upgrade animalsCount="152" />
+            <upgrade animalsCount="159" />
+            <upgrade animalsCount="165" />
+            <upgrade animalsCount="171" />
+            <upgrade animalsCount="179" />
+            <upgrade animalsCount="186" />
+            <upgrade animalsCount="192" />
+            <upgrade animalsCount="199" />
+            <upgrade animalsCount="206" />
+        </Building>
+        <Building id="zoo_caffe">
+            <upgrade Plita="2" animalsCount="4" zooBuildingMaterial="1" zooServiceMaterial2="1" />
+            <upgrade Plita="3" animalsCount="6" zooBuildingMaterial="1" zooServiceMaterial2="1" />
+            <upgrade Plita="3" animalsCount="9" zooBuildingMaterial="1" zooServiceMaterial2="1" />
+            <upgrade Plita="3" animalsCount="12" zooBuildingMaterial="1" zooServiceMaterial2="1" />
+            <upgrade Plita="3" animalsCount="15" zooBuildingMaterial="1" zooServiceMaterial2="1" />
+            <upgrade Plita="4" animalsCount="18" zooBuildingMaterial="1" zooServiceMaterial2="1" />
+            <upgrade Plita="4" animalsCount="21" zooBuildingMaterial="1" zooServiceMaterial2="1" />
+            <upgrade Plita="4" animalsCount="26" zooBuildingMaterial="1" zooServiceMaterial2="1" />
+            <upgrade Plita="4" animalsCount="30" zooBuildingMaterial="1" zooServiceMaterial2="1" />
+            <upgrade Plita="4" animalsCount="35" zooBuildingMaterial="1" zooServiceMaterial2="2" />
+            <upgrade Plita="4" animalsCount="38" zooBuildingMaterial="2" zooServiceMaterial2="2" />
+            <upgrade Plita="4" animalsCount="42" zooBuildingMaterial="3" zooServiceMaterial2="3" />
+            <upgrade Plita="4" animalsCount="46" zooBuildingMaterial="3" zooServiceMaterial2="4" />
+            <upgrade Plita="4" animalsCount="50" zooBuildingMaterial="4" zooServiceMaterial2="4" />
+            <upgrade Plita="4" animalsCount="54" zooBuildingMaterial="4" zooServiceMaterial2="5" />
+            <upgrade Plita="5" animalsCount="58" zooBuildingMaterial="5" zooServiceMaterial2="6" />
+            <upgrade Plita="5" animalsCount="63" zooBuildingMaterial="5" zooServiceMaterial2="6" />
+            <upgrade Plita="5" animalsCount="67" zooBuildingMaterial="6" zooServiceMaterial2="7" />
+            <upgrade Plita="5" animalsCount="73" zooBuildingMaterial="7" zooServiceMaterial2="8" />
+            <upgrade Plita="5" animalsCount="78" zooBuildingMaterial="7" zooServiceMaterial2="9" />
+            <upgrade Plita="5" animalsCount="83" zooBuildingMaterial="8" zooServiceMaterial2="11" />
+            <upgrade Plita="5" animalsCount="87" zooBuildingMaterial="9" zooServiceMaterial2="12" />
+            <upgrade Plita="5" animalsCount="93" zooBuildingMaterial="10" zooServiceMaterial2="14" />
+            <upgrade Plita="5" animalsCount="98" zooBuildingMaterial="12" zooServiceMaterial2="15" />
+            <upgrade Plita="5" animalsCount="103" zooBuildingMaterial="13" zooServiceMaterial2="17" />
+            <upgrade Plita="6" animalsCount="107" zooBuildingMaterial="15" zooServiceMaterial2="18" />
+            <upgrade Plita="6" animalsCount="114" zooBuildingMaterial="18" zooServiceMaterial2="19" />
+            <upgrade Plita="6" animalsCount="120" zooBuildingMaterial="20" zooServiceMaterial2="22" />
+            <upgrade animalsCount="126" />
+            <upgrade animalsCount="132" />
+            <upgrade animalsCount="137" />
+            <upgrade animalsCount="144" />
+            <upgrade animalsCount="151" />
+            <upgrade animalsCount="156" />
+            <upgrade animalsCount="162" />
+            <upgrade animalsCount="169" />
+            <upgrade animalsCount="175" />
+            <upgrade animalsCount="181" />
+            <upgrade animalsCount="188" />
+            <upgrade animalsCount="195" />
+            <upgrade animalsCount="202" />
+            <upgrade animalsCount="210" />
+        </Building>
+        <Building id="zoo_cinema">
+            <upgrade Brick="4" Plita="3" animalsCount="14" zooServiceMaterial3="1" />
+            <upgrade Brick="4" Plita="3" animalsCount="16" zooServiceMaterial3="1" />
+            <upgrade Brick="4" Plita="4" animalsCount="19" zooServiceMaterial3="1" />
+            <upgrade Brick="4" Plita="4" animalsCount="22" zooServiceMaterial3="1" />
+            <upgrade Brick="5" Plita="4" animalsCount="25" zooServiceMaterial3="1" />
+            <upgrade Brick="5" Plita="4" animalsCount="29" zooServiceMaterial3="1" />
+            <upgrade Brick="5" Plita="4" animalsCount="33" zooServiceMaterial3="1" />
+            <upgrade Brick="5" Plita="4" animalsCount="37" zooServiceMaterial3="2" />
+            <upgrade Brick="5" Plita="4" animalsCount="41" zooServiceMaterial3="2" />
+            <upgrade Brick="5" Plita="4" animalsCount="45" zooServiceMaterial3="2" />
+            <upgrade Brick="5" Plita="4" animalsCount="49" zooServiceMaterial3="3" />
+            <upgrade Brick="5" Plita="5" animalsCount="53" zooServiceMaterial3="3" />
+            <upgrade Brick="5" Plita="5" animalsCount="57" zooServiceMaterial3="4" />
+            <upgrade Brick="5" Plita="5" animalsCount="61" zooServiceMaterial3="5" />
+            <upgrade Brick="5" Plita="5" animalsCount="65" zooServiceMaterial3="6" />
+            <upgrade Brick="5" Plita="5" animalsCount="70" zooServiceMaterial3="7" />
+            <upgrade Brick="6" Plita="5" animalsCount="75" zooServiceMaterial3="8" />
+            <upgrade Brick="6" Plita="5" animalsCount="80" zooServiceMaterial3="9" />
+            <upgrade Brick="6" Plita="5" animalsCount="86" zooServiceMaterial3="11" />
+            <upgrade Brick="6" Plita="5" animalsCount="90" zooServiceMaterial3="12" />
+            <upgrade Brick="6" Plita="5" animalsCount="94" zooServiceMaterial3="14" />
+            <upgrade Brick="6" Plita="5" animalsCount="100" zooServiceMaterial3="16" />
+            <upgrade Brick="6" Plita="6" animalsCount="105" zooServiceMaterial3="21" />
+            <upgrade Brick="6" Plita="6" animalsCount="110" zooServiceMaterial3="23" />
+            <upgrade Brick="6" Plita="6" animalsCount="115" zooServiceMaterial3="24" />
+            <upgrade animalsCount="121" />
+            <upgrade animalsCount="127" />
+            <upgrade animalsCount="133" />
+            <upgrade animalsCount="139" />
+            <upgrade animalsCount="145" />
+            <upgrade animalsCount="151" />
+            <upgrade animalsCount="157" />
+            <upgrade animalsCount="162" />
+            <upgrade animalsCount="169" />
+            <upgrade animalsCount="176" />
+            <upgrade animalsCount="182" />
+            <upgrade animalsCount="189" />
+            <upgrade animalsCount="196" />
+            <upgrade animalsCount="203" />
+            <upgrade animalsCount="210" />
+            <upgrade animalsCount="217" />
+            <upgrade animalsCount="224" />
+        </Building>
+        <Building id="zoo_icecream_shop">
+            <upgrade Glass="5" animalsCount="28" zooBuildingMaterial="1" zooServiceMaterial2="1" />
+            <upgrade Glass="6" animalsCount="31" zooBuildingMaterial="1" zooServiceMaterial2="2" />
+            <upgrade Glass="6" animalsCount="34" zooBuildingMaterial="2" zooServiceMaterial2="2" />
+            <upgrade Glass="6" animalsCount="37" zooBuildingMaterial="2" zooServiceMaterial2="3" />
+            <upgrade Glass="6" animalsCount="40" zooBuildingMaterial="2" zooServiceMaterial2="3" />
+            <upgrade Glass="6" animalsCount="44" zooBuildingMaterial="3" zooServiceMaterial2="3" />
+            <upgrade Glass="6" animalsCount="48" zooBuildingMaterial="3" zooServiceMaterial2="4" />
+            <upgrade Glass="7" animalsCount="52" zooBuildingMaterial="4" zooServiceMaterial2="5" />
+            <upgrade Glass="7" animalsCount="56" zooBuildingMaterial="4" zooServiceMaterial2="5" />
+            <upgrade Glass="7" animalsCount="60" zooBuildingMaterial="5" zooServiceMaterial2="6" />
+            <upgrade Glass="7" animalsCount="64" zooBuildingMaterial="5" zooServiceMaterial2="7" />
+            <upgrade Glass="7" animalsCount="68" zooBuildingMaterial="6" zooServiceMaterial2="7" />
+            <upgrade Glass="7" animalsCount="72" zooBuildingMaterial="6" zooServiceMaterial2="8" />
+            <upgrade Glass="7" animalsCount="76" zooBuildingMaterial="7" zooServiceMaterial2="8" />
+            <upgrade Glass="7" animalsCount="80" zooBuildingMaterial="8" zooServiceMaterial2="10" />
+            <upgrade Glass="7" animalsCount="84" zooBuildingMaterial="8" zooServiceMaterial2="11" />
+            <upgrade Glass="7" animalsCount="90" zooBuildingMaterial="9" zooServiceMaterial2="13" />
+            <upgrade Glass="7" animalsCount="95" zooBuildingMaterial="11" zooServiceMaterial2="15" />
+            <upgrade Glass="8" animalsCount="99" zooBuildingMaterial="12" zooServiceMaterial2="16" />
+            <upgrade Glass="8" animalsCount="105" zooBuildingMaterial="16" zooServiceMaterial2="18" />
+            <upgrade Glass="8" animalsCount="109" zooBuildingMaterial="17" zooServiceMaterial2="19" />
+            <upgrade Glass="8" animalsCount="114" zooBuildingMaterial="18" zooServiceMaterial2="20" />
+            <upgrade Glass="8" animalsCount="119" zooBuildingMaterial="20" zooServiceMaterial2="22" />
+            <upgrade animalsCount="125" />
+            <upgrade animalsCount="130" />
+            <upgrade animalsCount="136" />
+            <upgrade animalsCount="142" />
+            <upgrade animalsCount="148" />
+            <upgrade animalsCount="153" />
+            <upgrade animalsCount="160" />
+            <upgrade animalsCount="166" />
+            <upgrade animalsCount="172" />
+            <upgrade animalsCount="177" />
+            <upgrade animalsCount="184" />
+            <upgrade animalsCount="190" />
+            <upgrade animalsCount="197" />
+            <upgrade animalsCount="204" />
+            <upgrade animalsCount="211" />
+            <upgrade animalsCount="218" />
+            <upgrade animalsCount="225" />
+            <upgrade animalsCount="232" />
+            <upgrade animalsCount="239" />
+        </Building>
+        <Building id="zoo_shop">
+            <upgrade Plita="5" animalsCount="53" zooServiceMaterial1="4" zooServiceMaterial3="3" />
+            <upgrade Plita="5" animalsCount="56" zooServiceMaterial1="5" zooServiceMaterial3="4" />
+            <upgrade Plita="5" animalsCount="59" zooServiceMaterial1="6" zooServiceMaterial3="5" />
+            <upgrade Plita="5" animalsCount="62" zooServiceMaterial1="6" zooServiceMaterial3="6" />
+            <upgrade Plita="5" animalsCount="65" zooServiceMaterial1="7" zooServiceMaterial3="7" />
+            <upgrade Plita="5" animalsCount="69" zooServiceMaterial1="8" zooServiceMaterial3="8" />
+            <upgrade Plita="5" animalsCount="74" zooServiceMaterial1="9" zooServiceMaterial3="9" />
+            <upgrade Plita="5" animalsCount="77" zooServiceMaterial1="10" zooServiceMaterial3="10" />
+            <upgrade Plita="5" animalsCount="81" zooServiceMaterial1="11" zooServiceMaterial3="10" />
+            <upgrade Plita="5" animalsCount="85" zooServiceMaterial1="12" zooServiceMaterial3="12" />
+            <upgrade Plita="5" animalsCount="89" zooServiceMaterial1="13" zooServiceMaterial3="13" />
+            <upgrade Plita="5" animalsCount="93" zooServiceMaterial1="15" zooServiceMaterial3="15" />
+            <upgrade Plita="5" animalsCount="97" zooServiceMaterial1="16" zooServiceMaterial3="17" />
+            <upgrade Plita="5" animalsCount="102" zooServiceMaterial1="18" zooServiceMaterial3="18" />
+            <upgrade Plita="6" animalsCount="105" zooServiceMaterial1="21" zooServiceMaterial3="21" />
+            <upgrade Plita="6" animalsCount="110" zooServiceMaterial1="22" zooServiceMaterial3="24" />
+            <upgrade Plita="6" animalsCount="115" zooServiceMaterial1="23" zooServiceMaterial3="25" />
+            <upgrade Plita="6" animalsCount="119" zooServiceMaterial1="25" zooServiceMaterial3="27" />
+            <upgrade animalsCount="125" />
+            <upgrade animalsCount="131" />
+            <upgrade animalsCount="135" />
+            <upgrade animalsCount="140" />
+            <upgrade animalsCount="145" />
+            <upgrade animalsCount="150" />
+            <upgrade animalsCount="155" />
+            <upgrade animalsCount="161" />
+            <upgrade animalsCount="167" />
+            <upgrade animalsCount="172" />
+            <upgrade animalsCount="179" />
+            <upgrade animalsCount="185" />
+            <upgrade animalsCount="191" />
+            <upgrade animalsCount="197" />
+            <upgrade animalsCount="202" />
+            <upgrade animalsCount="209" />
+            <upgrade animalsCount="215" />
+            <upgrade animalsCount="222" />
+            <upgrade animalsCount="229" />
+            <upgrade animalsCount="236" />
+            <upgrade animalsCount="243" />
+            <upgrade animalsCount="250" />
+            <upgrade animalsCount="257" />
+            <upgrade animalsCount="264" />
+        </Building>
+        <Building id="zoo_restaurant">
+            <upgrade Brick="6" Plita="5" animalsCount="76" zooServiceMaterial2="9" />
+            <upgrade Brick="6" Plita="5" animalsCount="79" zooServiceMaterial2="10" />
+            <upgrade Brick="6" Plita="5" animalsCount="82" zooServiceMaterial2="11" />
+            <upgrade Brick="6" Plita="5" animalsCount="85" zooServiceMaterial2="12" />
+            <upgrade Brick="6" Plita="5" animalsCount="88" zooServiceMaterial2="13" />
+            <upgrade Brick="6" Plita="5" animalsCount="92" zooServiceMaterial2="14" />
+            <upgrade Brick="6" Plita="5" animalsCount="96" zooServiceMaterial2="15" />
+            <upgrade Brick="6" Plita="5" animalsCount="100" zooServiceMaterial2="16" />
+            <upgrade Brick="6" Plita="5" animalsCount="104" zooServiceMaterial2="17" />
+            <upgrade Brick="6" Plita="6" animalsCount="108" zooServiceMaterial2="18" />
+            <upgrade Brick="6" Plita="6" animalsCount="113" zooServiceMaterial2="20" />
+            <upgrade Brick="6" Plita="6" animalsCount="116" zooServiceMaterial2="21" />
+            <upgrade Brick="6" Plita="6" animalsCount="120" zooServiceMaterial2="23" />
+            <upgrade animalsCount="124" />
+            <upgrade animalsCount="128" />
+            <upgrade animalsCount="133" />
+            <upgrade animalsCount="138" />
+            <upgrade animalsCount="143" />
+            <upgrade animalsCount="148" />
+            <upgrade animalsCount="153" />
+            <upgrade animalsCount="158" />
+            <upgrade animalsCount="163" />
+            <upgrade animalsCount="168" />
+            <upgrade animalsCount="173" />
+            <upgrade animalsCount="178" />
+            <upgrade animalsCount="183" />
+            <upgrade animalsCount="190" />
+            <upgrade animalsCount="196" />
+            <upgrade animalsCount="201" />
+            <upgrade animalsCount="207" />
+            <upgrade animalsCount="213" />
+            <upgrade animalsCount="220" />
+            <upgrade animalsCount="226" />
+            <upgrade animalsCount="232" />
+            <upgrade animalsCount="238" />
+            <upgrade animalsCount="245" />
+            <upgrade animalsCount="252" />
+            <upgrade animalsCount="259" />
+            <upgrade animalsCount="266" />
+            <upgrade animalsCount="273" />
+            <upgrade animalsCount="280" />
+            <upgrade animalsCount="287" />
+        </Building>
+        <Building id="zoo_caffe_drinks">
+            <upgrade Brick="6" animalsCount="92" zooBuildingMaterial="9" zooServiceMaterial1="14" />
+            <upgrade Brick="6" animalsCount="95" zooBuildingMaterial="11" zooServiceMaterial1="15" />
+            <upgrade Brick="6" animalsCount="98" zooBuildingMaterial="12" zooServiceMaterial1="17" />
+            <upgrade Brick="6" animalsCount="101" zooBuildingMaterial="14" zooServiceMaterial1="19" />
+            <upgrade Brick="6" animalsCount="104" zooBuildingMaterial="14" zooServiceMaterial1="19" />
+            <upgrade Brick="6" animalsCount="108" zooBuildingMaterial="16" zooServiceMaterial1="21" />
+            <upgrade Brick="6" animalsCount="112" zooBuildingMaterial="17" zooServiceMaterial1="23" />
+            <upgrade Brick="6" animalsCount="116" zooBuildingMaterial="19" zooServiceMaterial1="24" />
+            <upgrade Brick="9" animalsCount="120" zooBuildingMaterial="21" zooServiceMaterial1="26" />
+            <upgrade animalsCount="124" />
+            <upgrade animalsCount="128" />
+            <upgrade animalsCount="132" />
+            <upgrade animalsCount="136" />
+            <upgrade animalsCount="140" />
+            <upgrade animalsCount="144" />
+            <upgrade animalsCount="149" />
+            <upgrade animalsCount="154" />
+            <upgrade animalsCount="159" />
+            <upgrade animalsCount="164" />
+            <upgrade animalsCount="170" />
+            <upgrade animalsCount="174" />
+            <upgrade animalsCount="180" />
+            <upgrade animalsCount="184" />
+            <upgrade animalsCount="189" />
+            <upgrade animalsCount="194" />
+            <upgrade animalsCount="200" />
+            <upgrade animalsCount="205" />
+            <upgrade animalsCount="212" />
+            <upgrade animalsCount="218" />
+            <upgrade animalsCount="224" />
+            <upgrade animalsCount="230" />
+            <upgrade animalsCount="236" />
+            <upgrade animalsCount="242" />
+            <upgrade animalsCount="248" />
+            <upgrade animalsCount="254" />
+            <upgrade animalsCount="261" />
+            <upgrade animalsCount="268" />
+            <upgrade animalsCount="275" />
+            <upgrade animalsCount="282" />
+            <upgrade animalsCount="289" />
+            <upgrade animalsCount="296" />
+            <upgrade animalsCount="303" />
+        </Building>
+        <Building id="zoo_contact">
+            <upgrade Glass="7" animalsCount="92" zooBuildingMaterial="10" zooServiceMaterial3="14" />
+            <upgrade Glass="7" animalsCount="95" zooBuildingMaterial="11" zooServiceMaterial3="16" />
+            <upgrade Glass="8" animalsCount="98" zooBuildingMaterial="13" zooServiceMaterial3="18" />
+            <upgrade Glass="8" animalsCount="101" zooBuildingMaterial="14" zooServiceMaterial3="19" />
+            <upgrade Glass="8" animalsCount="104" zooBuildingMaterial="15" zooServiceMaterial3="20" />
+            <upgrade Glass="8" animalsCount="108" zooBuildingMaterial="16" zooServiceMaterial3="22" />
+            <upgrade Glass="8" animalsCount="112" zooBuildingMaterial="17" zooServiceMaterial3="24" />
+            <upgrade Glass="8" animalsCount="116" zooBuildingMaterial="19" zooServiceMaterial3="26" />
+            <upgrade Glass="8" animalsCount="120" zooBuildingMaterial="21" zooServiceMaterial3="28" />
+            <upgrade animalsCount="124" />
+            <upgrade animalsCount="128" />
+            <upgrade animalsCount="132" />
+            <upgrade animalsCount="136" />
+            <upgrade animalsCount="140" />
+            <upgrade animalsCount="144" />
+            <upgrade animalsCount="149" />
+            <upgrade animalsCount="154" />
+            <upgrade animalsCount="159" />
+            <upgrade animalsCount="164" />
+            <upgrade animalsCount="170" />
+            <upgrade animalsCount="174" />
+            <upgrade animalsCount="180" />
+            <upgrade animalsCount="184" />
+            <upgrade animalsCount="189" />
+            <upgrade animalsCount="194" />
+            <upgrade animalsCount="200" />
+            <upgrade animalsCount="205" />
+            <upgrade animalsCount="212" />
+            <upgrade animalsCount="218" />
+            <upgrade animalsCount="224" />
+            <upgrade animalsCount="230" />
+            <upgrade animalsCount="236" />
+            <upgrade animalsCount="242" />
+            <upgrade animalsCount="248" />
+            <upgrade animalsCount="254" />
+            <upgrade animalsCount="261" />
+            <upgrade animalsCount="268" />
+            <upgrade animalsCount="275" />
+            <upgrade animalsCount="282" />
+            <upgrade animalsCount="289" />
+            <upgrade animalsCount="296" />
+            <upgrade animalsCount="303" />
+        </Building>
+    </Community>
+</Root>
