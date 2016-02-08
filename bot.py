@@ -368,9 +368,8 @@ while gameInfo.zooLevel<11:
         writeShortLog("normal","&nbsp;<br>&nbsp;")
         justLeveluped = 0
 
-    print ""
-    print "total "+str(x)+" steps"
 
-
+print ""
+print "total "+str(x)+" steps"
 writeHtmlFoot()
 f.close()

@@ -95,7 +95,7 @@ def FillCurrentZooUpgradePrices():
                             if getattr(upSettings, mat) > 0:
                                 curReqs.append([mat, getattr(upSettings, mat)])
                         writeLog("normalSmall","<i>upgrade #"+str(upNum)+
-                                    "is available for "+key+" because totalAnimals = "+str(totalAnimals))
+                                    " is available for "+key+" because totalAnimals = "+str(totalAnimals))
 
     return curReqs
 
