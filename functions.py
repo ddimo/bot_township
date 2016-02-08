@@ -79,6 +79,19 @@ def FillCurrentOrdersOnlyZoo():
 
     return curReqs
 
+
+def CompareForZooMats(buildId, upgradeId, upgradeNum):
+    # сравним требования на строительство здания buildId с требованиями апгрейда #upgradeNum здания upgradeId
+    # на предмет наличия общих требований по зоо-материалам
+    for mat in zooBuildingMatList:
+        if getattr(buildingSettings[buildId],mat):
+            if getattr(upgradesReqs[upgradeId][upgradeNum],mat):
+                line = GetBuildingReqsLine("build",buildId,0)
+                writeLog("normalSmall","upgrade has same requirements for zoo mats as pending construction of "+buildId+" ("+line+") - lets wait then")
+                return True
+    return False
+    writeLog("normalSmall","upgrade has different reqs, can update")
+
 def FillCurrentZooUpgradePrices():
     curReqs = []
     totalAnimals = sum(gameInfo.paddocksTotalAnimals.itervalues())
@@ -91,7 +104,7 @@ def FillCurrentZooUpgradePrices():
                     if upNum <= curBuildingUpgrade: continue
                     elif upSettings.animalsCount > totalAnimals: break
                     else:
-                        for mat in buildingMatList:
+                        for mat in zooBuildingMatList:
                             if getattr(upSettings, mat) > 0:
                                 curReqs.append([mat, getattr(upSettings, mat)])
                         writeLog("normalSmall","<i>upgrade #"+str(upNum)+

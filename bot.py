@@ -4,7 +4,7 @@ from functions import *
 import xml.etree.ElementTree as xml
 
 
-MAX_WAIT_FOR_UPGRADE = 100 # сколько шагов максимум ждем прежде чем купим апгрейд даже если копим на здание
+MAX_WAIT_FOR_UPGRADE = 5 # сколько шагов максимум ждем прежде чем купим апгрейд даже если копим на здание
 
 gameBalanceXml = xml.parse('../township/base/GameBalance.xml', parser=CommentsParser())
 gameBalanceRoot = gameBalanceXml.getroot()
@@ -25,20 +25,10 @@ for reqsElem in reqs.iter():
         if "zoo_" in cur_id or "paddock_" in cur_id:
             zooBuilding = buildingSettingsClass()
             zooBuilding.id = reqsElem.attrib['id']
-            if 'Brick' in reqsElem.attrib:
-                zooBuilding.Brick = int(reqsElem.attrib['Brick'])
-            if 'Plita' in reqsElem.attrib:
-                zooBuilding.Plita = int(reqsElem.attrib['Plita'])
-            if 'Glass' in reqsElem.attrib:
-                zooBuilding.Glass = int(reqsElem.attrib['Glass'])
-            if 'zooBuildingMaterial' in reqsElem.attrib:
-                zooBuilding.zooBuildingMaterial = int(reqsElem.attrib['zooBuildingMaterial'])
-            if 'zooServiceMaterial1' in reqsElem.attrib:
-                zooBuilding.zooServiceMaterial1 = int(reqsElem.attrib['zooServiceMaterial1'])
-            if 'zooServiceMaterial2' in reqsElem.attrib:
-                zooBuilding.zooServiceMaterial2 = int(reqsElem.attrib['zooServiceMaterial2'])
-            if 'zooServiceMaterial3' in reqsElem.attrib:
-                zooBuilding.zooServiceMaterial3 = int(reqsElem.attrib['zooServiceMaterial3'])
+
+            for mat in buildingMatList:
+                if mat in reqsElem.attrib:
+                    setattr(zooBuilding,mat,int(reqsElem.attrib[mat]))
 
             # добавим также информацию об уровне и цене из файла BuildingLocks
             for target in buildingsLocksRoot.findall("./building[@buildingId='"+zooBuilding.id+"']"):
@@ -78,13 +68,8 @@ for upgradeBuildingElem in UpgradesSettingsXml:
                 if 'Brick' not in upgradeElem.attrib and 'Plita' not in upgradeElem.attrib and 'Glass' not in upgradeElem.attrib and 'zooBuildingMaterial' not in upgradeElem.attrib and 'zooServiceMaterial1' not in upgradeElem.attrib and 'zooServiceMaterial2' not in upgradeElem.attrib and 'zooServiceMaterial3' not in upgradeElem.attrib:
                     # не указано ни одного требования на материалы
                     continue
-                if 'Brick' in upgradeElem.attrib: curUpgradeReqs.Brick = int(upgradeElem.attrib['Brick'])
-                if 'Plita' in upgradeElem.attrib: curUpgradeReqs.Plita = int(upgradeElem.attrib['Plita'])
-                if 'Glass' in upgradeElem.attrib: curUpgradeReqs.Glass = int(upgradeElem.attrib['Glass'])
-                if 'zooBuildingMaterial' in upgradeElem.attrib: curUpgradeReqs.zooBuildingMaterial = int(upgradeElem.attrib['zooBuildingMaterial'])
-                if 'zooServiceMaterial1' in upgradeElem.attrib: curUpgradeReqs.zooServiceMaterial1 = int(upgradeElem.attrib['zooServiceMaterial1'])
-                if 'zooServiceMaterial2' in upgradeElem.attrib: curUpgradeReqs.zooServiceMaterial2 = int(upgradeElem.attrib['zooServiceMaterial2'])
-                if 'zooServiceMaterial3' in upgradeElem.attrib: curUpgradeReqs.zooServiceMaterial3 = int(upgradeElem.attrib['zooServiceMaterial3'])
+                for mat in buildingMatList:
+                    if mat in upgradeElem.attrib: setattr(curUpgradeReqs,mat,int(upgradeElem.attrib[mat]))
                 if 'animalsCount' in upgradeElem.attrib: curUpgradeReqs.animalsCount = int(upgradeElem.attrib['animalsCount'])
                 upgradesReqs[buildingId].append(curUpgradeReqs)
                 x += 1
@@ -105,10 +90,8 @@ for paddockElem in paddocksSettings:
     for childPaddockElem in paddockElem:
         if childPaddockElem.tag == "animal":
             curAnimalReqs = animalReqsClass()
-            if 'gem1' in childPaddockElem.attrib: curAnimalReqs.gem1 = int(childPaddockElem.attrib['gem1'])
-            if 'gem2' in childPaddockElem.attrib: curAnimalReqs.gem2 = int(childPaddockElem.attrib['gem2'])
-            if 'gem3' in childPaddockElem.attrib: curAnimalReqs.gem3 = int(childPaddockElem.attrib['gem3'])
-            if 'gem4' in childPaddockElem.attrib: curAnimalReqs.gem4 = int(childPaddockElem.attrib['gem4'])
+            for g in gemsList:
+                if g in childPaddockElem.attrib: setattr(curAnimalReqs,g,int(childPaddockElem.attrib[g]))
             animalsReqs[elemId][animalNumber] = curAnimalReqs
             animalNumber += 1
 
@@ -319,7 +302,7 @@ while gameInfo.zooLevel<11:
         line = GetBuildingReqsLine("upgrade", ubid, un)
         writeLog("normalSmall","<i>enough materials for upgrade #"+str(un)+" in "+str(ubid)+" (needed: "+line+")")
         availableToBuild = FindAvailableNotBuilt()
-        if not availableToBuild or gameInfo.upgradeWait >= MAX_WAIT_FOR_UPGRADE:
+        if not availableToBuild or (gameInfo.upgradeWait >= MAX_WAIT_FOR_UPGRADE and not CompareForZooMats(availableToBuild,ubid,un)):
             DoUpgrade(ubid,un)
             writeLog("normalSmall", "<font color='red'>bought upgrade</font>")
             gameInfo.upgradeWait = 0
