@@ -174,6 +174,7 @@ writeLog("lime","building <b>zoo_caffe</b> (tutorial)")
 gameInfo.communities["zoo_caffe"] = 1
 
 gameInfo.communitiesUpgrades['zoo_eatery'] = 2
+justLeveluped = 0
 
 # ЗАПУСКАЕМ ПОСЛЕДОВАТЕЛЬНОЕ ОТКРЫВАНИЕ ПОДАРКОВ
 #for x in range(0,35):
@@ -195,40 +196,62 @@ while gameInfo.zooLevel<11:
         gameInfo.levelDrop[chestContent] += 1
 
     curvalue = getattr(gameInfo,chestContent)
+    curChestCounter = gameInfo.zooChestCounter
     setattr(gameInfo,chestContent,curvalue+1)
+    gameInfo.zooChestCounter = curChestCounter+1
     if "gem" in chestContent:
         AddGems(chestContent)
+
+    # раз в Y сундуков увеличим количество городских стройматериалов, как будто они приехали на поезде
+    y = 20
+    if gameInfo.zooChestCounter % y == 0:
+        if gameInfo.axe < 7: gameInfo.axe += 3
+        if gameInfo.pick < 7: gameInfo.pick += 3
+        if gameInfo.TNT < 7: gameInfo.TNT += 3
+        rand = random.randint(1,3)
+        if rand == 1:
+            if gameInfo.Brick < 50: gameInfo.Brick += 10
+            if gameInfo.Glass < 50: gameInfo.Glass += 7
+            if gameInfo.Plita < 50: gameInfo.Plita += 5
+        elif rand == 2:
+            if gameInfo.Glass < 50: gameInfo.Glass += 10
+            if gameInfo.Plita < 50: gameInfo.Plita += 7
+            if gameInfo.Brick < 50: gameInfo.Brick += 5
+        else:
+            if gameInfo.Plita < 50: gameInfo.Plita += 10
+            if gameInfo.Brick < 50: gameInfo.Brick += 7
+            if gameInfo.Glass < 50: gameInfo.Glass += 5
 
 
     if (chestContentTuple[1] == "buildingmat" or chestContentTuple[1] == "upgrademat") and (chestContent in buildingMatList):
         if chestContent not in gameInfo.levelDropHelped: gameInfo.levelDropHelped[chestContent] = 1
         else: gameInfo.levelDropHelped[chestContent] += 1
-        writeLog("normalBig","#"+str(x)+" &mdash; <img src='img/"+chestContent+".png' valign='middle'> <font color='red'><b>"+chestContent+"</b></font>")
+        writeLog("normalBig","#"+str(x)+" &mdash; <img src='img/"+chestContent+".png' valign='middle'> dropped <font color='red'><b>"+chestContent+"</b></font>")
 
     elif (chestContentTuple[1] == "needgem") and (chestContent in gemsList):
         if chestContent not in gameInfo.levelDropHelped: gameInfo.levelDropHelped[chestContent] = 1
         else: gameInfo.levelDropHelped[chestContent] += 1
-        writeLog("normalBig","#"+str(x)+" &mdash; <img src='img/"+chestContent+".png' valign='middle'> <font color='blue'><b>"+chestContent+"</b></font> <font size='2'>(from needGem)</font>")
+        writeLog("normalBig","#"+str(x)+" &mdash; <img src='img/"+chestContent+".png' valign='middle'> dropped <font color='blue'><b>"+chestContent+"</b></font> <font size='2'>(from needGem)</font>")
 
     elif (chestContentTuple[1] == "randomgem") and (chestContent in gemsList):
         if chestContent not in gameInfo.levelDropHelped: gameInfo.levelDropHelped[chestContent] = 1
         else: gameInfo.levelDropHelped[chestContent] += 1
-        writeLog("normalBig","#"+str(x)+" &mdash; <img src='img/"+chestContent+".png' valign='middle'> <font color='green'><b>"+chestContent+"</b></font> <font size='2'>(from randomGem)</font>")
+        writeLog("normalBig","#"+str(x)+" &mdash; <img src='img/"+chestContent+".png' valign='middle'> dropped <font color='green'><b>"+chestContent+"</b></font> <font size='2'>(from randomGem)</font>")
 
     elif (chestContentTuple[1] == "getnextgem") and (chestContent in gemsList):
         if chestContent not in gameInfo.levelDropHelped: gameInfo.levelDropHelped[chestContent] = 1
         else: gameInfo.levelDropHelped[chestContent] += 1
-        writeLog("normalBig","#"+str(x)+" &mdash; <img src='img/"+chestContent+".png' valign='middle'> <font color='green'><b>"+chestContent+"</b></font> <font size='2'>(from GetNextGem)</font>")
+        writeLog("normalBig","#"+str(x)+" &mdash; <img src='img/"+chestContent+".png' valign='middle'> dropped <font color='green'><b>"+chestContent+"</b></font> <font size='2'>(from GetNextGem)</font>")
 
     elif (chestContentTuple[1] == "warehousemat") and (chestContent in warehouseMatList):
         if chestContent not in gameInfo.levelDropHelped: gameInfo.levelDropHelped[chestContent] = 1
         else: gameInfo.levelDropHelped[chestContent] += 1
-        writeLog("normalBig","#"+str(x)+" &mdash; <img src='img/"+chestContent+".png' valign='middle'> <font color='orange'><b>"+chestContent+"</b></font> <font size='2'></font>")
+        writeLog("normalBig","#"+str(x)+" &mdash; <img src='img/"+chestContent+".png' valign='middle'> dropped <font color='orange'><b>"+chestContent+"</b></font> <font size='2'></font>")
 
     elif (chestContentTuple[1] == "expandmat") and (chestContent in expansionMatList):
         if chestContent not in gameInfo.levelDropHelped: gameInfo.levelDropHelped[chestContent] = 1
         else: gameInfo.levelDropHelped[chestContent] += 1
-        writeLog("normalBig","#"+str(x)+" &mdash; <img src='img/"+chestContent+".png' valign='middle'> <font color='pink'><b>"+chestContent+"</b></font> <font size='2'></font>")
+        writeLog("normalBig","#"+str(x)+" &mdash; <img src='img/"+chestContent+".png' valign='middle'> dropped <font color='pink'><b>"+chestContent+"</b></font> <font size='2'></font>")
 
     else:
         writeLog("normalBig","#"+str(x)+" &mdash; <img src='img/"+chestContent+".png' valign='middle'> "+chestContent+" ")
@@ -240,6 +263,7 @@ while gameInfo.zooLevel<11:
 
     # обрабатываем момент LEVELUP
     if gameInfo.rating > ratingToLevelup[gameInfo.zooLevel+1]:
+        justLeveluped = 1
         gameInfo.zooLevel += 1
         line = "<b>LEVELUP "+str(gameInfo.zooLevel)+"!</b>"
 
@@ -316,31 +340,33 @@ while gameInfo.zooLevel<11:
     while TryExpand():
         print "try to expand"
 
-    f.write("<div class='normalSmall'>&nbsp;</div>")
+    writeLog("normalSmall","&nbsp;")
 
-    f.write("<div class='normalSmallOrange'>")
-    f.write(str(gameInfo.gem1)+" <img src='img/gem1.png' valign='middle'> &nbsp; ")
-    f.write(str(gameInfo.gem2)+" <img src='img/gem2.png' valign='middle'> &nbsp; ")
-    f.write(str(gameInfo.gem3)+" <img src='img/gem3.png' valign='middle'> &nbsp; ")
-    f.write(str(gameInfo.gem4)+" <img src='img/gem4.png' valign='middle'> ")
-    f.write("</div>")
+    line = ""
+    for g in gemsList:
+        line += str(getattr(gameInfo,g))+" <img src='img/"+g+".png' valign='middle'> &nbsp; "
+    writeLog("normalSmallOrange", line)
+    if justLeveluped: writeShortLog("normalSmallOrange", line)
 
-    f.write("<div class='normalSmallGreen'>")
-    f.write(str(gameInfo.zooLandDeed)+" <img src='img/zooLandDeed.png' valign='middle'> &nbsp; ")
-    f.write(str(gameInfo.zooBuildingMaterial)+" <img src='img/zooBuildingMaterial.png' valign='middle'> &nbsp; ")
-    f.write(str(gameInfo.zooServiceMaterial1)+" <img src='img/zooServiceMaterial1.png' valign='middle'> &nbsp; ")
-    f.write(str(gameInfo.zooServiceMaterial2)+" <img src='img/zooServiceMaterial2.png' valign='middle'> &nbsp; ")
-    f.write(str(gameInfo.zooServiceMaterial3)+" <img src='img/zooServiceMaterial3.png' valign='middle'>")
-    f.write("</div>")
+    line = str(gameInfo.zooLandDeed)+" <img src='img/zooLandDeed.png' valign='middle'> &nbsp; "+ \
+            str(gameInfo.zooBuildingMaterial)+" <img src='img/zooBuildingMaterial.png' valign='middle'> &nbsp; "+ \
+            str(gameInfo.zooServiceMaterial1)+" <img src='img/zooServiceMaterial1.png' valign='middle'> &nbsp; "+ \
+            str(gameInfo.zooServiceMaterial2)+" <img src='img/zooServiceMaterial2.png' valign='middle'> &nbsp; "+ \
+            str(gameInfo.zooServiceMaterial3)+" <img src='img/zooServiceMaterial3.png' valign='middle'>"
+    writeLog("normalSmallGreen", line)
+    if justLeveluped: writeShortLog("normalSmallGreen", line)
 
-    f.write("<div class='normalSmallBlue'>")
-    f.write(str(gameInfo.Brick)+" <img src='img/Brick.png' valign='middle'> &nbsp; ")
-    f.write(str(gameInfo.Plita)+" <img src='img/Plita.png' valign='middle'> &nbsp; ")
-    f.write(str(gameInfo.Glass)+" <img src='img/Glass.png' valign='middle'> &nbsp; ")
-    f.write(str(gameInfo.pick)+" <img src='img/pick.png' valign='middle'> &nbsp; ")
-    f.write(str(gameInfo.axe)+" <img src='img/axe.png' valign='middle'> &nbsp; ")
-    f.write(str(gameInfo.TNT)+" <img src='img/TNT.png' valign='middle'> &nbsp; ")
-    f.write("</div>")
+    line = str(gameInfo.Brick)+" <img src='img/Brick.png' valign='middle'> &nbsp; "+ \
+            str(gameInfo.Plita)+" <img src='img/Plita.png' valign='middle'> &nbsp; "+ \
+            str(gameInfo.Glass)+" <img src='img/Glass.png' valign='middle'> &nbsp; "+ \
+            str(gameInfo.pick)+" <img src='img/pick.png' valign='middle'> &nbsp; "+ \
+            str(gameInfo.axe)+" <img src='img/axe.png' valign='middle'> &nbsp; "+ \
+            str(gameInfo.TNT)+" <img src='img/TNT.png' valign='middle'>"
+    writeLog("normalSmallBlue", line)
+    if justLeveluped:
+        writeShortLog("normalSmallBlue", line)
+        writeShortLog("normal","&nbsp;<br>&nbsp;")
+        justLeveluped = 0
 
     print ""
     print "total "+str(x)+" steps"

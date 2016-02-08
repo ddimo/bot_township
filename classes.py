@@ -36,6 +36,7 @@ class gameInfoClass:
 
         self.upgradeWait = 0
         self.chestWithoutLandDeed = 0
+        self.zooChestCounter = 0
 
         self.levelDrop = dict()
         self.levelDropHelped = dict()

@@ -266,8 +266,11 @@ def GenerateZooCommunityChestContent():
 
     writeLog("normalSmall","-----------------------------------------------------------------------------------------")
 
+    # needBuildingMaterialId = "Glass"        # test
+    # needBuildingMaterial = True             # test
     # Материалы для зданий
     if needBuildingMaterial:
+        AddByWeight(chestContent,needBuildingMaterialId,80)
         helped[needBuildingMaterialId] = "buildingmat"
         writeLog("normalSmall","<i>helping with <u>"+needBuildingMaterialId+"</u> for build (weight 80)</i>")
     else:
@@ -283,6 +286,8 @@ def GenerateZooCommunityChestContent():
             AddByWeight(chestContent,"zooServiceMaterial3",10)
 
 
+    # needUpgradeBuildingMaterialId = "Glass" # test
+    # needUpgradeBuildingMaterial = True      # test
     # Материалы для апгрейдов
     if needUpgradeBuildingMaterial:
         AddByWeight(chestContent,needUpgradeBuildingMaterialId,80)
