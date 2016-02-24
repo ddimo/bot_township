@@ -357,11 +357,7 @@ def GenerateZooCommunityChestContent():
             writeLog("normalSmall","<div class='normalSmall'><i>helping with <u>"+gemId+"</u> "
                      "(weight <b>65</b>, from GetNextGem)</i>")
         else:
-            AddByWeight(_gems,"gem1",45)
-            AddByWeight(_gems,"gem2",21)
-            AddByWeight(_gems,"gem3",17)
-            AddByWeight(_gems,"gem4",17)
-            randomGem = GetRandomMaterialOrBrickDef(_gems)
+            randomGem = GenerateRandomGem()
             AddByWeight(chestContent,randomGem,65) # <<<<<<<<<<<<<<<<<<<<<<<< все равно нехило подыгрывает на камни
             helped[randomGem] = "randomgem"
             writeLog("normalSmall","<div class='normalSmall'><i>helping with <u>"+randomGem+"</u> "
@@ -384,6 +380,22 @@ def GenerateZooCommunityChestContent():
 
     # print Counter(chestContent)
     return randomMat, wasHelped
+
+
+def GenerateRandomGem():
+    _gems = []
+    weights = {"gem1":45, "gem2":21, "gem3":17, "gem4":17}
+    if gameInfo.gem1: weights["gem1"] = (float(gemsLimits["gem1"])/float(gameInfo.gem1)) * weights["gem1"]
+    if gameInfo.gem2: weights["gem2"] = (float(gemsLimits["gem2"])/float(gameInfo.gem2)) * weights["gem2"]
+    if gameInfo.gem3: weights["gem3"] = (float(gemsLimits["gem3"])/float(gameInfo.gem3)) * weights["gem3"]
+    if gameInfo.gem4: weights["gem4"] = (float(gemsLimits["gem4"])/float(gameInfo.gem4)) * weights["gem4"]
+    AddByWeight(_gems,"gem1",int(weights["gem1"]))
+    AddByWeight(_gems,"gem2",int(weights["gem2"]))
+    AddByWeight(_gems,"gem3",int(weights["gem3"]))
+    AddByWeight(_gems,"gem4",int(weights["gem4"]))
+    # print weights
+    randomGem = GetRandomMaterialOrBrickDef(_gems)
+    return randomGem
 
 
 def AnyFamilyReady():

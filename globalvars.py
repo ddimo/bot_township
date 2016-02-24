@@ -21,5 +21,7 @@ warehouseMatList = ["nailMat", "paintRedMat", "hammerMat"]
 gemsFromPlaneRate = [0, 0.2, 0.57, 0.9, 0.97, 0.92, 0.98, 0.92, 0.98, 0.98, 0.98, 1.23] # камней из самолета на каждый камень в зоопарке, на уровне
 gemsFromMineRate = [0, 0.1, 0.12, 0.18, 0.28, 0.24, 0.21, 0.15, 0.14, 0.13, 0.12, 0.19] # камней из шахты на каждый камень в зоопарке
 
+gemsLimits = {"gem1":25, "gem2":18, "gem3":13, "gem4":5}
+
 # enough materials for upgrade #1 in zoo_caffe (needed: zooBuildingMaterial 1, Plita 2, zooServiceMaterial2 1)
 # not upgrading, saving (0 times already) for zoo_eatery (needed: Glass 3, Brick 3, zooServiceMaterial1 1)
