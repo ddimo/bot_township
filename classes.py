@@ -40,6 +40,11 @@ class gameInfoClass:
 
         self.levelDrop = dict()
         self.levelDropHelped = dict()
+        self.extraGems = dict()
+
+        self.gemsFromZoo = 0
+        self.gemsFromPlane = 0
+        self.gemsFromMine = 0
 
 class buildingSettingsClass:
     def __init__(self):
