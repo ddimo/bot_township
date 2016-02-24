@@ -482,15 +482,15 @@ def AddGems(gemId,increment):
     if increment: gameInfo.gemsFromZoo += 1
 
 
-def AddGemsFromPlane():
-    if gameInfo.zooLevel < len(gemsFromPlaneRate):
-        levelGemsFromPlaneRate = gemsFromPlaneRate[gameInfo.zooLevel]
+def AddExtraGems(source):
+    if gameInfo.zooLevel < len(extraGemsRate[source]):
+        levelRate = extraGemsRate[source][gameInfo.zooLevel]
     else:
-        levelGemsFromPlaneRate = gemsFromPlaneRate[len(gemsFromPlaneRate)]
-    if gameInfo.gemsFromZoo > 0: curGemsFromPlaneRate = float(gameInfo.gemsFromPlane)/float(gameInfo.gemsFromZoo)
-    else: curGemsFromPlaneRate = 0
-    if curGemsFromPlaneRate < levelGemsFromPlaneRate and gameInfo.gemsFromZoo > 0:
-        # нужно добавить камень из самолета
+        levelRate = extraGemsRate[source][len(extraGemsRate[source])]
+    if gameInfo.gemsFromZoo > 0: curRate = float(getattr(gameInfo,"gemsFrom"+source))/float(gameInfo.gemsFromZoo)
+    else: curRate = 0
+    if curRate < levelRate and gameInfo.gemsFromZoo > 0:
+        # нужно добавить камень
         _gems = []
         gemId = GetNextGem()
         if not gemId:
@@ -500,50 +500,19 @@ def AddGemsFromPlane():
             AddByWeight(_gems,"gem4",13)
             gemId = GetRandomMaterialOrBrickDef(_gems)
 
-        writeLog("normalBig", "<font color='red'>curGemsFromPlaneRate < levelGemsFromPlaneRate"
-                              " ("+str(gameInfo.gemsFromPlane)+"/"+str(gameInfo.gemsFromZoo)+" < "+str(levelGemsFromPlaneRate)+") giving "+gemId+" from plane!</font>")
+        writeLog("normalBig", "<font color='red'>curRate < levelRate"
+                              " ("+str(getattr(gameInfo,"gemsFrom"+source))+"/"+str(gameInfo.gemsFromZoo)+" < "+str(levelRate)+") "
+                              "giving "+gemId+" from "+source+"!</font>")
         setattr(gameInfo,gemId,getattr(gameInfo,gemId)+1)
         AddGems(gemId,False)
-        gameInfo.gemsFromPlane += 1
+        setattr(gameInfo,"gemsFrom"+source,getattr(gameInfo,"gemsFrom"+source)+1)
         if gemId not in gameInfo.extraGems:
             gameInfo.extraGems[gemId] = 1
         else:
             gameInfo.extraGems[gemId] += 1
     else:
-        writeLog("normalBig", "<font color='red'>curGemsFromPlaneRate > levelGemsFromPlaneRate"
-                              " ("+str(gameInfo.gemsFromPlane)+"/"+str(gameInfo.gemsFromZoo)+" > "+str(levelGemsFromPlaneRate)+")</font>")
-
-
-def AddGemsFromMine():
-    if gameInfo.zooLevel < len(gemsFromMineRate):
-        levelGemsFromMineRate = gemsFromMineRate[gameInfo.zooLevel]
-    else:
-        levelGemsFromMineRate = gemsFromMineRate[len(gemsFromPlaneRate)]
-    if gameInfo.gemsFromZoo > 0: curGemsFromMineRate = float(gameInfo.gemsFromMine)/float(gameInfo.gemsFromZoo)
-    else: curGemsFromMineRate = 0
-    if curGemsFromMineRate < levelGemsFromMineRate and gameInfo.gemsFromZoo > 0:
-        # нужно добавить камень из шахты
-        _gems = []
-        gemId = GetNextGem()
-        if not gemId:
-            AddByWeight(_gems,"gem1",47)
-            AddByWeight(_gems,"gem2",25)
-            AddByWeight(_gems,"gem3",15)
-            AddByWeight(_gems,"gem4",13)
-            gemId = GetRandomMaterialOrBrickDef(_gems)
-
-        writeLog("normalBig", "<font color='red'>curGemsFromMineRate < levelGemsFromMineRate"
-                              " ("+str(gameInfo.gemsFromMine)+"/"+str(gameInfo.gemsFromZoo)+"="+str(curGemsFromMineRate)+" < "+str(levelGemsFromMineRate)+") giving "+gemId+" from mine!</font>")
-        setattr(gameInfo,gemId,getattr(gameInfo,gemId)+1)
-        AddGems(gemId,False)
-        gameInfo.gemsFromMine += 1
-        if gemId not in gameInfo.extraGems:
-            gameInfo.extraGems[gemId] = 1
-        else:
-            gameInfo.extraGems[gemId] += 1
-    else:
-        writeLog("normalBig", "<font color='red'>curGemsFromMineRate > levelGemsFromMineRate"
-                              " ("+str(gameInfo.gemsFromMine)+"/"+str(gameInfo.gemsFromZoo)+" > "+str(levelGemsFromMineRate)+")</font>")
+        writeLog("normalBig", "<font color='red'>curRate > levelRate"
+                              " ("+str(getattr(gameInfo,"gemsFrom"+source))+"/"+str(gameInfo.gemsFromZoo)+" > "+str(levelRate)+")</font>")
 
 
 def GetDiffrenceGemsForNextPaddockAnimal(paddock):
