@@ -1,12 +1,13 @@
 # coding=utf-8
 
 from functions import *
+from globalvars import *
 import time
 import xml.etree.ElementTree as xml
 
 
 MAX_WAIT_FOR_UPGRADE = 5    # сколько шагов максимум ждем прежде чем купим апгрейд даже если копим на здание
-USE_340_XMLS = True         # если True - используем хмл из 340 версии
+USE_340_XMLS = False         # если True - используем хмл из 340 версии
 
 xmlPath = '../township/base/'
 if USE_340_XMLS:
@@ -95,18 +96,19 @@ for upgradeBuildingElem in UpgradesSettingsXml:
 # теперь соберем инфу сколько рейтинга дает постройка загона, а также какие требования на животных из All_AnimalPaddocks
 paddocksSettings = paddocksXml.find('AnimalPaddocks')
 for paddockElem in paddocksSettings:
-    elemId = paddockElem.attrib['type']
-    elemRating = int(paddockElem.attrib['rating'])
-    buildingSettings[elemId].bonusRating = elemRating
-    animalNumber = 1
-    animalsReqs[elemId] = [0,0,0,0,0]
-    for childPaddockElem in paddockElem:
-        if childPaddockElem.tag == "animal":
-            curAnimalReqs = animalReqsClass()
-            for g in gemsList:
-                if g in childPaddockElem.attrib: setattr(curAnimalReqs,g,int(childPaddockElem.attrib[g]))
-            animalsReqs[elemId][animalNumber] = curAnimalReqs
-            animalNumber += 1
+    if paddockElem.tag == 'paddock':
+        elemId = paddockElem.attrib['type']
+        elemRating = int(paddockElem.attrib['rating'])
+        buildingSettings[elemId].bonusRating = elemRating
+        animalNumber = 1
+        animalsReqs[elemId] = [0,0,0,0,0]
+        for childPaddockElem in paddockElem:
+            if childPaddockElem.tag == "animal":
+                curAnimalReqs = animalReqsClass()
+                for g in gemsList:
+                    if g in childPaddockElem.attrib: setattr(curAnimalReqs,g,int(childPaddockElem.attrib[g]))
+                animalsReqs[elemId][animalNumber] = curAnimalReqs
+                animalNumber += 1
 
 # инфа о бонусном рейтинге положена в buildingSettings: buildingSettings["zoo_caffe"].bonusRating
 # требования камней на животных - в animalsReqs:
@@ -139,6 +141,23 @@ for levelupElem in zooLevelups:
 # ratingToLevelup[level] - сколько требуется рейтинга суммарно для перехода на уровень level
 
 
+
+
+# теперь соберем инфу о лимитах камней по уровням
+gemLimits = gameBalanceRoot.find('GemsLimits')
+for gemLimitsElem in gemLimits:
+    elem = gemLimitClass()
+    elem.fromZooLevel = int(gemLimitsElem.attrib['fromZooLevel'])
+    elem.toZooLevel = int(gemLimitsElem.attrib['toZooLevel'])
+    elem.gem1 = int(gemLimitsElem.attrib['gem1'])
+    elem.gem2 = int(gemLimitsElem.attrib['gem2'])
+    elem.gem3 = int(gemLimitsElem.attrib['gem3'])
+    elem.gem4 = int(gemLimitsElem.attrib['gem4'])
+    gemLimitRanges.append(elem)
+
+_gemsWithCorrectionWeightCoefficient = gameBalanceRoot.find('GemsWithCorrectionWeightCoefficient')
+_gemsWithCorrectionWeightCoefficient = float(_gemsWithCorrectionWeightCoefficient.attrib['k'].replace("f",""))
+
 # соберем инфу о расширениях в зоопарке
 expandXmlRoot = expandXml.getroot()
 for expandElem in expandXmlRoot:
@@ -161,8 +180,8 @@ writeLog("pink","building <b>paddock_bear</b> (tutorial)")
 gameInfo.paddocks["paddock_bear"] = 1
 writeLog("orange","buying new animal for <b>paddock_bear</b> (tutorial)")
 gameInfo.paddocksTotalAnimals["paddock_bear"] = 1
-writeLog("lime","building <b>zoo_caffe</b> (tutorial)")
-gameInfo.communities["zoo_caffe"] = 1
+writeLog("lime","building <b>zoo_eatery</b> (tutorial)")
+gameInfo.communities["zoo_eatery"] = 1
 
 justLeveluped = 0
 

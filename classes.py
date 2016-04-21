@@ -101,3 +101,12 @@ class weightsList:
         self.zooServiceMaterial1 = 0
         self.zooServiceMaterial2 = 0
         self.zooServiceMaterial3 = 0
+
+class gemLimitClass:
+    def __init__(self):
+        self.fromZooLevel = 0
+        self.toZooLevel = 0
+        self.gem1 = 0
+        self.gem2 = 0
+        self.gem3 = 0
+        self.gem4 = 0

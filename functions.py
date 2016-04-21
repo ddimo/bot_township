@@ -68,14 +68,23 @@ def GetRandomMaterialOrBrickDef(chestContent):
     writeLog("normalSmall",lineToWrite)
     return chestContent[rand]
 
-def FillCurrentOrdersOnlyZoo():
+def FillCurrentOrders():
     curReqs = []
     for key, value in buildingSettings.iteritems():
-        if int(value.zooLevel) <= gameInfo.zooLevel and gameInfo.paddocks.get(value.id) != 1:
-            # доступно по уровню и еще не построено
-            for mat in buildingMatList:
-                if getattr(value, mat) > 0:
-                    curReqs.append([mat, getattr(value, mat)])
+        canBeBuilt = False
+        if int(value.zooLevel) <= gameInfo.zooLevel:
+            if "zoo_" in value.id:
+                if gameInfo.communities.get(value.id) != 1:
+                    canBeBuilt = True
+            elif "paddock_" in value.id:
+                if gameInfo.paddocks.get(value.id) != 1:
+                    canBeBuilt = True
+            if canBeBuilt:
+                # доступно по уровню и еще не построено
+                writeLog("normalSmall","<u>not yet built "+str(value.id)+"</u>")
+                for mat in buildingMatList:
+                    if getattr(value, mat) > 0:
+                        curReqs.append([mat, getattr(value, mat)])
 
     return curReqs
 
@@ -141,36 +150,49 @@ def FindUpdateToBuy():
                             return False
 
 
+def CheckZooCommunityIsReady(commId):
+    # фейк, проверяет всего лишь доступность комьюнити по уровню, а не "готово" ли оно
+    zooLevel = gameInfo.zooLevel
+    if buildingSettings[commId].zooLevel <= zooLevel:
+        return True
+    else:
+        return False
+
+
 def GenerateZooCommunityChestContent():
 
     helped = {}
     wasHelped = "no"
 
-    if gameInfo.countZooCommunityChest == 0:
+    playerLevel = gameInfo.playerLevel
+    zooLevel = gameInfo.zooLevel
+    isSurplusGem = IsSurplusGems()
+
+    _zooCommunityChestContent = []
+    chestWithoutLandDeed = gameInfo.chestWithoutLandDeed
+    countZooCommunityChest = gameInfo.countZooCommunityChest
+
+    if countZooCommunityChest == 0:
         curvalue = getattr(gameInfo,"countZooCommunityChest")
         setattr(gameInfo,"countZooCommunityChest",curvalue+1)
         return "zooBuildingMaterial", "firstDrops"
-    elif gameInfo.countZooCommunityChest == 1:
+    elif countZooCommunityChest == 1:
         curvalue = getattr(gameInfo,"countZooCommunityChest")
         setattr(gameInfo,"countZooCommunityChest",curvalue+1)
         return "zooServiceMaterial2", "firstDrops"
-    elif gameInfo.countZooCommunityChest == 2:
+    elif countZooCommunityChest == 2:
         curvalue = getattr(gameInfo,"countZooCommunityChest")
         setattr(gameInfo,"countZooCommunityChest",curvalue+1)
         return "zooBuildingMaterial", "firstDrops"
-    elif gameInfo.countZooCommunityChest == 3:
+    elif countZooCommunityChest == 3:
         curvalue = getattr(gameInfo,"countZooCommunityChest")
         setattr(gameInfo,"countZooCommunityChest",curvalue+1)
         return "pick", "firstDrops"
 
-    chestContent = []
-    chestWithoutLandDeed = gameInfo.chestWithoutLandDeed
-
-    # заполняем список всех требущихся материалов в недостровенных зданиях
-    currentZooMaterialReqs = FillCurrentOrdersOnlyZoo()
+    # //Заполняет вектор из всех требующихся материалов в строящихся и не завершенных комьюнити в зоопарке + загоны тоже
+    currentZooMaterialReqs = FillCurrentOrders()
 
     # Из каждого требования вычитаем колличество материалов имеющихся в амбаре
-
     x = 0
     for key,value in currentZooMaterialReqs:
         currentZooMaterialReqs[x] = [key,value-getattr(gameInfo,key)]
@@ -183,12 +205,15 @@ def GenerateZooCommunityChestContent():
     _buildingMaterials = []
     if currentZooMaterialReqs:
         for key,value in currentZooMaterialReqs:
-            #if value>0: # здесь может подыграться даже если материал не нужен, главное что он есть в активных требованиях
-            AddByWeight(_buildingMaterials,key,value+gameInfo.zooLevel)
+            if (key == "zooServiceMaterial3" and not CheckZooCommunityIsReady("zoo_cinema")) or (key == "zooServiceMaterial2" and not CheckZooCommunityIsReady("zoo_icecream_shop") and gameInfo.zooServiceMaterial2 >= 9):
+                print "костыль, не выдаем этот материал пока не достроим комьюнити"
+            else:
+                AddByWeight(_buildingMaterials,key,value+zooLevel)
     if _buildingMaterials:
         needBuildingMaterial = True
         needBuildingMaterialId = GetRandomMaterialOrBrickDef(_buildingMaterials)
-
+    else:
+        print "NO NEED FOR BUILDING MATERIALS! :("
 
     # Заполняет вектор из всех требующихся материалов для улучшения комьюнити в зоопарке
     currentZooUpgradeMaterialsReqs = FillCurrentZooUpgradePrices()
@@ -206,7 +231,10 @@ def GenerateZooCommunityChestContent():
     _buildingUpgradeMaterials = []
     if currentZooUpgradeMaterialsReqs:
         for key,value in currentZooUpgradeMaterialsReqs:
-            AddByWeight(_buildingUpgradeMaterials,key,value+gameInfo.zooLevel)
+            if key == "zooServiceMaterial2" and not CheckZooCommunityIsReady("zoo_icecream_shop") and gameInfo.zooServiceMaterial2 >= 9:
+                print "костыль, не выдаем этот материал пока не достроим комьюнити"
+            else:
+                AddByWeight(_buildingUpgradeMaterials,key,value+zooLevel)
     if _buildingUpgradeMaterials:
         needUpgradeBuildingMaterial = True
         needUpgradeBuildingMaterialId = GetRandomMaterialOrBrickDef(_buildingUpgradeMaterials)
@@ -269,47 +297,45 @@ def GenerateZooCommunityChestContent():
                 needZooExpandMaterialId = "TNT"
                 alreadyHelped = True
 
-        if alreadyHelped: needZooExpandMaterial = True
+        if alreadyHelped:
+            needZooExpandMaterial = True
 
 
     # Проверяем нужно ли подыграть по камням
     needGem = False
     needGemId = "gem1"
+    # Проверяем нужно ли подыгрывать по камням (needGemId), если нужно то возвращаем какой камень будет подыгрывать (needGem)
     needGemResult = GenerateZooCommunityChestGemManipulation(needGemId,needGem)
     needGemId = needGemResult[0]
     needGem = needGemResult[1]
-    # если нужно то возвращаем какой камень будет подыгрывать (needGem)
-
-
-
 
     writeLog("normalSmall","-----------------------------------------------------------------------------------------")
 
-    # needBuildingMaterialId = "Glass"        # test
-    # needBuildingMaterial = True             # test
     # Материалы для зданий
     if needBuildingMaterial:
-        AddByWeight(chestContent,needBuildingMaterialId,80)
+        AddByWeight(_zooCommunityChestContent,needBuildingMaterialId,80)
         helped[needBuildingMaterialId] = "buildingmat"
         writeLog("normalSmall","<i>helping with <u>"+needBuildingMaterialId+"</u> for build (weight 80)</i>")
     else:
-        if gameInfo.zooLevel < 7: # в коде условие по playerLevel<50
-            AddByWeight(chestContent,"Brick",10)
-            AddByWeight(chestContent,"Glass",10)
-            AddByWeight(chestContent,"Plita",10)
-        AddByWeight(chestContent,"zooBuildingMaterial",20)
-        AddByWeight(chestContent,"zooServiceMaterial1",10)
-        if gameInfo.zooLevel >= 2:
-            AddByWeight(chestContent,"zooServiceMaterial2",10)
-        if gameInfo.zooLevel >= 4:
-            AddByWeight(chestContent,"zooServiceMaterial3",10)
+        print "needBuildingMaterial FALSE!!!!!!!!!!!!!!!!!!!!!"
+        if zooLevel < 7: # в коде условие по playerLevel<50
+            AddByWeight(_zooCommunityChestContent,"Brick",10)
+            AddByWeight(_zooCommunityChestContent,"Glass",10)
+            AddByWeight(_zooCommunityChestContent,"Plita",10)
+        AddByWeight(_zooCommunityChestContent,"zooBuildingMaterial",20)
+        AddByWeight(_zooCommunityChestContent,"zooServiceMaterial1",10)
+        if zooLevel >= 2:
+            if CheckZooCommunityIsReady("zoo_icecream_shop") or (not CheckZooCommunityIsReady("zoo_icecream_shop") and gameInfo.zooServiceMaterial2 < 9):
+                # или icecream_shop уже доступен для строительства, или недоступен но zSM2 меньше 9 - значит можно его выдавать
+                AddByWeight(_zooCommunityChestContent,"zooServiceMaterial2",10)
+        if zooLevel >= 4 and CheckZooCommunityIsReady("zoo_cinema"):
+            # cinema доступен для строительства - можно выдавать zSM3
+            AddByWeight(_zooCommunityChestContent,"zooServiceMaterial3",10)
 
 
-    # needUpgradeBuildingMaterialId = "Glass" # test
-    # needUpgradeBuildingMaterial = True      # test
     # Материалы для апгрейдов
     if needUpgradeBuildingMaterial:
-        AddByWeight(chestContent,needUpgradeBuildingMaterialId,80)
+        AddByWeight(_zooCommunityChestContent,needUpgradeBuildingMaterialId,80)
         helped[needUpgradeBuildingMaterialId] = "upgrademat"
         writeLog("normalSmall","<i>helping with <u>"+needUpgradeBuildingMaterialId+"</u> "
                  "for upgrade (weight 80)</i>")
@@ -317,54 +343,58 @@ def GenerateZooCommunityChestContent():
 
     # Материалы для амбара
     if needWarehauseMaterial:
-        AddByWeight(chestContent,needWarehauseMaterialId,20)
+        AddByWeight(_zooCommunityChestContent,needWarehauseMaterialId,20)
         helped[needWarehauseMaterialId] = "warehousemat"
         writeLog("normalSmall","<i>helping with <u>"+needWarehauseMaterialId+"</u> "
                  "for warehouse upgrade (weight 20)</i>")
     else:
-        AddByWeight(chestContent,"hammerMat",3)
-        AddByWeight(chestContent,"nailMat",3)
-        AddByWeight(chestContent,"paintRedMat",3)
+        AddByWeight(_zooCommunityChestContent,"hammerMat",3)
+        AddByWeight(_zooCommunityChestContent,"nailMat",3)
+        AddByWeight(_zooCommunityChestContent,"paintRedMat",3)
 
 
     # Материалы для расширений
     if needZooExpandMaterial:
-        AddByWeight(chestContent,needZooExpandMaterialId,45)
+        AddByWeight(_zooCommunityChestContent,needZooExpandMaterialId,45)
         helped[needZooExpandMaterialId] = "expandmat"
         writeLog("normalSmall","<i>helping with <u>"+needZooExpandMaterialId+"</u> "
                  "for expand (weight 45)</i>")
     else:
         if expandReqs[nextExp].zooLandDeed > 0:
-            AddByWeight(chestContent,"zooLandDeed",2)
+            AddByWeight(_zooCommunityChestContent,"zooLandDeed",2)
         if expandReqs[nextExp].pick > 0:
-            AddByWeight(chestContent,"pick",2)
+            AddByWeight(_zooCommunityChestContent,"pick",2)
         if expandReqs[nextExp].axe > 0:
-            AddByWeight(chestContent,"axe",2)
+            AddByWeight(_zooCommunityChestContent,"axe",2)
         if expandReqs[nextExp].TNT > 0:
-            AddByWeight(chestContent,"TNT",1)
+            AddByWeight(_zooCommunityChestContent,"TNT",1)
 
     # Камни
     if needGem:
-        AddByWeight(chestContent,needGemId,65)
+        AddByWeight(_zooCommunityChestContent,needGemId,65)
         helped[needGemId] = "needgem"
         writeLog("normalSmall","<i>helping with <u>"+needGemId+"</u> (weight <b>65</b>, from needGem)</i>")
     else:
-        _gems = []
+        # _gems = []
         gemId = GetNextGem()
+        gemWeight = 30
+        if isSurplusGem:
+            gemWeight = 10
         if gemId:
-            AddByWeight(chestContent,gemId,65)
+            AddByWeight(_zooCommunityChestContent,gemId,gemWeight)
             helped[gemId] = "getnextgem"
             writeLog("normalSmall","<div class='normalSmall'><i>helping with <u>"+gemId+"</u> "
-                     "(weight <b>65</b>, from GetNextGem)</i>")
+                     "(weight <b>"+str(gemWeight)+"</b>, from GetNextGem)</i>")
         else:
-            randomGem = GenerateRandomGem()
-            AddByWeight(chestContent,randomGem,65) # <<<<<<<<<<<<<<<<<<<<<<<< все равно нехило подыгрывает на камни
-            helped[randomGem] = "randomgem"
-            writeLog("normalSmall","<div class='normalSmall'><i>helping with <u>"+randomGem+"</u> "
-                     "(weight <b>65</b>, from randomGem)</i>")
+            _gems = GetGemsWithCorrectionWeight(45,21,17,17)
+            gemId = GetRandomMaterialOrBrickDef(_gems)
+            AddByWeight(_zooCommunityChestContent,gemId,gemWeight)
+            helped[gemId] = "randomgem"
+            writeLog("normalSmall","<div class='normalSmall'><i>helping with <u>"+gemId+"</u> "
+                     "(weight <b>"+str(gemWeight)+"</b>, from randomGem)</i>")
 
 
-    randomMat = GetRandomMaterialOrBrickDef(chestContent)
+    randomMat = GetRandomMaterialOrBrickDef(_zooCommunityChestContent)
     if randomMat == "zooLandDeed":
         gameInfo.chestWithoutLandDeed = 0
     else:
@@ -382,20 +412,66 @@ def GenerateZooCommunityChestContent():
     return randomMat, wasHelped
 
 
-def GenerateRandomGem():
-    _gems = []
-    weights = {"gem1":45, "gem2":21, "gem3":17, "gem4":17}
-    if gameInfo.gem1: weights["gem1"] = (float(gemsLimits["gem1"])/float(gameInfo.gem1)) * weights["gem1"]
-    if gameInfo.gem2: weights["gem2"] = (float(gemsLimits["gem2"])/float(gameInfo.gem2)) * weights["gem2"]
-    if gameInfo.gem3: weights["gem3"] = (float(gemsLimits["gem3"])/float(gameInfo.gem3)) * weights["gem3"]
-    if gameInfo.gem4: weights["gem4"] = (float(gemsLimits["gem4"])/float(gameInfo.gem4)) * weights["gem4"]
-    AddByWeight(_gems,"gem1",int(weights["gem1"]))
-    AddByWeight(_gems,"gem2",int(weights["gem2"]))
-    AddByWeight(_gems,"gem3",int(weights["gem3"]))
-    AddByWeight(_gems,"gem4",int(weights["gem4"]))
-    # print weights
-    randomGem = GetRandomMaterialOrBrickDef(_gems)
-    return randomGem
+def GetGemsWithCorrectionWeight(weight_1,weight_2,weight_3,weight_4):
+    # Самоцветы с весами
+    gemsWeight = {'gem1':weight_1, 'gem2':weight_2, 'gem3':weight_3, 'gem4':weight_4}
+
+    # Каких и сколько самоцветов у нас есть
+    gemsCount = {'gem1':gameInfo.gem1, 'gem2':gameInfo.gem2, 'gem3':gameInfo.gem3, 'gem4':gameInfo.gem4}
+
+    # Ищем минимальное и максимальное кол-во самоцветов
+    mini = min(gemsCount, key=gemsCount.get)
+    maxi = max(gemsCount, key=gemsCount.get)
+    mini = float(getattr(gameInfo,mini))
+    maxi = float(getattr(gameInfo,maxi))
+    if mini == 0:
+        mini = 1.0
+
+    if maxi/mini > 5.0:
+        allGemsCount = 0
+        for key,value in gemsCount.iteritems():
+            allGemsCount += value
+        for key,value in gemsCount.iteritems():
+            # Процентная доля от общего
+            percentage = (value/float(allGemsCount))*100.0
+            id = key
+
+            # Если разница меньше то увеличиваем, если разница больше, то уменьшаем
+            gemsWeight[id] -= percentage - gemsWeight[id]
+            if gemsWeight[id] < 1:
+                gemsWeight[id] = 1
+
+    _gemsCorrected = []
+    for key,value in gemsWeight.iteritems():
+        curweight = int(value)
+        AddByWeight(_gemsCorrected,key,int(curweight))
+
+    return _gemsCorrected
+
+
+
+def IsSurplusGems():
+    zooLevel = gameInfo.zooLevel
+    res = True
+    find = False
+    gem1_count = gameInfo.gem1
+    gem2_count = gameInfo.gem2
+    gem3_count = gameInfo.gem3
+    gem4_count = gameInfo.gem4
+    for gl in gemLimitRanges:
+        if gl.fromZooLevel <= zooLevel and gl.toZooLevel >= zooLevel:
+            res = res and gem1_count >= gl.gem1
+            res = res and gem2_count >= gl.gem2
+            res = res and gem3_count >= gl.gem3
+            res = res and gem4_count >= gl.gem4
+            find = True
+            break
+
+    if not find:
+        print "Неучтенный отрезок уровней в лимите камней"
+        return False
+
+    return res
 
 
 def AnyFamilyReady():
@@ -403,7 +479,6 @@ def AnyFamilyReady():
         if gameInfo.paddocksTotalAnimals[curPaddockId] == 4:
             return True
     return False
-
 
 
 def GenerateZooCommunityChestGemManipulation(needGemId,needGem):
@@ -630,7 +705,6 @@ def TryExpand():
             gameInfo.axe -= value.axe
             gameInfo.pick -= value.pick
             gameInfo.TNT -= value.TNT
-
 
 
 def TryBuild():
