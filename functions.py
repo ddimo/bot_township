@@ -94,7 +94,7 @@ def CompareForZooMats(buildId, upgradeId, upgradeNum):
     # на предмет наличия общих требований по зоо-материалам
     for mat in zooBuildingMatList:
         if getattr(buildingSettings[buildId],mat):
-            if getattr(upgradesReqs[upgradeId][upgradeNum],mat):
+            if getattr(upgradesReqs[upgradeId][upgradeNum],mat) > 0:
                 # отсечем случаи, когда совпадающий материал по количеству требуется намного больше - в таких случаях не будем ждать
                 matUp = getattr(upgradesReqs[upgradeId][upgradeNum],mat)
                 matBuild = getattr(buildingSettings[buildId],mat)
@@ -147,7 +147,8 @@ def FindUpdateToBuy():
                         if canDo:
                             return key, upNum
                         else:
-                            return False
+                            break
+    return False
 
 
 def CheckZooCommunityIsReady(commId):
@@ -449,7 +450,6 @@ def GetGemsWithCorrectionWeight(weight_1,weight_2,weight_3,weight_4):
     return _gemsCorrected
 
 
-
 def IsSurplusGems():
     zooLevel = gameInfo.zooLevel
     res = True
@@ -557,6 +557,26 @@ def AddGems(gemId,increment):
     if increment: gameInfo.gemsFromZoo += 1
 
 
+def CalcBuildingCompletePercent(buildingId):
+    curLevel = gameInfo.zooLevel
+    curRating = gameInfo.rating
+    buildingUnlockLevel = buildingSettings[buildingId].zooLevel
+    ratingToUnlockLevel = ratingToLevelup[buildingUnlockLevel]
+    ratingToNextLevel = ratingToLevelup[buildingUnlockLevel+1]
+    ratingBetween = ratingToNextLevel-ratingToUnlockLevel
+    ratingOnLevel = curRating-ratingToUnlockLevel
+
+    if buildingUnlockLevel <= curLevel:
+        percent = int(round((float(ratingOnLevel)/float(ratingBetween))*100.0,0))
+    # elif buildingUnlockLevel < curLevel:
+    #     percent = "100+"
+    else:
+        percent = "error"
+
+    return percent
+
+
+
 def AddExtraGems(source):
     if gameInfo.zooLevel < len(extraGemsRate[source]):
         levelRate = extraGemsRate[source][gameInfo.zooLevel]
@@ -620,11 +640,14 @@ def CheckCanBuild(bsettings):
 
 
 def DoBuild(bsettings,buildingId):
+    percent = CalcBuildingCompletePercent(buildingId)
     if "paddock_" in buildingId:
         gameInfo.paddocks[buildingId] = 1
         gameInfo.paddocksTotalAnimals[buildingId] = 0
+        gameInfo.paddocksCompletePercent[buildingId] = percent
     elif "zoo_" in buildingId:
         gameInfo.communities[buildingId] = 1
+        gameInfo.communitiesCompletePercent[buildingId] = percent
     gameInfo.rating += bsettings.bonusRating
     for mat in buildingMatList:
         if getattr(bsettings,mat) > 0:
@@ -713,7 +736,11 @@ def TryBuild():
             if not CheckAlreadyBuilt(value.id):
                 if CheckCanBuild(buildingSettings[value.id]):
                     DoBuild(buildingSettings[value.id],value.id)
-                    line = "building <b>"+value.id+"</b> &mdash; <small>"
+                    if "paddock" in value.id:
+                        percent = gameInfo.paddocksCompletePercent[value.id]
+                    elif "zoo" in value.id:
+                        percent = gameInfo.communitiesCompletePercent[value.id]
+                    line = "building <b>"+value.id+"</b> ("+str(percent)+"%) &mdash; <small>"
                     for mat in buildingMatList:
                         if getattr(buildingSettings[value.id], mat):
                             line += str(getattr(buildingSettings[value.id],mat))+" <img src='img/"+mat+".png' valign='middle'>&nbsp;"

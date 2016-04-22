@@ -6,8 +6,8 @@ import time
 import xml.etree.ElementTree as xml
 
 
-MAX_WAIT_FOR_UPGRADE = 5    # сколько шагов максимум ждем прежде чем купим апгрейд даже если копим на здание
-USE_340_XMLS = False         # если True - используем хмл из 340 версии
+MAX_WAIT_FOR_UPGRADE = 100    # сколько шагов максимум ждем прежде чем купим апгрейд даже если копим на здание
+USE_340_XMLS = False        # если True - используем хмл из 340 версии, больше не работает, т.к. в расчете лимиты камней в 360
 
 xmlPath = '../township/base/'
 if USE_340_XMLS:
@@ -178,10 +178,12 @@ writeHtmlHead()
 # в начале строим туториальный загон для медведя, покупаем медведя и строим кафе
 writeLog("pink","building <b>paddock_bear</b> (tutorial)")
 gameInfo.paddocks["paddock_bear"] = 1
+gameInfo.paddocksCompletePercent["paddock_bear"] = 0
 writeLog("orange","buying new animal for <b>paddock_bear</b> (tutorial)")
 gameInfo.paddocksTotalAnimals["paddock_bear"] = 1
 writeLog("lime","building <b>zoo_eatery</b> (tutorial)")
 gameInfo.communities["zoo_eatery"] = 1
+gameInfo.communitiesCompletePercent["zoo_eatery"] = 0
 
 justLeveluped = 0
 
@@ -344,11 +346,16 @@ while gameInfo.zooLevel<11:
         line = GetBuildingReqsLine("upgrade", ubid, un)
         writeLog("normalSmall","<i>enough materials for upgrade #"+str(un)+" in "+str(ubid)+" (needed: "+line+")")
         availableToBuild = FindAvailableNotBuilt()
-        if not availableToBuild or (gameInfo.upgradeWait >= MAX_WAIT_FOR_UPGRADE and not CompareForZooMats(availableToBuild,ubid,un)):
+        if availableToBuild:
+            comparision = CompareForZooMats(availableToBuild,ubid,un)
+        if not availableToBuild or not comparision or gameInfo.upgradeWait >= MAX_WAIT_FOR_UPGRADE:
+            # do если нет доступных для строительства
+            # или доступно, но нет совпадения по материалам с доступным
+            # или доступно, есть совпадение, но подождали уже долго
             DoUpgrade(ubid,un)
             writeLog("normalSmall", "<font color='red'>bought upgrade</font>")
             gameInfo.upgradeWait = 0
-        else:
+        else: # if available and comparision and wait<=MAX_WAIT
             # не будем покупать апгрейд пока копим на строительство доступного загона/комьюнити
             if gameInfo.upgradeWait < MAX_WAIT_FOR_UPGRADE:
                 line = GetBuildingReqsLine("build",availableToBuild,0)
@@ -405,6 +412,32 @@ while gameInfo.zooLevel<11:
         writeShortLog("normal","&nbsp;<br>&nbsp;")
         justLeveluped = 0
 
+line = "<b>REPORT:</b><br><br><table style='border:0px'><tr><td style='font-size:8pt'><b>id</b></td><td style='font-size:8pt'><b>open</b></td><td style='font-size:8pt'><b>complete</b></td></tr>"
+
+for i in range(1,40):
+    for key, value in gameInfo.paddocks.items():
+        if buildingSettings[key].zooLevel == i and value == 1:
+            percent = gameInfo.paddocksCompletePercent[key]
+            if percent > 100:
+                percent = "<font color='darkred'><b>"+str(percent)+"</b></font>"
+            else:
+                percent = "<font color='green'>"+str(percent)+"</font>"
+            line += "<tr><td style='padding-right:10px'>"+str(key)+"</td> <td style='padding-right:10px'> "+ \
+                    "<b>L"+str(buildingSettings[key].zooLevel)+"</b></td> <td><i>"+percent+"%</i></td></tr>"
+
+    for key, value in gameInfo.communities.items():
+        if buildingSettings[key].zooLevel == i and value == 1:
+            percent = gameInfo.communitiesCompletePercent[key]
+            if percent > 100:
+                percent = "<font color='darkred'><b>"+str(percent)+"</b></font>"
+            else:
+                percent = "<font color='green'>"+str(percent)+"</font>"
+            line += "<tr><td style='padding-right:10px'>"+str(key)+"</td> <td style='padding-right:10px'> "+ \
+                    "<b>L"+str(buildingSettings[key].zooLevel)+"</b></td> <td><i>"+percent+"%</i></td></tr>"
+
+line += "</table>"
+
+writeShortLog("darkblue", line)
 
 print ""
 print "total "+str(x)+" steps"

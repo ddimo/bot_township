@@ -30,8 +30,10 @@ class gameInfoClass:
         self.wasnot = {'gem1':0, 'gem2':0, 'gem3':0, 'gem4':0}
 
         self.paddocks = dict()
+        self.paddocksCompletePercent = dict()
         self.paddocksTotalAnimals = dict()
         self.communities = dict()
+        self.communitiesCompletePercent = dict()
         self.communitiesUpgrades = dict()
 
         self.upgradeWait = 0
