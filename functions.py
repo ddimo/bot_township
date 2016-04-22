@@ -595,9 +595,9 @@ def AddExtraGems(source):
             AddByWeight(_gems,"gem4",13)
             gemId = GetRandomMaterialOrBrickDef(_gems)
 
-        writeLog("normalBig", "<font color='red'>curRate < levelRate"
-                              " ("+str(getattr(gameInfo,"gemsFrom"+source))+"/"+str(gameInfo.gemsFromZoo)+" < "+str(levelRate)+") "
-                              "giving "+gemId+" from "+source+"!</font>")
+        # writeLog("normalBig", "<font color='red'>curRate < levelRate"
+        #                       " ("+str(getattr(gameInfo,"gemsFrom"+source))+"/"+str(gameInfo.gemsFromZoo)+" < "+str(levelRate)+") "
+        #                       "giving "+gemId+" from "+source+"!</font>")
         setattr(gameInfo,gemId,getattr(gameInfo,gemId)+1)
         AddGems(gemId,False)
         setattr(gameInfo,"gemsFrom"+source,getattr(gameInfo,"gemsFrom"+source)+1)
@@ -605,9 +605,9 @@ def AddExtraGems(source):
             gameInfo.extraGems[gemId] = 1
         else:
             gameInfo.extraGems[gemId] += 1
-    else:
-        writeLog("normalBig", "<font color='red'>curRate > levelRate"
-                              " ("+str(getattr(gameInfo,"gemsFrom"+source))+"/"+str(gameInfo.gemsFromZoo)+" > "+str(levelRate)+")</font>")
+    # else:
+    #     writeLog("normalBig", "<font color='red'>curRate > levelRate"
+    #                           " ("+str(getattr(gameInfo,"gemsFrom"+source))+"/"+str(gameInfo.gemsFromZoo)+" > "+str(levelRate)+")</font>")
 
 
 def GetDiffrenceGemsForNextPaddockAnimal(paddock):
