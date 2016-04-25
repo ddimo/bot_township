@@ -73,6 +73,7 @@ class buildingUpgradesSettingsClass:
         self.zooServiceMaterial2 = 0
         self.zooServiceMaterial3 = 0
         self.animalsCount = 0
+        self.zooLevel = 0
 
 
 class animalReqsClass:
