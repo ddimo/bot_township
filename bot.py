@@ -102,11 +102,11 @@ while gameInfo.zooLevel<11:
 
 
     ################################ проверим не настало ли время добавить камни с самолета
-    AddExtraGems("Plane")
+    AddExtraGems("ALL")
     ###########################################
 
     ################################ проверим не настало ли время добавить камни с шахты
-    AddExtraGems("Mine")
+    # AddExtraGems("Mine")
     ###########################################
 
 
@@ -250,21 +250,21 @@ for i in range(1,40):
         if buildingSettings[key].zooLevel == i and value == 1:
             percent = gameInfo.paddocksCompletePercent[key]
             if percent > 100:
-                percent = "<font color='darkred'><b>"+str(percent)+"</b></font>"
+                percent = "<font color='darkred'>"+str(percent)+"</font>"
             else:
                 percent = "<font color='green'>"+str(percent)+"</font>"
             line += "<tr><td style='padding-right:10px'>"+str(key)+"</td> <td style='padding-right:10px'> "+ \
-                    "<b>L"+str(buildingSettings[key].zooLevel)+"</b></td> <td><i>"+percent+"%</i></td></tr>"
+                    "L"+str(buildingSettings[key].zooLevel)+"</td> <td><i>"+percent+"%</i></td></tr>"
 
     for key, value in gameInfo.communities.items():
         if buildingSettings[key].zooLevel == i and value == 1:
             percent = gameInfo.communitiesCompletePercent[key]
             if percent > 100:
-                percent = "<font color='darkred'><b>"+str(percent)+"</b></font>"
+                percent = "<font color='darkred'>"+str(percent)+"</font>"
             else:
                 percent = "<font color='green'>"+str(percent)+"</font>"
-            line += "<tr><td style='padding-right:10px'>"+str(key)+"</td> <td style='padding-right:10px'> "+ \
-                    "<b>L"+str(buildingSettings[key].zooLevel)+"</b></td> <td><i>"+percent+"%</i></td></tr>"
+            line += "<tr style='font-weight: bold;'><td style='padding-right:10px'>"+str(key)+"</td> <td style='padding-right:10px'> "+ \
+                    "L"+str(buildingSettings[key].zooLevel)+"</td> <td><i>"+percent+"%</i></td></tr>"
 
 line += "</table>"
 

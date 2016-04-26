@@ -98,7 +98,9 @@ def CompareForZooMats(buildId, upgradeId, upgradeNum):
                 # отсечем случаи, когда совпадающий материал по количеству требуется намного больше - в таких случаях не будем ждать
                 matUp = getattr(upgradesReqs[upgradeId][upgradeNum],mat)
                 matBuild = getattr(buildingSettings[buildId],mat)
-                if matBuild/matUp < 4:
+                CONST = 4
+                if gameInfo.zooLevel<5: CONST = 6
+                if matBuild/matUp < CONST:
                     line = GetBuildingReqsLine("build",buildId,0)
                     writeLog("normalSmall","upgrade has same requirements for zoo mats as pending construction of "+buildId+" ("+line+") - lets wait then")
                     return True
@@ -578,26 +580,25 @@ def CalcBuildingCompletePercent(buildingId):
 
 
 def AddExtraGems(source):
+    # берем или соответствующее уровню значение или последнее из массива рейтов
     if gameInfo.zooLevel < len(extraGemsRate[source]):
         levelRate = extraGemsRate[source][gameInfo.zooLevel]
     else:
         levelRate = extraGemsRate[source][len(extraGemsRate[source])]
+
+    # высчитываем текущий фактический рейт или ставим его в 0
     if gameInfo.gemsFromZoo > 0: curRate = float(getattr(gameInfo,"gemsFrom"+source))/float(gameInfo.gemsFromZoo)
     else: curRate = 0
+
     if curRate < levelRate and gameInfo.gemsFromZoo > 0:
         # нужно добавить камень
-        _gems = []
-        gemId = GetNextGem()
-        if not gemId:
-            AddByWeight(_gems,"gem1",47)
-            AddByWeight(_gems,"gem2",25)
-            AddByWeight(_gems,"gem3",15)
-            AddByWeight(_gems,"gem4",13)
-            gemId = GetRandomMaterialOrBrickDef(_gems)
+        _gems = GetGemsWithCorrectionWeight(45,21,17,17)
+        gemId = GetRandomMaterialOrBrickDef(_gems)
 
-        # writeLog("normalBig", "<font color='red'>curRate < levelRate"
-        #                       " ("+str(getattr(gameInfo,"gemsFrom"+source))+"/"+str(gameInfo.gemsFromZoo)+" < "+str(levelRate)+") "
-        #                       "giving "+gemId+" from "+source+"!</font>")
+        writeLog("normalSmall", "<font color='red'>curRate < levelRate"
+                              " ("+str(getattr(gameInfo,"gemsFrom"+source))+"/"+str(gameInfo.gemsFromZoo)+" < "+str(levelRate)+") "
+                              "giving "+gemId+" from "+source+"!</font>")
+
         setattr(gameInfo,gemId,getattr(gameInfo,gemId)+1)
         AddGems(gemId,False)
         setattr(gameInfo,"gemsFrom"+source,getattr(gameInfo,"gemsFrom"+source)+1)
@@ -605,9 +606,10 @@ def AddExtraGems(source):
             gameInfo.extraGems[gemId] = 1
         else:
             gameInfo.extraGems[gemId] += 1
-    # else:
-    #     writeLog("normalBig", "<font color='red'>curRate > levelRate"
-    #                           " ("+str(getattr(gameInfo,"gemsFrom"+source))+"/"+str(gameInfo.gemsFromZoo)+" > "+str(levelRate)+")</font>")
+
+    else:
+        writeLog("normalSmall", "<font color='red'>curRate > levelRate"
+                              " ("+str(getattr(gameInfo,"gemsFrom"+source))+"/"+str(gameInfo.gemsFromZoo)+" > "+str(levelRate)+")</font>")
 
 
 def GetDiffrenceGemsForNextPaddockAnimal(paddock):

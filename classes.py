@@ -47,6 +47,7 @@ class gameInfoClass:
         self.gemsFromZoo = 0
         self.gemsFromPlane = 0
         self.gemsFromMine = 0
+        self.gemsFromALL = 0
 
 class buildingSettingsClass:
     def __init__(self):
