@@ -23,7 +23,7 @@ justLeveluped = 0
 #for x in range(0,35):
 x = 0
 # while gameInfo.paddocksTotalAnimals['paddock_zebra']<4:
-while gameInfo.zooLevel<23:
+while gameInfo.zooLevel<28:
     x += 1
     print ""
     writeLog("normal","&nbsp;<br>&nbsp;<br>&nbsp;<br>&nbsp;<br>&nbsp;")
