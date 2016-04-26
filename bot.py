@@ -43,6 +43,8 @@ while gameInfo.zooLevel<11:
     gameInfo.zooChestCounter = curChestCounter+1
     if "gem" in chestContent:
         AddGems(chestContent,True)
+    if "zoo" in chestContent:
+        gameInfo.materialsFromZoo += 1
 
     # раз в Y сундуков увеличим количество городских стройматериалов, как будто они приехали на поезде
     y = 20
@@ -103,6 +105,7 @@ while gameInfo.zooLevel<11:
 
     ################################ проверим не настало ли время добавить камни с самолета
     AddExtraGems("ALL")
+    AddExtraMaterials()
     ###########################################
 
     ################################ проверим не настало ли время добавить камни с шахты
@@ -153,13 +156,20 @@ while gameInfo.zooLevel<11:
             else:
                 line += " <i>(0 helped)</i>"
             line += "<br>"
-        line += "Extra gems (from plane and mine): <br>"
+
+        line += "Extra gems: <br>"
         for key, value in sorted(gameInfo.extraGems.iteritems()):
              line += "&nbsp; "+key+" = <b>"+str(value)+"</b><br>"
+
+        line += "Extra materials: <br>"
+        for key, value in sorted(gameInfo.extraMats.iteritems()):
+             line += "&nbsp; "+key+" = <b>"+str(value)+"</b><br>"
         line += "</small>"
+
         gameInfo.levelDrop.clear()
         gameInfo.levelDropHelped.clear()
         gameInfo.extraGems.clear()
+        gameInfo.extraMats.clear()
         writeLog("darkblue", line)
         writeShortLog("darkblue", line)
         print "levelup "+str(gameInfo.zooLevel)

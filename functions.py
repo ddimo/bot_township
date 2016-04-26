@@ -612,6 +612,43 @@ def AddExtraGems(source):
                               " ("+str(getattr(gameInfo,"gemsFrom"+source))+"/"+str(gameInfo.gemsFromZoo)+" > "+str(levelRate)+")</font>")
 
 
+def AddExtraMaterials():
+    # берем или соответствующее уровню значение или последнее из массива рейтов
+    if gameInfo.zooLevel < len(extraZooMatsRate):
+        levelRate = extraZooMatsRate[gameInfo.zooLevel]
+    else:
+        levelRate = extraZooMatsRate[len(extraZooMatsRate)]
+
+    # высчитываем текущий фактический рейт или ставим его в 0
+    if gameInfo.materialsFromZoo > 0: curRate = float(getattr(gameInfo,"extraMaterials"))/float(gameInfo.materialsFromZoo)
+    else: curRate = 0
+
+    if curRate < levelRate and gameInfo.materialsFromZoo > 0:
+        # нужно добавить материал
+        _mats = []
+        AddByWeight(_mats,"zooBuildingMaterial",155)
+        AddByWeight(_mats,"zooServiceMaterial1",100)
+        AddByWeight(_mats,"zooServiceMaterial2",100)
+        AddByWeight(_mats,"zooServiceMaterial3",100)
+        AddByWeight(_mats,"zooLandDeed",40)
+        matId = GetRandomMaterialOrBrickDef(_mats)
+
+        writeLog("normalSmall", "<font color='red'>materials curRate < levelRate"
+                              " ("+str(getattr(gameInfo,"extraMaterials"))+"/"+str(gameInfo.materialsFromZoo)+" < "+str(levelRate)+") "
+                              "giving "+matId+"!</font>")
+
+        setattr(gameInfo,matId,getattr(gameInfo,matId)+1)
+        setattr(gameInfo,"extraMaterials",getattr(gameInfo,"extraMaterials")+1)
+        if matId not in gameInfo.extraMats:
+            gameInfo.extraMats[matId] = 1
+        else:
+            gameInfo.extraMats[matId] += 1
+
+    else:
+        writeLog("normalSmall", "<font color='red'>materials curRate > levelRate"
+                              " ("+str(getattr(gameInfo,"extraMaterials"))+"/"+str(gameInfo.materialsFromZoo)+" > "+str(levelRate)+")</font>")
+
+
 def GetDiffrenceGemsForNextPaddockAnimal(paddock):
     nextAnimalNumber = gameInfo.paddocksTotalAnimals[paddock]+1
     price = animalsReqs[paddock][nextAnimalNumber]

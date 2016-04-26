@@ -49,6 +49,10 @@ class gameInfoClass:
         self.gemsFromMine = 0
         self.gemsFromALL = 0
 
+        self.extraMats = dict()
+        self.extraMaterials = 0
+        self.materialsFromZoo = 0
+
 class buildingSettingsClass:
     def __init__(self):
         self.id = ""
