@@ -23,7 +23,7 @@ justLeveluped = 0
 #for x in range(0,35):
 x = 0
 # while gameInfo.paddocksTotalAnimals['paddock_zebra']<4:
-while gameInfo.zooLevel<11:
+while gameInfo.zooLevel<23:
     x += 1
     print ""
     writeLog("normal","&nbsp;<br>&nbsp;<br>&nbsp;<br>&nbsp;<br>&nbsp;")
@@ -173,6 +173,16 @@ while gameInfo.zooLevel<11:
         writeLog("darkblue", line)
         writeShortLog("darkblue", line)
         print "levelup "+str(gameInfo.zooLevel)
+
+        # продадим излишки зоо-материалов
+        if gameInfo.zooLevel < 20:
+            if gameInfo.zooServiceMaterial1 > 40:
+                gameInfo.zooServiceMaterial1 = 40
+            if gameInfo.zooServiceMaterial2 > 40:
+                gameInfo.zooServiceMaterial2 = 40
+            if gameInfo.zooServiceMaterial3 > 40:
+                gameInfo.zooServiceMaterial3 = 40
+
         time.sleep(0.3)
 
     # пробежимся по всем зданиям и проверим, нельзя ли построить доступное
