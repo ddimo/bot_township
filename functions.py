@@ -120,13 +120,22 @@ def FillCurrentZooUpgradePrices():
                     if upNum <= curBuildingUpgrade: continue
                     elif upSettings.animalsCount > totalAnimals: break
                     else:
+                        # print "upgrade # "+str(upNum)+" is available for "+key
                         for mat in zooBuildingMatList:
                             if getattr(upSettings, mat) > 0:
-                                curReqs.append([mat, getattr(upSettings, mat)])
+                                incremented = False
+                                for m in curReqs:
+                                    if m[0] == mat:
+                                        m[1] += getattr(upSettings, mat)
+                                        incremented = True
+                                        break
+                                if not incremented:
+                                    curReqs.append([mat, getattr(upSettings, mat)])
                         reqsLine = GetBuildingReqsLine("upgrade",key,upNum)
                         writeLog("normalSmall","<i>upgrade #"+str(upNum)+
                                     " is available for "+key+" ("+reqsLine+")")
 
+    # print curReqs
     return curReqs
 
 
@@ -215,8 +224,6 @@ def GenerateZooCommunityChestContent():
     if _buildingMaterials:
         needBuildingMaterial = True
         needBuildingMaterialId = GetRandomMaterialOrBrickDef(_buildingMaterials)
-    else:
-        print "NO NEED FOR BUILDING MATERIALS! :("
 
     # Заполняет вектор из всех требующихся материалов для улучшения комьюнити в зоопарке
     currentZooUpgradeMaterialsReqs = FillCurrentZooUpgradePrices()
@@ -320,7 +327,6 @@ def GenerateZooCommunityChestContent():
         helped[needBuildingMaterialId] = "buildingmat"
         writeLog("normalSmall","<i>helping with <u>"+needBuildingMaterialId+"</u> for build (weight 80)</i>")
     else:
-        print "needBuildingMaterial FALSE!!!!!!!!!!!!!!!!!!!!!"
         if zooLevel < 7: # в коде условие по playerLevel<50
             AddByWeight(_zooCommunityChestContent,"Brick",10)
             AddByWeight(_zooCommunityChestContent,"Glass",10)
