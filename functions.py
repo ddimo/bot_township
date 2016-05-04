@@ -6,7 +6,8 @@ from collections import Counter
 import xml.etree.ElementTree as xml
 
 def writeLog(divclass,text):
-    f.write("<div class='"+divclass+"'>"+text+"</div>")
+    if gameInfo.zooLevel >= FULL_LOG_FROM_LEVEL:
+        f.write("<div class='"+divclass+"'>"+text+"</div>")
 
 def writeShortLog(divclass,text):
     fshort.write("<div class='"+divclass+"'>"+text+"</div>")

@@ -11,6 +11,8 @@ ratingForChest = dict()
 gemLimitRanges = []
 _gemsWithCorrectionWeightCoefficient = 0
 
+FULL_LOG_FROM_LEVEL = 20
+
 f = open ("result.html","w")
 fshort = open ("short_result.html","w")
 
