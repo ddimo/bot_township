@@ -2,8 +2,8 @@
 
 from gather_info import *
 
-MAX_WAIT_FOR_UPGRADE = 100    # сколько шагов максимум ждем прежде чем купим апгрейд даже если копим на здание
-ITERATIONS = 100
+MAX_WAIT_FOR_UPGRADE = 1000    # сколько шагов максимум ждем прежде чем купим апгрейд даже если копим на здание
+ITERATIONS = 99
 
 writeHtmlHead()
 
