@@ -1,15 +1,10 @@
 # coding=utf-8
 
-from gather_info import *
+# from globalvars import *
 from functions import *
-from globalvars import *
 import xml.etree.ElementTree as xml
 
-USE_340_XMLS = False        # если True - используем хмл из 340 версии, больше не работает, т.к. в расчете лимиты камней в 360
-
 xmlPath = '../township/base/'
-if USE_340_XMLS:
-    xmlPath = './v340/'
 
 gameBalanceXml = xml.parse(xmlPath+'GameBalance.xml', parser=CommentsParser())
 buildingsLocksXml = xml.parse(xmlPath+'BuildingsLocks_v1.xml', parser=CommentsParser())
@@ -27,12 +22,9 @@ buildingsLocksRoot = buildingsLocksXml.getroot()
 reqs = []
 
 # Заполним требования материалов на все комьюнити и загоны
-if USE_340_XMLS:
-    reqs = BuildingRequirements
-else:
-    for elem in BuildingRequirements.iter():
-        if elem.tag == "reqs" and elem.attrib['ver'] == "2":
-            reqs = elem
+for elem in BuildingRequirements.iter():
+    if elem.tag == "reqs" and elem.attrib['ver'] == "2":
+        reqs = elem
 
 for reqsElem in reqs.iter():
     if 'id' in reqsElem.attrib:
@@ -55,9 +47,11 @@ for reqsElem in reqs.iter():
             if "paddock_" in cur_id:
                 gameInfo.paddocks[cur_id] = 0
                 gameInfo.paddocksTotalAnimals[cur_id] = 0
+                paddocksCompletePercentAll[cur_id] = list()
             elif "zoo_" in cur_id:
                 gameInfo.communities[cur_id] = 0
                 gameInfo.communitiesUpgrades[cur_id] = 0
+                communitiesCompletePercentAll[cur_id] = list()
 
 # итого buildingSettings[building_id] = элемент класса buildingSettingsClass
 # например:

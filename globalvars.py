@@ -11,10 +11,14 @@ ratingForChest = dict()
 gemLimitRanges = []
 _gemsWithCorrectionWeightCoefficient = 0
 
-FULL_LOG_FROM_LEVEL = 20
+paddocksCompletePercentAll = dict()
+communitiesCompletePercentAll = dict()
+
+FULL_LOG_FROM_LEVEL = 50
 
 f = open ("result.html","w")
 fshort = open ("short_result.html","w")
+favrg = open ("avrg_result.html","w")
 
 buildingMatList = ["Brick", "Plita", "Glass", "zooBuildingMaterial", "zooServiceMaterial1", "zooServiceMaterial2", "zooServiceMaterial3"]
 zooBuildingMatList = ["zooBuildingMaterial", "zooServiceMaterial1", "zooServiceMaterial2", "zooServiceMaterial3"]
