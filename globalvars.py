@@ -9,12 +9,16 @@ animalsReqs = dict()
 ratingToLevelup = dict()
 ratingForChest = dict()
 gemLimitRanges = []
+avrgCityMatsAmmount = []
+for i in range(0,50):
+    avrgCityMatsAmmount.append(0)
 _gemsWithCorrectionWeightCoefficient = 0
 
 paddocksCompletePercentAll = dict()
 communitiesCompletePercentAll = dict()
 
 FULL_LOG_FROM_LEVEL = 50
+FULL_LOG_FOR_LEVEL = 30
 
 f = open ("result.html","w")
 fshort = open ("short_result.html","w")

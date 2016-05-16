@@ -7,7 +7,10 @@ import xml.etree.ElementTree as xml
 import numpy as np
 
 def writeLog(divclass,text,gameInfo):
-    if gameInfo.zooLevel >= FULL_LOG_FROM_LEVEL:
+    if FULL_LOG_FOR_LEVEL == 0:
+        if gameInfo.zooLevel >= FULL_LOG_FROM_LEVEL:
+            f.write("<div class='"+divclass+"'>"+text+"</div>")
+    elif gameInfo.zooLevel == FULL_LOG_FOR_LEVEL:
         f.write("<div class='"+divclass+"'>"+text+"</div>")
 
 def writeShortLog(divclass,text):
@@ -273,44 +276,45 @@ def GenerateZooCommunityChestContent(gameInfo):
     nextExp = zoocurrentExpand+1
 
     # Если в зоопарке уже нужны материалы для расширени
-    if expandReqs[nextExp].zooLandDeed > 0:
-        zooLandDeedCount = gameInfo.zooLandDeed
-        pickCount = gameInfo.pick
-        axeCount = gameInfo.axe
-        tntCount = gameInfo.TNT
+    if nextExp in expandReqs:
+        if expandReqs[nextExp].zooLandDeed > 0:
+            zooLandDeedCount = gameInfo.zooLandDeed
+            pickCount = gameInfo.pick
+            axeCount = gameInfo.axe
+            tntCount = gameInfo.TNT
 
-        zooLandDeedNeeded = expandReqs[nextExp].zooLandDeed - zooLandDeedCount
-        pickNeeded = expandReqs[nextExp].pick - pickCount
-        axeNeeded = expandReqs[nextExp].axe - axeCount
-        tntNeeded = expandReqs[nextExp].TNT - tntCount
+            zooLandDeedNeeded = expandReqs[nextExp].zooLandDeed - zooLandDeedCount
+            pickNeeded = expandReqs[nextExp].pick - pickCount
+            axeNeeded = expandReqs[nextExp].axe - axeCount
+            tntNeeded = expandReqs[nextExp].TNT - tntCount
 
-        alreadyHelped = False
+            alreadyHelped = False
 
-        if zooLandDeedNeeded > 0 and chestWithoutLandDeed >= 10:
-            gameInfo.chestWithoutLandDeed = 0
-            return "zooLandDeed", "chestWithoutLandDeed"
+            if zooLandDeedNeeded > 0 and chestWithoutLandDeed >= 10:
+                gameInfo.chestWithoutLandDeed = 0
+                return "zooLandDeed", "chestWithoutLandDeed"
 
-        if zooLandDeedNeeded > 1 or (zooLandDeedNeeded == 1 and random.randint(0,100) < 80):
-            needZooExpandMaterialId = "zooLandDeed"
-            alreadyHelped = True
-
-        if not alreadyHelped or (pickNeeded > 0 and random.randint(0,100) < 50):
-            if pickNeeded > 1 or (pickNeeded == 1 and random.randint(0,100) < 70):
-                needZooExpandMaterialId = "pick"
+            if zooLandDeedNeeded > 1 or (zooLandDeedNeeded == 1 and random.randint(0,100) < 80):
+                needZooExpandMaterialId = "zooLandDeed"
                 alreadyHelped = True
 
-        if not alreadyHelped and random.randint(0,100) < 90:
-            if axeNeeded > 1 or (axeNeeded == 1 and random.randint(0,100) < 70):
-                needZooExpandMaterialId = "axe"
-                alreadyHelped = True
+            if not alreadyHelped or (pickNeeded > 0 and random.randint(0,100) < 50):
+                if pickNeeded > 1 or (pickNeeded == 1 and random.randint(0,100) < 70):
+                    needZooExpandMaterialId = "pick"
+                    alreadyHelped = True
 
-        if not alreadyHelped and random.randint(0,100) < 80:
-            if tntNeeded > 1 or (tntNeeded == 1 and random.randint(0,100) < 70):
-                needZooExpandMaterialId = "TNT"
-                alreadyHelped = True
+            if not alreadyHelped and random.randint(0,100) < 90:
+                if axeNeeded > 1 or (axeNeeded == 1 and random.randint(0,100) < 70):
+                    needZooExpandMaterialId = "axe"
+                    alreadyHelped = True
 
-        if alreadyHelped:
-            needZooExpandMaterial = True
+            if not alreadyHelped and random.randint(0,100) < 80:
+                if tntNeeded > 1 or (tntNeeded == 1 and random.randint(0,100) < 70):
+                    needZooExpandMaterialId = "TNT"
+                    alreadyHelped = True
+
+            if alreadyHelped:
+                needZooExpandMaterial = True
 
 
     # Проверяем нужно ли подыграть по камням
@@ -631,6 +635,11 @@ def AddExtraMaterials(gameInfo):
     # высчитываем текущий фактический рейт или ставим его в 0
     if gameInfo.materialsFromZoo > 0: curRate = float(getattr(gameInfo,"extraMaterials"))/float(gameInfo.materialsFromZoo)
     else: curRate = 0
+
+    # if gameInfo.zooChestCounter % 10 == 0 and gameInfo.Brick<300 and gameInfo.Glass<300 and gameInfo.Plita<300:
+    #     gameInfo.Brick += random.randint(2,4)
+    #     gameInfo.Glass += random.randint(2,4)
+    #     gameInfo.Plita += random.randint(2,4)
 
     if curRate < levelRate and gameInfo.materialsFromZoo > 0:
         # нужно добавить материал

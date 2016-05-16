@@ -29,6 +29,7 @@ for elem in BuildingRequirements.iter():
 for reqsElem in reqs.iter():
     if 'id' in reqsElem.attrib:
         cur_id = reqsElem.attrib['id']
+
         if "zoo_" in cur_id or "paddock_" in cur_id:
             zooBuilding = buildingSettingsClass()
             zooBuilding.id = reqsElem.attrib['id']
@@ -47,11 +48,24 @@ for reqsElem in reqs.iter():
             if "paddock_" in cur_id:
                 gameInfo.paddocks[cur_id] = 0
                 gameInfo.paddocksTotalAnimals[cur_id] = 0
+                gameInfo.paddocksCompletePercent[cur_id] = 0
                 paddocksCompletePercentAll[cur_id] = list()
             elif "zoo_" in cur_id:
                 gameInfo.communities[cur_id] = 0
                 gameInfo.communitiesUpgrades[cur_id] = 0
+                gameInfo.communitiesCompletePercent[cur_id] = 0
                 communitiesCompletePercentAll[cur_id] = list()
+
+        if "paddock_" in cur_id:
+            # заполним среднее количество городского материала в требованиях на уровне
+            curCM = []
+            if 'Brick' in reqsElem.attrib:
+                curCM.append(int(reqsElem.attrib['Brick']))
+            if 'Glass' in reqsElem.attrib:
+                curCM.append(int(reqsElem.attrib['Glass']))
+            if 'Plita' in reqsElem.attrib:
+                curCM.append(int(reqsElem.attrib['Plita']))
+            avrgCityMatsAmmount[zooBuilding.zooLevel] = int(np.mean(curCM))
 
 # итого buildingSettings[building_id] = элемент класса buildingSettingsClass
 # например:

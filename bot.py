@@ -3,11 +3,13 @@
 from gather_info import *
 
 MAX_WAIT_FOR_UPGRADE = 100    # сколько шагов максимум ждем прежде чем купим апгрейд даже если копим на здание
-ITERATIONS = 1000
-
-writeHtmlHead()
+ITERATIONS = 50
 
 for passing in range(1,ITERATIONS+1):
+
+    f = open ("result.html","w")
+    fshort = open ("short_result.html","w")
+    writeHtmlHead()
 
     # в начале строим туториальный загон для медведя, покупаем медведя и строим кафе
     writeLog("pink","building <b>paddock_bear</b> (tutorial)",gameInfo)
@@ -24,7 +26,7 @@ for passing in range(1,ITERATIONS+1):
     x = 0
 
     # while gameInfo.paddocksTotalAnimals['paddock_zebra']<4:
-    while gameInfo.zooLevel<31:
+    while gameInfo.zooLevel<37:
         x += 1
         # print ""
         writeLog("normal","&nbsp;<br>&nbsp;<br>&nbsp;<br>&nbsp;<br>&nbsp;",gameInfo)
@@ -49,24 +51,24 @@ for passing in range(1,ITERATIONS+1):
             gameInfo.materialsFromZoo += 1
 
         # раз в Y сундуков увеличим количество городских стройматериалов, как будто они приехали на поезде
-        y = 20
+        y = 15
         if gameInfo.zooChestCounter % y == 0:
             if gameInfo.axe < 7: gameInfo.axe += 3
             if gameInfo.pick < 7: gameInfo.pick += 3
             if gameInfo.TNT < 7: gameInfo.TNT += 3
             rand = random.randint(1,3)
             if rand == 1:
-                if gameInfo.Brick < 50: gameInfo.Brick += 10
-                if gameInfo.Glass < 50: gameInfo.Glass += 7
-                if gameInfo.Plita < 50: gameInfo.Plita += 5
+                if gameInfo.Brick < avrgCityMatsAmmount[gameInfo.zooLevel]: gameInfo.Brick += 10
+                if gameInfo.Glass < avrgCityMatsAmmount[gameInfo.zooLevel]: gameInfo.Glass += 7
+                if gameInfo.Plita < avrgCityMatsAmmount[gameInfo.zooLevel]: gameInfo.Plita += 5
             elif rand == 2:
-                if gameInfo.Glass < 50: gameInfo.Glass += 10
-                if gameInfo.Plita < 50: gameInfo.Plita += 7
-                if gameInfo.Brick < 50: gameInfo.Brick += 5
+                if gameInfo.Glass < avrgCityMatsAmmount[gameInfo.zooLevel]: gameInfo.Glass += 10
+                if gameInfo.Plita < avrgCityMatsAmmount[gameInfo.zooLevel]: gameInfo.Plita += 7
+                if gameInfo.Brick < avrgCityMatsAmmount[gameInfo.zooLevel]: gameInfo.Brick += 5
             else:
-                if gameInfo.Plita < 50: gameInfo.Plita += 10
-                if gameInfo.Brick < 50: gameInfo.Brick += 7
-                if gameInfo.Glass < 50: gameInfo.Glass += 5
+                if gameInfo.Plita < avrgCityMatsAmmount[gameInfo.zooLevel]: gameInfo.Plita += 10
+                if gameInfo.Brick < avrgCityMatsAmmount[gameInfo.zooLevel]: gameInfo.Brick += 7
+                if gameInfo.Glass < avrgCityMatsAmmount[gameInfo.zooLevel]: gameInfo.Glass += 5
 
 
         if (chestContentTuple[1] == "buildingmat" or chestContentTuple[1] == "upgrademat") and (chestContent in buildingMatList):
@@ -187,29 +189,30 @@ for passing in range(1,ITERATIONS+1):
             aa = 0
 
         # пробежимся по доступным апгрейдам и проверим, нельзя ли проапгрейдить комьюнити
-        availableUpgrade = FindUpdateToBuy(gameInfo)
-        if availableUpgrade:
-            ubid = availableUpgrade[0] # идентификатор здания
-            un = availableUpgrade[1] # номер апгрейда
-            line = GetBuildingReqsLine("upgrade", ubid, un, gameInfo)
-            writeLog("normalSmall","<i>enough materials for upgrade #"+str(un)+" in "+str(ubid)+" (needed: "+line+")",gameInfo)
-            availableToBuild = FindAvailableNotBuilt(gameInfo)
-            if availableToBuild:
-                comparision = CompareForZooMats(availableToBuild,ubid,un,gameInfo)
-            if not availableToBuild or not comparision or gameInfo.upgradeWait >= MAX_WAIT_FOR_UPGRADE:
-                # do если нет доступных для строительства
-                # или доступно, но нет совпадения по материалам с доступным
-                # или доступно, есть совпадение, но подождали уже долго
-                DoUpgrade(ubid,un,gameInfo)
-                writeLog("normalSmall", "<font color='red'>bought upgrade</font>",gameInfo)
-                gameInfo.upgradeWait = 0
-            else:
-                # не будем покупать апгрейд пока копим на строительство доступного загона/комьюнити
-                if gameInfo.upgradeWait < MAX_WAIT_FOR_UPGRADE:
-                    line = GetBuildingReqsLine("build",availableToBuild,0,gameInfo)
-                    writeLog("normalSmall","not upgrading, saving ("+str(gameInfo.upgradeWait)+" times already) for "+availableToBuild+" (needed: "+line+")",gameInfo)
-                    if gameInfo.communities['zoo_eatery'] == 1: # пока не построили zoo_eatery - не будем апгрейдить вообще
-                        gameInfo.upgradeWait += 1
+        if gameInfo.zooLevel < 20: # чтобы можно было отключить апгрйды после какого-нибудь уровня
+            availableUpgrade = FindUpdateToBuy(gameInfo)
+            if availableUpgrade:
+                ubid = availableUpgrade[0] # идентификатор здания
+                un = availableUpgrade[1] # номер апгрейда
+                line = GetBuildingReqsLine("upgrade", ubid, un, gameInfo)
+                writeLog("normalSmall","<i>enough materials for upgrade #"+str(un)+" in "+str(ubid)+" (needed: "+line+")",gameInfo)
+                availableToBuild = FindAvailableNotBuilt(gameInfo)
+                if availableToBuild:
+                    comparision = CompareForZooMats(availableToBuild,ubid,un,gameInfo)
+                if not availableToBuild or not comparision or gameInfo.upgradeWait >= MAX_WAIT_FOR_UPGRADE:
+                    # do если нет доступных для строительства
+                    # или доступно, но нет совпадения по материалам с доступным
+                    # или доступно, есть совпадение, но подождали уже долго
+                    DoUpgrade(ubid,un,gameInfo)
+                    writeLog("normalSmall", "<font color='red'>bought upgrade</font>",gameInfo)
+                    gameInfo.upgradeWait = 0
+                else:
+                    # не будем покупать апгрейд пока копим на строительство доступного загона/комьюнити
+                    if gameInfo.upgradeWait < MAX_WAIT_FOR_UPGRADE:
+                        line = GetBuildingReqsLine("build",availableToBuild,0,gameInfo)
+                        writeLog("normalSmall","not upgrading, saving ("+str(gameInfo.upgradeWait)+" times already) for "+availableToBuild+" (needed: "+line+")",gameInfo)
+                        if gameInfo.communities['zoo_eatery'] == 1: # пока не построили zoo_eatery - не будем апгрейдить вообще
+                            gameInfo.upgradeWait += 1
 
         # выведем список зданий, которые еще не построены, но уже доступны - со списком требований
         for key, value in gameInfo.paddocks.items():
@@ -264,14 +267,19 @@ for passing in range(1,ITERATIONS+1):
 
     # в конце каждого прогона запишем в лист данные о процентах текущего прогона
     for i in range(1,40):
-        for key, value in gameInfo.paddocks.items():
-            if buildingSettings[key].zooLevel == i and value == 1:
-                percent = gameInfo.paddocksCompletePercent[key]
-                paddocksCompletePercentAll[key].append(percent)
-        for key, value in gameInfo.communities.items():
-            if buildingSettings[key].zooLevel == i and value == 1:
-                percent = gameInfo.communitiesCompletePercent[key]
-                communitiesCompletePercentAll[key].append(percent)
+        for key, value in buildingSettings.items():
+            if value.zooLevel == i:
+                if "paddock_" in value.id:
+                    percent = gameInfo.paddocksCompletePercent[key]
+                    paddocksCompletePercentAll[key].append(percent)
+                elif "zoo_" in value.id:
+                    percent = gameInfo.communitiesCompletePercent[key]
+                    communitiesCompletePercentAll[key].append(percent)
+
+        # for key, value in gameInfo.communities.items():
+        #     if buildingSettings[key].zooLevel == i and value == 1:
+        #         percent = gameInfo.communitiesCompletePercent[key]
+        #         communitiesCompletePercentAll[key].append(percent)
 
 
     gameInfo = gameInfoClass()
@@ -281,11 +289,15 @@ for passing in range(1,ITERATIONS+1):
         if "paddock_" in cur_id:
             gameInfo.paddocks[cur_id] = 0
             gameInfo.paddocksTotalAnimals[cur_id] = 0
+            gameInfo.paddocksCompletePercent[cur_id] = 0
         elif "zoo_" in cur_id:
             gameInfo.communities[cur_id] = 0
             gameInfo.communitiesUpgrades[cur_id] = 0
+            gameInfo.communitiesCompletePercent[cur_id] = 0
 
     print "Iteration "+str(passing)+" completed"
+    f.close()
+    fshort.close()
 
 
 print "All iterations completed!"
@@ -324,5 +336,4 @@ writeAvrgLog("darkblue", line)
 print ""
 print "total "+str(x)+" steps"
 writeHtmlFoot()
-f.close()
 favrg.close()
