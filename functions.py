@@ -9,12 +9,15 @@ import numpy as np
 def writeLog(divclass,text,gameInfo):
     if FULL_LOG_FOR_LEVEL == 0:
         if gameInfo.zooLevel >= FULL_LOG_FROM_LEVEL:
-            f.write("<div class='"+divclass+"'>"+text+"</div>")
+            #f.write("<div class='"+divclass+"'>"+text+"</div>")
+            aa = 0
     elif gameInfo.zooLevel == FULL_LOG_FOR_LEVEL:
-        f.write("<div class='"+divclass+"'>"+text+"</div>")
+        aa = 0
+        #f.write("<div class='"+divclass+"'>"+text+"</div>")
 
 def writeShortLog(divclass,text):
-    fshort.write("<div class='"+divclass+"'>"+text+"</div>")
+    #fshort.write("<div class='"+divclass+"'>"+text+"</div>")
+    aa = 0
 
 def writeAvrgLog(divclass,text):
     favrg.write("<div class='"+divclass+"'>"+text+"</div>")

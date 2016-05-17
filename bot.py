@@ -2,14 +2,14 @@
 
 from gather_info import *
 
+f = open ("result.html","w")
+fshort = open ("short_result.html","w")
+writeHtmlHead()
+
 MAX_WAIT_FOR_UPGRADE = 100    # сколько шагов максимум ждем прежде чем купим апгрейд даже если копим на здание
-ITERATIONS = 50
+ITERATIONS = 200
 
 for passing in range(1,ITERATIONS+1):
-
-    f = open ("result.html","w")
-    fshort = open ("short_result.html","w")
-    writeHtmlHead()
 
     # в начале строим туториальный загон для медведя, покупаем медведя и строим кафе
     writeLog("pink","building <b>paddock_bear</b> (tutorial)",gameInfo)
@@ -189,7 +189,9 @@ for passing in range(1,ITERATIONS+1):
             aa = 0
 
         # пробежимся по доступным апгрейдам и проверим, нельзя ли проапгрейдить комьюнити
-        if gameInfo.zooLevel < 20: # чтобы можно было отключить апгрйды после какого-нибудь уровня
+        if gameInfo.zooLevel < 666: # чтобы можно было отключить апгрйды после какого-нибудь уровня
+            if gameInfo.zooLevel > 20:
+                MAX_WAIT_FOR_UPGRADE += 50
             availableUpgrade = FindUpdateToBuy(gameInfo)
             if availableUpgrade:
                 ubid = availableUpgrade[0] # идентификатор здания
