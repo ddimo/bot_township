@@ -1,13 +1,12 @@
 # coding=utf-8
 
 from gather_info import *
+import shared
 
-f = open ("result.html","w")
-fshort = open ("short_result.html","w")
-writeHtmlHead()
+ITERATIONS = 100
 
-MAX_WAIT_FOR_UPGRADE = 100    # сколько шагов максимум ждем прежде чем купим апгрейд даже если копим на здание
-ITERATIONS = 200
+writeHtmlHead('result')
+writeHtmlHead('short_result')
 
 for passing in range(1,ITERATIONS+1):
 
@@ -106,7 +105,7 @@ for passing in range(1,ITERATIONS+1):
 
         # print "dropped", chestContent
 
-        ################################ проверим не настало ли время добавить камни с самолета
+        ################################ проверим не настало ли время добавить камни с самолета и доп. материалы
         AddExtraGems("ALL",gameInfo)
         AddExtraMaterials(gameInfo)
         ###########################################
@@ -169,7 +168,7 @@ for passing in range(1,ITERATIONS+1):
             gameInfo.extraGems.clear()
             gameInfo.extraMats.clear()
             writeLog("darkblue", line,gameInfo)
-            # writeShortLog("darkblue", line)
+            writeShortLog("darkblue", line)
             # print "levelup "+str(gameInfo.zooLevel)
 
             # продадим излишки зоо-материалов
@@ -191,7 +190,7 @@ for passing in range(1,ITERATIONS+1):
         # пробежимся по доступным апгрейдам и проверим, нельзя ли проапгрейдить комьюнити
         if gameInfo.zooLevel < 666: # чтобы можно было отключить апгрйды после какого-нибудь уровня
             if gameInfo.zooLevel > 20:
-                MAX_WAIT_FOR_UPGRADE += 50
+                shared.MAX_WAIT_FOR_UPGRADE += 50
             availableUpgrade = FindUpdateToBuy(gameInfo)
             if availableUpgrade:
                 ubid = availableUpgrade[0] # идентификатор здания
@@ -201,7 +200,7 @@ for passing in range(1,ITERATIONS+1):
                 availableToBuild = FindAvailableNotBuilt(gameInfo)
                 if availableToBuild:
                     comparision = CompareForZooMats(availableToBuild,ubid,un,gameInfo)
-                if not availableToBuild or not comparision or gameInfo.upgradeWait >= MAX_WAIT_FOR_UPGRADE:
+                if not availableToBuild or not comparision or gameInfo.upgradeWait >= shared.MAX_WAIT_FOR_UPGRADE:
                     # do если нет доступных для строительства
                     # или доступно, но нет совпадения по материалам с доступным
                     # или доступно, есть совпадение, но подождали уже долго
@@ -210,7 +209,7 @@ for passing in range(1,ITERATIONS+1):
                     gameInfo.upgradeWait = 0
                 else:
                     # не будем покупать апгрейд пока копим на строительство доступного загона/комьюнити
-                    if gameInfo.upgradeWait < MAX_WAIT_FOR_UPGRADE:
+                    if gameInfo.upgradeWait < shared.MAX_WAIT_FOR_UPGRADE:
                         line = GetBuildingReqsLine("build",availableToBuild,0,gameInfo)
                         writeLog("normalSmall","not upgrading, saving ("+str(gameInfo.upgradeWait)+" times already) for "+availableToBuild+" (needed: "+line+")",gameInfo)
                         if gameInfo.communities['zoo_eatery'] == 1: # пока не построили zoo_eatery - не будем апгрейдить вообще
@@ -243,8 +242,9 @@ for passing in range(1,ITERATIONS+1):
         line = ""
         for g in gemsList:
             line += str(getattr(gameInfo,g))+" <img src='img/"+g+".png' valign='middle'> &nbsp; "
-        writeLog("normalSmallOrange", line,gameInfo)
-        if justLeveluped: writeShortLog("normalSmallOrange", line)
+        writeLog("normalSmallOrange", line, gameInfo)
+        if justLeveluped:
+            writeShortLog("normalSmallOrange", line)
 
         line = str(gameInfo.zooLandDeed)+" <img src='img/zooLandDeed.png' valign='middle'> &nbsp; "+ \
                 str(gameInfo.zooBuildingMaterial)+" <img src='img/zooBuildingMaterial.png' valign='middle'> &nbsp; "+ \
@@ -252,7 +252,8 @@ for passing in range(1,ITERATIONS+1):
                 str(gameInfo.zooServiceMaterial2)+" <img src='img/zooServiceMaterial2.png' valign='middle'> &nbsp; "+ \
                 str(gameInfo.zooServiceMaterial3)+" <img src='img/zooServiceMaterial3.png' valign='middle'>"
         writeLog("normalSmallGreen", line,gameInfo)
-        if justLeveluped: writeShortLog("normalSmallGreen", line)
+        if justLeveluped:
+            writeShortLog("normalSmallGreen", line)
 
         line = str(gameInfo.Brick)+" <img src='img/Brick.png' valign='middle'> &nbsp; "+ \
                 str(gameInfo.Plita)+" <img src='img/Plita.png' valign='middle'> &nbsp; "+ \
@@ -278,12 +279,6 @@ for passing in range(1,ITERATIONS+1):
                     percent = gameInfo.communitiesCompletePercent[key]
                     communitiesCompletePercentAll[key].append(percent)
 
-        # for key, value in gameInfo.communities.items():
-        #     if buildingSettings[key].zooLevel == i and value == 1:
-        #         percent = gameInfo.communitiesCompletePercent[key]
-        #         communitiesCompletePercentAll[key].append(percent)
-
-
     gameInfo = gameInfoClass()
     for reqsElem in reqs.iter():
         if 'id' in reqsElem.attrib:
@@ -298,22 +293,24 @@ for passing in range(1,ITERATIONS+1):
             gameInfo.communitiesCompletePercent[cur_id] = 0
 
     print "Iteration "+str(passing)+" completed"
-    f.close()
-    fshort.close()
+    if not shared.RESULT_FILES_SAVED:
+        writeHtmlFoot("result")
+        writeHtmlFoot("short_result")
+        shared.f.close()
+        shared.fshort.close()
+        shared.RESULT_FILES_SAVED = True
 
 
 print "All iterations completed!"
+
+writeHtmlHead('avrg_result')
 
 line = "<b>Average percentage after "+str(passing)+" iterations:</b><br><br><table style='border:0px'><tr><td style='font-size:8pt'><b>id</b></td><td style='font-size:8pt'><b>open</b></td><td style='font-size:8pt'><b>complete</b></td></tr>"
 
 for i in range(1,40):  # уровень
     for key, value in gameInfo.paddocks.items():
         if buildingSettings[key].zooLevel == i and paddocksCompletePercentAll[key]:
-            # print ""
-            # print key
-            # print paddocksCompletePercentAll[key]
             percent = int(np.mean(paddocksCompletePercentAll[key]))
-            # print percent
             if percent > 100:
                 percent = "<font color='darkred'>"+str(percent)+"</font>"
             else:
@@ -337,5 +334,5 @@ writeAvrgLog("darkblue", line)
 
 print ""
 print "total "+str(x)+" steps"
-writeHtmlFoot()
-favrg.close()
+writeHtmlFoot("avrg_result")
+shared.favrg.close()

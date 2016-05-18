@@ -2,37 +2,43 @@
 
 import random
 from globalvars import *
+import shared
 from collections import Counter
 import xml.etree.ElementTree as xml
 import numpy as np
 
 def writeLog(divclass,text,gameInfo):
-    if FULL_LOG_FOR_LEVEL == 0:
-        if gameInfo.zooLevel >= FULL_LOG_FROM_LEVEL:
-            #f.write("<div class='"+divclass+"'>"+text+"</div>")
-            aa = 0
-    elif gameInfo.zooLevel == FULL_LOG_FOR_LEVEL:
-        aa = 0
-        #f.write("<div class='"+divclass+"'>"+text+"</div>")
+    if not shared.RESULT_FILES_SAVED:
+        if shared.FULL_LOG_FOR_LEVEL == 0:
+            if gameInfo.zooLevel >= shared.FULL_LOG_FROM_LEVEL:
+                shared.f.write("<div class='"+divclass+"'>"+text+"</div>")
+        elif gameInfo.zooLevel == shared.FULL_LOG_FOR_LEVEL:
+            shared.f.write("<div class='"+divclass+"'>"+text+"</div>")
 
 def writeShortLog(divclass,text):
-    #fshort.write("<div class='"+divclass+"'>"+text+"</div>")
-    aa = 0
+    if not shared.RESULT_FILES_SAVED:
+        shared.fshort.write("<div class='"+divclass+"'>"+text+"</div>")
 
 def writeAvrgLog(divclass,text):
-    favrg.write("<div class='"+divclass+"'>"+text+"</div>")
+    shared.favrg.write("<div class='"+divclass+"'>"+text+"</div>")
 
-def writeHtmlHead():
+def writeHtmlHead(filename):
     with open("_htmlhead") as fp:
         for line in fp:
-            f.write(line)
-            fshort.write(line)
-            favrg.write(line)
+            if filename == "result":
+                shared.f.write(line)
+            elif filename == "short_result":
+                shared.fshort.write(line)
+            elif filename == "avrg_result":
+                shared.favrg.write(line)
 
-def writeHtmlFoot():
-    f.write("<br><br></body></html>")
-    fshort.write("<br><br></body></html>")
-    favrg.write("<br><br></body></html>")
+def writeHtmlFoot(filename):
+    if filename == "result":
+        shared.f.write("<br><br></body></html>")
+    elif filename == "short_result":
+        shared.fshort.write("<br><br></body></html>")
+    elif filename == "avrg_result":
+        shared.favrg.write("<br><br></body></html>")
 
 class CommentsParser(xml.XMLTreeBuilder):
 
