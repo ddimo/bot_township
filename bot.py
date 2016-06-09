@@ -4,6 +4,13 @@ from gather_info import *
 import shared
 
 ITERATIONS = 100
+MAX_ZOO_LEVEL = 37
+
+for i in range(1,MAX_ZOO_LEVEL):
+    gemsSavingsAtLevel['gem1'][i] = list()
+    gemsSavingsAtLevel['gem2'][i] = list()
+    gemsSavingsAtLevel['gem3'][i] = list()
+    gemsSavingsAtLevel['gem4'][i] = list()
 
 writeHtmlHead('result')
 writeHtmlHead('short_result')
@@ -25,7 +32,7 @@ for passing in range(1,ITERATIONS+1):
     x = 0
 
     # while gameInfo.paddocksTotalAnimals['paddock_zebra']<4:
-    while gameInfo.zooLevel<37:
+    while gameInfo.zooLevel<MAX_ZOO_LEVEL:
         x += 1
         # print ""
         writeLog("normal","&nbsp;<br>&nbsp;<br>&nbsp;<br>&nbsp;<br>&nbsp;",gameInfo)
@@ -180,6 +187,12 @@ for passing in range(1,ITERATIONS+1):
                 if gameInfo.zooServiceMaterial3 > 40:
                     gameInfo.zooServiceMaterial3 = 40
 
+            # запишем данные о накоплениях камней в общий лист средних значений
+            gemsSavingsAtLevel['gem1'][gameInfo.zooLevel-1].append(gameInfo.gem1)
+            gemsSavingsAtLevel['gem2'][gameInfo.zooLevel-1].append(gameInfo.gem2)
+            gemsSavingsAtLevel['gem3'][gameInfo.zooLevel-1].append(gameInfo.gem3)
+            gemsSavingsAtLevel['gem4'][gameInfo.zooLevel-1].append(gameInfo.gem4)
+
             # time.sleep(0.3)
 
         # пробежимся по всем зданиям и проверим, нельзя ли построить доступное
@@ -325,8 +338,24 @@ for i in range(1,40):  # уровень
                 percent = "<font color='darkred'>"+str(percent)+"</font>"
             else:
                 percent = "<font color='green'>"+str(percent)+"</font>"
-            line += "<tr style='font-weight: bold;'><td style='padding-right:10px'>"+str(key)+"</td> <td style='padding-right:10px'> "+ \
+            line += "<tr><td style='padding-right:10px; font-weight: bold;'>"+str(key)+"</td> <td style='padding-right:10px; font-weight: bold;'> "+ \
                     "L"+str(buildingSettings[key].zooLevel)+"</td> <td><i>"+percent+"%</i></td></tr>"
+
+line += "</table>"
+
+line += "<br><br><b>Average game savings after "+str(passing)+" iterations:</b><br><br>" \
+        "<table style='border:0px'>" \
+        "<tr style='padding-bottom:20px'>" \
+        "<td style='font-size:8pt'><b>level</b></td>" \
+        "<td style='font-size:8pt; text-align: center' colspan='4'><b>gems</b></td>" \
+        "</tr>"
+
+for i in range(1,MAX_ZOO_LEVEL):
+    line += "<tr><td style='padding-right:10px; text-align:right'><b>L"+str(i)+"</b></td>"
+    for g in gemsList:
+        curAvrg = int(np.mean(gemsSavingsAtLevel[g][i]))
+        line +="<td style='padding-left:25px'><img src='img/"+g+".png' valign='middle'>"+ str(curAvrg)+"</td> "
+    line += "</tr>"
 
 line += "</table>"
 

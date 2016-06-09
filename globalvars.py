@@ -17,6 +17,11 @@ _gemsWithCorrectionWeightCoefficient = 0
 paddocksCompletePercentAll = dict()
 communitiesCompletePercentAll = dict()
 
+gemsSavingsAtLevel = dict()
+gemsSavingsAtLevel['gem1'] = dict()
+gemsSavingsAtLevel['gem2'] = dict()
+gemsSavingsAtLevel['gem3'] = dict()
+gemsSavingsAtLevel['gem4'] = dict()
 
 buildingMatList = ["Brick", "Plita", "Glass", "zooBuildingMaterial", "zooServiceMaterial1", "zooServiceMaterial2", "zooServiceMaterial3"]
 zooBuildingMatList = ["zooBuildingMaterial", "zooServiceMaterial1", "zooServiceMaterial2", "zooServiceMaterial3"]

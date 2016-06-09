@@ -6,6 +6,6 @@ FULL_LOG_FOR_LEVEL = 30 # для какого конкретно уровня з
 MAX_WAIT_FOR_UPGRADE = 100    # сколько шагов максимум ждем прежде чем купим апгрейд даже если копим на здание
 
 RESULT_FILES_SAVED = False
-f = open ("result.html","w")
-fshort = open ("short_result.html","w")
-favrg = open ("avrg_result.html","w")
+f = open ("__result.html","w")
+fshort = open ("__short_result.html","w")
+favrg = open ("__avrg_result.html","w")
