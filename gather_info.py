@@ -3,6 +3,7 @@
 # from globalvars import *
 from functions import *
 import xml.etree.ElementTree as xml
+import math
 
 xmlPath = '../township/base/'
 
@@ -90,8 +91,13 @@ for upgradeBuildingElem in UpgradesSettingsXml:
                     # не указано ни одного требования на материалы
                     continue
                 for mat in buildingMatList:
-                    if mat in upgradeElem.attrib: setattr(curUpgradeReqs,mat,int(upgradeElem.attrib[mat]))
-                if 'animalsCount' in upgradeElem.attrib: curUpgradeReqs.animalsCount = int(upgradeElem.attrib['animalsCount'])
+                    if mat in upgradeElem.attrib:
+                        setattr(curUpgradeReqs,mat,int(upgradeElem.attrib[mat]))
+                if 'animalsCount' in upgradeElem.attrib:
+                    curUpgradeReqs.animalsCount = int(upgradeElem.attrib['animalsCount'])
+                    curUpgradeReqs.zooLevel = int(math.ceil(curUpgradeReqs.animalsCount/4.0))
+                    if buildingSettings[buildingId].zooLevel > curUpgradeReqs.zooLevel:
+                        curUpgradeReqs.zooLevel = buildingSettings[buildingId].zooLevel
                 upgradesReqs[buildingId].append(curUpgradeReqs)
                 x += 1
 
