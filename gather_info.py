@@ -8,11 +8,11 @@ import math
 xmlPath = '../township/base/'
 
 gameBalanceXml = xml.parse(xmlPath+'GameBalance.xml', parser=CommentsParser())
-buildingsLocksXml = xml.parse(xmlPath+'BuildingsLocks_v1.xml', parser=CommentsParser())
+buildingsLocksXml = xml.parse(xmlPath+'BuildingsLocks.xml', parser=CommentsParser())
 upgradesXml = xml.parse(xmlPath+'ZooUpgrade.xml', parser=CommentsParser())
 paddocksXml = xml.parse(xmlPath+'All_AnimalPaddocks.xml', parser=CommentsParser())
 buildingsZooXml = xml.parse(xmlPath+'buildings_zoo.xml', parser=CommentsParser())
-levelupInfoXml = xml.parse(xmlPath+'LevelupInfo_v1.xml', parser=CommentsParser())
+levelupInfoXml = xml.parse(xmlPath+'LevelupInfo.xml', parser=CommentsParser())
 expandXml = xml.parse(xmlPath+'expand_zoo.xml', parser=CommentsParser())
 
 gameBalanceRoot = gameBalanceXml.getroot()
@@ -110,7 +110,7 @@ paddocksSettings = paddocksXml.find('AnimalPaddocks')
 for paddockElem in paddocksSettings:
     if paddockElem.tag == 'paddock':
         elemId = paddockElem.attrib['type']
-        elemRating = int(paddockElem.attrib['rating'])
+        elemRating = int(paddockElem.attrib['animalRating'])
         buildingSettings[elemId].bonusRating = elemRating
         animalNumber = 1
         animalsReqs[elemId] = [0,0,0,0,0]

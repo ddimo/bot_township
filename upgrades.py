@@ -1,8 +1,10 @@
 # coding=utf-8
 
+# collect info about mat reqs for upgrades and construction in the ZOO
+
 from gather_info import *
 
-MAX_LEVEL = 34
+MAX_LEVEL = 44
 levelReqs = list()
 
 # upgradesReqs['zoo_caffe'][1] = class with reqs for upgrade #1 (Brick,Plita .. animalsCount)
